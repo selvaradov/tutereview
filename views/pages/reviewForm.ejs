@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Review Form</title>
+</head>
+<body>
+    <h2>Tutor Review Form</h2>
+    <form action="/review" method="post">
+        <% questions.forEach((question) => { %>
+            <div>
+                <label><%= question.question %></label>
+                <% if (question.type === 'dropdown' && question.id === 'subject') { %>
+                    <select id="subject" name="<%= question.id %>" onchange="updatePapersDropdown()" <%= question.required ? 'required' : '' %>>
+                        <option value="">Select a subject</option>
+                        <% subjects.forEach((subject) => { %>
+                            <option value="<%= subject.id %>"><%= subject.name %></option>
+                        <% }); %>
+                    </select>
+                <% } else if (question.type === 'dropdown' && question.id === 'paper') { %>
+                    <select id="paper" name="<%= question.id %>" <%= question.required ? 'required' : '' %>>
+                        <option value="">Select a paper</option>
+                        <!-- Papers will be populated based on subject selection -->
+                    </select>
+                <% } else if (question.type === 'text') { %>
+                    <input type="text" name="<%= question.id %>" <%= question.required ? 'required' : '' %> />
+                <% } else if (question.type === 'radio') { %>
+                    <% question.options.forEach((option) => { %>
+                        <label>
+                            <input type="radio" name="<%= question.id %>" value="<%= option %>" <%= question.required ? 'required' : '' %>> <%= option %>
+                        </label>
+                    <% }); %>
+                <% } %>
+            </div>
+        <% }); %>
+        <button type="submit">Submit Review</button>
+    </form>
+
+    <script>
+        const subjects = <%- JSON.stringify(subjects) %>;
+
+        function updatePapersDropdown() {
+            const subjectSelect = document.getElementById('subject');
+            const paperSelect = document.getElementById('paper');
+            const selectedSubject = subjects.find(sub => sub.id === subjectSelect.value);
+
+            paperSelect.innerHTML = '<option value="">Select a paper</option>'; // Reset
+
+            if (!selectedSubject) return;
+
+            selectedSubject.papers.forEach(paper => {
+                const option = document.createElement('option');
+                option.value = paper;
+                option.textContent = paper;
+                paperSelect.appendChild(option);
+            });
+        }
+    </script>
+</body>
+</html>

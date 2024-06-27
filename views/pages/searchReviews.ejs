@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Reviews</title>
+</head>
+<body>
+    <h2>Search Reviews</h2>
+    <form id="searchForm">
+        <label for="tutor">Tutor's Name:</label>
+        <input type="text" id="tutor" name="tutor" placeholder="Tutor's Name">
+
+        <!-- Dynamically Generated Subject Dropdown -->
+        <label for="subject">Subject:</label>
+        <select id="subject" name="subject">
+            <option value="">Select a subject</option>
+            <% subjects.forEach(subject => { %>
+                <option value="<%= subject.name %>"><%= subject.name %></option>
+            <% }); %>
+        </select>
+
+        <!-- Dynamically Generated Paper Dropdown -->
+        <label for="paper">Paper:</label>
+        <select id="paper" name="paper">
+            <option value="">Select a paper</option>
+            <!-- Papers options will be dynamically populated based on the selected subject -->
+        </select>
+
+        <button type="submit">Search</button>
+    </form>
+    <div id="results">
+        <!-- Search results will be displayed here -->
+    </div>
+
+    <script>
+        const subjects = <%- JSON.stringify(subjects) %>;
+
+        document.getElementById('subject').addEventListener('change', function() {
+            const selectedSubjectName = this.value;
+            const paperSelect = document.getElementById('paper');
+            paperSelect.innerHTML = '<option value="">Select a paper</option>'; // Reset papers dropdown
+
+            // Find the selected subject from the subjects array
+            const selectedSubject = subjects.find(subject => subject.name === selectedSubjectName);
+
+            if (selectedSubject && selectedSubject.papers) {
+                selectedSubject.papers.forEach(paper => {
+                    const option = document.createElement('option');
+                    option.value = paper;
+                    option.textContent = paper;
+                    paperSelect.appendChild(option);
+                });
+            }
+        });
+
+        // Serialize form data to URLSearchParams and fetch results
+        document.getElementById('searchForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+        const searchParams = new URLSearchParams(formData).toString();
+        const response = await fetch(`/api/search?${searchParams}`);
+        const results = await response.json();
+
+        const resultsDiv = document.getElementById('results');
+        resultsDiv.innerHTML = ''; // Clear previous results
+
+        results.forEach(result => {
+            const resultDiv = document.createElement('div');
+            resultDiv.className = 'review-entry'; // Added a class for possible styling
+
+            // Create a header for the review including tutor, subject, and paper
+            const header = document.createElement('h3');
+            header.innerHTML = `${result.tutor} - ${result.subject} (${result.paper})`;
+            resultDiv.appendChild(header);
+
+            // Display the submitted date in italics
+            if (result.submittedAt) {
+                const date = new Date(result.submittedAt);
+                const dateParagraph = document.createElement('p');
+                dateParagraph.innerHTML = `<em>Submitted: ${date.toLocaleString()}</em>`;
+                resultDiv.appendChild(dateParagraph);
+            }
+
+            // Dynamically add the review content, excluding specific fields
+            const excludedFields = ['_id', 'submitter', '__v', 'tutor', 'subject', 'paper', 'submittedAt'];
+            Object.keys(result).forEach(key => {
+                if (!excludedFields.includes(key)) {
+                    const contentParagraph = document.createElement('p');
+                    // Capitalize the first letter of the key for display
+                    const fieldName = key.charAt(0).toUpperCase() + key.slice(1);
+                    contentParagraph.innerHTML = `<strong>${fieldName}:</strong> ${result[key]}`;
+                    resultDiv.appendChild(contentParagraph);
+                }
+            });
+            resultsDiv.appendChild(resultDiv);
+        });
+
+        if (results.length === 0) {
+            resultsDiv.innerHTML = '<p>No results found.</p>';
+        }
+    });</script>
+</body>
+</html>
