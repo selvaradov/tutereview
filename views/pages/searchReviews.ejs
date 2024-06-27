@@ -15,9 +15,9 @@
     <label for="subject">Subject:</label>
     <select id="subject" name="subject">
       <option value="">Select a subject</option>
-      <% subjects.forEach(subject=> { %>
-        <option value="<%= subject.name %>">
-          <%= subject.name %>
+      <% Object.keys(subjects).forEach(function(subjectName) { %>
+        <option value="<%= subjectName %>">
+          <%= subjectName %>
         </option>
         <% }); %>
     </select>
@@ -46,13 +46,13 @@
       const paperSelect = document.getElementById('paper');
       paperSelect.innerHTML = '<option value="">Select a paper</option>'; // Reset papers dropdown
 
-      const selectedSubject = subjects.find(subject => subject.name === selectedSubjectName);
+      const selectedSubject = subjects[selectedSubjectName];
 
-      if (selectedSubject && selectedSubject.papers) {
-        selectedSubject.papers.forEach(paper => {
+      if (selectedSubject) {
+        selectedSubject.forEach(course => {
           const option = document.createElement('option');
-          option.value = paper;
-          option.textContent = paper;
+          option.value = course.code; // Assuming you want the code to be the value
+          option.textContent = `${course.code} - ${course.name}`; // Shows both code and name for clarity
           paperSelect.appendChild(option);
         });
       }

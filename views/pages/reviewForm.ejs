@@ -12,8 +12,8 @@
                 <% if (question.type === 'dropdown' && question.id === 'subject') { %>
                     <select id="subject" name="<%= question.id %>" onchange="updatePapersDropdown()" <%= question.required ? 'required' : '' %>>
                         <option value="">Select a subject</option>
-                        <% subjects.forEach((subject) => { %>
-                            <option value="<%= subject.id %>"><%= subject.name %></option>
+                        <% Object.keys(subjects).forEach((subjectName) => { %>
+                            <option value="<%= subjectName %>"><%= subjectName %></option>
                         <% }); %>
                     </select>
                 <% } else if (question.type === 'dropdown' && question.id === 'paper') { %>
@@ -41,18 +41,19 @@
         function updatePapersDropdown() {
             const subjectSelect = document.getElementById('subject');
             const paperSelect = document.getElementById('paper');
-            const selectedSubject = subjects.find(sub => sub.id === subjectSelect.value);
+            const selectedSubjectName = subjectSelect.value;
+const selectedSubjectCourses = subjects[selectedSubjectName];
 
-            paperSelect.innerHTML = '<option value="">Select a paper</option>'; // Reset
+paperSelect.innerHTML = '<option value="">Select a paper</option>'; // Reset
 
-            if (!selectedSubject) return;
+if (!selectedSubjectCourses) return;
 
-            selectedSubject.papers.forEach(paper => {
-                const option = document.createElement('option');
-                option.value = paper;
-                option.textContent = paper;
-                paperSelect.appendChild(option);
-            });
+selectedSubjectCourses.forEach(course => {
+    const option = document.createElement('option');
+    option.value = course.code; // Assuming you want to use the course code as the value
+    option.textContent = `${course.code} - ${course.name}`; // Displaying both code and course name for clarity
+    paperSelect.appendChild(option);
+});
         }
     </script>
 </body>
