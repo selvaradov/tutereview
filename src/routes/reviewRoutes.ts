@@ -4,13 +4,14 @@ import { escapeRegex } from '../utils/sanitise.js';
 import Review from '../models/review.js';
 
 const router = Router();
-const jsonData = await readJsonFile('data/form.json')
+const questionData = await readJsonFile('data/questions.json')
+const subjectData = await readJsonFile('data/subjects.json')
 
 // form submission page
 router.get('/review', async (req: Request, res: Response) => {
   res.render('pages/reviewForm', {
-    questions: jsonData.questions,
-    subjects: jsonData.subjects
+    questions: questionData,
+    subjects: subjectData
   });
 });
 
@@ -48,8 +49,8 @@ router.post('/review', async (req: Request, res: Response) => {
 router.get('/search', (req: Request, res: Response) => {
   res.render('pages/searchReviews', {
     results: null, // Initially, no search results
-    questions: jsonData.questions,
-    subjects: jsonData.subjects
+    questions: questionData,
+    subjects: subjectData
   });
 });
 

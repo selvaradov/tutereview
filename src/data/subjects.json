@@ -1,0 +1,20 @@
+[
+{
+    "id": "economics",
+    "name": "Economics",
+    "papers": [
+      "Microeconomics",
+      "Macroeconomics",
+      "International Economics"
+    ]
+  },
+  {
+    "id": "mathematics",
+    "name": "Mathematics",
+    "papers": [
+      "Algebra",
+      "Calculus",
+      "Geometry"
+    ]
+  }
+]
