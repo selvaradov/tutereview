@@ -1,3 +1,6 @@
+# Session store
+/var/*
+
 # Logs
 logs
 *.log
