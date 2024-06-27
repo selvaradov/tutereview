@@ -3,25 +3,13 @@ import { IUser } from './user.js';
 
 export interface IReview extends Document {
   submitter: IUser['_id'];
-  subject: string;
-  paperCode: string;
-  paperName: string;
-  tutor: string;
-  knowledge: string;
-  clarity: string;
-  additionalComments: string;
+  responses: any;
   submittedAt: Date;
 }
 
 const reviewSchema = new Schema({
   submitter: { type: Schema.Types.ObjectId, ref: 'User' },
-  subject: String,
-  paperCode: String,
-  paperName: String,
-  tutor: String,
-  knowledge: String,
-  clarity: String,
-  additionalComments: String,
+  responses: { type: Schema.Types.Mixed },
   submittedAt: { type: Date, default: Date.now }
 });
 

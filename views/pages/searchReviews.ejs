@@ -82,7 +82,7 @@
 
       // Group reviews by "Tutor - Subject (Paper)"
       const groupedResults = results.reduce((acc, result) => {
-        const key = `${result.paperName} (${result.paperCode}) - ${result.tutor}`;
+        const key = `${result.responses.paperName} (${result.responses.paperCode}) - ${result.responses.tutor}`;
         if (!acc[key]) acc[key] = [];
         acc[key].push(result);
         return acc;
@@ -103,18 +103,18 @@
           // Displaying the date of submission in italics
           if (review.submittedAt) {
             const dateParagraph = document.createElement('p');
-            const date = new Date(review.submittedAt).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' });
+            const date = new Date(review.submittedAt).toLocaleDateString("en-GB", { year: 'numeric', month: 'long', day: 'numeric' });
             dateParagraph.innerHTML = `<em>Submitted: ${date}</em>`;
             reviewDiv.appendChild(dateParagraph);
           }
 
           const excludedFields = ['tutor', 'subject', 'paperCode', 'paperName', 'submittedAt'];
 
-          Object.keys(review).forEach(key => {
-            if (!excludedFields.includes(key) && review[key].trim() !== "") {
+          Object.keys(review.responses).forEach(key => {
+            if ((!excludedFields.includes(key)) && review.responses[key].trim() !== "") {
               const contentParagraph = document.createElement('p');
               const fieldName = key.charAt(0).toUpperCase() + key.slice(1);
-              contentParagraph.innerHTML = `<strong>${fieldName}:</strong> ${review[key]}`;
+              contentParagraph.innerHTML = `<strong>${fieldName}:</strong> ${review.responses[key]}`;
               reviewDiv.appendChild(contentParagraph);
             }
           });

@@ -24,17 +24,10 @@ function assertHasUser(req: Request): asserts req is Request & { user: Express.U
 
 router.post('/review', async (req: Request, res: Response) => {
   assertHasUser(req);
-  const { subject, paperCode, paperName, name: tutor, know: knowledge, explain: clarity, comments: additionalComments } = req.body;
   const submitter = req.user.id;
   const review = new Review({
     submitter,
-    subject,
-    paperCode,
-    paperName,
-    tutor,
-    knowledge,
-    clarity,
-    additionalComments
+    responses: req.body, // TODO validate and sanitise (e.g. we're keeping in `paper` which duplicates `paperCode`)
   });
 
   try {
@@ -57,9 +50,9 @@ router.get('/search', (req: Request, res: Response) => {
 
 // search endpoint
 interface QueryParams {
-  tutor?: object;
-  subject?: object;
-  paperCode?: object;
+  "responses.tutor"?: { $regex: RegExp, $options: string };
+  "responses.subject"?: { $regex: RegExp, $options: string };
+  "responses.paperCode"?: { $regex: RegExp, $options: string };
 }
 
 router.get('/api/search', async (req: Request, res: Response) => {
@@ -70,9 +63,9 @@ router.get('/api/search', async (req: Request, res: Response) => {
 
     const query: QueryParams = {};
 
-    if (tutor) query.tutor = { $regex: escapeRegex(tutor), $options: 'i' };
-    if (subject) query.subject = { $regex: escapeRegex(subject), $options: 'i' };
-    if (paperCode) query.paperCode = { $regex: escapeRegex(paperCode), $options: 'i' };
+    if (tutor) query['responses.tutor'] = { $regex: escapeRegex(tutor), $options: 'i' };
+    if (subject) query['responses.subject'] = { $regex: escapeRegex(subject), $options: 'i' };
+    if (paperCode) query['responses.paperCode'] = { $regex: escapeRegex(paperCode), $options: 'i' };
 
     const reviews = await Review.find(query, { _id: 0, submitter: 0, __v: 0 }); // Exclude sensitive fields
     res.json(reviews);
