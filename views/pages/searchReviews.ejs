@@ -1,119 +1,124 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Search Reviews</title>
+  <title>Search Reviews</title>
 </head>
+
 <body>
-    <h2>Search Reviews</h2>
-    <form id="searchForm">
-        <label for="tutor">Tutor's Name:</label>
-        <input type="text" id="tutor" name="tutor" placeholder="Tutor's Name">
+  <h2>Search Reviews</h2>
+  <form id="searchForm">
+    <label for="tutor">Tutor's Name:</label>
+    <input type="text" id="tutor" name="tutor" placeholder="Tutor's Name">
 
-        <!-- Dynamically Generated Subject Dropdown -->
-        <label for="subject">Subject:</label>
-        <select id="subject" name="subject">
-            <option value="">Select a subject</option>
-            <% subjects.forEach(subject => { %>
-                <option value="<%= subject.name %>"><%= subject.name %></option>
-            <% }); %>
-        </select>
+    <!-- Dynamically Generated Subject Dropdown -->
+    <label for="subject">Subject:</label>
+    <select id="subject" name="subject">
+      <option value="">Select a subject</option>
+      <% subjects.forEach(subject=> { %>
+        <option value="<%= subject.name %>">
+          <%= subject.name %>
+        </option>
+        <% }); %>
+    </select>
 
-        <!-- Dynamically Generated Paper Dropdown -->
-        <label for="paper">Paper:</label>
-        <select id="paper" name="paper">
-            <option value="">Select a paper</option>
-        </select>
+    <!-- Dynamically Generated Paper Dropdown -->
+    <label for="paper">Paper:</label>
+    <select id="paper" name="paper">
+      <option value="">Select a paper</option>
+    </select>
 
-        <!-- Removed the submit button -->
-    </form>
-    <div id="results">
-        <!-- Search results will be displayed here -->
-    </div>
+    <!-- Removed the submit button -->
+  </form>
+  <div id="results">
+    <!-- Search results will be displayed here -->
+  </div>
 
-    <script>
-        const subjects = <%- JSON.stringify(subjects) %>;
+  <script>
+    const subjects = <%- JSON.stringify(subjects) %>;
 
-        document.getElementById('subject').addEventListener('change', updateSearchResults);
-        document.getElementById('tutor').addEventListener('input', updateSearchResults);
-        document.getElementById('paper').addEventListener('change', updateSearchResults);
+    document.getElementById('subject').addEventListener('change', updateSearchResults);
+    document.getElementById('tutor').addEventListener('input', updateSearchResults);
+    document.getElementById('paper').addEventListener('change', updateSearchResults);
 
-        document.getElementById('subject').addEventListener('change', function() {
-            const selectedSubjectName = this.value;
-            const paperSelect = document.getElementById('paper');
-            paperSelect.innerHTML = '<option value="">Select a paper</option>'; // Reset papers dropdown
+    document.getElementById('subject').addEventListener('change', function () {
+      const selectedSubjectName = this.value;
+      const paperSelect = document.getElementById('paper');
+      paperSelect.innerHTML = '<option value="">Select a paper</option>'; // Reset papers dropdown
 
-            const selectedSubject = subjects.find(subject => subject.name === selectedSubjectName);
+      const selectedSubject = subjects.find(subject => subject.name === selectedSubjectName);
 
-            if (selectedSubject && selectedSubject.papers) {
-                selectedSubject.papers.forEach(paper => {
-                    const option = document.createElement('option');
-                    option.value = paper;
-                    option.textContent = paper;
-                    paperSelect.appendChild(option);
-                });
-            }
-
-            // Trigger search update after updating papers dropdown
-            updateSearchResults();
+      if (selectedSubject && selectedSubject.papers) {
+        selectedSubject.papers.forEach(paper => {
+          const option = document.createElement('option');
+          option.value = paper;
+          option.textContent = paper;
+          paperSelect.appendChild(option);
         });
+      }
 
-        async function updateSearchResults() {
-    const formData = new FormData(document.getElementById('searchForm'));
-    const searchParams = new URLSearchParams(formData).toString();
-    const response = await fetch(`/api/search?${searchParams}`);
-    const results = await response.json();
+      // Trigger search update after updating papers dropdown
+      updateSearchResults();
+    });
 
-    const resultsDiv = document.getElementById('results');
-    resultsDiv.innerHTML = ''; // Clear previous results
+    async function updateSearchResults() {
+      const formData = new FormData(document.getElementById('searchForm'));
+      const searchParams = new URLSearchParams(formData).toString();
+      const response = await fetch(`/api/search?${searchParams}`);
+      const results = await response.json();
 
-    if (results.length === 0) {
+      const resultsDiv = document.getElementById('results');
+      resultsDiv.innerHTML = ''; // Clear previous results
+
+      if (results.length === 0) {
         resultsDiv.innerHTML = '<p>No results found.</p>';
         return;
-    }
+      }
 
-    // Group reviews by "Tutor - Subject (Paper)"
-    const groupedResults = results.reduce((acc, result) => {
+      // Group reviews by "Tutor - Subject (Paper)"
+      const groupedResults = results.reduce((acc, result) => {
         const key = `${result.tutor} - ${result.subject} (${result.paper})`;
         if (!acc[key]) acc[key] = [];
         acc[key].push(result);
         return acc;
-    }, {});
+      }, {});
 
-    // Iterate over each group and create a section for it
-    Object.entries(groupedResults).forEach(([key, reviews]) => {
+      // Iterate over each group and create a section for it
+      Object.entries(groupedResults).forEach(([key, reviews]) => {
         const section = document.createElement('section');
         const header = document.createElement('h3');
         header.textContent = key;
         section.appendChild(header);
 
         reviews.forEach(review => {
-            const reviewDiv = document.createElement('div');
-            reviewDiv.className = 'review-entry';
-            section.appendChild(reviewDiv);
+          const reviewDiv = document.createElement('div');
+          reviewDiv.className = 'review-entry';
+          section.appendChild(reviewDiv);
 
-                        // Displaying the date of submission in italics
-                        if (review.submittedAt) {
-                const dateParagraph = document.createElement('p');
-                const date = new Date(review.submittedAt).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' });
-                dateParagraph.innerHTML = `<em>Submitted: ${date}</em>`;
-                reviewDiv.appendChild(dateParagraph);
+          // Displaying the date of submission in italics
+          if (review.submittedAt) {
+            const dateParagraph = document.createElement('p');
+            const date = new Date(review.submittedAt).toLocaleDateString("en-US", { year: 'numeric', month: 'long', day: 'numeric' });
+            dateParagraph.innerHTML = `<em>Submitted: ${date}</em>`;
+            reviewDiv.appendChild(dateParagraph);
+          }
+
+          const excludedFields = ['tutor', 'subject', 'paper', 'submittedAt'];
+
+          Object.keys(review).forEach(key => {
+            if (!excludedFields.includes(key) && review[key].trim() !== "") {
+              const contentParagraph = document.createElement('p');
+              const fieldName = key.charAt(0).toUpperCase() + key.slice(1);
+              contentParagraph.innerHTML = `<strong>${fieldName}:</strong> ${review[key]}`;
+              reviewDiv.appendChild(contentParagraph);
             }
-
-            const excludedFields = ['tutor', 'subject', 'paper', 'submittedAt'];
-
-            Object.keys(review).forEach(key => {
-                if (!excludedFields.includes(key) && review[key].trim() !== "") {
-                    const contentParagraph = document.createElement('p');
-                    const fieldName = key.charAt(0).toUpperCase() + key.slice(1);
-                    contentParagraph.innerHTML = `<strong>${fieldName}:</strong> ${review[key]}`;
-                    reviewDiv.appendChild(contentParagraph);
-                }
-            });
+          });
         });
 
         resultsDiv.appendChild(section);
-    });
-}
-    </script>
+      });
+    }
+  </script>
 </body>
+
 </html>
