@@ -61,6 +61,11 @@
       updateSearchResults();
     });
 
+    document.getElementById('searchForm').addEventListener('submit', function (event) {
+      event.preventDefault(); // Prevent the form from submitting in the traditional way
+      updateSearchResults();
+    });
+
     async function updateSearchResults() {
       const formData = new FormData(document.getElementById('searchForm'));
       const searchParams = new URLSearchParams(formData).toString();
