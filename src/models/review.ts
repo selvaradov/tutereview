@@ -4,7 +4,8 @@ import { IUser } from './user.js';
 export interface IReview extends Document {
   submitter: IUser['_id'];
   subject: string;
-  paper: string;
+  paperCode: string;
+  paperName: string;
   tutor: string;
   knowledge: string;
   clarity: string;
@@ -15,7 +16,8 @@ export interface IReview extends Document {
 const reviewSchema = new Schema({
   submitter: { type: Schema.Types.ObjectId, ref: 'User' },
   subject: String,
-  paper: String,
+  paperCode: String,
+  paperName: String,
   tutor: String,
   knowledge: String,
   clarity: String,

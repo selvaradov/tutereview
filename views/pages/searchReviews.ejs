@@ -82,7 +82,7 @@
 
       // Group reviews by "Tutor - Subject (Paper)"
       const groupedResults = results.reduce((acc, result) => {
-        const key = `${result.tutor} - ${result.subject} (${result.paper})`;
+        const key = `${result.paperName} (${result.paperCode}) - ${result.tutor}`;
         if (!acc[key]) acc[key] = [];
         acc[key].push(result);
         return acc;
@@ -108,7 +108,7 @@
             reviewDiv.appendChild(dateParagraph);
           }
 
-          const excludedFields = ['tutor', 'subject', 'paper', 'submittedAt'];
+          const excludedFields = ['tutor', 'subject', 'paperCode', 'paperName', 'submittedAt'];
 
           Object.keys(review).forEach(key => {
             if (!excludedFields.includes(key) && review[key].trim() !== "") {
