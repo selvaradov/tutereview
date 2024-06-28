@@ -1,5 +1,5 @@
 // Import required modules
-import {loadEnvConfig} from './config/envConfig.js' // configure environment variables
+import { loadEnvConfig } from './config/envConfig.js' // configure environment variables
 import express, { Application, Request, Response, NextFunction } from 'express';
 import session from 'express-session';
 import { FirestoreStore } from '@google-cloud/connect-firestore';
@@ -12,6 +12,9 @@ import mongoose from 'mongoose';
 import logger from 'morgan';
 import { fileURLToPath } from 'url';
 import path from 'path';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+
 
 // Import routes
 import authRouter from './routes/authRoutes.js';
@@ -33,6 +36,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(logger('dev'));
+app.use(cookieParser());
+
+// CORS setup
+const corsOptions = {
+  origin: process.env.CLIENT_URL,
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+app.use(cors(corsOptions));
+// enable pre-flight requests for all routes
+app.options('*', cors(corsOptions)); 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Credentials', 'true');
+  next();
+});
 
 // Session store setup
 let sessionStore: any;
@@ -62,7 +81,10 @@ app.use(
     secret: process.env.SESSION_SECRET || 'my-secret',
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false }, // Set to true if using https
+    cookie: {
+      secure: false,
+      sameSite: 'lax',
+    }, // TODO change for production
   })
 );
 
