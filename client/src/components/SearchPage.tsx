@@ -40,11 +40,27 @@ const SearchPage: React.FC = () => {
     fetchSubjects();
   }, [checkAuthStatus]);
 
+  useEffect(() => {
+    const fetchResults = async () => {
+      try {
+        const response = await axios.get<Review[]>(`${process.env.REACT_APP_API_URL}/api/search`, {
+          params: searchParams,
+          withCredentials: true,
+        });
+        setResults(response.data);
+      } catch (error) {
+        console.error('Error searching reviews:', error);
+      }
+    };
+
+    if (searchParams.tutor || searchParams.subject || searchParams.paper) {
+      fetchResults();
+    }
+  }, [searchParams]);
+
   const fetchSubjects = async () => {
     try {
-      const response = await axios.get<SubjectsData>(`${process.env.REACT_APP_API_URL}/api/subjects`,
-        { withCredentials: true }
-      );
+      const response = await axios.get<SubjectsData>(`${process.env.REACT_APP_API_URL}/api/subjects`, { withCredentials: true });
       setSubjects(response.data);
     } catch (error) {
       console.error('Error fetching subjects:', error);
@@ -63,24 +79,10 @@ const SearchPage: React.FC = () => {
     setSearchParams(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    try {
-      const response = await axios.get<Review[]>(`${process.env.REACT_APP_API_URL}/api/search`,
-        {
-          params: searchParams,
-          withCredentials: true
-        });
-      setResults(response.data);
-    } catch (error) {
-      console.error('Error searching reviews:', error);
-    }
-  };
-
   return (
     <div>
       <h1>Search Reviews</h1>
-      <form onSubmit={handleSearch}>
+      <form>
         <label htmlFor="tutor">Tutor's Name:</label>
         <input
           type="text"
@@ -121,7 +123,7 @@ const SearchPage: React.FC = () => {
           ))}
         </select>
 
-        <button type="submit">Search</button>
+        {/* Removed the search button */}
       </form>
 
       <div id="results">
