@@ -1,5 +1,5 @@
 # Session store
-/var/*
+server/src/var/*
 
 # Logs
 logs
