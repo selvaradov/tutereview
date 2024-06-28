@@ -1,13 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 const ReviewPage: React.FC = () => {
-  const { logout, checkAuthStatus } = useAuth();
+  const { logout } = useAuth();
 
-  useEffect(() => {
-    checkAuthStatus();
-  }, [checkAuthStatus]);
 
   return (
     <div>

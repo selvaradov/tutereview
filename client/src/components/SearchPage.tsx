@@ -24,7 +24,7 @@ interface Review {
 }
 
 const SearchPage: React.FC = () => {
-  const { logout, checkAuthStatus } = useAuth();
+  const { logout } = useAuth();
   const [subjects, setSubjects] = useState<SubjectsData>({});
   const [selectedSubject, setSelectedSubject] = useState('');
   const [papers, setPapers] = useState<Paper[]>([]);
@@ -36,9 +36,8 @@ const SearchPage: React.FC = () => {
   const [results, setResults] = useState<Review[]>([]);
 
   useEffect(() => {
-    checkAuthStatus();
     fetchSubjects();
-  }, [checkAuthStatus]);
+  }, []);
 
   useEffect(() => {
     const fetchResults = async () => {

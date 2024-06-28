@@ -8,7 +8,6 @@ const HomePage: React.FC = () => {
   const location = useLocation();
 
   useEffect(() => {
-    checkAuthStatus();
     if (location.state && (location.state as any).logoutSuccess) {
       setShowLogoutMessage(true);
       setTimeout(() => setShowLogoutMessage(false), 3000);
