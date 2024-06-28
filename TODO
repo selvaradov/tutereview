@@ -1,1 +1,27 @@
+# TODO
+
+## To deploy
 - firebase etc
+
+## Review submission
+- support for special subjects, so need to allow manually specifying paper title if choosing special subject option (would be annoying to look them all up myself)
+- prettier forms
+  - conditional logic etc
+  - possibly using react?
+  - make it so you can type as well as dropdown items
+
+## Backend
+- maybe do controllers
+
+## figure out questions
+- In general, did they provide written feedback on your work?
+IF YES: 
+	- In general, did they provide inline feedback (e.g. comments on specific sentences or paragraphs), or summative feedback only (i.e. a single overall comment)?
+- In general, did they provide verbal feedback on your work?
+- Were all your pieces of work marked?
+IF NO:
+	- What proportion of your work was not marked? (numerical option bins as %)
+- In general, had they read your essay in advance of the tutorial?
+- In general, did you spend your tutorial... (a) discussing your and your partners' essays (b) discussing the readings (c) a combination of the two (d) other - please specify
+- If you were to ask a specific, technical question, rate out of five the usefulness of the answer. 
+	- Please elaborate (free response)

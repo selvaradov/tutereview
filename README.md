@@ -23,6 +23,9 @@
   - hmm `ts-node` seems not to work well at all - https://github.com/TypeStrong/ts-node/issues/935 
   - giving up and going to `swc`
 
+### mongod
+- after restart had to run `sudo rm /tmp/mongodb-27017.sock` and then `sudo systemctl start mongod`
+
 ## User flow
 1. SSO to verify they're a university member 
 2. User registers if new, giving us their year + college + course 
@@ -32,3 +35,6 @@ by telling us what tutor they had for it, and then answering some closed- and op
 potentially also uploading the tutor's syllabus
 4. Review is added to database and other users can see it when they navigate to the 
 page for that course / that college / that tutor (but it's not attributable to the user who submitted it).
+
+## prompts
+> say I have a node js typescript project with the following folders in my src directory: routes, services, controllers, models, config. if required, a utils folder can also be added.

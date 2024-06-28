@@ -10,6 +10,8 @@ import { configurePassport } from './config/passportConfig.js';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import logger from 'morgan';
+import { fileURLToPath } from 'url';
+import path from 'path';
 
 // Import routes
 import authRouter from './routes/authRoutes.js';
@@ -18,6 +20,8 @@ import reviewRouter from './routes/reviewRoutes.js';
 // Set up environment variables and Passport
 loadEnvConfig();
 configurePassport();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app: Application = express();
 
@@ -33,6 +37,8 @@ app.use(logger('dev'));
 // Session store setup
 let sessionStore: any;
 
+const dbPath = path.join(__dirname, 'var', 'db', 'sessions.db');
+
 const firestore = new Firestore({ // TODO should this be used further down?
   projectId: process.env.GCP_PROJECT_ID,
   keyFilename: process.env.GCP_KEY_FILE,
@@ -47,7 +53,7 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   // use SQLite in development
   const SQLiteStore = connectSQLite3(session);
-  sessionStore = new SQLiteStore({ db: 'sessions.db', dir: './var/db' });
+  sessionStore = new SQLiteStore({ db: 'sessions.db', dir: path.dirname(dbPath) });
 }
 
 app.use(
