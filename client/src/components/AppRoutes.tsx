@@ -4,29 +4,33 @@ import HomePage from './HomePage';
 import ReviewPage from './ReviewPage';
 import SearchPage from './SearchPage';
 import ProtectedRoute from './ProtectedRoute';
+import NotificationComponent from './NotificationComponent';
 
 const AppRoutes: React.FC = () => {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route
-        path="/review"
-        element={
-          <ProtectedRoute>
-            <ReviewPage />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/search"
-        element={
-          <ProtectedRoute>
-            <SearchPage />
-          </ProtectedRoute>
-        }
-      />
-      <Route path="*" element={<Navigate to="/" />} />
-    </Routes>
+    <>
+      <NotificationComponent />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/review"
+          element={
+            <ProtectedRoute>
+              <ReviewPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/search"
+          element={
+            <ProtectedRoute>
+              <SearchPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </>
   );
 };
 

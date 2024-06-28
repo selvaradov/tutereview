@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useAuth } from '../context/AuthContext';
+import LogoutButton from './LogoutButton';
 
 interface Paper {
   code: number;
@@ -24,7 +24,6 @@ interface Review {
 }
 
 const SearchPage: React.FC = () => {
-  const { logout } = useAuth();
   const [subjects, setSubjects] = useState<SubjectsData>({});
   const [selectedSubject, setSelectedSubject] = useState('');
   const [papers, setPapers] = useState<Paper[]>([]);
@@ -150,7 +149,7 @@ const SearchPage: React.FC = () => {
         )}
       </div>
 
-      <button onClick={logout}>Log Out</button>
+      <LogoutButton />
     </div>
   );
 };

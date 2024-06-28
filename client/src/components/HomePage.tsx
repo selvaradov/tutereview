@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import LogoutButton from './LogoutButton';
 
 const HomePage: React.FC = () => {
-  const { isAuthenticated, login, logout } = useAuth();
+  const { isAuthenticated, login } = useAuth();
 
   return (
     <div>
@@ -11,7 +12,7 @@ const HomePage: React.FC = () => {
       {isAuthenticated ? (
         <>
           <p>You are logged in.</p>
-          <button onClick={logout}>Log Out</button>
+          <LogoutButton />
           <nav>
             <ul>
               <li><Link to="/review">Go to Review Page</Link></li>
