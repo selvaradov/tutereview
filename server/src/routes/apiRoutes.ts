@@ -20,7 +20,7 @@ interface QueryParams {
   "responses.paperCode"?: { $regex: RegExp, $options: string };
 }
 
-router.get('/api/search', async (req: Request, res: Response) => {
+router.get('/search', async (req: Request, res: Response) => {
   try {
     const tutor = typeof req.query.tutor === 'string' ? req.query.tutor : undefined;
     const subject = typeof req.query.subject === 'string' ? req.query.subject : undefined;
