@@ -27,7 +27,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         withCredentials: true,
       });
 
-      console.log(response.data.message); // Log the message from the server
+      console.log(response.data.message);
+
+      // Notify other tabs that the user has logged out
+      const authChannel = new BroadcastChannel('auth_channel');
+      authChannel.postMessage({ type: 'LOGOUT' });
+      authChannel.close();
 
       setIsAuthenticated(false);
       navigate('/', { state: { logoutSuccess: true }, replace: true });
@@ -56,6 +61,26 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     checkAuthStatus();
   }, []);
+
+  useEffect(() => {
+    // Create a new BroadcastChannel with the same name used in the logout method.
+    const authChannel = new BroadcastChannel('auth_channel');
+ 
+    // Define a function to handle incoming messages.
+    const handleMessage = (event: MessageEvent) => {
+      if (event.data.type === 'LOGOUT') {
+        setIsAuthenticated(false);
+        navigate('/', { replace: true }); // Optionally redirect to login page.
+      }
+    };
+ 
+    authChannel.addEventListener('message', handleMessage);
+ 
+    return () => {
+      authChannel.removeEventListener('message', handleMessage);
+      authChannel.close();
+    };
+  }, [navigate]); 
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, isLoading, login, logout, checkAuthStatus }}>
