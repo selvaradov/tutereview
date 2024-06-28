@@ -48,6 +48,11 @@ router.get('/search', (req: Request, res: Response) => {
   });
 });
 
+// subjects endpoint
+router.get('/api/subjects', (req: Request, res: Response) => {
+  res.json(subjectData);
+});
+
 // search endpoint
 interface QueryParams {
   "responses.tutor"?: { $regex: RegExp, $options: string };
