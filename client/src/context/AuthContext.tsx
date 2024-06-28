@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -20,17 +21,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const logout = useCallback(async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/logout`, {
-        method: 'GET',
-        credentials: 'include',
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/auth/logout`, {
+        withCredentials: true,
       });
-      
-      if (!response.ok) {
-        throw new Error('Logout failed');
-      }
 
-      const data = await response.json();
-      console.log(data.message); // Log the message from the server
+      console.log(response.data.message); // Log the message from the server
 
       setIsAuthenticated(false);
       navigate('/', { state: { logoutSuccess: true }, replace: true });
@@ -43,16 +38,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const checkAuthStatus = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/status`, { credentials: 'include' });
-      if (!response.ok) {
-        throw new Error('Failed to fetch auth status');
-      }
-      const data = await response.json();
-      setIsAuthenticated(data.isAuthenticated);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/auth/status`, {
+        withCredentials: true,
+      });
+
+      setIsAuthenticated(response.data.isAuthenticated);
     } catch (error) {
       console.error('Failed to check auth status:', error);
       setIsAuthenticated(false);
-      // You might want to show an error message to the user here
     }
   };
 
