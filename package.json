@@ -4,13 +4,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "cd server && npm run dev"
+    "start-server": "cd server && npm start",
+    "start-client": "cd client && npm start",
+    "start": "concurrently \"npm run start-server\" \"npm run start-client\""
   },
   "author": "Rohan Selva-Radov",
   "license": "ISC",
   "description": "",
   "type": "module",
   "devDependencies": {
-    "@tsconfig/node22": "^22.0.0"
+    "@tsconfig/node22": "^22.0.0",
+    "concurrently": "^8.2.2"
   }
 }

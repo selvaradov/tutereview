@@ -4,7 +4,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsx watch src/server.ts"
+    "start": "tsx watch src/server.ts"
   },
   "author": "Rohan Selva-Radov",
   "license": "ISC",
