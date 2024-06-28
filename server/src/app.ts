@@ -19,6 +19,7 @@ import cookieParser from 'cookie-parser';
 // Import routes
 import authRouter from './routes/authRoutes.js';
 import reviewRouter from './routes/reviewRoutes.js';
+import apiRouter from './routes/apiRoutes.js';
 
 // Set up environment variables and Passport
 loadEnvConfig();
@@ -97,6 +98,13 @@ function ensureAuthenticated(req: Request, res: Response, next: NextFunction) {
   res.redirect('/');
 }
 
+function ensureApiAuthenticated(req: Request, res: Response, next: NextFunction) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.status(401).json({ message: 'Unauthorized - Access denied' });
+}
+
 // Static folder
 app.use(express.static('public'));
 
@@ -105,6 +113,7 @@ app.get('/', (req: Request, res: Response) => {
   res.render('pages/index');
 });
 app.use('/auth', authRouter);
+app.use('/api', ensureApiAuthenticated, apiRouter);
 app.use('/', ensureAuthenticated, reviewRouter);
 
 // database setup
