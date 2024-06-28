@@ -45,7 +45,6 @@ const SearchPage: React.FC = () => {
       const response = await axios.get<SubjectsData>(`${process.env.REACT_APP_API_URL}/api/subjects`,
         { withCredentials: true }
       );
-      console.log('Subjects:', response.data)
       setSubjects(response.data);
     } catch (error) {
       console.error('Error fetching subjects:', error);
