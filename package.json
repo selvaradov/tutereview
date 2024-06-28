@@ -9,5 +9,8 @@
   "author": "Rohan Selva-Radov",
   "license": "ISC",
   "description": "",
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "@tsconfig/node22": "^22.0.0"
+  }
 }
