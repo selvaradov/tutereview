@@ -4,6 +4,7 @@ import HomePage from './HomePage';
 import ReviewPage from './ReviewPage';
 import SearchPage from './SearchPage';
 import ProtectedRoute from './ProtectedRoute';
+import NotFoundPage from './NotFoundPage';
 import NotificationComponent from './NotificationComponent';
 
 const AppRoutes: React.FC = () => {
@@ -28,7 +29,7 @@ const AppRoutes: React.FC = () => {
             </ProtectedRoute>
           }
         />
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
   );
