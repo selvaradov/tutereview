@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import LogoutButton from './LogoutButton';
 
 interface Paper {
   code: number;
@@ -122,8 +121,6 @@ const SearchPage: React.FC = () => {
             </option>
           ))}
         </select>
-
-        {/* Removed the search button */}
       </form>
 
       <div id="results">
@@ -150,8 +147,6 @@ const SearchPage: React.FC = () => {
           ))
         )}
       </div>
-
-      <LogoutButton />
     </div>
   );
 };

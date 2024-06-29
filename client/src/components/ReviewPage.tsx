@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage, useFormikContext } from 'formik';
 import * as Yup from 'yup';
-import LogoutButton from './LogoutButton';
 import axios from 'axios';
 
 interface Question {
@@ -211,13 +209,6 @@ const ReviewPage: React.FC = () => {
           </Form>
         )}
       </Formik>
-      <LogoutButton />
-      <nav className="mt-4">
-        <ul className="list-unstyled">
-          <li><Link to="/" className="text-decoration-none">Go to Home Page</Link></li>
-          <li><Link to="/search" className="text-decoration-none">Go to Search Page</Link></li>
-        </ul>
-      </nav>
     </div>
   );
 };

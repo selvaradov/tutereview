@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
 import HomePage from './HomePage';
 import ReviewPage from './ReviewPage';
 import SearchPage from './SearchPage';
@@ -15,7 +16,7 @@ const protectedRoute = (Component: React.ComponentType) => (
 
 const AppRoutes: React.FC = () => {
   return (
-    <>
+    <Container>
       <NotificationComponent />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -23,7 +24,7 @@ const AppRoutes: React.FC = () => {
         <Route path="/search" element={protectedRoute(SearchPage)} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </>
+    </Container>
   );
 };
 
