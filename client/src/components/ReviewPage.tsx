@@ -86,6 +86,10 @@ const ReviewPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    document.title = 'TuteReview - Submit a review';
+  }, []);
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const questionsUrl = `${baseURL}/api/questions`;

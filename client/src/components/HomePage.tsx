@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 
 const HomePage: React.FC = () => {
   const { isAuthenticated } = useAuth();
+
+  useEffect(() => {
+    document.title = 'TuteReview - Home';
+  }, []);
 
   return (
     <div>

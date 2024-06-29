@@ -36,6 +36,10 @@ const SearchPage: React.FC = () => {
   const [results, setResults] = useState<Review[]>([]);
 
   useEffect(() => {
+    document.title = 'TuteReview - Search reviews';
+  }, []);
+
+  useEffect(() => {
     fetchSubjects();
   }, []);
 
