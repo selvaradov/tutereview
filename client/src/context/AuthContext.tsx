@@ -10,6 +10,8 @@ interface AuthContextType {
   checkAuthStatus: () => Promise<void>;
 }
 
+const baseURL = process.env.REACT_APP_API_URL;
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -18,12 +20,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const navigate = useNavigate();
 
   const login = () => {
-    window.location.href = `${process.env.REACT_APP_API_URL}/auth/login`;
+    window.location.href = `${baseURL}/auth/login`;
   };
 
   const logout = useCallback(async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/auth/logout`, {
+      const response = await axios.get(`${baseURL}/auth/logout`, {
         withCredentials: true,
       });
 
@@ -46,7 +48,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const checkAuthStatus = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/auth/status`, {
+      const response = await axios.get(`${baseURL}/auth/status`, {
         withCredentials: true,
       });
       setIsAuthenticated(response.data.isAuthenticated);

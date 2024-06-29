@@ -23,6 +23,8 @@ interface Review {
   submittedAt?: string;
 }
 
+const baseURL = process.env.REACT_APP_API_URL;
+
 const SearchPage: React.FC = () => {
   const [subjects, setSubjects] = useState<SubjectsData>({});
   const [selectedSubject, setSelectedSubject] = useState('');
@@ -41,7 +43,7 @@ const SearchPage: React.FC = () => {
   useEffect(() => {
     const fetchResults = async () => {
       try {
-        const response = await axios.get<Review[]>(`${process.env.REACT_APP_API_URL}/api/search`, {
+        const response = await axios.get<Review[]>(`${baseURL}/api/search`, {
           params: searchParams,
           withCredentials: true,
         });
@@ -58,7 +60,7 @@ const SearchPage: React.FC = () => {
 
   const fetchSubjects = async () => {
     try {
-      const response = await axios.get<SubjectsData>(`${process.env.REACT_APP_API_URL}/api/subjects`, { withCredentials: true });
+      const response = await axios.get<SubjectsData>(`${baseURL}/api/subjects`, { withCredentials: true });
       setSubjects(response.data);
     } catch (error) {
       console.error('Error fetching subjects:', error);
