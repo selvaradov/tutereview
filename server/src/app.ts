@@ -19,6 +19,7 @@ import cookieParser from 'cookie-parser';
 // Import routes
 import authRouter from './routes/authRoutes.js';
 import apiRouter from './routes/apiRoutes.js';
+import userRouter from './routes/userRoutes.js';
 
 // Set up environment variables and Passport
 loadEnvConfig();
@@ -89,12 +90,13 @@ function ensureApiAuthenticated(req: Request, res: Response, next: NextFunction)
   if (req.isAuthenticated()) {
     return next();
   }
-  res.status(401).json({ message: 'Unauthorized - Access denied' });
+  res.status(401).json({ error: 'Unauthorized' });
 }
 
 // Routes
 app.use('/auth', authRouter);
 app.use('/api', ensureApiAuthenticated, apiRouter);
+app.use('/user', ensureApiAuthenticated, userRouter);
 
 // database setup
 const mongoURI = 'mongodb://localhost/reviewDB';
