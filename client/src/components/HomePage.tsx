@@ -23,10 +23,10 @@ const HomePage: React.FC = () => {
       {isAuthenticated ? (
         <p>You are logged in. You can now access the Review and Search pages.</p>
       ) : (
-        <>
+        <div className="mb-3">
           <p>Please verify that you are a member of the university with your SSO.</p>
           <Button onClick={login} variant="primary">Continue with Microsoft</Button>
-        </>
+        </div>
       )}
       <AboutSection />
       <FAQSection />
