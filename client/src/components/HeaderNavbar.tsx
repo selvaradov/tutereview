@@ -7,9 +7,8 @@ const HeaderNavbar: React.FC = () => {
   const { isAuthenticated, logout } = useAuth();
   const location = useLocation();
 
-
   return (
-    <Navbar bg="light" expand="lg" className="mb-3">
+    <Navbar expand="lg" className="mb-3">
       <Container>
         <Navbar.Brand as={Link} to="/">TuteReview</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
