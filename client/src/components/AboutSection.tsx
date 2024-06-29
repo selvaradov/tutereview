@@ -6,7 +6,7 @@ const AboutSection = () => {
         The tutor who hasn't marked your work a month after it was submitted; the one who
         never looks at the clock and realises with 10 minutes to go that they've not started
         giving you feedback yet; the one who'd rather do anything than give a straight answer
-        to the question you asked. We've all been there -- but it doesn't have to be this way!
+        to the question you asked. We've all been there — but it doesn't have to be this way!
       </p>
       <p>
         There's always going to be variation in teaching between colleges and courses: that's part

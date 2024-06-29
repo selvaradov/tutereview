@@ -5,12 +5,8 @@ const FAQSection = () => {
       <h3>Are all my submissions anonymous?</h3>
       <p>
         Yes. We will never attach your name to any of the feedback
-        which is submitted. However, to make the site is as useful as possible, we will display
-        the following information alongside your review:
-        <ul>
-          <li>month and year of submission</li>
-          <li>your college</li>
-        </ul>
+        which is submitted. However, to make the site is as useful as possible, we <em>will</em> display
+        alongside your review (a) the month & year of submission, and (b) your college.
       </p>
       <h3> So why do I need to log in?</h3>
       <p>
@@ -18,7 +14,7 @@ const FAQSection = () => {
         is not in doubt. By requiring users to log in with their SSO, we
         are able to take appropriate steps to prevent spam or malicious activity,
         and to ensure that only current students are able to submit reviews. In order
-        to do this, and to fulfill our legal obligations, we associate each submission
+        to do this, and to fulfill our legal duties, we associate each submission
         with your SSO details and securely store this information. We will never display it publicly.
       </p>
       <h3> What should I do if I have an issue?</h3>
