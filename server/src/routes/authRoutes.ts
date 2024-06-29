@@ -28,7 +28,16 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/status', (req, res) => {
-  res.json({ isAuthenticated: req.isAuthenticated() });
+  if (req.isAuthenticated()) {
+    res.json({ 
+      isAuthenticated: true, 
+      user: {
+        isProfileComplete: req.user.isProfileComplete
+      }
+    });
+  } else {
+    res.json({ isAuthenticated: false, user: null });
+  }
 });
 
 export default router;
