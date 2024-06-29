@@ -3,24 +3,6 @@
   "extends": "@tsconfig/node22/tsconfig.json",
   "compilerOptions": {
     "resolveJsonModule": true,
-  //   /* Visit https://aka.ms/tsconfig.json to read more about this file */
-  //   "skipLibCheck": true,
-  //   "module": "Node16",
-  //   "target": "ES2022",
-  //   "strict": true, //
-  //   "isolatedModules": true,
-  //   "esModuleInterop": true,
-  //   "noEmit": true,
-  //   "allowImportingTsExtensions": true,
-  //   "outDir": "dist",
-  //   "lib": [
-  //     "ES2022"
-  //   ],
-  //   "types": [
-  //     "node"
-  //   ],
-  //   "baseUrl": "./",
-  //   "forceConsistentCasingInFileNames": true //
   },
   "exclude": [
     "node_modules"
