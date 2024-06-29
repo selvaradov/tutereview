@@ -8,8 +8,7 @@ router.get('/login', passport.authenticate('microsoft'));
 router.get('/login/callback',
   passport.authenticate('microsoft', { failureRedirect: `${process.env.CLIENT_URL}/` }), // TODO tell user reason for failure (e.g. invalid domain)
   (req, res) => {
-    console.log("redir to ", `${process.env.CLIENT_URL}/review`)
-    res.redirect(`${process.env.CLIENT_URL}/review`);
+    res.redirect(`${process.env.CLIENT_URL}/`);
   }
 );
 
