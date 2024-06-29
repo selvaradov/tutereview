@@ -2,9 +2,16 @@ import React, { createContext, useState, useContext, useEffect, useCallback } fr
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+interface User {
+  id: string;
+  email: string;
+  isProfileComplete: boolean;
+}
+
 interface AuthContextType {
   isAuthenticated: boolean;
   isLoading: boolean
+  user: User | null;
   login: () => void;
   logout: () => Promise<void>;
   checkAuthStatus: () => Promise<void>;
@@ -17,6 +24,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [user, setUser] = useState<User | null>(null);
   const navigate = useNavigate();
 
   const login = () => {
@@ -25,10 +33,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const logout = useCallback(async () => {
     try {
-      const response = await axios.get(`${baseURL}/auth/logout`, {
-        withCredentials: true,
-      });
-
+      const response = await axios.get(`${baseURL}/auth/logout`, { withCredentials: true, });
       console.log(response.data.message);
 
       // Notify other tabs that the user has logged out
@@ -37,24 +42,25 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       authChannel.close();
 
       setIsAuthenticated(false);
+      setUser(null);
       navigate('/', { state: { logoutSuccess: true }, replace: true });
     } catch (error) {
       console.error('Logout failed:', error);
     }
   }, [navigate]);
 
-
-
-  const checkAuthStatus = async () => {
+  const checkAuthStatus = async () => { // NOTE suggested wrapping in useCallback for memoization
     setIsLoading(true);
     try {
-      const response = await axios.get(`${baseURL}/auth/status`, {
-        withCredentials: true,
-      });
+      const response = await axios.get(`${baseURL}/auth/status`, { withCredentials: true });
       setIsAuthenticated(response.data.isAuthenticated);
+      if (response.data.isAuthenticated) {
+        setUser(response.data.user);
+      }
     } catch (error) {
       console.error('Failed to check auth status:', error);
       setIsAuthenticated(false);
+      setUser(null);
     } finally {
       setIsLoading(false);
     }
@@ -72,6 +78,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const handleMessage = (event: MessageEvent) => {
       if (event.data.type === 'LOGOUT') {
         setIsAuthenticated(false);
+        setUser(null);
         navigate('/', { replace: true }); // Optionally redirect to login page.
       }
     };
@@ -85,7 +92,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [navigate]); 
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, isLoading, login, logout, checkAuthStatus }}>
+    <AuthContext.Provider value={{ isAuthenticated, isLoading, user, login, logout, checkAuthStatus }}>
       {children}
     </AuthContext.Provider>
   );

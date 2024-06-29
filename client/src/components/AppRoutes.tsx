@@ -6,6 +6,7 @@ import ReviewPage from './ReviewPage';
 import SearchPage from './SearchPage';
 import ProtectedRoute from './ProtectedRoute';
 import NotFoundPage from './NotFoundPage';
+import ProfileCompletion from './ProfileCompletion';
 import NotificationComponent from './NotificationComponent';
 
 const protectedRoute = (Component: React.ComponentType) => (
@@ -22,6 +23,7 @@ const AppRoutes: React.FC = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/review" element={protectedRoute(ReviewPage)} />
         <Route path="/search" element={protectedRoute(SearchPage)} />
+        <Route path="/complete-profile" element={protectedRoute(ProfileCompletion)} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Layout>
