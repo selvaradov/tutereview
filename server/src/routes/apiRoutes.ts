@@ -54,4 +54,24 @@ router.get('/search', async (req: Request, res: Response) => {
   }
 });
 
+// review endpoint
+router.post('/review', async (req: Request, res: Response) => {
+  if (!req.user) {
+    console.error('Unauthorized request to submit review');
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  const submitter = req.user.id;
+  const review = new Review({
+    submitter,
+    responses: req.body, // TODO validate and sanitise (e.g. we're keeping in `paper` which duplicates `paperCode`)
+  });
+  try {
+    await review.save();
+    res.json({ message: 'Review submitted successfully!' });
+  } catch (err) {
+    console.error('Error submitting review:', err);
+    res.status(500).json({ error: 'Error submitting review.' });
+  }
+});
+
 export default router;
