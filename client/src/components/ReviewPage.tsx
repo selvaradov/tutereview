@@ -76,9 +76,16 @@ const PaperField: React.FC<{ question: Question; subjects: Subject }> = ({ quest
   );
 };
 
+const ErrorMessageWrapper: React.FC<{ name: string }> = ({ name }) => (
+  <ErrorMessage name={name}>
+    {(msg) => <div className="text-danger small mt-1">{msg}</div>}
+  </ErrorMessage>
+);
+
 const ReviewPage: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [subjects, setSubjects] = useState<Subject>({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -93,13 +100,13 @@ const ReviewPage: React.FC = () => {
 
         const questionsData = questionsResponse.data;
         const subjectsData = subjectsResponse.data;
-        console.log('Questions:', questionsData);
-        console.log('Subjects:', subjectsData);
 
         setQuestions(questionsData);
         setSubjects(subjectsData);
       } catch (error) {
         console.error('Error fetching data:', error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -139,21 +146,25 @@ const ReviewPage: React.FC = () => {
     }
   };
 
+  if (isLoading) {
+    return <div className="container mt-4">Loading...</div>;
+  }
+
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Tutor Review Form</h1>
+    <div className="container mt-4">
+      <h1 className="mb-4">Tutor Review Form</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
-        enableReinitialize
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, errors, touched }) => (
           <Form>
             {questions.map((question: Question) => (
-              <div key={question.id} className="mb-4">
-                <label htmlFor={question.id} className="block mb-2">
+              <div key={question.id} className="mb-3">
+                <label htmlFor={question.id} className="form-label">
                   {question.question}
+                  {question.required && <span className="text-danger ms-1">*</span>}
                 </label>
                 {question.type === 'dropdown' && question.id === 'subject' && (
                   <SubjectField question={question} subjects={subjects} />
@@ -166,31 +177,34 @@ const ReviewPage: React.FC = () => {
                     type="text"
                     id={question.id}
                     name={question.id}
-                    className="w-full p-2 border rounded"
+                    className={`form-control ${errors[question.id] && touched[question.id] ? 'is-invalid' : ''}`}
                   />
                 )}
                 {question.type === 'radio' && (
                   <div>
                     {question.options?.map((option) => (
-                      <label key={option} className="block">
+                      <div key={option} className="form-check">
                         <Field
                           type="radio"
                           name={question.id}
                           value={option}
-                          className="mr-2"
+                          className="form-check-input"
+                          id={`${question.id}-${option}`}
                         />
-                        {option}
-                      </label>
+                        <label className="form-check-label" htmlFor={`${question.id}-${option}`}>
+                          {option}
+                        </label>
+                      </div>
                     ))}
                   </div>
                 )}
-                <ErrorMessage name={question.id} component="div" className="text-red-500" />
+                <ErrorMessageWrapper name={question.id} />
               </div>
             ))}
             <button
               type="submit"
               disabled={isSubmitting}
-              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+              className="btn btn-primary"
             >
               {isSubmitting ? 'Submitting...' : 'Submit Review'}
             </button>
@@ -199,9 +213,9 @@ const ReviewPage: React.FC = () => {
       </Formik>
       <LogoutButton />
       <nav className="mt-4">
-        <ul>
-          <li><Link to="/" className="text-blue-500 hover:underline">Go to Home Page</Link></li>
-          <li><Link to="/search" className="text-blue-500 hover:underline">Go to Search Page</Link></li>
+        <ul className="list-unstyled">
+          <li><Link to="/" className="text-decoration-none">Go to Home Page</Link></li>
+          <li><Link to="/search" className="text-decoration-none">Go to Search Page</Link></li>
         </ul>
       </nav>
     </div>
