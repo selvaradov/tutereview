@@ -8,7 +8,11 @@ import User from '../models/user.js'
 declare global {
     namespace Express {
         interface User {
-            id: string // Passport JS does not declare properties of User object so need to extend it
+            id: string; // Passport JS does not declare properties of User object so need to extend it
+            microsoftId: string;
+            displayName: string;
+            email: string;
+            isProfileComplete: boolean;
         }
     }
 }
@@ -41,6 +45,7 @@ export async function configurePassport() {
                             microsoftId: profile.id,
                             displayName: profile.displayName,
                             email: userEmail,
+                            isProfileComplete: false,
                         });
                     }
                     done(null, user);

@@ -5,12 +5,20 @@ export interface IUser extends Document {
   displayName: string;
   email: string;
   id: string;
+  college: string;
+  year: string;
+  subject: string;
+  isProfileComplete: boolean;
 }
 
 const userSchema = new Schema({
   microsoftId: { type: String, required: true, unique: true },
   displayName: String,
   email: { type: String, required: true, unique: true },
+  college: { type: String, required: false },
+  year: { type: String, required: false },
+  subject: { type: String, required: false },
+  isProfileComplete: { type: Boolean, default: false },
 });
 
 export default mongoose.model<IUser>('User', userSchema);
