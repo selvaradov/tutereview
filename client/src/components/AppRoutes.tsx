@@ -7,28 +7,20 @@ import ProtectedRoute from './ProtectedRoute';
 import NotFoundPage from './NotFoundPage';
 import NotificationComponent from './NotificationComponent';
 
+const protectedRoute = (Component: React.ComponentType) => (
+  <ProtectedRoute>
+    <Component />
+  </ProtectedRoute>
+);
+
 const AppRoutes: React.FC = () => {
   return (
     <>
       <NotificationComponent />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route
-          path="/review"
-          element={
-            <ProtectedRoute>
-              <ReviewPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/search"
-          element={
-            <ProtectedRoute>
-              <SearchPage />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/review" element={protectedRoute(ReviewPage)} />
+        <Route path="/search" element={protectedRoute(SearchPage)} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
