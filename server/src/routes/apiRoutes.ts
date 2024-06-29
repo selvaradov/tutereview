@@ -5,12 +5,22 @@ import Review from '../models/review.js';
 
 const router = Router();
 
-const questionData = await readJsonFile('data/questions.json')
 const subjectData = await readJsonFile('data/subjects.json')
 
 // subjects endpoint
 router.get('/subjects', (req: Request, res: Response) => {
   res.json(subjectData);
+});
+
+// questions endpoint
+router.get('/questions', async (req: Request, res: Response) => {
+  try {
+    const questionData = await readJsonFile('data/questions.json');
+    res.json(questionData);
+    } catch (error) {
+    console.error('Error fetching questions:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 // search endpoint
