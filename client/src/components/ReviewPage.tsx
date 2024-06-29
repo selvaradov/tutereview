@@ -149,7 +149,7 @@ const ReviewPage: React.FC = () => {
   }
 
   return (
-    <div className="container mt-4">
+    <>
       <h1 className="mb-4">Tutor Review Form</h1>
       <Formik
         initialValues={initialValues}
@@ -209,7 +209,7 @@ const ReviewPage: React.FC = () => {
           </Form>
         )}
       </Formik>
-    </div>
+    </>
   );
 };
 
