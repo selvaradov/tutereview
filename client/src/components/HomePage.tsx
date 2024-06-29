@@ -5,7 +5,9 @@ const HomePage: React.FC = () => {
   const { isAuthenticated } = useAuth();
 
   useEffect(() => {
-    document.title = 'TuteReview - Home';
+    document.title = 'TuteReview - Home'; // NOTE could be moved to a custom hook 
+    // do a check for `window.matchMedia('(display-mode: standalone)').matches` 
+    // if true, then running as installed PWA so set title to "Home" only
   }, []);
 
   return (
