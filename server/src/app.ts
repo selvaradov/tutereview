@@ -49,10 +49,6 @@ const corsOptions = {
 app.use(cors(corsOptions));
 // enable pre-flight requests for all routes
 app.options('*', cors(corsOptions)); 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Credentials', 'true');
-  next();
-});
 
 // Session store setup
 let sessionStore: any;
