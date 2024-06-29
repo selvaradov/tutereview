@@ -4,16 +4,9 @@ import { useAuth } from '../context/AuthContext';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 
 const HeaderNavbar: React.FC = () => {
-  const { isAuthenticated, login, logout } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
   const location = useLocation();
 
-  const handleAuth = () => {
-    if (isAuthenticated) {
-      logout();
-    } else {
-      login();
-    }
-  };
 
   return (
     <Navbar bg="light" expand="lg" className="mb-3">
@@ -30,9 +23,11 @@ const HeaderNavbar: React.FC = () => {
               </>
             )}
           </Nav>
-          <Button variant={isAuthenticated ? "outline-danger" : "outline-primary"} onClick={handleAuth}>
-            {isAuthenticated ? "Log Out" : "Log In"}
-          </Button>
+          {isAuthenticated && (
+            <Button variant="outline-danger" onClick={logout}>
+              Log Out
+            </Button>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>
