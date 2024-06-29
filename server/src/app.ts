@@ -18,7 +18,6 @@ import cookieParser from 'cookie-parser';
 
 // Import routes
 import authRouter from './routes/authRoutes.js';
-import reviewRouter from './routes/reviewRoutes.js';
 import apiRouter from './routes/apiRoutes.js';
 
 // Set up environment variables and Passport
@@ -110,7 +109,6 @@ app.get('/', (req: Request, res: Response) => {
 });
 app.use('/auth', authRouter);
 app.use('/api', ensureApiAuthenticated, apiRouter);
-app.use('/', ensureAuthenticated, reviewRouter);
 
 // database setup
 const mongoURI = 'mongodb://localhost/reviewDB';
