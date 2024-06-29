@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Form, Row, Col } from 'react-bootstrap';
+import Select from 'react-select';
 
 interface Paper {
   code: number;
@@ -19,14 +21,14 @@ interface Review {
     paperName: string;
     [key: string]: string;
   };
-  submittedAt?: string;
+  submittedAt: string;
 }
 
 const baseURL = process.env.REACT_APP_API_URL;
 
 const SearchPage: React.FC = () => {
   const [subjects, setSubjects] = useState<SubjectsData>({});
-  const [selectedSubject, setSelectedSubject] = useState('');
+  const [selectedSubject, setSelectedSubject] = useState<{ value: string; label: string } | null>(null);
   const [papers, setPapers] = useState<Paper[]>([]);
   const [searchParams, setSearchParams] = useState({
     tutor: '',
@@ -34,12 +36,10 @@ const SearchPage: React.FC = () => {
     paper: '',
   });
   const [results, setResults] = useState<Review[]>([]);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   useEffect(() => {
     document.title = 'TuteReview - Search reviews';
-  }, []);
-
-  useEffect(() => {
     fetchSubjects();
   }, []);
 
@@ -51,6 +51,7 @@ const SearchPage: React.FC = () => {
           withCredentials: true,
         });
         setResults(response.data);
+        setIsInitialLoad(false);
       } catch (error) {
         console.error('Error searching reviews:', error);
       }
@@ -58,8 +59,10 @@ const SearchPage: React.FC = () => {
 
     if (searchParams.tutor || searchParams.subject || searchParams.paper) {
       fetchResults();
+    } else if (!isInitialLoad) {
+      setResults([]);
     }
-  }, [searchParams]);
+  }, [searchParams, isInitialLoad]);
 
   const fetchSubjects = async () => {
     try {
@@ -70,69 +73,88 @@ const SearchPage: React.FC = () => {
     }
   };
 
-  const handleSubjectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const subject = e.target.value;
-    setSelectedSubject(subject);
-    setPapers(subjects[subject] || []);
-    setSearchParams(prev => ({ ...prev, subject, paper: '' }));
+  const handleSubjectChange = (selectedOption: { value: string; label: string } | null) => {
+    setSelectedSubject(selectedOption);
+    if (selectedOption) {
+      setPapers(subjects[selectedOption.value] || []);
+      setSearchParams(prev => ({ ...prev, subject: selectedOption.value, paper: '' }));
+    } else {
+      setPapers([]);
+      setSearchParams(prev => ({ ...prev, subject: '', paper: '' }));
+    }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setSearchParams(prev => ({ ...prev, [name]: value }));
   };
 
+  const handlePaperChange = (selectedOption: { value: string; label: string } | null) => {
+    setSearchParams(prev => ({ ...prev, paper: selectedOption ? selectedOption.value : '' }));
+  };
+
+  const subjectOptions = Object.keys(subjects).map(subjectName => ({
+    value: subjectName,
+    label: subjectName
+  }));
+
+  const paperOptions = papers.map(paper => ({
+    value: paper.code.toString(),
+    label: `${paper.code} - ${paper.name}`
+  }));
+
   return (
-    <div>
-      <h1>Search Reviews</h1>
-      <form>
-        <label htmlFor="tutor">Tutor's Name:</label>
-        <input
-          type="text"
-          id="tutor"
-          name="tutor"
-          value={searchParams.tutor}
-          onChange={handleInputChange}
-          placeholder="Tutor's Name"
-        />
+    <div className="container mt-4">
+      <h1 className="mb-4">Search Reviews</h1>
+      <Form>
+        <Row className="mb-3">
+          <Col md={4}>
+            <Form.Group controlId="tutor">
+              <Form.Label>Tutor's Name:</Form.Label>
+              <Form.Control
+                type="text"
+                name="tutor"
+                value={searchParams.tutor}
+                onChange={handleInputChange}
+                placeholder="Tutor's Name"
+              />
+            </Form.Group>
+          </Col>
+          <Col md={4}>
+            <Form.Group controlId="subject">
+              <Form.Label>Subject:</Form.Label>
+              <Select
+                value={selectedSubject}
+                onChange={handleSubjectChange}
+                options={subjectOptions}
+                isClearable
+                placeholder="Select a subject"
+              />
+            </Form.Group>
+          </Col>
+          <Col md={4}>
+            <Form.Group controlId="paper">
+              <Form.Label>Paper:</Form.Label>
+              <Select
+                value={paperOptions.find(option => option.value === searchParams.paper) || null}
+                onChange={handlePaperChange}
+                options={paperOptions}
+                isDisabled={!selectedSubject}
+                placeholder={selectedSubject ? "Select a paper" : "Please select a subject first"}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+      </Form>
 
-        <label htmlFor="subject">Subject:</label>
-        <select
-          id="subject"
-          name="subject"
-          value={selectedSubject}
-          onChange={handleSubjectChange}
-        >
-          <option value="">Select a subject</option>
-          {Object.keys(subjects).map(subjectName => (
-            <option key={subjectName} value={subjectName}>
-              {subjectName}
-            </option>
-          ))}
-        </select>
-
-        <label htmlFor="paper">Paper:</label>
-        <select
-          id="paper"
-          name="paper"
-          value={searchParams.paper}
-          onChange={handleInputChange}
-        >
-          <option value="">Select a paper</option>
-          {papers.map(paper => (
-            <option key={paper.code} value={paper.code.toString()}>
-              {`${paper.code} - ${paper.name}`}
-            </option>
-          ))}
-        </select>
-      </form>
-
-      <div id="results">
-        {results.length === 0 ? (
+      <div id="results" className="mt-4">
+        {isInitialLoad ? (
+          <p>Please select some filters to search.</p>
+        ) : results.length === 0 ? (
           <p>No results found.</p>
         ) : (
           results.map((review, index) => (
-            <div key={index} className="review-entry">
+            <div key={index} className="review-entry mb-4">
               <h3>{`${review.responses.paperName} (${review.responses.paperCode}) - ${review.responses.tutor}`}</h3>
               {review.submittedAt && (
                 <p><em>Submitted: {new Date(review.submittedAt).toLocaleDateString("en-GB", { year: 'numeric', month: 'long', day: 'numeric' })}</em></p>
