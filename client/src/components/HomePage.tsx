@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { Button } from 'react-bootstrap'; // Ensure Button is imported from react-bootstrap
+import { Button } from 'react-bootstrap';
+import AboutSection from './AboutSection';
+import FAQSection from './FAQSection';
 
 const HomePage: React.FC = () => {
   const { isAuthenticated, isLoading, login } = useAuth();
@@ -16,7 +18,7 @@ const HomePage: React.FC = () => {
   }
 
   return (
-    <div>
+    <>
       <h1>Welcome to TuteReview</h1>
       {isAuthenticated ? (
         <p>You are logged in. You can now access the Review and Search pages.</p>
@@ -26,7 +28,9 @@ const HomePage: React.FC = () => {
           <Button onClick={login} variant="primary">Continue with Microsoft</Button>
         </>
       )}
-    </div>
+      <AboutSection />
+      <FAQSection />
+    </>
   );
 };
 
