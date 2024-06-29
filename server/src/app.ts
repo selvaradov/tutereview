@@ -28,9 +28,6 @@ const __dirname = path.dirname(__filename);
 
 const app: Application = express();
 
-// EJS view engine setup
-app.set('view engine', 'ejs');
-
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -88,11 +85,6 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-function ensureAuthenticated(req: Request, res: Response, next: NextFunction) {
-  if (req.isAuthenticated()) { return next(); }
-  res.redirect('/');
-}
-
 function ensureApiAuthenticated(req: Request, res: Response, next: NextFunction) {
   if (req.isAuthenticated()) {
     return next();
@@ -100,13 +92,7 @@ function ensureApiAuthenticated(req: Request, res: Response, next: NextFunction)
   res.status(401).json({ message: 'Unauthorized - Access denied' });
 }
 
-// Static folder
-app.use(express.static('public'));
-
 // Routes
-app.get('/', (req: Request, res: Response) => {
-  res.render('pages/index');
-});
 app.use('/auth', authRouter);
 app.use('/api', ensureApiAuthenticated, apiRouter);
 
