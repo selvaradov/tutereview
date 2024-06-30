@@ -32,15 +32,16 @@ const Notification = () => {
       // Save original styles
       const originalStyle = {
         scrollbarGutter: document.documentElement.style.getPropertyValue('scrollbar-gutter'),
-        overflow: document.documentElement.style.overflow
+        overflow: document.documentElement.style.getPropertyValue('overflow'),
       };
       // Apply new styles
       document.documentElement.style.setProperty('scrollbar-gutter', 'unset');
-      document.documentElement.style.overflow = 'hidden';
+      document.documentElement.style.setProperty('overflow', 'hidden');
+      document.body.style.setProperty('padding-right', `0px`); // Otherwise padding-right gets set to 15px
       // Revert to original styles on cleanup
       return () => {
         document.documentElement.style.setProperty('scrollbar-gutter', originalStyle.scrollbarGutter);
-        document.documentElement.style.overflow = originalStyle.overflow;
+        document.documentElement.style.setProperty('overflow', originalStyle.overflow);
       };
     }
   }, [show, type]);
