@@ -44,6 +44,10 @@ const SearchPage: React.FC = () => {
   });
   const [results, setResults] = useState<Review[]>([]);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const areSearchParamsEmpty = (params: SearchParams): boolean => {
+    const { tutor, subject, paper } = params;
+    return tutor === '' && subject === '' && paper.length === 0;
+  };
 
   useEffect(() => {
     document.title = 'TuteReview - Search reviews';
@@ -64,10 +68,8 @@ const SearchPage: React.FC = () => {
       }
     };
 
-    if (searchParams.tutor || searchParams.subject || searchParams.paper) {
+    if (!areSearchParamsEmpty(searchParams)) {
       fetchResults();
-    } else if (!isInitialLoad) {
-      setResults([]);
     }
   }, [searchParams, isInitialLoad]);
 
@@ -154,7 +156,7 @@ const SearchPage: React.FC = () => {
                 options={paperOptions}
                 isClearable
                 isDisabled={!selectedSubject}
-                placeholder={selectedSubject ? "Select papers" : "Please select a subject first"}
+                placeholder={selectedSubject ? "Select papers" : "Choose subject first"}
                 isMulti
               />
             </Form.Group>
@@ -163,7 +165,7 @@ const SearchPage: React.FC = () => {
       </Form>
 
       <div id="results" className="mt-4">
-        {isInitialLoad ? (
+        {areSearchParamsEmpty(searchParams) ? (
           <p>Please select some filters to search.</p>
         ) : results.length === 0 ? (
           <p>No results found.</p>
