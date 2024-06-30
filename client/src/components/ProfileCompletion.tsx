@@ -109,7 +109,7 @@ const ProfileCompletion: React.FC = () => {
   };
 
   return (
-    <Container>
+    <>
       <Row className="justify-content-center">
         <Col md={8} lg={6}>
           <Card>
@@ -135,7 +135,7 @@ const ProfileCompletion: React.FC = () => {
           </Card>
         </Col>
       </Row>
-    </Container>
+    </>
   );
 };
 
