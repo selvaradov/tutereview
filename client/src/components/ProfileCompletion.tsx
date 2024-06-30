@@ -35,7 +35,6 @@ const isFieldRequired = (
   validationSchema : Yup.ObjectSchema<FormValues>,
 ): boolean => {
   const fieldDescription = getIn(validationSchema.describe().fields, fieldName);
-  console.log(fieldDescription.tests)
   return !!fieldDescription.tests.find((test: { name: string }) => test.name === 'required');
 };
 
