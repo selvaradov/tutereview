@@ -9,12 +9,12 @@ interface LayoutProps {
 const AppLayout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <Container>
-      <Row>
+      <Row> {/* To centre content, add `className="justify-content-center align-items-center"` */}
         <Col xs={12} lg={10} xl={8}>
           <HeaderNavbar />
-          <Container className="content-wrapper">
+          <div className="content-wrapper">
             {children}
-          </Container>
+          </div>
         </Col>
       </Row>
     </Container>
