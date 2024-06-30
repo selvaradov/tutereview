@@ -12,7 +12,7 @@ const AboutSection = () => {
         There's always going to be variation in teaching between colleges and courses: that's part
         of what makes Oxford and Cambridge academically distinctive. What <em>isn't</em> inevitable
         is students having no idea about how their tutorials or supervisions will be until they've
-        started and it's too late to change. With so many potential combinations of subject, college
+        started and it's too late to change. However, with so many potential combinations of subject, college
         and paper, it often isn't possible to ask someone you know how they found the module that
         you're considering.
       </p>
