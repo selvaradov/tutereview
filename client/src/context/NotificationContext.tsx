@@ -1,29 +1,32 @@
-import React, { createContext, useContext, useState, ReactNode, FunctionComponent } from 'react';
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface NotificationContextType {
   message: string;
   visible: boolean;
-  showNotification: (msg: string) => void;
+  type: 'success' | 'error';
+  showNotification: (msg: string, type: 'success' | 'error') => void;
+  hideNotification: () => void;
 }
 
 const NotificationContext = createContext<NotificationContextType | undefined>(undefined);
 
-interface NotificationProviderProps {
-  children: ReactNode;
-}
-
-export const NotificationProvider: FunctionComponent<NotificationProviderProps> = ({ children }) => {
+export const NotificationProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [message, setMessage] = useState<string>('');
   const [visible, setVisible] = useState<boolean>(false);
+  const [type, setType] = useState<'success' | 'error'>('success');
 
-  const showNotification = (msg: string) => {
+  const showNotification = (msg: string, notificationType: 'success' | 'error') => {
     setMessage(msg);
+    setType(notificationType);
     setVisible(true);
-    setTimeout(() => setVisible(false), 3000); // Automatically hide after 3 seconds
+  };
+
+  const hideNotification = () => {
+    setVisible(false);
   };
 
   return (
-    <NotificationContext.Provider value={{ message, visible, showNotification }}>
+    <NotificationContext.Provider value={{ message, visible, type, showNotification, hideNotification }}>
       {children}
     </NotificationContext.Provider>
   );
