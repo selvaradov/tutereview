@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Alert, Modal, Button } from 'react-bootstrap';
 import { useNotification } from '../context/NotificationContext';
+import './Notification.css'; // We'll create this file for custom styles
 
 type AdditionalButton = {
   label: string;
@@ -12,12 +13,25 @@ const Notification = () => {
   const { message, visible, type, hideNotification, additionalButtons } = useNotification();
   const [show, setShow] = useState(false);
   const [modalShow, setModalShow] = useState(false);
+  const [fadeOut, setFadeOut] = useState(false);
+
+  const handleClose = useCallback(() => {
+    setFadeOut(true);
+    if (type === 'error') {
+      setModalShow(false);
+    }
+    setTimeout(() => {
+      setShow(false);
+      hideNotification();
+    }, 300); // Wait for fade-out animation to complete
+  }, [type, setFadeOut, setModalShow, setShow, hideNotification]);
 
   // Success notifications should disappear after 5 seconds
   useEffect(() => {
     if (visible) {
       setShow(true);
       setModalShow(true);
+      setFadeOut(false);
       if (type === 'success') {
         const timer = setTimeout(() => {
           handleClose();
@@ -25,7 +39,7 @@ const Notification = () => {
         return () => clearTimeout(timer);
       }
     }
-  }, [visible, type]);
+  }, [visible, type, handleClose]);
 
   // Ensure modal shadow covers scrollbar
   useEffect(() => {
@@ -38,22 +52,13 @@ const Notification = () => {
       // Apply new styles
       document.documentElement.style.setProperty('scrollbar-gutter', 'unset');
       document.documentElement.style.setProperty('overflow', 'hidden');
-      document.body.style.setProperty('padding-right', `0px`); // Otherwise padding-right gets set to 15px
-      // Revert to original styles on cleanup
+      document.body.style.setProperty('padding-right', `0px`);
       return () => {
         document.documentElement.style.setProperty('scrollbar-gutter', originalStyle.scrollbarGutter);
         document.documentElement.style.setProperty('overflow', originalStyle.overflow);
       };
     }
-  }, [show, type]);
-
-  const handleClose = () => {
-    setModalShow(false);
-    setTimeout(() => {
-      setShow(false);
-      hideNotification();
-    }, 300); // Wait for fade-out animation to complete
-  };
+  }, [show, type]);  
 
   const handleButtonClick = (onClick: () => void) => {
     onClick();
@@ -96,7 +101,7 @@ const Notification = () => {
   }
 
   return (
-    <div className="notification-wrapper">
+    <div className={`notification-wrapper ${fadeOut ? 'fade-out' : ''}`}>
       <Alert
         variant="success"
         show={show}

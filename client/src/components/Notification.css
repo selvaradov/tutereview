@@ -1,0 +1,11 @@
+.notification-wrapper {
+  transition: opacity 0.3s ease-out, max-height 0.3s ease-out;
+  opacity: 1;
+  max-height: 100px; /* Adjust this value based on your alert's maximum height */
+  overflow: hidden;
+}
+
+.notification-wrapper.fade-out {
+  opacity: 0;
+  max-height: 0;
+}
