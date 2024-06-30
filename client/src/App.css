@@ -1,3 +1,4 @@
+/* Prevent layout shift when scrollbar appears */
 @supports (scrollbar-gutter: stable) {
   html {
     overflow-y: auto;
