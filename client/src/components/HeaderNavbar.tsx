@@ -9,7 +9,6 @@ const HeaderNavbar: React.FC = () => {
 
   return (
     <Navbar expand="lg" className="mb-3">
-      <Container>
         <Navbar.Brand as={Link} to="/">TuteReview</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -28,7 +27,6 @@ const HeaderNavbar: React.FC = () => {
             </Button>
           )}
         </Navbar.Collapse>
-      </Container>
     </Navbar>
   );
 };
