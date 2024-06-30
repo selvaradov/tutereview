@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import { useAuth } from '../context/AuthContext';
+import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import { useAuth } from '../context/AuthContext';
 import AboutSection from './AboutSection';
 import FAQSection from './FAQSection';
 
 const HomePage: React.FC = () => {
-  const { isAuthenticated, isLoading, login } = useAuth();
+  const { isAuthenticated, isLoading, login, user } = useAuth();
 
   useEffect(() => {
     document.title = 'TuteReview - Home'; // NOTE could be moved to a custom hook
@@ -21,7 +22,22 @@ const HomePage: React.FC = () => {
     <>
       <h1>Welcome to TuteReview</h1>
       {isAuthenticated ? (
-        <p>You are logged in. You can now access the Review and Search pages.</p>
+        user?.isProfileComplete ? (
+          <div>
+            <p>You're all set! You can now access:</p>
+            <ul>
+              <li><Link to="/review">Review Page</Link></li>
+              <li><Link to="/search">Search Page</Link></li>
+            </ul>
+          </div>
+        ) : (
+          <div className="mb-3">
+            <p>You're logged in, but your profile is incomplete.</p>
+            <Link to="/complete-profile">
+              <Button variant="primary">Complete Your Profile</Button>
+            </Link>
+          </div>
+        )
       ) : (
         <div className="mb-3">
           <p>Please verify that you are a member of the university with your SSO.</p>
