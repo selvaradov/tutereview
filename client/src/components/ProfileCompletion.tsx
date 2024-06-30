@@ -1,14 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { Formik, Form, Field, FormikHelpers } from 'formik';
-import * as Yup from 'yup';
-import Select, { SingleValue, Options } from 'react-select';
-import axios from 'axios';
-import { useAuth } from '../context/AuthContext';
+import React, { useEffect } from 'react';
+import { Formik, Form, Field, ErrorMessage, FormikProps, getIn } from 'formik';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import axios from 'axios';
+import Select, { SingleValue } from 'react-select';
+import { Container, Row, Col, Card, Form as BootstrapForm } from 'react-bootstrap';
+import * as Yup from 'yup';
 
 interface Option {
   value: string;
   label: string;
+}
+
+interface OptionsState {
+  colleges: Option[];
+  years: Option[];
+  subjects: Option[];
 }
 
 interface FormValues {
@@ -17,23 +24,25 @@ interface FormValues {
   subject: string;
 }
 
-interface OptionsState {
-  colleges: Options<{ value: string; label: string }>;
-  years: Options<{ value: string; label: string }>;
-  subjects: Options<{ value: string; label: string }>;
-}
-
-
 const ProfileSchema = Yup.object().shape({
   college: Yup.string().required('Required'),
   year: Yup.string().required('Required'),
   subject: Yup.string().required('Required'),
 });
 
+const isFieldRequired = (
+  fieldName: string,
+  validationSchema : Yup.ObjectSchema<FormValues>,
+): boolean => {
+  const fieldDescription = getIn(validationSchema.describe().fields, fieldName);
+  console.log(fieldDescription.tests)
+  return !!fieldDescription.tests.find((test: { name: string }) => test.name === 'required');
+};
+
 const baseURL = process.env.REACT_APP_API_URL;
 
 const ProfileCompletion: React.FC = () => {
-  const [options, setOptions] = useState<OptionsState>({ colleges: [], years: [], subjects: [] });
+  const [options, setOptions] = React.useState<OptionsState>({ colleges: [], years: [], subjects: [] });
   const { checkAuthStatus, user } = useAuth();
   const navigate = useNavigate();
 
@@ -55,7 +64,7 @@ const ProfileCompletion: React.FC = () => {
     }
   }, [user, navigate]);
 
-  const handleSubmit = async (values: FormValues, { setSubmitting }: FormikHelpers<FormValues>) => {
+  const handleSubmit = async (values: FormValues) => {
     try {
       await axios.post(`${baseURL}/user/update-profile`, values, { withCredentials: true });
       await checkAuthStatus();
@@ -63,78 +72,71 @@ const ProfileCompletion: React.FC = () => {
     } catch (error) {
       console.error('Error updating profile:', error);
     }
-    setSubmitting(false);
+  };
+
+  const renderField = (fieldName: string, label: string, options: Option[], formikProps: FormikProps<FormValues>) => {
+    const { errors, touched, setFieldValue } = formikProps;
+    const isRequired = isFieldRequired(fieldName, ProfileSchema);
+
+    return (
+      <BootstrapForm.Group className="mb-3">
+        <BootstrapForm.Label className="fw-bold">
+          {label}
+          {isRequired && <span className="text-danger" style={{ userSelect: 'none' }}> *</span>}
+        </BootstrapForm.Label>
+        <Field name={fieldName}>
+          {({ field }: { field: any }) => (
+            <Select<Option>
+              options={options}
+              onChange={(option: SingleValue<Option>) => {
+                if (option) {
+                  setFieldValue(fieldName, option.value);
+                }
+              }}
+              value={options.find(option => option.value === field.value)}
+              className="basic-select"
+              classNamePrefix="select"
+              aria-label={label}
+              aria-invalid={!!(errors[fieldName as keyof FormValues] && touched[fieldName as keyof FormValues])}
+              aria-describedby={`${fieldName}-error`}
+            />
+          )}
+        </Field>
+        <ErrorMessage name={fieldName}>
+          {(msg) => <div id={`${fieldName}-error`} className="text-danger">{msg}</div>}
+        </ErrorMessage>
+      </BootstrapForm.Group>
+    );
   };
 
   return (
-    <div>
-      <h2>Complete Your Profile</h2>
-      <Formik
-        initialValues={{ college: '', year: '', subject: '' }}
-        validationSchema={ProfileSchema}
-        onSubmit={handleSubmit}
-      >
-        {({ errors, touched, setFieldValue }) => (
-          <Form>
-            <div>
-              <label htmlFor="college">College</label>
-              <Field name="college">
-                {({ field }: { field: any }) => (
-                  <Select<Option>
-                    options={options.colleges}
-                    onChange={(option: SingleValue<Option>) => {
-                      if (option) {
-                        setFieldValue('college', option.value);
-                      }
-                    }}
-                    value={options.colleges.find(option => option.value === field.value)}
-                  />
+    <Container className="mt-5">
+      <Row className="justify-content-center">
+        <Col md={8} lg={6}>
+          <Card>
+            <Card.Body>
+              <h2 className="text-center mb-4">Complete Your Profile</h2>
+              <Formik
+                initialValues={{ college: '', year: '', subject: '' }}
+                validationSchema={ProfileSchema}
+                onSubmit={handleSubmit}
+              >
+                {(formikProps) => (
+                  <Form>
+                    {renderField('college', 'College', options.colleges, formikProps)}
+                    {renderField('year', 'Year', options.years, formikProps)}
+                    {renderField('subject', 'Subject', options.subjects, formikProps)}
+                    <div className="d-grid">
+                      <button type="submit" className="btn btn-primary">Submit</button>
+                    </div>
+                  </Form>
                 )}
-              </Field>
-              {errors.college && touched.college ? <div>{errors.college}</div> : null}
-            </div>
-
-            <div>
-              <label htmlFor="year">Year</label>
-              <Field name="year">
-                {({ field }: { field: any }) => (
-                  <Select<Option>
-                    options={options.years}
-                    onChange={(option: SingleValue<Option>) => {
-                      if (option) {
-                        setFieldValue('year', option.value);
-                      }
-                    }}
-                    value={options.years.find(option => option.value === field.value)}
-                  />
-                )}
-              </Field>
-              {errors.year && touched.year ? <div>{errors.year}</div> : null}
-            </div>
-
-            <div>
-              <label htmlFor="subject">Subject</label>
-              <Field name="subject">
-                {({ field }: { field: any }) => (
-                  <Select<Option>
-                    options={options.subjects}
-                    onChange={(option: SingleValue<Option>) => {
-                      if (option) {
-                        setFieldValue('subject', option.value);
-                      }
-                    }}
-                    value={options.subjects.find(option => option.value === field.value)}
-                  />
-                )}
-              </Field>
-              {errors.subject && touched.subject ? <div>{errors.subject}</div> : null}
-            </div>
-
-            <button type="submit" className="btn btn-primary mt-3">Submit</button>
-          </Form>
-        )}
-      </Formik>
-    </div>
+              </Formik>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
