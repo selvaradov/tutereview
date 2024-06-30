@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Form, Row, Col } from 'react-bootstrap';
+import { Form, Row, Col, Spinner } from 'react-bootstrap';
 import Select, { ActionMeta, MultiValue } from 'react-select';
 import PageLayout from './PageLayout';
 
@@ -43,7 +43,8 @@ const SearchPage: React.FC = () => {
     paper: [],
   });
   const [results, setResults] = useState<Review[]>([]);
-  const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+
   const areSearchParamsEmpty = (params: SearchParams): boolean => {
     const { tutor, subject, paper } = params;
     return tutor === '' && subject === '' && paper.length === 0;
@@ -55,23 +56,32 @@ const SearchPage: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const fetchResults = async () => {
+    const fetchResults = async () => { // NOTE unecessarily fetches on initial load
+      if (areSearchParamsEmpty(searchParams)) {
+        setResults([]);
+        return;
+      }
+      setIsLoading(true);
       try {
         const response = await axios.get<Review[]>(`${baseURL}/api/search`, {
           params: searchParams,
           withCredentials: true,
         });
         setResults(response.data);
-        setIsInitialLoad(false);
       } catch (error) {
         console.error('Error searching reviews:', error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
-    if (!areSearchParamsEmpty(searchParams)) {
+    const debounceTimer = setTimeout(() => {
       fetchResults();
-    }
-  }, [searchParams, isInitialLoad]);
+    }, 300); // Debounce for 300ms
+
+    return () => clearTimeout(debounceTimer);
+
+  }, [searchParams]);
 
   const fetchSubjects = async () => {
     try {
@@ -167,27 +177,36 @@ const SearchPage: React.FC = () => {
       <div id="results" className="mt-4">
         {areSearchParamsEmpty(searchParams) ? (
           <p>Please select some filters to search.</p>
-        ) : results.length === 0 ? (
+        ) : results.length === 0 && !isLoading ? (
           <p>No results found.</p>
         ) : (
-          results.map((review, index) => (
-            <div key={index} className="review-entry mb-4">
-              <h3>{`${review.responses.paperName} (${review.responses.paperCode}) - ${review.responses.tutor}`}</h3>
-              {review.submittedAt && (
-                <p><em>Submitted: {new Date(review.submittedAt).toLocaleDateString("en-GB", { year: 'numeric', month: 'long', day: 'numeric' })}</em></p>
-              )}
-              {Object.entries(review.responses).map(([key, value]) => {
-                if (!['tutor', 'subject', 'paperCode', 'paperName', 'submittedAt'].includes(key) && value.trim() !== "") {
-                  return (
-                    <p key={key}>
-                      <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value}
-                    </p>
-                  );
-                }
-                return null;
-              })}
-            </div>
-          ))
+          <>
+            {results.map((review, index) => (
+              <div key={index} className="review-entry mb-4">
+                <h3>{`${review.responses.paperName} (${review.responses.paperCode}) - ${review.responses.tutor}`}</h3>
+                {review.submittedAt && (
+                  <p><em>Submitted: {new Date(review.submittedAt).toLocaleDateString("en-GB", { year: 'numeric', month: 'long', day: 'numeric' })}</em></p>
+                )}
+                {Object.entries(review.responses).map(([key, value]) => {
+                  if (!['tutor', 'subject', 'paperCode', 'paperName', 'submittedAt'].includes(key) && value.trim() !== "") {
+                    return (
+                      <p key={key}>
+                        <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value}
+                      </p>
+                    );
+                  }
+                  return null;
+                })}
+              </div>
+            ))}
+            {isLoading && (
+              <div className="position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center" style={{ backgroundColor: 'rgba(255, 255, 255, 0.7)' }}>
+                <Spinner animation="border" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>
+              </div>
+            )}
+          </>
         )}
       </div>
     </PageLayout>
