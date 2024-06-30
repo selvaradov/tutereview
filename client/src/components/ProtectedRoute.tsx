@@ -1,19 +1,29 @@
 import React, { useEffect } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useNotification } from '../context/NotificationContext';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isAuthenticated, isLoading, user } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
   const { showNotification } = useNotification();
 
   useEffect(() => {
     if (isAuthenticated && user && !user.isProfileComplete && location.pathname !== '/complete-profile') {
-      showNotification('To use the site, please first complete your profile.', 'error');
+      showNotification(
+        'To use this page, please complete your profile.',
+        'error',
+        [
+          {
+            label: 'Complete Profile',
+            onClick: () => navigate('/complete-profile'),
+            variant: 'primary'
+          }
+        ]
+      );
     }
-  }, [isAuthenticated, user, location.pathname, showNotification]);
-
+  }, [isAuthenticated, user, location.pathname, showNotification, navigate]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -24,9 +34,10 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
   }
 
   if (!user?.isProfileComplete && location.pathname !== '/complete-profile') {
-    return <Navigate to="/complete-profile" state={{ from: location }} replace />;
+    return <Navigate to="/" replace />;
   }
-  return <>{children}</> ;
+
+  return <>{children}</>;
 };
 
 export default ProtectedRoute;

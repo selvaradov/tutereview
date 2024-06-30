@@ -2,8 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Alert, Modal, Button } from 'react-bootstrap';
 import { useNotification } from '../context/NotificationContext';
 
+type AdditionalButton = {
+  label: string;
+  onClick: () => void;
+  variant?: string;
+};
+
 const Notification = () => {
-  const { message, visible, type, hideNotification } = useNotification();
+  const { message, visible, type, hideNotification, additionalButtons } = useNotification();
   const [show, setShow] = useState(false);
 
   // Success notifications should disappear after 5 seconds
@@ -26,12 +32,15 @@ const Notification = () => {
       // Save original styles
       const originalStyle = {
         scrollbarGutter: document.documentElement.style.getPropertyValue('scrollbar-gutter'),
+        overflow: document.documentElement.style.overflow
       };
       // Apply new styles
       document.documentElement.style.setProperty('scrollbar-gutter', 'unset');
+      document.documentElement.style.overflow = 'hidden';
       // Revert to original styles on cleanup
       return () => {
         document.documentElement.style.setProperty('scrollbar-gutter', originalStyle.scrollbarGutter);
+        document.documentElement.style.overflow = originalStyle.overflow;
       };
     }
   }, [show, type]);
@@ -39,6 +48,11 @@ const Notification = () => {
   const handleClose = () => {
     setShow(false);
     hideNotification();
+  };
+
+  const handleButtonClick = (onClick: () => void) => {
+    onClick();
+    handleClose();
   };
 
   if (!visible) return null;
@@ -57,6 +71,15 @@ const Notification = () => {
         </Modal.Header>
         <Modal.Body>{message}</Modal.Body>
         <Modal.Footer>
+          {additionalButtons && additionalButtons.map((button: AdditionalButton, index: number) => (
+            <Button
+              key={index}
+              variant={button.variant || 'primary'}
+              onClick={() => handleButtonClick(button.onClick)}
+            >
+              {button.label}
+            </Button>
+          ))}
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>

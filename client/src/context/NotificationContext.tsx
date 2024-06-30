@@ -1,10 +1,17 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
+type AdditionalButton = {
+  label: string;
+  onClick: () => void;
+  variant?: string;
+};
+
 interface NotificationContextType {
   message: string;
   visible: boolean;
   type: 'success' | 'error';
-  showNotification: (msg: string, type: 'success' | 'error') => void;
+  additionalButtons?: AdditionalButton[];
+  showNotification: (msg: string, type: 'success' | 'error', additionalButtons?: AdditionalButton[]) => void;
   hideNotification: () => void;
 }
 
@@ -14,19 +21,35 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({ childr
   const [message, setMessage] = useState<string>('');
   const [visible, setVisible] = useState<boolean>(false);
   const [type, setType] = useState<'success' | 'error'>('success');
+  const [additionalButtons, setAdditionalButtons] = useState<AdditionalButton[] | undefined>(undefined);
 
-  const showNotification = (msg: string, notificationType: 'success' | 'error') => {
+  const showNotification = (
+    msg: string, 
+    notificationType: 'success' | 'error', 
+    buttons?: AdditionalButton[]
+  ) => {
     setMessage(msg);
     setType(notificationType);
+    setAdditionalButtons(buttons);
     setVisible(true);
   };
 
   const hideNotification = () => {
     setVisible(false);
+    setAdditionalButtons(undefined);
   };
 
   return (
-    <NotificationContext.Provider value={{ message, visible, type, showNotification, hideNotification }}>
+    <NotificationContext.Provider 
+      value={{ 
+        message, 
+        visible, 
+        type, 
+        additionalButtons, 
+        showNotification, 
+        hideNotification 
+      }}
+    >
       {children}
     </NotificationContext.Provider>
   );
