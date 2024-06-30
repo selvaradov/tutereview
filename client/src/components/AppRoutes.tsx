@@ -7,7 +7,7 @@ import SearchPage from './SearchPage';
 import ProtectedRoute from './ProtectedRoute';
 import NotFoundPage from './NotFoundPage';
 import ProfileCompletion from './ProfileCompletion';
-import NotificationComponent from './NotificationComponent';
+import Notification from './Notification';
 
 const protectedRoute = (Component: React.ComponentType) => (
   <ProtectedRoute>
@@ -18,7 +18,7 @@ const protectedRoute = (Component: React.ComponentType) => (
 const AppRoutes: React.FC = () => {
   return (
     <AppLayout>
-      <NotificationComponent />
+      <Notification />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/review" element={protectedRoute(ReviewPage)} />
