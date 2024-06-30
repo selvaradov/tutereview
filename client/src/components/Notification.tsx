@@ -23,7 +23,7 @@ const Notification = () => {
     setTimeout(() => {
       setShow(false);
       hideNotification();
-    }, 300); // Wait for fade-out animation to complete
+    }, 400); // Make sure fade-out (0.3s) is definitely finished
   }, [type, setFadeOut, setModalShow, setShow, hideNotification]);
 
   // Success notifications should disappear after 5 seconds
