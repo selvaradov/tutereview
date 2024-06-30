@@ -10,7 +10,7 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
 
   useEffect(() => {
     if (isAuthenticated && user && !user.isProfileComplete && location.pathname !== '/complete-profile') {
-      showNotification('To use the site, please first complete your profile.', 'success');
+      showNotification('To use the site, please first complete your profile.', 'error');
     }
   }, [isAuthenticated, user, location.pathname, showNotification]);
 
