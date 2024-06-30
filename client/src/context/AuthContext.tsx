@@ -54,9 +54,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       const response = await axios.get(`${baseURL}/auth/status`, { withCredentials: true });
       setIsAuthenticated(response.data.isAuthenticated);
-      if (response.data.isAuthenticated) {
-        setUser(response.data.user);
-      }
+      setUser(response.data.user);
     } catch (error) {
       console.error('Failed to check auth status:', error);
       setIsAuthenticated(false);

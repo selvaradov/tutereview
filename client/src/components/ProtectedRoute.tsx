@@ -1,22 +1,21 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import ProfileCompletion from './ProfileCompletion';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { isAuthenticated, isLoading, user } = useAuth();
+  const location = useLocation();
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
   if (!isAuthenticated) {
-    return <Navigate to="/" />;
+    return <Navigate to="/" state={{ from: location }} replace />;
   }
 
-  if (!user?.isProfileComplete) {
-    console.log('Profile not complete', user)
-    return <ProfileCompletion />;
+  if (!user?.isProfileComplete && location.pathname !== '/complete-profile') {
+    return <Navigate to="/complete-profile" state={{ from: location }} replace />;
   }
   console.log('Profile complete', user)
   return <>{children}</> ;
