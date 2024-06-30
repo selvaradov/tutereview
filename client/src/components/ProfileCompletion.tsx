@@ -109,7 +109,7 @@ const ProfileCompletion: React.FC = () => {
   };
 
   return (
-    <Container className="mt-5">
+    <Container>
       <Row className="justify-content-center">
         <Col md={8} lg={6}>
           <Card>
