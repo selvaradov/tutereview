@@ -6,6 +6,7 @@ const Notification = () => {
   const { message, visible, type, hideNotification } = useNotification();
   const [show, setShow] = useState(false);
 
+  // Success notifications should disappear after 5 seconds
   useEffect(() => {
     if (visible) {
       setShow(true);
@@ -19,6 +20,22 @@ const Notification = () => {
     }
   }, [visible, type, hideNotification]);
 
+  // Ensure modal shadow covers scrollbar
+  useEffect(() => {
+    if (show && type === 'error') {
+      // Save original styles
+      const originalStyle = {
+        scrollbarGutter: document.documentElement.style.getPropertyValue('scrollbar-gutter'),
+      };
+      // Apply new styles
+      document.documentElement.style.setProperty('scrollbar-gutter', 'unset');
+      // Revert to original styles on cleanup
+      return () => {
+        document.documentElement.style.setProperty('scrollbar-gutter', originalStyle.scrollbarGutter);
+      };
+    }
+  }, [show, type]);
+
   const handleClose = () => {
     setShow(false);
     hideNotification();
@@ -28,7 +45,13 @@ const Notification = () => {
 
   if (type === 'error') {
     return (
-      <Modal show={show} onHide={handleClose} centered>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        centered
+        dialogClassName="modal-90w"
+        contentClassName="mx-3"
+      >
         <Modal.Header closeButton>
           <Modal.Title>Error</Modal.Title>
         </Modal.Header>
@@ -43,7 +66,7 @@ const Notification = () => {
   }
 
   return (
-    <div className="position-fixed bottom-0 start-50 translate-middle-x mb-3" style={{ zIndex: 1050 }}>
+    <div className="notification-wrapper">
       <Alert
         variant="success"
         show={show}
