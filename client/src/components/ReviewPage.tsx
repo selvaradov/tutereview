@@ -149,7 +149,7 @@ const ReviewPage: React.FC = () => {
   };
 
   if (isLoading) {
-    return <div className="container mt-4">Loading...</div>;
+    return <div>Loading...</div>;
   }
 
   return (
