@@ -11,20 +11,21 @@ type AdditionalButton = {
 const Notification = () => {
   const { message, visible, type, hideNotification, additionalButtons } = useNotification();
   const [show, setShow] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
 
   // Success notifications should disappear after 5 seconds
   useEffect(() => {
     if (visible) {
       setShow(true);
+      setModalShow(true);
       if (type === 'success') {
         const timer = setTimeout(() => {
-          setShow(false);
-          hideNotification();
+          handleClose();
         }, 5000);
         return () => clearTimeout(timer);
       }
     }
-  }, [visible, type, hideNotification]);
+  }, [visible, type]);
 
   // Ensure modal shadow covers scrollbar
   useEffect(() => {
@@ -47,8 +48,11 @@ const Notification = () => {
   }, [show, type]);
 
   const handleClose = () => {
-    setShow(false);
-    hideNotification();
+    setModalShow(false);
+    setTimeout(() => {
+      setShow(false);
+      hideNotification();
+    }, 300); // Wait for fade-out animation to complete
   };
 
   const handleButtonClick = (onClick: () => void) => {
@@ -61,11 +65,13 @@ const Notification = () => {
   if (type === 'error') {
     return (
       <Modal
-        show={show}
+        show={modalShow}
         onHide={handleClose}
         centered
         dialogClassName="modal-90w"
         contentClassName="mx-3"
+        backdrop="static"
+        keyboard={false}
       >
         <Modal.Header closeButton>
           <Modal.Title>Error</Modal.Title>
