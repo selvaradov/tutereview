@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Layout from './Layout';
+import AppLayout from './AppLayout';
 import HomePage from './HomePage';
 import ReviewPage from './ReviewPage';
 import SearchPage from './SearchPage';
@@ -17,7 +17,7 @@ const protectedRoute = (Component: React.ComponentType) => (
 
 const AppRoutes: React.FC = () => {
   return (
-    <Layout>
+    <AppLayout>
       <NotificationComponent />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -26,7 +26,7 @@ const AppRoutes: React.FC = () => {
         <Route path="/complete-profile" element={protectedRoute(ProfileCompletion)} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </Layout>
+    </AppLayout>
   );
 };
 

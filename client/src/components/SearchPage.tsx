@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Form, Row, Col } from 'react-bootstrap';
 import Select from 'react-select';
+import PageLayout from './PageLayout';
 
 interface Paper {
   code: number;
@@ -104,8 +105,7 @@ const SearchPage: React.FC = () => {
   }));
 
   return (
-    <div className="container mt-4">
-      <h1 className="mb-4">Search Reviews</h1>
+    <PageLayout title="Search Reviews">
       <Form>
         <Row className="mb-3">
           <Col md={4}>
@@ -173,7 +173,7 @@ const SearchPage: React.FC = () => {
           ))
         )}
       </div>
-    </div>
+    </PageLayout>
   );
 };
 

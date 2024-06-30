@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage, useFormikContext } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import PageLayout from './PageLayout';
 
 interface Question {
   id: string;
@@ -153,8 +154,7 @@ const ReviewPage: React.FC = () => {
   }
 
   return (
-    <>
-      <h1 className="mb-4">Tutor Review Form</h1>
+    <PageLayout title="Tutor Review Form">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -213,7 +213,7 @@ const ReviewPage: React.FC = () => {
           </Form>
         )}
       </Formik>
-    </>
+    </PageLayout>
   );
 };
 

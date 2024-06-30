@@ -4,6 +4,7 @@ import { Button } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext';
 import AboutSection from './AboutSection';
 import FAQSection from './FAQSection';
+import PageLayout from './PageLayout';
 
 const HomePage: React.FC = () => {
   const { isAuthenticated, isLoading, login, user } = useAuth();
@@ -19,8 +20,7 @@ const HomePage: React.FC = () => {
   }
 
   return (
-    <>
-      <h1>Welcome to TuteReview</h1>
+    <PageLayout title="Welcome to TuteReview">
       {isAuthenticated ? (
         user?.isProfileComplete ? (
           <div>
@@ -46,7 +46,7 @@ const HomePage: React.FC = () => {
       )}
       <AboutSection />
       <FAQSection />
-    </>
+    </PageLayout>
   );
 };
 
