@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Form, Row, Col } from 'react-bootstrap';
-import Select from 'react-select';
+import Select, { ActionMeta, MultiValue } from 'react-select';
 import PageLayout from './PageLayout';
 
 interface Paper {
@@ -25,16 +25,22 @@ interface Review {
   submittedAt: string;
 }
 
+interface SearchParams {
+  tutor: string;
+  subject: string;
+  paper: string[]; // This should be an array of strings
+}
+
 const baseURL = process.env.REACT_APP_API_URL;
 
 const SearchPage: React.FC = () => {
   const [subjects, setSubjects] = useState<SubjectsData>({});
   const [selectedSubject, setSelectedSubject] = useState<{ value: string; label: string } | null>(null);
   const [papers, setPapers] = useState<Paper[]>([]);
-  const [searchParams, setSearchParams] = useState({
+  const [searchParams, setSearchParams] = useState<SearchParams>({
     tutor: '',
     subject: '',
-    paper: '',
+    paper: [],
   });
   const [results, setResults] = useState<Review[]>([]);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
@@ -78,10 +84,10 @@ const SearchPage: React.FC = () => {
     setSelectedSubject(selectedOption);
     if (selectedOption) {
       setPapers(subjects[selectedOption.value] || []);
-      setSearchParams(prev => ({ ...prev, subject: selectedOption.value, paper: '' }));
+      setSearchParams(prev => ({ ...prev, subject: selectedOption.value, paper: [] }));
     } else {
       setPapers([]);
-      setSearchParams(prev => ({ ...prev, subject: '', paper: '' }));
+      setSearchParams(prev => ({ ...prev, subject: '', paper: [] }));
     }
   };
 
@@ -90,8 +96,15 @@ const SearchPage: React.FC = () => {
     setSearchParams(prev => ({ ...prev, [name]: value }));
   };
 
-  const handlePaperChange = (selectedOption: { value: string; label: string } | null) => {
-    setSearchParams(prev => ({ ...prev, paper: selectedOption ? selectedOption.value : '' }));
+  const handlePaperChange = (
+    selectedOptions: MultiValue<{ value: string; label: string }> | null,
+    actionMeta: ActionMeta<{ value: string; label: string }>
+  ) => {
+    setSearchParams(prev => ({
+      ...prev,
+      // Map over selectedOptions only if it's not null, otherwise set to an empty array
+      paper: selectedOptions ? selectedOptions.map(option => option.value) : []
+    }));
   };
 
   const subjectOptions = Object.keys(subjects).map(subjectName => ({
@@ -116,7 +129,7 @@ const SearchPage: React.FC = () => {
                 name="tutor"
                 value={searchParams.tutor}
                 onChange={handleInputChange}
-                placeholder="Tutor's Name"
+                placeholder="Start typing..."
               />
             </Form.Group>
           </Col>
@@ -136,11 +149,13 @@ const SearchPage: React.FC = () => {
             <Form.Group controlId="paper">
               <Form.Label>Paper:</Form.Label>
               <Select
-                value={paperOptions.find(option => option.value === searchParams.paper) || null}
+                value={paperOptions.filter(option => searchParams.paper.includes(option.value))}
                 onChange={handlePaperChange}
                 options={paperOptions}
+                isClearable
                 isDisabled={!selectedSubject}
-                placeholder={selectedSubject ? "Select a paper" : "Please select a subject first"}
+                placeholder={selectedSubject ? "Select papers" : "Please select a subject first"}
+                isMulti
               />
             </Form.Group>
           </Col>
