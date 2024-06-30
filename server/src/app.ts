@@ -86,8 +86,15 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-function ensureApiAuthenticated(req: Request, res: Response, next: NextFunction) {
+function ensureAuth(req: Request, res: Response, next: NextFunction) {
   if (req.isAuthenticated()) {
+    return next();
+  }
+  res.status(401).json({ error: 'Unauthorized' });
+}
+
+function ensureAuthAndComplete(req: Request, res: Response, next: NextFunction) {
+  if (req.isAuthenticated() && req.user.isProfileComplete) {
     return next();
   }
   res.status(401).json({ error: 'Unauthorized' });
@@ -95,8 +102,8 @@ function ensureApiAuthenticated(req: Request, res: Response, next: NextFunction)
 
 // Routes
 app.use('/auth', authRouter);
-app.use('/api', ensureApiAuthenticated, apiRouter);
-app.use('/user', ensureApiAuthenticated, userRouter);
+app.use('/api', ensureAuthAndComplete, apiRouter); // users can only search/submit reviews if profile is complete
+app.use('/user', ensureAuth, userRouter); // this is where users can complete their profile
 
 // database setup
 const mongoURI = 'mongodb://localhost/reviewDB';
