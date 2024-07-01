@@ -7,7 +7,7 @@ import Review from '../models/review.js';
 const router = Router();
 
 // subjects endpoint
-router.get('/subjects', async (req: Request, res: Response) => {
+router.get('/subjects', async (req, res) => {
   try {
     const subjectData = await readJsonFile('data/subjects.json');
     res.json(subjectData);
@@ -18,7 +18,7 @@ router.get('/subjects', async (req: Request, res: Response) => {
 });
 
 // questions endpoint
-router.get('/questions', async (req: Request, res: Response) => {
+router.get('/questions', async (req, res) => {
   try {
     const questionData = await readJsonFile('data/questions.json');
     res.json(questionData);
@@ -56,7 +56,7 @@ function hasInvalidParams(queryParams: ParsedQs, schema: AllowedParamsSchema): b
   });
 }
 
-router.get('/search', async (req: Request, res: Response) => {
+router.get('/search', async (req, res) => {
   try {
     if (hasInvalidParams(req.query, allowedSearchParams)) {
       return res.status(400).json({ error: 'Invalid query parameters or formats provided.' });
@@ -89,7 +89,7 @@ router.get('/search', async (req: Request, res: Response) => {
 });
 
 // review endpoint
-router.post('/review', async (req: Request, res: Response) => {
+router.post('/review', async (req, res) => {
   if (!req.user) {
     console.error('Unauthorized request to submit review');
     return res.status(401).json({ error: 'Unauthorized' });
