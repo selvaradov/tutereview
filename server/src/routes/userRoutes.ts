@@ -87,7 +87,7 @@ router.get('/reviews', async (req, res) => {
   }
 
   try {
-    const reviews = await Review.find({ submitter: req.user.id }, { responses: 1, submittedAt: 1, _id: 0})
+    const reviews = await Review.find({ submitter: req.user.id }, { responses: 1, submittedAt: 1 })
       .sort({ submittedAt: -1 })
       .lean();
 
