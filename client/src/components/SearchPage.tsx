@@ -28,7 +28,7 @@ interface Review {
 interface SearchParams {
   tutor: string;
   subject: string;
-  paper: string[]; // This should be an array of strings
+  paper: string[];
 }
 
 const baseURL = process.env.REACT_APP_API_URL;
@@ -57,11 +57,11 @@ const SearchPage: React.FC = () => {
 
   useEffect(() => {
     const fetchResults = async () => { // NOTE unecessarily fetches on initial load
+      setIsLoading(true);
       if (areSearchParamsEmpty(searchParams)) {
         setResults([]);
         return;
       }
-      setIsLoading(true);
       try {
         const response = await axios.get<Review[]>(`${baseURL}/api/search`, {
           params: searchParams,
