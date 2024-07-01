@@ -88,7 +88,7 @@ const ProfileCompletion: React.FC = () => {
       <BootstrapForm.Group className="mb-3">
         <BootstrapForm.Label className="fw-bold">
           {label}
-          {isRequired && <span className="text-danger" style={{ userSelect: 'none' }}> *</span>}
+          {isRequired && <span className="text-danger ms-1" style={{ userSelect: 'none' }}>*</span>}
         </BootstrapForm.Label>
         <Field name={fieldName}>
           {({ field }: { field: any }) => (
