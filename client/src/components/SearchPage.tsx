@@ -277,7 +277,7 @@ const SearchPage: React.FC = () => {
                   <p><em>Submitted: {new Date(review.submittedAt).toLocaleDateString("en-GB", { year: 'numeric', month: 'long', day: 'numeric' })}</em></p>
                 )}
                 {Object.entries(review.responses).map(([key, value]) => {
-                  if (!['tutor', 'subject', 'paperCode', 'paperName', 'submittedAt'].includes(key) && value.trim() !== "") {
+                  if (!['tutor', 'subject', 'paperCode', 'paper', 'paperName', 'submittedAt'].includes(key) && value.trim() !== "") {
                     return (
                       <p key={key}>
                         <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value}
