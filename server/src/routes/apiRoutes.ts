@@ -10,7 +10,7 @@ router.get('/subjects', async (req: Request, res: Response) => {
   try {
     const subjectData = await readJsonFile('data/subjects.json');
     res.json(subjectData);
-    } catch (error) {
+  } catch (error) {
     console.error('Error fetching subjects:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
@@ -21,7 +21,7 @@ router.get('/questions', async (req: Request, res: Response) => {
   try {
     const questionData = await readJsonFile('data/questions.json');
     res.json(questionData);
-    } catch (error) {
+  } catch (error) {
     console.error('Error fetching questions:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
@@ -36,6 +36,14 @@ interface QueryParams {
 
 router.get('/search', async (req: Request, res: Response) => {
   try {
+    const allowedParams = ['tutor', 'subject', 'paper'];
+    const queryParams = Object.keys(req.query);
+
+    const hasUnexpectedParam = queryParams.some(param => !allowedParams.includes(param));
+    if (hasUnexpectedParam) {
+      return res.status(400).json({error: 'Unexpected query parameters provided.'});
+    }
+
     const tutor = typeof req.query.tutor === 'string' ? req.query.tutor : undefined;
     const subject = typeof req.query.subject === 'string' ? req.query.subject : undefined;
     const paperCode = typeof req.query.paper === 'string' ? req.query.paper : undefined;
@@ -50,7 +58,7 @@ router.get('/search', async (req: Request, res: Response) => {
     res.json(reviews);
   } catch (err) {
     console.error('Error searching reviews:', err);
-    res.status(500).send('Error searching reviews.');
+    res.status(500).json({error: 'Error searching reviews.'});
   }
 });
 
