@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import axios from 'axios';
 import { Form, Row, Col, Spinner } from 'react-bootstrap';
 import Select, { ActionMeta, MultiValue } from 'react-select';
@@ -24,38 +24,72 @@ interface Review {
     [key: string]: string;
   };
   submittedAt: string;
+  college: string;
 }
 
 interface SearchParams {
   tutor: string;
   subject: string;
   paper: string[];
+  college: string[];
+}
+
+interface SelectOption {
+  value: string;
+  label: string;
 }
 
 const baseURL = process.env.REACT_APP_API_URL;
 
 const SearchPage: React.FC = () => {
   const [subjects, setSubjects] = useState<SubjectsData>({});
-  const [selectedSubject, setSelectedSubject] = useState<{ value: string; label: string } | null>(null);
+  const [selectedSubject, setSelectedSubject] = useState<SelectOption | null>(null);
   const [papers, setPapers] = useState<Paper[]>([]);
+  const [colleges, setColleges] = useState<SelectOption[]>([]);
   const [searchParams, setSearchParams] = useState<SearchParams>({
     tutor: '',
     subject: '',
     paper: [],
+    college: []
   });
   const [results, setResults] = useState<Review[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const latestSearchParams = useRef(searchParams);
   const [isSearchPending, setIsSearchPending] = useState(false);
 
+  const subjectOptions: SelectOption[] = Object.keys(subjects).map(subjectName => ({
+    value: subjectName,
+    label: subjectName
+  }));
+  
+  const paperOptions: SelectOption[] = papers.map(paper => ({
+    value: paper.code.toString(),
+    label: `${paper.code} - ${paper.name}`
+  }));
+
+  const memoizedCollegeOptions = useMemo(() => 
+    searchParams.college.map(value => colleges.find(c => c.value === value)).filter(Boolean) as SelectOption[],
+    [searchParams.college, colleges]
+  );
+  
+  const memoizedPaperOptions = useMemo(() => 
+    searchParams.paper.map(value => paperOptions.find(p => p.value === value)).filter(Boolean) as SelectOption[],
+    [searchParams.paper, paperOptions]
+  );
+
+  const collegeLookup = useMemo(() => {
+    return new Map(colleges.map(college => [college.value, college.label]));
+  }, [colleges]);
+
   const areSearchParamsEmpty = (params: SearchParams): boolean => {
-    const { tutor, subject, paper } = params;
-    return tutor === '' && subject === '' && paper.length === 0;
+    const { tutor, subject, paper, college } = params;
+    return tutor === '' && subject === '' && paper.length === 0 && college.length === 0;
   };
 
   useEffect(() => {
     document.title = 'TuteReview - Search reviews';
     fetchSubjects();
+    fetchColleges();
   }, []);
 
   // Hide scrollbar when loading
@@ -124,7 +158,16 @@ const fetchSubjects = async () => {
   }
 };
 
-const handleSubjectChange = (selectedOption: { value: string; label: string } | null) => {
+  const fetchColleges = async () => {
+    try {
+      const response = await axios.get<SelectOption[]>(`${baseURL}/api/colleges`, { withCredentials: true });
+      setColleges(response.data);
+    } catch (error) {
+      console.error('Error fetching colleges:', error);
+    }
+  };
+
+const handleSubjectChange = (selectedOption: SelectOption | null) => {
   setSelectedSubject(selectedOption);
   if (selectedOption) {
     setPapers(subjects[selectedOption.value] || []);
@@ -141,8 +184,8 @@ const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 };
 
 const handlePaperChange = (
-  selectedOptions: MultiValue<{ value: string; label: string }> | null,
-  actionMeta: ActionMeta<{ value: string; label: string }>
+  selectedOptions: MultiValue<SelectOption> | null,
+  actionMeta: ActionMeta<SelectOption>
 ) => {
   setSearchParams(prev => ({
     ...prev,
@@ -151,21 +194,21 @@ const handlePaperChange = (
   }));
 };
 
-const subjectOptions = Object.keys(subjects).map(subjectName => ({
-  value: subjectName,
-  label: subjectName
-}));
-
-const paperOptions = papers.map(paper => ({
-  value: paper.code.toString(),
-  label: `${paper.code} - ${paper.name}`
-}));
+const handleCollegeChange = (
+  selectedOptions: MultiValue<SelectOption> | null,
+  actionMeta: ActionMeta<SelectOption>
+) => {
+  setSearchParams(prev => ({
+    ...prev,
+    college: selectedOptions ? selectedOptions.map(option => option.value) : []
+  }));
+};
 
 return (
   <PageLayout title="Search Reviews">
     <Form>
       <Row className="mb-3">
-        <Col md={4}>
+        <Col md={3}>
           <Form.Group controlId="tutor">
             <Form.Label>Tutor's Name:</Form.Label>
             <Form.Control
@@ -177,10 +220,10 @@ return (
             />
           </Form.Group>
         </Col>
-        <Col md={4}>
+        <Col md={3}>
           <Form.Group controlId="subject">
             <Form.Label>Subject:</Form.Label>
-            <Select
+            <Select<SelectOption>
               value={selectedSubject}
               onChange={handleSubjectChange}
               options={subjectOptions}
@@ -189,11 +232,11 @@ return (
             />
           </Form.Group>
         </Col>
-        <Col md={4}>
+        <Col md={3}>
           <Form.Group controlId="paper">
             <Form.Label>Paper:</Form.Label>
-            <Select
-              value={paperOptions.filter(option => searchParams.paper.includes(option.value))}
+            <Select<SelectOption, true>
+              value={memoizedPaperOptions}
               onChange={handlePaperChange}
               options={paperOptions}
               isClearable
@@ -203,6 +246,19 @@ return (
             />
           </Form.Group>
         </Col>
+        <Col md={3}>
+            <Form.Group controlId="college">
+              <Form.Label>College:</Form.Label>
+              <Select<SelectOption, true>
+                value={memoizedCollegeOptions}
+                onChange={handleCollegeChange}
+                options={colleges}
+                isClearable
+                isMulti
+                placeholder="Select colleges"
+              />
+            </Form.Group>
+          </Col>
       </Row>
     </Form>
 
@@ -216,6 +272,7 @@ return (
           {results.map((review, index) => (
             <div key={index} className="review-entry mb-4">
               <h3>{`${review.responses.paperName} (${review.responses.paperCode}) - ${review.responses.tutor}`}</h3>
+              <p><em>College: {collegeLookup.get(review.college) || review.college}</em></p>
               {review.submittedAt && (
                 <p><em>Submitted: {new Date(review.submittedAt).toLocaleDateString("en-GB", { year: 'numeric', month: 'long', day: 'numeric' })}</em></p>
               )}
