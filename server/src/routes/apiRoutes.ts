@@ -1,4 +1,5 @@
 import { Router, Request, Response } from 'express';
+import { ParsedQs } from 'qs';
 import { readJsonFile } from '../utils/fileOperations.js';
 import { escapeRegex } from '../utils/sanitise.js';
 import Review from '../models/review.js';
@@ -28,31 +29,53 @@ router.get('/questions', async (req: Request, res: Response) => {
 });
 
 // search endpoint
-interface QueryParams {
-  "responses.tutor"?: { $regex: RegExp, $options: string };
-  "responses.subject"?: { $regex: RegExp, $options: string };
-  "responses.paperCode"?: { $regex: RegExp, $options: string };
+interface AllowedParamsSchema {
+  [key: string]: "single" | "array";
+}
+const allowedSearchParams: AllowedParamsSchema = {
+  tutor: "single",
+  subject: "single",
+  paper: "array", 
+};
+
+type QueryValue = string | string[] | ParsedQs | ParsedQs[] | undefined;
+
+function hasInvalidParams(queryParams: ParsedQs, schema: AllowedParamsSchema) {
+  return Object.keys(queryParams).some(param => {
+    if (!(param in schema)) {
+      return true;
+    }
+    const expectedType = schema[param];
+    const value = queryParams[param];
+    if (expectedType === "single" && Array.isArray(value)) {
+      return true;
+    } else if (expectedType === "array" && !Array.isArray(value)) {
+      return true;
+    }
+    return false;
+  });
 }
 
 router.get('/search', async (req: Request, res: Response) => {
   try {
-    const allowedParams = ['tutor', 'subject', 'paper'];
-    const queryParams = Object.keys(req.query);
-
-    const hasUnexpectedParam = queryParams.some(param => !allowedParams.includes(param));
-    if (hasUnexpectedParam) {
-      return res.status(400).json({error: 'Unexpected query parameters provided.'});
+    if (hasInvalidParams(req.query, allowedSearchParams)) {
+      return res.status(400).json({error: 'Invalid query parameters or formats provided.'});
     }
 
     const tutor = typeof req.query.tutor === 'string' ? req.query.tutor : undefined;
     const subject = typeof req.query.subject === 'string' ? req.query.subject : undefined;
-    const paperCode = typeof req.query.paper === 'string' ? req.query.paper : undefined;
+    const papers = Array.isArray(req.query.paper) ? req.query.paper : 
+                   typeof req.query.paper === 'string' ? [req.query.paper] : 
+                   undefined;
 
-    const query: QueryParams = {};
+    const query: Record<string, any> = {};
 
     if (tutor) query['responses.tutor'] = { $regex: escapeRegex(tutor), $options: 'i' };
     if (subject) query['responses.subject'] = { $regex: escapeRegex(subject), $options: 'i' };
-    if (paperCode) query['responses.paperCode'] = { $regex: escapeRegex(paperCode), $options: 'i' };
+    if (papers) {
+      const paperArray = Array.isArray(papers) ? papers : [papers];
+      query['responses.paperCode'] = { $in: paperArray.map(p => new RegExp(escapeRegex(p), 'i')) };
+    }
 
     const reviews = await Review.find(query, { _id: 0, submitter: 0, __v: 0 }); // Exclude sensitive fields
     res.json(reviews);
