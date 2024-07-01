@@ -1,0 +1,11 @@
+.dropdown-logout-button {
+  color: #dc3545 !important; /* Bootstrap's danger color */
+  transition: background-color .15s ease-in-out !important;
+}
+
+.dropdown-logout-button:hover,
+.dropdown-logout-button:focus {
+  color: #fff !important;
+  text-decoration: none;
+  background-color: #dc3545 !important;
+}

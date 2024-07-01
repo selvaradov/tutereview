@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Navbar, Nav, Button } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import logo from '../img/logo860.png';
+import './HeaderNavbar.css';
 
 const HeaderNavbar: React.FC = () => {
   const { isAuthenticated, logout } = useAuth();
@@ -32,9 +33,16 @@ const HeaderNavbar: React.FC = () => {
           )}
         </Nav>
         {isAuthenticated && (
-          <Button variant="outline-danger" onClick={logout}>
-            Log Out
-          </Button>
+          <Nav className="ms-auto">
+            <NavDropdown title="Account" id="basic-nav-dropdown">
+              <NavDropdown.Item as={Link} to="/profile">Profile</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/my-reviews">My reviews</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item onClick={logout} className="dropdown-logout-button">
+                Log out
+              </NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
         )}
       </Navbar.Collapse>
     </Navbar>
