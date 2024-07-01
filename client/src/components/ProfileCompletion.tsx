@@ -81,7 +81,7 @@ const ProfileCompletion: React.FC = () => {
   };
 
   const renderField = (fieldName: string, label: string, options: Option[], formikProps: FormikProps<FormValues>) => {
-    const { errors, touched, setFieldValue, values } = formikProps;
+    const { errors, touched, setFieldValue } = formikProps;
     const isRequired = isFieldRequired(fieldName, ProfileSchema);
 
     return (
