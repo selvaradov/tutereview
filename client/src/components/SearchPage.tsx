@@ -205,12 +205,12 @@ const SearchPage: React.FC = () => {
   };
 
   return (
-    <PageLayout title="Search Reviews">
+    <PageLayout title="Search reviews">
       <Form>
         <Row className="mb-3">
-          <Col md={3}>
+          <Col md={6}>
             <Form.Group controlId="tutor">
-              <Form.Label>Tutor's Name:</Form.Label>
+              <Form.Label className='fw-bold'>Tutor's name:</Form.Label>
               <Form.Control
                 type="text"
                 name="tutor"
@@ -220,9 +220,24 @@ const SearchPage: React.FC = () => {
               />
             </Form.Group>
           </Col>
-          <Col md={3}>
+          <Col md={6}>
+            <Form.Group controlId="college">
+              <Form.Label className='fw-bold'>College:</Form.Label>
+              <Select<SelectOption, true>
+                value={memoizedCollegeOptions}
+                onChange={handleCollegeChange}
+                options={colleges}
+                isClearable
+                isMulti
+                placeholder="Select colleges"
+              />
+            </Form.Group>
+          </Col>
+          </Row>
+          <Row className="mb-3">
+          <Col md={6}>
             <Form.Group controlId="subject">
-              <Form.Label>Subject:</Form.Label>
+              <Form.Label className='fw-bold'>Subject:</Form.Label>
               <Select<SelectOption>
                 value={selectedSubject}
                 onChange={handleSubjectChange}
@@ -232,9 +247,9 @@ const SearchPage: React.FC = () => {
               />
             </Form.Group>
           </Col>
-          <Col md={3}>
+          <Col md={6}>
             <Form.Group controlId="paper">
-              <Form.Label>Paper:</Form.Label>
+              <Form.Label className='fw-bold'>Paper:</Form.Label>
               <Select<SelectOption, true>
                 value={memoizedPaperOptions}
                 onChange={handlePaperChange}
@@ -243,19 +258,6 @@ const SearchPage: React.FC = () => {
                 isDisabled={!selectedSubject}
                 placeholder={selectedSubject ? "Select papers" : "Choose subject first"}
                 isMulti
-              />
-            </Form.Group>
-          </Col>
-          <Col md={3}>
-            <Form.Group controlId="college">
-              <Form.Label>College:</Form.Label>
-              <Select<SelectOption, true>
-                value={memoizedCollegeOptions}
-                onChange={handleCollegeChange}
-                options={colleges}
-                isClearable
-                isMulti
-                placeholder="Select colleges"
               />
             </Form.Group>
           </Col>
