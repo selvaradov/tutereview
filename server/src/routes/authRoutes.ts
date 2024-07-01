@@ -19,11 +19,13 @@ router.get('/login/callback',
 router.get('/logout', (req, res) => {
   req.logout((err) => {
     if (err) {
-      return res.status(500).json({ message: 'Error logging out', error: err });
+      console.error('Error logging out:', err);
+      return res.status(500).json({ error: 'Internal server error' });
     }
     req.session.destroy((err) => {
       if (err) {
-        return res.status(500).json({ message: 'Error destroying session', error: err });
+        console.error('Error destroying session:', err)
+        return res.status(500).json({ error: 'Internal server error' });
       }
       res.clearCookie('connect.sid'); // clear the session cookie
       return res.status(200).json({ message: 'Logged out successfully' });

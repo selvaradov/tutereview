@@ -105,7 +105,7 @@ router.get('/search', async (req, res) => {
     res.json(reviews);
   } catch (err) {
     console.error('Error searching reviews:', err);
-    res.status(500).json({ error: 'Error searching reviews.' });
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
@@ -134,7 +134,7 @@ router.post('/review', async (req, res) => {
     res.json({ message: 'Review submitted successfully!' });
   } catch (err) {
     console.error('Error submitting review:', err);
-    res.status(500).json({ error: 'Error submitting review.' });
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
