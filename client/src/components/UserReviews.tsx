@@ -52,7 +52,7 @@ const UserReviews: React.FC = () => {
 
   return (
     <div>
-      <h2 className="mb-4">Your Submitted Reviews</h2>
+      <h2 className="mb-4">Your reviews</h2>
       {reviews.map((review) => (
         <Card key={review._id} className="mb-4">
           <Card.Body>
