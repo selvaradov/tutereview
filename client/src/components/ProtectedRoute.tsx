@@ -10,14 +10,14 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
   const { showNotification } = useNotification();
 
   useEffect(() => {
-    if (isAuthenticated && user && !user.isProfileComplete && location.pathname !== '/complete-profile') {
+    if (isAuthenticated && user && !user.isProfileComplete && location.pathname !== '/profile') {
       showNotification(
         'To use this page, please complete your profile.',
         'error',
         [
           {
             label: 'Complete Profile',
-            onClick: () => navigate('/complete-profile'),
+            onClick: () => navigate('/profile'),
             variant: 'primary'
           }
         ]
@@ -33,7 +33,7 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
     return <Navigate to="/" state={{ from: location }} replace />;
   }
 
-  if (!user?.isProfileComplete && location.pathname !== '/complete-profile') {
+  if (!user?.isProfileComplete && location.pathname !== '/profile') {
     return <Navigate to="/" replace />;
   }
 

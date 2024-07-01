@@ -33,7 +33,7 @@ const HomePage: React.FC = () => {
         ) : (
           <div className="mb-3">
             <p>You're logged in, but your profile is incomplete.</p>
-            <Link to="/complete-profile">
+            <Link to="/profile">
               <Button variant="primary">Complete Your Profile</Button>
             </Link>
           </div>

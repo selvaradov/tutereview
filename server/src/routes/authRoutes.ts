@@ -9,7 +9,7 @@ router.get('/login/callback',
   passport.authenticate('microsoft', { failureRedirect: `${process.env.CLIENT_URL}/` }), // TODO tell user reason for failure (e.g. invalid domain)
   (req, res) => {
     if (req.user && !req.user.isProfileComplete) {
-      res.redirect(`${process.env.CLIENT_URL}/complete-profile`);
+      res.redirect(`${process.env.CLIENT_URL}/profile`);
     } else {
       res.redirect(`${process.env.CLIENT_URL}/`);
     }

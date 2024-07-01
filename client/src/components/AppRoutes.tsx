@@ -23,7 +23,7 @@ const AppRoutes: React.FC = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/review" element={protectedRoute(ReviewPage)} />
         <Route path="/search" element={protectedRoute(SearchPage)} />
-        <Route path="/complete-profile" element={protectedRoute(ProfileCompletion)} />
+        <Route path="/profile" element={protectedRoute(ProfileCompletion)} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </AppLayout>
