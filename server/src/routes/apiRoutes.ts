@@ -1,8 +1,9 @@
-import { Router, Request, Response } from 'express';
+import { Router } from 'express';
 import { ParsedQs } from 'qs';
 import { readJsonFile } from '../utils/fileOperations.js';
 import { escapeRegex } from '../utils/sanitise.js';
 import Review from '../models/review.js';
+import User from '../models/user.js';
 
 const router = Router();
 
@@ -28,6 +29,17 @@ router.get('/questions', async (req, res) => {
   }
 });
 
+// questions endpoint
+router.get('/colleges', async (req, res) => {
+  try {
+    const collegeData = await readJsonFile('data/colleges.json');
+    res.json(collegeData);
+  } catch (error) {
+    console.error('Error fetching colleges:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 // search endpoint
 type AllowedParamType = 'string' | 'array';
 
@@ -38,6 +50,7 @@ const allowedSearchParams: AllowedParamsSchema = {
   tutor: "string",
   subject: "string",
   paper: "array",
+  college: "array",
 };
 
 function isValidParam(value: unknown, expectedType: AllowedParamType): boolean {
@@ -74,9 +87,17 @@ router.get('/search', async (req, res) => {
 
     if (req.query.paper) {
       const papers = Array.isArray(req.query.paper) ? req.query.paper : [req.query.paper];
-      query['responses.paperCode'] = { 
+      query['responses.paperCode'] = {
         $in: papers.filter((p): p is string => typeof p === 'string')
-                   .map(p => new RegExp(escapeRegex(p), 'i'))
+          .map(p => new RegExp(escapeRegex(p), 'i'))
+      };
+    }
+
+    if (req.query.college) {
+      const colleges = Array.isArray(req.query.college) ? req.query.college : [req.query.college];
+      query['college'] = {
+        $in: colleges.filter((c): c is string => typeof c === 'string')
+          .map(c => new RegExp(escapeRegex(c), 'i'))
       };
     }
 
@@ -95,11 +116,20 @@ router.post('/review', async (req, res) => {
     return res.status(401).json({ error: 'Unauthorized' });
   }
   const submitter = req.user.id;
-  const review = new Review({
-    submitter,
-    responses: req.body, // TODO validate and sanitise (e.g. we're keeping in `paper` which duplicates `paperCode`)
-  });
   try {
+    const user = await User.findById(submitter);
+    if (!user) {
+      console.error('User not found:', submitter);
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    const review = new Review({
+      submitter,
+      responses: req.body, // TODO validate and sanitise (e.g. we're keeping in `paper` which duplicates `paperCode`)
+      // people could theoretically send an option that isn't supported by the frontend if they do so manually
+      college: user.college
+    });
+
     await review.save();
     res.json({ message: 'Review submitted successfully!' });
   } catch (err) {
