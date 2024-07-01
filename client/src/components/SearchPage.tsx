@@ -61,18 +61,18 @@ const SearchPage: React.FC = () => {
     value: subjectName,
     label: subjectName
   }));
-  
+
   const paperOptions: SelectOption[] = papers.map(paper => ({
     value: paper.code.toString(),
     label: `${paper.code} - ${paper.name}`
   }));
 
-  const memoizedCollegeOptions = useMemo(() => 
+  const memoizedCollegeOptions = useMemo(() =>
     searchParams.college.map(value => colleges.find(c => c.value === value)).filter(Boolean) as SelectOption[],
     [searchParams.college, colleges]
   );
-  
-  const memoizedPaperOptions = useMemo(() => 
+
+  const memoizedPaperOptions = useMemo(() =>
     searchParams.paper.map(value => paperOptions.find(p => p.value === value)).filter(Boolean) as SelectOption[],
     [searchParams.paper, paperOptions]
   );
@@ -149,14 +149,14 @@ const SearchPage: React.FC = () => {
     };
   }, [searchParams, fetchResults]);
 
-const fetchSubjects = async () => {
-  try {
-    const response = await axios.get<SubjectsData>(`${baseURL}/api/subjects`, { withCredentials: true });
-    setSubjects(response.data);
-  } catch (error) {
-    console.error('Error fetching subjects:', error);
-  }
-};
+  const fetchSubjects = async () => {
+    try {
+      const response = await axios.get<SubjectsData>(`${baseURL}/api/subjects`, { withCredentials: true });
+      setSubjects(response.data);
+    } catch (error) {
+      console.error('Error fetching subjects:', error);
+    }
+  };
 
   const fetchColleges = async () => {
     try {
@@ -167,86 +167,86 @@ const fetchSubjects = async () => {
     }
   };
 
-const handleSubjectChange = (selectedOption: SelectOption | null) => {
-  setSelectedSubject(selectedOption);
-  if (selectedOption) {
-    setPapers(subjects[selectedOption.value] || []);
-    setSearchParams(prev => ({ ...prev, subject: selectedOption.value, paper: [] }));
-  } else {
-    setPapers([]);
-    setSearchParams(prev => ({ ...prev, subject: '', paper: [] }));
-  }
-};
+  const handleSubjectChange = (selectedOption: SelectOption | null) => {
+    setSelectedSubject(selectedOption);
+    if (selectedOption) {
+      setPapers(subjects[selectedOption.value] || []);
+      setSearchParams(prev => ({ ...prev, subject: selectedOption.value, paper: [] }));
+    } else {
+      setPapers([]);
+      setSearchParams(prev => ({ ...prev, subject: '', paper: [] }));
+    }
+  };
 
-const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  const { name, value } = e.target;
-  setSearchParams(prev => ({ ...prev, [name]: value }));
-};
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setSearchParams(prev => ({ ...prev, [name]: value }));
+  };
 
-const handlePaperChange = (
-  selectedOptions: MultiValue<SelectOption> | null,
-  actionMeta: ActionMeta<SelectOption>
-) => {
-  setSearchParams(prev => ({
-    ...prev,
-    // Map over selectedOptions only if it's not null, otherwise set to an empty array
-    paper: selectedOptions ? selectedOptions.map(option => option.value) : []
-  }));
-};
+  const handlePaperChange = (
+    selectedOptions: MultiValue<SelectOption> | null,
+    actionMeta: ActionMeta<SelectOption>
+  ) => {
+    setSearchParams(prev => ({
+      ...prev,
+      // Map over selectedOptions only if it's not null, otherwise set to an empty array
+      paper: selectedOptions ? selectedOptions.map(option => option.value) : []
+    }));
+  };
 
-const handleCollegeChange = (
-  selectedOptions: MultiValue<SelectOption> | null,
-  actionMeta: ActionMeta<SelectOption>
-) => {
-  setSearchParams(prev => ({
-    ...prev,
-    college: selectedOptions ? selectedOptions.map(option => option.value) : []
-  }));
-};
+  const handleCollegeChange = (
+    selectedOptions: MultiValue<SelectOption> | null,
+    actionMeta: ActionMeta<SelectOption>
+  ) => {
+    setSearchParams(prev => ({
+      ...prev,
+      college: selectedOptions ? selectedOptions.map(option => option.value) : []
+    }));
+  };
 
-return (
-  <PageLayout title="Search Reviews">
-    <Form>
-      <Row className="mb-3">
-        <Col md={3}>
-          <Form.Group controlId="tutor">
-            <Form.Label>Tutor's Name:</Form.Label>
-            <Form.Control
-              type="text"
-              name="tutor"
-              value={searchParams.tutor}
-              onChange={handleInputChange}
-              placeholder="Start typing..."
-            />
-          </Form.Group>
-        </Col>
-        <Col md={3}>
-          <Form.Group controlId="subject">
-            <Form.Label>Subject:</Form.Label>
-            <Select<SelectOption>
-              value={selectedSubject}
-              onChange={handleSubjectChange}
-              options={subjectOptions}
-              isClearable
-              placeholder="Select a subject"
-            />
-          </Form.Group>
-        </Col>
-        <Col md={3}>
-          <Form.Group controlId="paper">
-            <Form.Label>Paper:</Form.Label>
-            <Select<SelectOption, true>
-              value={memoizedPaperOptions}
-              onChange={handlePaperChange}
-              options={paperOptions}
-              isClearable
-              isDisabled={!selectedSubject}
-              placeholder={selectedSubject ? "Select papers" : "Choose subject first"}
-              isMulti
-            />
-          </Form.Group>
-        </Col>
-        <Col md={3}>
+  return (
+    <PageLayout title="Search Reviews">
+      <Form>
+        <Row className="mb-3">
+          <Col md={3}>
+            <Form.Group controlId="tutor">
+              <Form.Label>Tutor's Name:</Form.Label>
+              <Form.Control
+                type="text"
+                name="tutor"
+                value={searchParams.tutor}
+                onChange={handleInputChange}
+                placeholder="Start typing..."
+              />
+            </Form.Group>
+          </Col>
+          <Col md={3}>
+            <Form.Group controlId="subject">
+              <Form.Label>Subject:</Form.Label>
+              <Select<SelectOption>
+                value={selectedSubject}
+                onChange={handleSubjectChange}
+                options={subjectOptions}
+                isClearable
+                placeholder="Select a subject"
+              />
+            </Form.Group>
+          </Col>
+          <Col md={3}>
+            <Form.Group controlId="paper">
+              <Form.Label>Paper:</Form.Label>
+              <Select<SelectOption, true>
+                value={memoizedPaperOptions}
+                onChange={handlePaperChange}
+                options={paperOptions}
+                isClearable
+                isDisabled={!selectedSubject}
+                placeholder={selectedSubject ? "Select papers" : "Choose subject first"}
+                isMulti
+              />
+            </Form.Group>
+          </Col>
+          <Col md={3}>
             <Form.Group controlId="college">
               <Form.Label>College:</Form.Label>
               <Select<SelectOption, true>
@@ -259,47 +259,47 @@ return (
               />
             </Form.Group>
           </Col>
-      </Row>
-    </Form>
+        </Row>
+      </Form>
 
-    <div id="results" className="mt-4">
-      {areSearchParamsEmpty(searchParams) ? (
-        <p>Please select some filters to search.</p>
-      ) : results.length === 0 && !isLoading && !isSearchPending ? (
-        <p>No results found.</p>
-      ) : (
-        <>
-          {results.map((review, index) => (
-            <div key={index} className="review-entry mb-4">
-              <h3>{`${review.responses.paperName} (${review.responses.paperCode}) - ${review.responses.tutor}`}</h3>
-              <p><em>College: {collegeLookup.get(review.college) || review.college}</em></p>
-              {review.submittedAt && (
-                <p><em>Submitted: {new Date(review.submittedAt).toLocaleDateString("en-GB", { year: 'numeric', month: 'long', day: 'numeric' })}</em></p>
-              )}
-              {Object.entries(review.responses).map(([key, value]) => {
-                if (!['tutor', 'subject', 'paperCode', 'paperName', 'submittedAt'].includes(key) && value.trim() !== "") {
-                  return (
-                    <p key={key}>
-                      <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value}
-                    </p>
-                  );
-                }
-                return null;
-              })}
-            </div>
-          ))}
-          {(isLoading || isSearchPending) && (
-            <div className="loading-overlay">
-              <Spinner animation="border" role="status">
-                <span className="visually-hidden">Loading...</span>
-              </Spinner>
-            </div>
-          )}
-        </>
-      )}
-    </div>
-  </PageLayout>
-);
+      <div id="results" className="mt-4">
+        {areSearchParamsEmpty(searchParams) ? (
+          <p>Please select some filters to search.</p>
+        ) : results.length === 0 && !isLoading && !isSearchPending ? (
+          <p>No results found.</p>
+        ) : (
+          <>
+            {results.map((review, index) => (
+              <div key={index} className="review-entry mb-4">
+                <h3>{`${review.responses.paperName} (${review.responses.paperCode}) - ${review.responses.tutor}`}</h3>
+                <p><em>College: {collegeLookup.get(review.college) || review.college}</em></p>
+                {review.submittedAt && (
+                  <p><em>Submitted: {new Date(review.submittedAt).toLocaleDateString("en-GB", { year: 'numeric', month: 'long', day: 'numeric' })}</em></p>
+                )}
+                {Object.entries(review.responses).map(([key, value]) => {
+                  if (!['tutor', 'subject', 'paperCode', 'paperName', 'submittedAt'].includes(key) && value.trim() !== "") {
+                    return (
+                      <p key={key}>
+                        <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value}
+                      </p>
+                    );
+                  }
+                  return null;
+                })}
+              </div>
+            ))}
+            {(isLoading || isSearchPending) && (
+              <div className="loading-overlay">
+                <Spinner animation="border" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>
+              </div>
+            )}
+          </>
+        )}
+      </div>
+    </PageLayout>
+  );
 };
 
 export default SearchPage;
