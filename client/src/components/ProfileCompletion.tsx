@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage, FormikProps, getIn } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
@@ -32,7 +32,7 @@ const ProfileSchema = Yup.object().shape({
 
 const isFieldRequired = (
   fieldName: string,
-  validationSchema : Yup.ObjectSchema<FormValues>,
+  validationSchema: Yup.ObjectSchema<FormValues>,
 ): boolean => {
   const fieldDescription = getIn(validationSchema.describe().fields, fieldName);
   return !!fieldDescription.tests.find((test: { name: string }) => test.name === 'required');
@@ -41,7 +41,8 @@ const isFieldRequired = (
 const baseURL = process.env.REACT_APP_API_URL;
 
 const ProfileCompletion: React.FC = () => {
-  const [options, setOptions] = React.useState<OptionsState>({ colleges: [], years: [], subjects: [] });
+  const [options, setOptions] = useState<OptionsState>({ colleges: [], years: [], subjects: [] });
+  const [initialValues, setInitialValues] = useState<FormValues>({ college: '', year: '', subject: '' });
   const { checkAuthStatus, user } = useAuth();
   const navigate = useNavigate();
 
@@ -55,26 +56,32 @@ const ProfileCompletion: React.FC = () => {
       }
     };
     fetchOptions();
+
+    const fetchUserProfile = async () => {
+      try {
+        const response = await axios.get<FormValues>(`${baseURL}/user/profile`, { withCredentials: true });
+        setInitialValues(response.data);
+      } catch (error) {
+        console.error('Failed to fetch user profile:', error);
+      }
+    };
+    fetchUserProfile();
   }, []);
 
-  useEffect(() => {
-    if (user?.isProfileComplete) {
-      navigate('/');
-    }
-  }, [user, navigate]);
-
   const handleSubmit = async (values: FormValues) => {
-    try {
-      await axios.post(`${baseURL}/user/update-profile`, values, { withCredentials: true });
-      await checkAuthStatus();
-      navigate('/');
-    } catch (error) {
-      console.error('Error updating profile:', error);
+    if (!user?.isProfileComplete) {
+      try {
+        await axios.post(`${baseURL}/user/profile`, values, { withCredentials: true });
+        await checkAuthStatus();
+        navigate('/');
+      } catch (error) {
+        console.error('Error updating profile:', error);
+      }
     }
   };
 
   const renderField = (fieldName: string, label: string, options: Option[], formikProps: FormikProps<FormValues>) => {
-    const { errors, touched, setFieldValue } = formikProps;
+    const { errors, touched, setFieldValue, values } = formikProps;
     const isRequired = isFieldRequired(fieldName, ProfileSchema);
 
     return (
@@ -88,7 +95,7 @@ const ProfileCompletion: React.FC = () => {
             <Select<Option>
               options={options}
               onChange={(option: SingleValue<Option>) => {
-                if (option) {
+                if (option && !user?.isProfileComplete) {
                   setFieldValue(fieldName, option.value);
                 }
               }}
@@ -98,6 +105,7 @@ const ProfileCompletion: React.FC = () => {
               aria-label={label}
               aria-invalid={!!(errors[fieldName as keyof FormValues] && touched[fieldName as keyof FormValues])}
               aria-describedby={`${fieldName}-error`}
+              isDisabled={user?.isProfileComplete}
             />
           )}
         </Field>
@@ -109,33 +117,42 @@ const ProfileCompletion: React.FC = () => {
   };
 
   return (
-    <>
-      <Row className="justify-content-center">
-        <Col md={8} lg={6}>
-          <Card>
-            <Card.Body>
-              <h2 className="text-center mb-4">Complete Your Profile</h2>
-              <Formik
-                initialValues={{ college: '', year: '', subject: '' }}
-                validationSchema={ProfileSchema}
-                onSubmit={handleSubmit}
-              >
-                {(formikProps) => (
-                  <Form>
-                    {renderField('college', 'College', options.colleges, formikProps)}
-                    {renderField('year', 'Year', options.years, formikProps)}
-                    {renderField('subject', 'Subject', options.subjects, formikProps)}
+    <Row className="justify-content-center">
+      <Col md={8} lg={6}>
+        <Card>
+          <Card.Body>
+            <h2 className="text-center mb-4">{user?.isProfileComplete ? 'Your Profile' : 'Complete Your Profile'}</h2>
+            <Formik
+              initialValues={initialValues}
+              validationSchema={ProfileSchema}
+              onSubmit={handleSubmit}
+              enableReinitialize
+            >
+              {(formikProps) => (
+                <Form>
+                  {renderField('college', 'College', options.colleges, formikProps)}
+                  {renderField('year', 'Year', options.years, formikProps)}
+                  {renderField('subject', 'Subject', options.subjects, formikProps)}
+                  {!user?.isProfileComplete && (
                     <div className="d-grid">
                       <button type="submit" className="btn btn-primary">Submit</button>
                     </div>
-                  </Form>
-                )}
-              </Formik>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
-    </>
+                  )}
+                </Form>
+              )}
+            </Formik>
+            {user?.isProfileComplete && (
+              <p className="text-center text-muted">
+                <small>
+                  For security reasons, you can't update your profile information here. If these details change,
+                  email <a href="mailto:support@tutereview.org">support@tutereview.org</a> and we'll help you out.
+                </small>
+              </p>
+            )}
+          </Card.Body>
+        </Card>
+      </Col>
+    </Row>
   );
 };
 
