@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Form, Row, Col, Spinner } from 'react-bootstrap';
 import Select, { ActionMeta, MultiValue } from 'react-select';
 import PageLayout from './PageLayout';
+import './SearchPage.css';
 
 interface Paper {
   code: number;
@@ -56,6 +57,27 @@ const SearchPage: React.FC = () => {
     document.title = 'TuteReview - Search reviews';
     fetchSubjects();
   }, []);
+
+  // Hide scrollbar when loading
+  useEffect(() => {
+    if (isLoading || isSearchPending) {
+      // Save original styles
+      const originalStyle = {
+        scrollbarGutter: document.documentElement.style.getPropertyValue('scrollbar-gutter'),
+        overflow: document.documentElement.style.getPropertyValue('overflow'),
+      };
+      // Apply new styles
+      document.documentElement.style.setProperty('scrollbar-gutter', 'unset');
+      document.documentElement.style.setProperty('overflow', 'hidden');
+      document.body.style.setProperty('padding-right', `0px`);
+      return () => {
+        // Restore original styles when component unmounts or loading state changes
+        document.documentElement.style.setProperty('scrollbar-gutter', originalStyle.scrollbarGutter);
+        document.documentElement.style.setProperty('overflow', originalStyle.overflow);
+        document.body.style.removeProperty('padding-right');
+      };
+    }
+  }, [isLoading, isSearchPending]);
 
   const fetchResults = useCallback(async () => { // NOTE unecessarily fetches on initial load
     if (areSearchParamsEmpty(latestSearchParams.current)) {
@@ -210,7 +232,7 @@ return (
             </div>
           ))}
           {(isLoading || isSearchPending) && (
-            <div className="position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center" style={{ backgroundColor: 'rgba(255, 255, 255, 0.7)' }}>
+            <div className="loading-overlay">
               <Spinner animation="border" role="status">
                 <span className="visually-hidden">Loading...</span>
               </Spinner>
