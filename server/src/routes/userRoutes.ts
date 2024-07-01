@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { readJsonFile } from '../utils/fileOperations.js';
 import User from '../models/user.js';
+import Review from '../models/review.js';
 
 const router = Router();
 
@@ -74,6 +75,25 @@ router.get('/profile', async (req, res) => {
     });
   } catch (error) {
     console.error('Error fetching user profile:', error)
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// fetch reviews endpoint
+router.get('/reviews', async (req, res) => {
+  if (!req.user) {
+    console.error('Unauthorized request to fetch user reviews');
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  try {
+    const reviews = await Review.find({ submitter: req.user.id }, { responses: 1, submittedAt: 1, _id: 0})
+      .sort({ submittedAt: -1 })
+      .lean();
+
+    res.json(reviews);
+  } catch (error) {
+    console.error('Error fetching user reviews:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
