@@ -4,6 +4,7 @@ import { Form, Row, Col, Spinner, Card } from 'react-bootstrap';
 import Select, { ActionMeta, MultiValue } from 'react-select';
 import PageLayout from './PageLayout';
 import './SearchPage.css';
+import { useNotification } from '../context/NotificationContext';
 
 interface Paper {
   code: number;
@@ -86,11 +87,33 @@ const SearchPage: React.FC = () => {
     return tutor === '' && subject === '' && paper.length === 0 && college.length === 0;
   };
 
+  const { showNotification } = useNotification();
+
+  const fetchSubjects = useCallback(async () => {
+    try {
+      const response = await axios.get<SubjectsData>(`${baseURL}/api/subjects`, { withCredentials: true });
+      setSubjects(response.data);
+    } catch (error) {
+      console.error('Error fetching subjects:', error);
+      showNotification('Failed to fetch subjects. Please try again.', 'error');
+    }
+  }, [showNotification]);
+
+  const fetchColleges = useCallback(async () => {
+    try {
+      const response = await axios.get<SelectOption[]>(`${baseURL}/api/colleges`, { withCredentials: true });
+      setColleges(response.data);
+    } catch (error) {
+      console.error('Error fetching colleges:', error);
+      showNotification('Failed to fetch colleges. Please try again.', 'error');
+    }
+  }, [showNotification]);
+
   useEffect(() => {
     document.title = 'TuteReview - Search reviews';
     fetchSubjects();
     fetchColleges();
-  }, []);
+  }, [fetchColleges, fetchSubjects]);
 
   // Hide scrollbar when loading
   useEffect(() => {
@@ -128,12 +151,13 @@ const SearchPage: React.FC = () => {
       });
       setResults(response.data);
     } catch (error) {
-      console.error('Error searching reviews:', error);
+      console.error('Error fetching results:', error);
+      showNotification('Failed to fetch results. Please try again.', 'error');
     } finally {
       setIsLoading(false);
       setIsSearchPending(false);
     }
-  }, []);
+  }, [showNotification]);
 
   useEffect(() => {
     latestSearchParams.current = searchParams;
@@ -148,24 +172,6 @@ const SearchPage: React.FC = () => {
       setIsSearchPending(false);
     };
   }, [searchParams, fetchResults]);
-
-  const fetchSubjects = async () => {
-    try {
-      const response = await axios.get<SubjectsData>(`${baseURL}/api/subjects`, { withCredentials: true });
-      setSubjects(response.data);
-    } catch (error) {
-      console.error('Error fetching subjects:', error);
-    }
-  };
-
-  const fetchColleges = async () => {
-    try {
-      const response = await axios.get<SelectOption[]>(`${baseURL}/api/colleges`, { withCredentials: true });
-      setColleges(response.data);
-    } catch (error) {
-      console.error('Error fetching colleges:', error);
-    }
-  };
 
   const handleSubjectChange = (selectedOption: SelectOption | null) => {
     setSelectedSubject(selectedOption);
