@@ -29,7 +29,7 @@ router.get('/questions', async (req, res) => {
   }
 });
 
-// questions endpoint
+// colleges endpoint
 router.get('/colleges', async (req, res) => {
   try {
     const collegeData = await readJsonFile('data/colleges.json');
