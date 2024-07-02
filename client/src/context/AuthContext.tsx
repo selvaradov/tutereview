@@ -11,7 +11,7 @@ interface User {
 interface AuthContextType {
   isAuthenticated: boolean;
   isLoading: boolean;
-  isProfileComplete: boolean | null;
+  isProfileComplete: boolean;
   user: User | null;
   login: () => void;
   logout: () => Promise<void>;
@@ -94,7 +94,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     <AuthContext.Provider value={{
       isAuthenticated,
       isLoading,
-      isProfileComplete: user ? user.isProfileComplete : null,
+      isProfileComplete: user ? user.isProfileComplete : false,
       user,
       login,
       logout,
