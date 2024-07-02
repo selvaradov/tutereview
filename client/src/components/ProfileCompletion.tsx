@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Formik, Form, Field, ErrorMessage, FormikProps, getIn } from 'formik';
+import { Formik, Form, useFormikContext, FormikValues } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useNotification } from '../context/NotificationContext';
 import axios from 'axios';
-import Select, { SingleValue } from 'react-select';
-import { Row, Col, Card, Form as BootstrapForm } from 'react-bootstrap';
+import Select from 'react-select';
+import { Row, Col, Card } from 'react-bootstrap';
 import * as Yup from 'yup';
 
 interface Option {
@@ -24,27 +25,51 @@ interface FormValues {
   subject: string;
 }
 
-const ProfileSchema = Yup.object().shape({
-  college: Yup.string().required('Required'),
-  year: Yup.string().required('Required'),
-  subject: Yup.string().required('Required'),
-});
-
-const isFieldRequired = (
-  fieldName: string,
-  validationSchema: Yup.ObjectSchema<FormValues>,
-): boolean => {
-  const fieldDescription = getIn(validationSchema.describe().fields, fieldName);
-  return !!fieldDescription.tests.find((test: { name: string }) => test.name === 'required');
-};
+interface FormFieldProps {
+  fieldName: keyof FormValues;
+  label: string;
+  options: Option[];
+}
 
 const baseURL = process.env.REACT_APP_API_URL;
 
+const FormField: React.FC<FormFieldProps> = ({ fieldName, label, options }) => {
+  const { values, setFieldValue, errors, touched } = useFormikContext<FormValues>();
+
+  const hasError = errors[fieldName] && touched[fieldName];
+
+  return (
+    <div className="mb-4">
+      <label htmlFor={fieldName} className="form-label fw-bold">
+        {label}
+        <span className="text-danger ms-1" style={{ userSelect: 'none' }}>*</span>
+      </label>
+      <Select
+        options={options}
+        onChange={(option: Option | null) => {
+          if (option) {
+            setFieldValue(fieldName, option.value);
+          } else {
+            setFieldValue(fieldName, '');
+          }
+        }}
+        value={options.find(option => option.value === values[fieldName])}
+        className={`react-select-container ${hasError ? 'is-invalid' : ''}`}
+        classNamePrefix="react-select"
+        isClearable
+      />
+      {hasError && (
+        <div className="invalid-feedback d-block">{errors[fieldName] as string}</div>
+      )}
+    </div>
+  );
+};
+
 const ProfileCompletion: React.FC = () => {
   const [options, setOptions] = useState<OptionsState>({ colleges: [], years: [], subjects: [] });
-  const [initialValues, setInitialValues] = useState<FormValues>({ college: '', year: '', subject: '' });
-  const { checkAuthStatus, user } = useAuth();
+  const { checkAuthStatus, isProfileComplete } = useAuth();
   const navigate = useNavigate();
+  const { showNotification } = useNotification();
 
   useEffect(() => {
     const fetchOptions = async () => {
@@ -53,67 +78,34 @@ const ProfileCompletion: React.FC = () => {
         setOptions(response.data);
       } catch (error) {
         console.error('Failed to fetch user options:', error);
+        showNotification('Failed to load form data. Please try again.', 'error');
       }
     };
     fetchOptions();
+  }, [showNotification]);
 
-    const fetchUserProfile = async () => {
-      try {
-        const response = await axios.get<FormValues>(`${baseURL}/user/profile`, { withCredentials: true });
-        setInitialValues(response.data);
-      } catch (error) {
-        console.error('Failed to fetch user profile:', error);
-      }
-    };
-    fetchUserProfile();
-  }, []);
+  const initialValues: FormValues = { college: '', year: '', subject: '' };
 
-  const handleSubmit = async (values: FormValues) => {
-    if (!user?.isProfileComplete) {
+  const validationSchema = Yup.object().shape({
+    college: Yup.string().required('This question is required'),
+    year: Yup.string().required('This question is required'),
+    subject: Yup.string().required('This question is required'),
+  });
+
+  const handleSubmit = async (values: FormValues, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
+    if (!isProfileComplete) {
       try {
         await axios.post(`${baseURL}/user/profile`, values, { withCredentials: true });
         await checkAuthStatus();
         navigate('/');
+        showNotification('Profile updated successfully!', 'success');
       } catch (error) {
         console.error('Error updating profile:', error);
+        showNotification('Failed to update profile. Please try again.', 'error');
+      } finally {
+        setSubmitting(false);
       }
     }
-  };
-
-  const renderField = (fieldName: string, label: string, options: Option[], formikProps: FormikProps<FormValues>) => {
-    const { errors, touched, setFieldValue } = formikProps;
-    const isRequired = isFieldRequired(fieldName, ProfileSchema);
-
-    return (
-      <BootstrapForm.Group className="mb-3">
-        <BootstrapForm.Label className="fw-bold">
-          {label}
-          {isRequired && <span className="text-danger ms-1" style={{ userSelect: 'none' }}>*</span>}
-        </BootstrapForm.Label>
-        <Field name={fieldName}>
-          {({ field }: { field: any }) => (
-            <Select<Option>
-              options={options}
-              onChange={(option: SingleValue<Option>) => {
-                if (option && !user?.isProfileComplete) {
-                  setFieldValue(fieldName, option.value);
-                }
-              }}
-              value={options.find(option => option.value === field.value)}
-              className="basic-select"
-              classNamePrefix="select"
-              aria-label={label}
-              aria-invalid={!!(errors[fieldName as keyof FormValues] && touched[fieldName as keyof FormValues])}
-              aria-describedby={`${fieldName}-error`}
-              isDisabled={user?.isProfileComplete}
-            />
-          )}
-        </Field>
-        <ErrorMessage name={fieldName}>
-          {(msg) => <div id={`${fieldName}-error`} className="text-danger">{msg}</div>}
-        </ErrorMessage>
-      </BootstrapForm.Group>
-    );
   };
 
   return (
@@ -121,27 +113,28 @@ const ProfileCompletion: React.FC = () => {
       <Col md={8} lg={6}>
         <Card>
           <Card.Body>
-            <h2 className="text-center mb-4">{user?.isProfileComplete ? 'Your Profile' : 'Complete Your Profile'}</h2>
+            <h2 className="text-center mb-4">{isProfileComplete ? 'Your Profile' : 'Complete Your Profile'}</h2>
             <Formik
               initialValues={initialValues}
-              validationSchema={ProfileSchema}
+              validationSchema={validationSchema}
               onSubmit={handleSubmit}
-              enableReinitialize
             >
-              {(formikProps) => (
-                <Form>
-                  {renderField('college', 'College', options.colleges, formikProps)}
-                  {renderField('year', 'Year', options.years, formikProps)}
-                  {renderField('subject', 'Subject', options.subjects, formikProps)}
-                  {!user?.isProfileComplete && (
+              {({ isSubmitting }) => (
+                <Form noValidate>
+                  <FormField fieldName="college" label="College" options={options.colleges} />
+                  <FormField fieldName="year" label="Year" options={options.years} />
+                  <FormField fieldName="subject" label="Subject" options={options.subjects} />
+                  {!isProfileComplete && (
                     <div className="d-grid">
-                      <button type="submit" className="btn btn-primary">Submit</button>
+                      <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+                        {isSubmitting ? 'Submitting...' : 'Submit'}
+                      </button>
                     </div>
                   )}
                 </Form>
               )}
             </Formik>
-            {user?.isProfileComplete && (
+            {isProfileComplete && (
               <p className="text-center text-muted">
                 <small>
                   For security reasons, you can't update your profile information here. If these details change,
