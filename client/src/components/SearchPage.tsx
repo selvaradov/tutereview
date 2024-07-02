@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import axios from 'axios';
-import { Form, Row, Col, Spinner } from 'react-bootstrap';
+import { Form, Row, Col, Spinner, Card } from 'react-bootstrap';
 import Select, { ActionMeta, MultiValue } from 'react-select';
 import PageLayout from './PageLayout';
 import './SearchPage.css';
@@ -204,6 +204,17 @@ const SearchPage: React.FC = () => {
     }));
   };
 
+  const groupReviewsByPaperAndTutor = (reviews: Review[]): Record<string, Review[]> => {
+    return reviews.reduce((acc, review) => {
+      const key = `${review.responses.paperCode}-${review.responses.tutor}`;
+      if (!acc[key]) {
+        acc[key] = [];
+      }
+      acc[key].push(review);
+      return acc;
+    }, {} as Record<string, Review[]>);
+  };
+
   return (
     <PageLayout title="Search reviews">
       <Form>
@@ -271,25 +282,38 @@ const SearchPage: React.FC = () => {
           <p>No results found.</p>
         ) : (
           <>
-            {results.map((review, index) => (
-              <div key={index} className="review-entry mb-4">
-                <h3>{`${review.responses.paperName} (${review.responses.paperCode}) - ${review.responses.tutor}`}</h3>
-                <p><em>College: {collegeLookup.get(review.college) || review.college}</em></p>
-                {review.submittedAt && (
-                  <p><em>Submitted: {new Date(review.submittedAt).toLocaleDateString("en-GB", { year: 'numeric', month: 'long', day: 'numeric' })}</em></p>
-                )}
-                {Object.entries(review.responses).map(([key, value]) => {
-                  if (!['tutor', 'subject', 'paperCode', 'paper', 'paperName', 'submittedAt'].includes(key) && value.trim() !== "") {
-                    return (
-                      <p key={key}>
-                        <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value}
-                      </p>
-                    );
-                  }
-                  return null;
-                })}
-              </div>
-            ))}
+            {Object.entries(groupReviewsByPaperAndTutor(results)).map(([key, groupedReviews]) => {
+              const firstReview = groupedReviews[0];
+              return (
+                <Card key={key} className="mb-4">
+                  <Card.Header>
+                    <h3>{`${firstReview.responses.paperName} (${firstReview.responses.paperCode}) - ${firstReview.responses.tutor}`}</h3>
+                  </Card.Header>
+                  <Card.Body>
+                    {groupedReviews.map((review, index) => (
+                      <Card key={index} className="mb-3">
+                        <Card.Body>
+                          {review.submittedAt && (
+                            <p><em>Submitted: {new Date(review.submittedAt).toLocaleDateString("en-GB", { year: 'numeric', month: 'long', day: 'numeric' })}</em></p>
+                          )}
+                          <p><em>College: {collegeLookup.get(review.college) || review.college}</em></p>
+                          {Object.entries(review.responses).map(([key, value]) => {
+                            if (!['tutor', 'subject', 'paperCode', 'paper', 'paperName', 'submittedAt'].includes(key) && value.trim() !== "") {
+                              return (
+                                <p key={key} className="mb-2">
+                                  <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value}
+                                </p>
+                              );
+                            }
+                            return null;
+                          })}
+                        </Card.Body>
+                      </Card>
+                    ))}
+                  </Card.Body>
+                </Card>
+              );
+            })}
             {(isLoading || isSearchPending) && (
               <div className="loading-overlay">
                 <Spinner animation="border" role="status">
