@@ -53,6 +53,8 @@ const FormField: React.FC<FormFieldProps> = ({ question, subjects }) => {
         if (question.id === 'subject') {
           return (
             <Select
+              inputId={question.id}
+              aria-labelledby={`${question.id}-label`}
               options={Object.keys(subjects).map(subject => ({ value: subject, label: subject }))}
               onChange={(option: { value: string; label: string } | null) => {
                 if (option) {
@@ -68,12 +70,15 @@ const FormField: React.FC<FormFieldProps> = ({ question, subjects }) => {
               className={`react-select-container ${hasError ? 'is-invalid' : ''}`}
               classNamePrefix="react-select"
               isClearable
+              placeholder="Select a subject"
             />
           );
         } else if (question.id === 'paper') {
           const selectedSubject = values.subject as string;
           return (
             <Select
+              inputId={question.id}
+              aria-labelledby={`${question.id}-label`}
               options={subjects[selectedSubject as keyof Subject]?.map(course => ({
                 value: course.code,
                 label: `${course.code} - ${course.name}`
@@ -92,7 +97,7 @@ const FormField: React.FC<FormFieldProps> = ({ question, subjects }) => {
               }}
               value={values.paper ? { value: values.paper, label: `${values.paperCode} - ${values.paperName}` } : null}
               isDisabled={!selectedSubject}
-              placeholder={selectedSubject ? "Select papers" : "Choose subject first"}
+              placeholder={selectedSubject ? "Select a paper" : "Choose subject first"}
               className={`react-select-container ${hasError ? 'is-invalid' : ''}`}
               classNamePrefix="react-select"
               isClearable
@@ -109,47 +114,52 @@ const FormField: React.FC<FormFieldProps> = ({ question, subjects }) => {
             onChange={(e) => setFieldValue(question.id, e.target.value)}
             className={`form-control ${hasError ? 'is-invalid' : ''}`}
             value={values[question.id] || ''}
+            aria-labelledby={`${question.id}-label`}
           />
         );
-      case 'radio':
-        return (
-          <div className={`radio-group ${hasError ? 'is-invalid' : ''}`} role="radiogroup">
-            {question.options?.map((option) => (
-              <label key={option} className="radio-label">
-                <input
-                  type="radio"
-                  name={question.id}
-                  value={option}
-                  onChange={(e) => setFieldValue(question.id, e.target.value)}
-                  checked={values[question.id] === option}
-                  tabIndex={0}
-                />
-                <span className="radio-button"></span>
-                {option}
-              </label>
-            ))}
-          </div>
-        );
-      default:
-        return null;
-    }
-  };
-
-  return (
-    <div className="mb-4">
-      <label htmlFor={question.id} className="form-label fw-bold">
-        {question.question}
-        {isRequired && <span className="text-danger ms-1" style={{ userSelect: 'none' }}>*</span>}
-      </label>
-      <div className="mt-2">
-        {renderField()}
+        case 'radio':
+          return (
+            <div 
+              className={`radio-group ${hasError ? 'is-invalid' : ''}`} 
+              role="radiogroup"
+              aria-labelledby={`${question.id}-label`}
+            >
+              {question.options?.map((option, index) => (
+                <label key={option} className="radio-label">
+                  <input
+                    type="radio"
+                    id={`${question.id}-${index}`}
+                    name={question.id}
+                    value={option}
+                    onChange={(e) => setFieldValue(question.id, e.target.value)}
+                    checked={values[question.id] === option}
+                  />
+                  <span className="radio-button"></span>
+                  {option}
+                </label>
+              ))}
+            </div>
+          );
+        default:
+          return null;
+      }
+    };
+  
+    return (
+      <div className="mb-4">
+        <label id={`${question.id}-label`} className="form-label fw-bold">
+          {question.question}
+          {isRequired && <span className="text-danger ms-1" style={{ userSelect: 'none' }}>*</span>}
+        </label>
+        <div className="mt-2">
+          {renderField()}
+        </div>
+        {hasError && (
+          <div className="invalid-feedback d-block">{errors[question.id] as string}</div>
+        )}
       </div>
-      {hasError && (
-        <div className="invalid-feedback d-block">{errors[question.id] as string}</div>
-      )}
-    </div>
-  );
-};
+    );
+  };  
 
 const ReviewPage: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
