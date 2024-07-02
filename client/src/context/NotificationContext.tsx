@@ -6,7 +6,7 @@ type AdditionalButton = {
   variant?: string;
 };
 
-interface NotificationContextType {
+export interface NotificationContextType {
   message: string;
   visible: boolean;
   type: 'success' | 'error';

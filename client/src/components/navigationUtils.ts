@@ -1,11 +1,12 @@
 import { NavigateFunction } from 'react-router-dom';
+import { NotificationContextType } from '../context/NotificationContext';
 
 export const handleNavigation = (
   to: string,
   isAuthenticated: boolean,
   isProfileComplete: boolean,
   navigate: NavigateFunction,
-  showNotification: any
+  showNotification: NotificationContextType['showNotification']
 ) => {
   if (!isAuthenticated) {
     navigate('/');
