@@ -78,7 +78,7 @@ const ProfileCompletion: React.FC = () => {
         setOptions(response.data);
       } catch (error) {
         console.error('Failed to fetch user options:', error);
-        showNotification('Failed to load form data. Please try again.', 'error');
+        showNotification('Failed to fetch user options. Please try again.', 'error');
       }
     };
     fetchOptions();
