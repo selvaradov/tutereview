@@ -11,7 +11,8 @@
 }
 
 .radio-label input[type="radio"] {
-  display: none;
+  opacity: 0;
+  position: absolute;
 }
 
 .radio-button {
@@ -39,6 +40,10 @@
 
 .radio-label input[type="radio"]:checked + .radio-button::after {
   opacity: 1;
+}
+
+.radio-label input[type="radio"]:focus + .radio-button {
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
 }
 
 .react-select__control {

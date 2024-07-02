@@ -113,7 +113,7 @@ const FormField: React.FC<FormFieldProps> = ({ question, subjects }) => {
         );
       case 'radio':
         return (
-          <div className={`radio-group ${hasError ? 'is-invalid' : ''}`}>
+          <div className={`radio-group ${hasError ? 'is-invalid' : ''}`} role="radiogroup">
             {question.options?.map((option) => (
               <label key={option} className="radio-label">
                 <input
@@ -122,6 +122,7 @@ const FormField: React.FC<FormFieldProps> = ({ question, subjects }) => {
                   value={option}
                   onChange={(e) => setFieldValue(question.id, e.target.value)}
                   checked={values[question.id] === option}
+                  tabIndex={0}
                 />
                 <span className="radio-button"></span>
                 {option}
