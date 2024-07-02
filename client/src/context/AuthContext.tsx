@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useNotification } from './NotificationContext';
 
 interface User {
   id: string;
@@ -27,6 +28,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [user, setUser] = useState<User | null>(null);
   const navigate = useNavigate();
+  const { showNotification } = useNotification();
 
   const login = () => {
     window.location.href = `${baseURL}/auth/login`;
@@ -46,9 +48,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setUser(null);
       navigate('/', { state: { logoutSuccess: true }, replace: true });
     } catch (error) {
-      console.error('Logout failed:', error);
+      console.error('Error logging out:', error);
+      showNotification('Failed to logout. Please try again.', 'error');
     }
-  }, [navigate]);
+  }, [navigate, showNotification]);
 
   const checkAuthStatus = async () => { // NOTE suggested wrapping in useCallback for memoization
     setIsLoading(true);
