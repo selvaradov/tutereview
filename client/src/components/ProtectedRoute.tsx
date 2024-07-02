@@ -4,13 +4,13 @@ import { useAuth } from '../context/AuthContext';
 import { useNotification } from '../context/NotificationContext';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { isAuthenticated, isLoading, user } = useAuth();
+  const { isAuthenticated, isLoading, isProfileComplete } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const { showNotification } = useNotification();
 
   useEffect(() => {
-    if (isAuthenticated && user && !user.isProfileComplete && location.pathname !== '/profile') {
+    if (isAuthenticated && !isProfileComplete && location.pathname !== '/profile') {
       showNotification(
         'To use this page, please complete your profile.',
         'error',
@@ -23,7 +23,7 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
         ]
       );
     }
-  }, [isAuthenticated, user, location.pathname, showNotification, navigate]);
+  }, [isAuthenticated, isProfileComplete, location.pathname, showNotification, navigate]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -33,7 +33,7 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
     return <Navigate to="/" state={{ from: location }} replace />;
   }
 
-  if (!user?.isProfileComplete && location.pathname !== '/profile') {
+  if (!isProfileComplete && location.pathname !== '/profile') {
     return <Navigate to="/" replace />;
   }
 

@@ -10,7 +10,8 @@ interface User {
 
 interface AuthContextType {
   isAuthenticated: boolean;
-  isLoading: boolean
+  isLoading: boolean;
+  isProfileComplete: boolean | null;
   user: User | null;
   login: () => void;
   logout: () => Promise<void>;
@@ -71,7 +72,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     // Create a new BroadcastChannel with the same name used in the logout method.
     const authChannel = new BroadcastChannel('auth_channel');
- 
+
     // Define a function to handle incoming messages.
     const handleMessage = (event: MessageEvent) => {
       if (event.data.type === 'LOGOUT') {
@@ -80,17 +81,25 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         navigate('/', { replace: true }); // Optionally redirect to login page.
       }
     };
- 
+
     authChannel.addEventListener('message', handleMessage);
- 
+
     return () => {
       authChannel.removeEventListener('message', handleMessage);
       authChannel.close();
     };
-  }, [navigate]); 
+  }, [navigate]);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, isLoading, user, login, logout, checkAuthStatus }}>
+    <AuthContext.Provider value={{
+      isAuthenticated,
+      isLoading,
+      isProfileComplete: user ? user.isProfileComplete : null,
+      user,
+      login,
+      logout,
+      checkAuthStatus
+    }}>
       {children}
     </AuthContext.Provider>
   );
