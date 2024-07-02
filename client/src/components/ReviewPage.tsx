@@ -57,7 +57,6 @@ const FormField: React.FC<FormFieldProps> = ({ question, subjects }) => {
               onChange={(option: { value: string; label: string } | null) => {
                 if (option) {
                   setFieldValue(question.id, option.value);
-
                 } else {
                   setFieldValue(question.id, '');
                 }
@@ -109,6 +108,7 @@ const FormField: React.FC<FormFieldProps> = ({ question, subjects }) => {
             name={question.id}
             onChange={(e) => setFieldValue(question.id, e.target.value)}
             className={`form-control ${hasError ? 'is-invalid' : ''}`}
+            value={values[question.id] || ''}
           />
         );
       case 'radio':
