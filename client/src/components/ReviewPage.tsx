@@ -6,6 +6,7 @@ import Select from 'react-select';
 import { useNotification } from '../context/NotificationContext';
 import PageLayout from './PageLayout';
 import './ReviewPage.css'
+import { useNavigate } from 'react-router-dom';
 
 const baseURL = process.env.REACT_APP_API_URL;
 
@@ -155,6 +156,7 @@ const ReviewPage: React.FC = () => {
   const [subjects, setSubjects] = useState<Subject>({});
   const [isLoading, setIsLoading] = useState(true);
   const { showNotification } = useNotification();
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     document.title = 'TuteReview - Submit a review';
@@ -209,6 +211,8 @@ const ReviewPage: React.FC = () => {
 
       showNotification('Review submitted successfully!', 'success');
       resetForm();
+      navigate('/')
+      window.scrollTo(0, 0);
     } catch (error) {
       console.error('Error submitting review:', error);
       showNotification('Failed to submit review. Please try again.', 'error');
@@ -222,7 +226,7 @@ const ReviewPage: React.FC = () => {
   }
 
   return (
-    <PageLayout title="Tutor Review Form">
+    <PageLayout title="Submit a review">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
