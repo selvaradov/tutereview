@@ -294,7 +294,7 @@ const SearchPage: React.FC = () => {
                       <Card key={index} className="mb-3">
                         <Card.Body>
                           {review.submittedAt && (
-                            <p><em>Submitted: {new Date(review.submittedAt).toLocaleDateString("en-GB", { year: 'numeric', month: 'long', day: 'numeric' })}</em></p>
+                            <p className="mb-0"><em>Submitted: {new Date(review.submittedAt).toLocaleDateString("en-GB", { year: 'numeric', month: 'long', day: 'numeric' })}</em></p>
                           )}
                           <p><em>College: {collegeLookup.get(review.college) || review.college}</em></p>
                           {Object.entries(review.responses).map(([key, value]) => {
