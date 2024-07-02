@@ -109,6 +109,36 @@ router.get('/search', async (req, res) => {
   }
 });
 
+// tutors endpoint
+const allowedTutorParams: AllowedParamsSchema = {
+  search: "string",
+};
+
+router.get('/tutors', async (req, res) => {
+  try {
+    if (hasInvalidParams(req.query, allowedTutorParams)) {
+      return res.status(400).json({ error: 'Invalid query parameters or formats provided.' });
+    }
+
+    const searchTerm = typeof req.query.search === 'string' ? req.query.search : '';
+    const regex = new RegExp(escapeRegex(searchTerm), 'i');
+
+    const tutors = await Review.aggregate([
+      { $match: { 'responses.tutor': { $regex: regex } } },
+      { $group: { _id: '$responses.tutor' } }, // Deduplicate
+      { $addFields: { lowerCaseName: { $toLower: '$_id' } } },
+      { $sort: { lowerCaseName: 1 } }, // Case-insensitive sorting
+      { $project: { name: '$_id', _id: 0 } } // Swap `_id` to `name`
+    ]);
+
+    res.json(tutors);
+  } catch (err) {
+    console.error('Error fetching tutors:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
 // review endpoint
 router.post('/review', async (req, res) => {
   if (!req.user) {
