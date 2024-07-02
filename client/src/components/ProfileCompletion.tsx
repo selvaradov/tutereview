@@ -113,7 +113,7 @@ const ProfileCompletion: React.FC = () => {
       <Col md={8} lg={6}>
         <Card>
           <Card.Body>
-            <h2 className="text-center mb-4">{isProfileComplete ? 'Your Profile' : 'Complete Your Profile'}</h2>
+            <h2 className="text-center mb-4">{isProfileComplete ? 'Your profile' : 'Complete your profile'}</h2>
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
