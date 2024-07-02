@@ -57,13 +57,18 @@ const FormField: React.FC<FormFieldProps> = ({ question, subjects }) => {
               onChange={(option: { value: string; label: string } | null) => {
                 if (option) {
                   setFieldValue(question.id, option.value);
-                  setFieldValue('paper', '');
-                  setFieldValue('paperCode', '');
-                  setFieldValue('paperName', '');
+
+                } else {
+                  setFieldValue(question.id, '');
                 }
+                setFieldValue('paper', '');
+                setFieldValue('paperCode', '');
+                setFieldValue('paperName', '');
               }}
+              value={values.subject ? { value: values.subject, label: values.subject } : null}
               className={`react-select-container ${hasError ? 'is-invalid' : ''}`}
               classNamePrefix="react-select"
+              isClearable
             />
           );
         } else if (question.id === 'paper') {
@@ -80,12 +85,18 @@ const FormField: React.FC<FormFieldProps> = ({ question, subjects }) => {
                   setFieldValue(question.id, option.value);
                   setFieldValue('paperCode', code || '');
                   setFieldValue('paperName', name || '');
+                } else {
+                  setFieldValue(question.id, '');
+                  setFieldValue('paperCode', '');
+                  setFieldValue('paperName', '');
                 }
               }}
+              value={values.paper ? { value: values.paper, label: `${values.paperCode} - ${values.paperName}` } : null}
               isDisabled={!selectedSubject}
               placeholder={selectedSubject ? "Select papers" : "Choose subject first"}
               className={`react-select-container ${hasError ? 'is-invalid' : ''}`}
               classNamePrefix="react-select"
+              isClearable
             />
           );
         }
