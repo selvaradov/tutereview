@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Formik, Form, useFormikContext, FormikValues } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import Select from 'react-select';
+import CreatableSelect from 'react-select/creatable';
 import { useNotification } from '../context/NotificationContext';
 import PageLayout from './PageLayout';
 import './ReviewPage.css'
@@ -32,20 +33,44 @@ interface Course {
   name: string;
 }
 
+interface TutorOption {
+  readonly label: string;
+  readonly value: string;
+}
+
 interface FormFieldProps {
   question: Question;
   subjects: Subject;
+  tutorOptions: TutorOption[];
 }
 
-const FormField: React.FC<FormFieldProps> = ({ question, subjects }) => {
-  const { values, setFieldValue, errors, touched } = useFormikContext<FormikValues>();
+const createOption = (label: string) => ({
+  label,
+  value: label,
+});
 
-  if (question.dependsOn && !question.dependsOn.condition(values[question.dependsOn.question])) {
+const FormField: React.FC<FormFieldProps> = ({ question, subjects, tutorOptions }) => {
+  const { values, setFieldValue, errors, touched } = useFormikContext<FormikValues>();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const shouldRender = useMemo(() => {
+    return !question.dependsOn || question.dependsOn.condition(values[question.dependsOn.question]);
+  }, [question.dependsOn, values]);
+
+  if (!shouldRender) {
     return null;
   }
 
   const isRequired = question.required;
   const hasError = errors[question.id] && touched[question.id];
+
+  const handleCreate = (inputValue: string) => {
+    setIsLoading(true);
+    const newOption = createOption(inputValue); // This could be an async function later, hence the `isLoading` state
+    console.log(newOption)
+    setIsLoading(false);
+    setFieldValue(question.id, newOption.value);
+  };
 
   const renderField = () => {
     switch (question.type) {
@@ -106,6 +131,30 @@ const FormField: React.FC<FormFieldProps> = ({ question, subjects }) => {
         }
         break;
       case 'text':
+        if (question.id === 'tutor') {
+          return (
+            <CreatableSelect
+              inputId={question.id}
+              aria-labelledby={`${question.id}-label`}
+              options={tutorOptions}
+              onChange={(newValue: TutorOption | null) => {
+                if (newValue) {
+                  setFieldValue(question.id, newValue.value);
+                } else {
+                  setFieldValue(question.id, '');
+                }
+              }}
+              onCreateOption={handleCreate}
+              value={values[question.id] ? { value: values[question.id], label: values[question.id] } : null}
+              className={`react-select-container ${hasError ? 'is-invalid' : ''}`}
+              classNamePrefix="react-select"
+              isClearable
+              isDisabled={isLoading}
+              isLoading={isLoading}
+              placeholder="Select or type a tutor name"
+            />
+          );
+        }
         return (
           <input
             type="text"
@@ -117,53 +166,54 @@ const FormField: React.FC<FormFieldProps> = ({ question, subjects }) => {
             aria-labelledby={`${question.id}-label`}
           />
         );
-        case 'radio':
-          return (
-            <div 
-              className={`radio-group ${hasError ? 'is-invalid' : ''}`} 
-              role="radiogroup"
-              aria-labelledby={`${question.id}-label`}
-            >
-              {question.options?.map((option, index) => (
-                <label key={option} className="radio-label">
-                  <input
-                    type="radio"
-                    id={`${question.id}-${index}`}
-                    name={question.id}
-                    value={option}
-                    onChange={(e) => setFieldValue(question.id, e.target.value)}
-                    checked={values[question.id] === option}
-                  />
-                  <span className="radio-button"></span>
-                  {option}
-                </label>
-              ))}
-            </div>
-          );
-        default:
-          return null;
-      }
-    };
-  
-    return (
-      <div className="mb-4">
-        <label id={`${question.id}-label`} className="form-label fw-bold">
-          {question.question}
-          {isRequired && <span className="text-danger ms-1" style={{ userSelect: 'none' }}>*</span>}
-        </label>
-        <div className="mt-2">
-          {renderField()}
-        </div>
-        {hasError && (
-          <div className="invalid-feedback d-block">{errors[question.id] as string}</div>
-        )}
+      case 'radio':
+        return (
+          <div
+            className={`radio-group ${hasError ? 'is-invalid' : ''}`}
+            role="radiogroup"
+            aria-labelledby={`${question.id}-label`}
+          >
+            {question.options?.map((option, index) => (
+              <label key={option} className="radio-label">
+                <input
+                  type="radio"
+                  id={`${question.id}-${index}`}
+                  name={question.id}
+                  value={option}
+                  onChange={(e) => setFieldValue(question.id, e.target.value)}
+                  checked={values[question.id] === option}
+                />
+                <span className="radio-button"></span>
+                {option}
+              </label>
+            ))}
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div className="mb-4">
+      <label id={`${question.id}-label`} className="form-label fw-bold">
+        {question.question}
+        {isRequired && <span className="text-danger ms-1" style={{ userSelect: 'none' }}>*</span>}
+      </label>
+      <div className="mt-2">
+        {renderField()}
       </div>
-    );
-  };  
+      {hasError && (
+        <div className="invalid-feedback d-block">{errors[question.id] as string}</div>
+      )}
+    </div>
+  );
+};
 
 const ReviewPage: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [subjects, setSubjects] = useState<Subject>({});
+  const [tutorOptions, setTutorOptions] = useState<TutorOption[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const { showNotification } = useNotification();
 
@@ -176,14 +226,19 @@ const ReviewPage: React.FC = () => {
       try {
         const questionsUrl = `${baseURL}/api/questions`;
         const subjectsUrl = `${baseURL}/api/subjects`;
+        const tutorsUrl = `${baseURL}/api/tutors`;
 
-        const [questionsResponse, subjectsResponse] = await Promise.all([
+        const [questionsResponse, subjectsResponse, tutorsResponse] = await Promise.all([
           axios.get<Question[]>(questionsUrl, { withCredentials: true }),
           axios.get<Subject>(subjectsUrl, { withCredentials: true }),
+          axios.get<{ name: string }[]>(tutorsUrl, { withCredentials: true }),
         ]);
 
         setQuestions(questionsResponse.data);
         setSubjects(subjectsResponse.data);
+        // if tutors list becomes too long, we can make async calls as user types,
+        // instead of loading them all initially (see react-select/async-creatable)
+        setTutorOptions(tutorsResponse.data.map(tutor => createOption(tutor.name)));
       } catch (error) {
         console.error('Error fetching data:', error);
         showNotification('Failed to load form data. Please try again.', 'error');
@@ -243,7 +298,7 @@ const ReviewPage: React.FC = () => {
         {({ isSubmitting }) => (
           <Form className="mb-4">
             {questions.map((question: Question) => (
-              <FormField key={question.id} question={question} subjects={subjects} />
+              <FormField key={question.id} question={question} subjects={subjects} tutorOptions={tutorOptions} />
             ))}
             <button
               type="submit"
