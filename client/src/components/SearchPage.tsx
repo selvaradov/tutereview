@@ -13,7 +13,7 @@ interface Paper {
   level: string;
 }
 
-interface SubjectsData {
+interface PapersData {
   [key: string]: Paper[];
 }
 
@@ -44,7 +44,7 @@ interface SelectOption {
 const baseURL = process.env.REACT_APP_API_URL;
 
 const SearchPage: React.FC = () => {
-  const [subjects, setSubjects] = useState<SubjectsData>({});
+  const [subjects, setSubjects] = useState<PapersData>({});
   const [selectedSubject, setSelectedSubject] = useState<SelectOption | null>(null);
   const [papers, setPapers] = useState<Paper[]>([]);
   const [colleges, setColleges] = useState<SelectOption[]>([]);
@@ -90,9 +90,9 @@ const SearchPage: React.FC = () => {
 
   const { showNotification } = useNotification();
 
-  const fetchSubjectsRef = useRef(useProtectedApi<AxiosResponse<SubjectsData>>(
-    () => axios.get<SubjectsData>(`${baseURL}/api/subjects`, { withCredentials: true }),
-    'Failed to fetch subjects. Please try again.'
+  const fetchSubjectsRef = useRef(useProtectedApi<AxiosResponse<PapersData>>(
+    () => axios.get<PapersData>(`${baseURL}/api/papers`, { withCredentials: true }),
+    'Failed to fetch papers. Please try again.'
   ));
 
   const fetchCollegesRef = useRef(useProtectedApi<AxiosResponse<SelectOption[]>>(

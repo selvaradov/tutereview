@@ -231,12 +231,12 @@ const ReviewPage: React.FC = () => {
   const fetchDataRef = useRef(useProtectedApi<ApiResponse>(
     () => {
       const questionsUrl = `${baseURL}/api/questions`;
-      const subjectsUrl = `${baseURL}/api/subjects`;
+      const papersUrl = `${baseURL}/api/papers`;
       const tutorsUrl = `${baseURL}/api/tutors`;
 
       return Promise.all([
         axios.get<Question[]>(questionsUrl, { withCredentials: true }),
-        axios.get<Subject>(subjectsUrl, { withCredentials: true }),
+        axios.get<Subject>(papersUrl, { withCredentials: true }),
         axios.get<{ name: string }[]>(tutorsUrl, { withCredentials: true }),
       ]);
     },

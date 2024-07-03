@@ -1,0 +1,358 @@
+{
+  "Philosophy": [
+    {
+      "code": "101",
+      "name": "Early Modern Philosophy",
+      "level": "FHS"
+    },
+    {
+      "code": "102",
+      "name": "Knowledge and Reality",
+      "level": "FHS"
+    },
+    {
+      "code": "103",
+      "name": "Ethics",
+      "level": "FHS"
+    },
+    {
+      "code": "104",
+      "name": "Philosophy of Mind",
+      "level": "FHS"
+    },
+    {
+      "code": "106",
+      "name": "Philosophy of Science and Social Science",
+      "level": "FHS"
+    },
+    {
+      "code": "107",
+      "name": "Philosophy of Religion",
+      "level": "FHS"
+    },
+    {
+      "code": "108",
+      "name": "The Philosophy of Logic and Language",
+      "level": "FHS"
+    },
+    {
+      "code": "109",
+      "name": "Aesthetics and the Philosophy of Criticism",
+      "level": "FHS"
+    },
+    {
+      "code": "110",
+      "name": "Medieval Philosophy: Aquinas",
+      "level": "FHS"
+    },
+    {
+      "code": "111",
+      "name": "Medieval Philosophy: Duns Scotus, Ockham",
+      "level": "FHS"
+    },
+    {
+      "code": "112",
+      "name": "The Philosophy of Kant",
+      "level": "FHS"
+    },
+    {
+      "code": "113",
+      "name": "Post-Kantian Philosophy",
+      "level": "FHS"
+    },
+    {
+      "code": "114",
+      "name": "Theory of Politics",
+      "level": "FHS"
+    },
+    {
+      "code": "115",
+      "name": "Plato Republic",
+      "level": "FHS"
+    },
+    {
+      "code": "116",
+      "name": "Aristotle Nicomachean Ethics",
+      "level": "FHS"
+    },
+    {
+      "code": "120",
+      "name": "Intermediate Philosophy of Physics",
+      "level": "FHS"
+    },
+    {
+      "code": "122",
+      "name": "Philosophy of Mathematics",
+      "level": "FHS"
+    },
+    {
+      "code": "124",
+      "name": "Philosophy of Science",
+      "level": "FHS"
+    },
+    {
+      "code": "125",
+      "name": "Philosophy of Cognitive Science",
+      "level": "FHS"
+    },
+    {
+      "code": "127",
+      "name": "Philosophical Logic",
+      "level": "FHS"
+    },
+    {
+      "code": "128",
+      "name": "Practical Ethics",
+      "level": "FHS"
+    },
+    {
+      "code": "129",
+      "name": "The Philosophy of Wittgenstein",
+      "level": "FHS"
+    },
+    {
+      "code": "137",
+      "name": "Plato on Knowledge, Language, & Reality in the Theaetetus & Sophist",
+      "level": "FHS"
+    },
+    {
+      "code": "138",
+      "name": "Aristotle on Nature, Life and Mind",
+      "level": "FHS"
+    },
+    {
+      "code": "139",
+      "name": "Knowledge and Scepticism in Hellenistic Philosophy",
+      "level": "FHS"
+    },
+    {
+      "code": "150",
+      "name": "Jurisprudence",
+      "level": "FHS"
+    },
+    {
+      "code": "151",
+      "name": "Set Theory Logic",
+      "level": "FHS"
+    },
+    {
+      "code": "198",
+      "name": "Special Subjects",
+      "level": "FHS"
+    },
+    {
+      "code": "199",
+      "name": "Thesis",
+      "level": "FHS"
+    }
+  ],
+  "Politics": [
+    {
+      "code": "201",
+      "name": "Comparative Government",
+      "level": "FHS"
+    },
+    {
+      "code": "202",
+      "name": "British Politics and Government since 1900",
+      "level": "FHS"
+    },
+    {
+      "code": "203",
+      "name": "Theory of Politics",
+      "level": "FHS"
+    },
+    {
+      "code": "204",
+      "name": "Modern British Government and Politics",
+      "level": "FHS"
+    },
+    {
+      "code": "205",
+      "name": "Government and Politics of the United States",
+      "level": "FHS"
+    },
+    {
+      "code": "206",
+      "name": "Politics in Europe",
+      "level": "FHS"
+    },
+    {
+      "code": "207",
+      "name": "Politics in Russia and the Former Soviet Union",
+      "level": "FHS"
+    },
+    {
+      "code": "208",
+      "name": "Politics in Sub-Saharan Africa",
+      "level": "FHS"
+    },
+    {
+      "code": "209",
+      "name": "Politics in Latin America",
+      "level": "FHS"
+    },
+    {
+      "code": "210",
+      "name": "Politics in South Asia",
+      "level": "FHS"
+    },
+    {
+      "code": "211",
+      "name": "Politics in the Middle East",
+      "level": "FHS"
+    },
+    {
+      "code": "212",
+      "name": "International Relations in the Era of Two World Wars",
+      "level": "FHS"
+    },
+    {
+      "code": "213",
+      "name": "International Relations in the Era of the Cold War",
+      "level": "FHS"
+    },
+    {
+      "code": "214",
+      "name": "International Relations",
+      "level": "FHS"
+    },
+    {
+      "code": "215",
+      "name": "Political Thought: Plato to Rousseau",
+      "level": "FHS"
+    },
+    {
+      "code": "216",
+      "name": "Political Thought: Bentham to Weber",
+      "level": "FHS"
+    },
+    {
+      "code": "217",
+      "name": "Marx and Marxism",
+      "level": "FHS"
+    },
+    {
+      "code": "218",
+      "name": "Sociological Theory",
+      "level": "FHS"
+    },
+    {
+      "code": "220",
+      "name": "Political Sociology",
+      "level": "FHS"
+    },
+    {
+      "code": "222",
+      "name": "Labour Economics and Inequality",
+      "level": "FHS"
+    },
+    {
+      "code": "223",
+      "name": "The Government and Politics of Japan",
+      "level": "FHS"
+    },
+    {
+      "code": "224",
+      "name": "Social Policy",
+      "level": "FHS"
+    },
+    {
+      "code": "225",
+      "name": "Comparative Demographic Systems",
+      "level": "FHS"
+    },
+    {
+      "code": "226",
+      "name": "Quantitative Methods in Politics and Sociology",
+      "level": "FHS"
+    },
+    {
+      "code": "227",
+      "name": "Politics in China",
+      "level": "FHS"
+    },
+    {
+      "code": "228",
+      "name": "The Politics of the European Union",
+      "level": "FHS"
+    },
+    {
+      "code": "229",
+      "name": "Advanced Paper in Theories of Justice",
+      "level": "FHS"
+    },
+    {
+      "code": "230",
+      "name": "Comparative Political Economy",
+      "level": "FHS"
+    },
+    {
+      "code": "297",
+      "name": "Special subject in Politics",
+      "level": "FHS"
+    },
+    {
+      "code": "298",
+      "name": "Supervised dissertation",
+      "level": "FHS"
+    },
+    {
+      "code": "299",
+      "name": "Thesis",
+      "level": "FHS"
+    }
+  ],
+  "Economics": [
+    {
+      "code": "300",
+      "name": "Quantitative Economics",
+      "level": "FHS"
+    },
+    {
+      "code": "301",
+      "name": "Macroeconomics",
+      "level": "FHS"
+    },
+    {
+      "code": "302",
+      "name": "Microeconomics",
+      "level": "FHS"
+    },
+    {
+      "code": "304",
+      "name": "Money and Banking",
+      "level": "FHS"
+    },
+    {
+      "code": "310",
+      "name": "Economics of Developing Countries",
+      "level": "FHS"
+    },
+    {
+      "code": "311",
+      "name": "History of the World Economy",
+      "level": "FHS"
+    },
+    {
+      "code": "314",
+      "name": "Econometrics",
+      "level": "FHS"
+    },
+    {
+      "code": "319",
+      "name": "Game Theory",
+      "level": "FHS"
+    },
+    {
+      "code": "398",
+      "name": "Special subjects in Economics",
+      "level": "FHS"
+    },
+    {
+      "code": "399",
+      "name": "Thesis",
+      "level": "FHS"
+    }
+  ]
+}

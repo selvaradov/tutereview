@@ -7,13 +7,13 @@ import User from '../models/user.js';
 
 const router = Router();
 
-// subjects endpoint
-router.get('/subjects', async (req, res) => {
+// papers endpoint
+router.get('/papers', async (req, res) => {
   try {
-    const subjectData = await readJsonFile('data/subjects.json');
-    res.json(subjectData);
+    const papersData = await readJsonFile('data/papers.json');
+    res.json(papersData);
   } catch (error) {
-    console.error('Error fetching subjects:', error);
+    console.error('Error fetching papers:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
