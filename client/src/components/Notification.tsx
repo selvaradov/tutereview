@@ -76,7 +76,6 @@ const Notification = () => {
         dialogClassName="modal-90w"
         contentClassName="mx-3"
         backdrop="static"
-        keyboard={false}
       >
         <Modal.Header closeButton>
           <Modal.Title>Error</Modal.Title>
