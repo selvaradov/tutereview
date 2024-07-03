@@ -13,7 +13,7 @@ interface Paper {
   level: string;
 }
 
-interface PapersData {
+interface SubjectToPapersMap {
   [key: string]: Paper[];
 }
 
@@ -44,9 +44,9 @@ interface SelectOption {
 const baseURL = process.env.REACT_APP_API_URL;
 
 const SearchPage: React.FC = () => {
-  const [subjects, setSubjects] = useState<PapersData>({});
+  const [papersBySubject, setPapersBySubject] = useState<SubjectToPapersMap>({});
   const [selectedSubject, setSelectedSubject] = useState<SelectOption | null>(null);
-  const [papers, setPapers] = useState<Paper[]>([]);
+  const [selectedSubjectPapers, setSelectedSubjectPapers] = useState<Paper[]>([]);
   const [colleges, setColleges] = useState<SelectOption[]>([]);
   const [searchParams, setSearchParams] = useState<SearchParams>({
     tutor: '',
@@ -59,12 +59,12 @@ const SearchPage: React.FC = () => {
   const latestSearchParams = useRef(searchParams);
   const [isSearchPending, setIsSearchPending] = useState(false);
 
-  const subjectOptions: SelectOption[] = Object.keys(subjects).map(subjectName => ({
+  const subjectOptions: SelectOption[] = Object.keys(papersBySubject).map(subjectName => ({
     value: subjectName,
     label: subjectName
   }));
 
-  const paperOptions: SelectOption[] = papers.map(paper => ({
+  const paperOptions: SelectOption[] = selectedSubjectPapers.map(paper => ({
     value: paper.code.toString(),
     label: `${paper.code} - ${paper.name}`
   }));
@@ -90,8 +90,8 @@ const SearchPage: React.FC = () => {
 
   const { showNotification } = useNotification();
 
-  const fetchSubjectsRef = useRef(useProtectedApi<AxiosResponse<PapersData>>(
-    () => axios.get<PapersData>(`${baseURL}/api/papers`, { withCredentials: true }),
+  const fetchPapersRef = useRef(useProtectedApi<AxiosResponse<SubjectToPapersMap>>(
+    () => axios.get<SubjectToPapersMap>(`${baseURL}/api/papers`, { withCredentials: true }),
     'Failed to fetch papers. Please try again.'
   ));
 
@@ -100,8 +100,8 @@ const SearchPage: React.FC = () => {
     'Failed to fetch colleges. Please try again.'
   ));
 
-  const fetchSubjects = useCallback(() => {
-    return fetchSubjectsRef.current();
+  const fetchPapers = useCallback(() => {
+    return fetchPapersRef.current();
   }, []);
 
   const fetchColleges = useCallback(() => {
@@ -111,14 +111,14 @@ const SearchPage: React.FC = () => {
   useEffect(() => {
     document.title = 'TuteReview - Search reviews';
     const loadData = async () => {
-      const subjectsResponse = await fetchSubjects();
-      if (subjectsResponse) setSubjects(subjectsResponse.data);
+      const papersResponse = await fetchPapers();
+      if (papersResponse) setPapersBySubject(papersResponse.data);
 
       const collegesResponse = await fetchColleges();
       if (collegesResponse) setColleges(collegesResponse.data);
     };
     loadData();
-  }, [fetchSubjects, fetchColleges]);
+  }, [fetchPapers, fetchColleges]);
 
   // Hide scrollbar when loading
   useEffect(() => {
@@ -181,10 +181,10 @@ const SearchPage: React.FC = () => {
   const handleSubjectChange = (selectedOption: SelectOption | null) => {
     setSelectedSubject(selectedOption);
     if (selectedOption) {
-      setPapers(subjects[selectedOption.value] || []);
+      setSelectedSubjectPapers(papersBySubject[selectedOption.value] || []);
       setSearchParams(prev => ({ ...prev, subject: selectedOption.value, paper: [] }));
     } else {
-      setPapers([]);
+      setSelectedSubjectPapers([]);
       setSearchParams(prev => ({ ...prev, subject: '', paper: [] }));
     }
   };

@@ -25,13 +25,14 @@ interface Question {
   dependsOn?: DependencyCondition;
 }
 
-interface Subject {
-  [key: string]: Course[];
+interface SubjectToPapersMap {
+  [key: string]: Paper[];
 }
 
-interface Course {
+interface Paper {
   code: string;
   name: string;
+  level: string;
 }
 
 interface TutorOption {
@@ -41,13 +42,13 @@ interface TutorOption {
 
 interface FormFieldProps {
   question: Question;
-  subjects: Subject;
+  papersBySubject: SubjectToPapersMap;
   tutorOptions: TutorOption[];
 }
 
 type ApiResponse = [
   AxiosResponse<Question[]>,
-  AxiosResponse<Subject>,
+  AxiosResponse<SubjectToPapersMap>,
   AxiosResponse<{ name: string }[]>
 ];
 
@@ -56,7 +57,7 @@ const createOption = (label: string) => ({
   value: label,
 });
 
-const FormField: React.FC<FormFieldProps> = ({ question, subjects, tutorOptions }) => {
+const FormField: React.FC<FormFieldProps> = ({ question, papersBySubject, tutorOptions }) => {
   const { values, setFieldValue, errors, touched } = useFormikContext<FormikValues>();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -87,7 +88,7 @@ const FormField: React.FC<FormFieldProps> = ({ question, subjects, tutorOptions 
             <Select
               inputId={question.id}
               aria-labelledby={`${question.id}-label`}
-              options={Object.keys(subjects).map(subject => ({ value: subject, label: subject }))}
+              options={Object.keys(papersBySubject).map(subject => ({ value: subject, label: subject }))}
               onChange={(option: { value: string; label: string } | null) => {
                 if (option) {
                   setFieldValue(question.id, option.value);
@@ -111,7 +112,7 @@ const FormField: React.FC<FormFieldProps> = ({ question, subjects, tutorOptions 
             <Select
               inputId={question.id}
               aria-labelledby={`${question.id}-label`}
-              options={subjects[selectedSubject as keyof Subject]?.map(course => ({
+              options={papersBySubject[selectedSubject as keyof SubjectToPapersMap]?.map(course => ({
                 value: course.code,
                 label: `${course.code} - ${course.name}`
               }))}
@@ -219,7 +220,7 @@ const FormField: React.FC<FormFieldProps> = ({ question, subjects, tutorOptions 
 
 const ReviewPage: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
-  const [subjects, setSubjects] = useState<Subject>({});
+  const [subjects, setSubjects] = useState<SubjectToPapersMap>({});
   const [tutorOptions, setTutorOptions] = useState<TutorOption[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const { showNotification } = useNotification();
@@ -236,7 +237,7 @@ const ReviewPage: React.FC = () => {
 
       return Promise.all([
         axios.get<Question[]>(questionsUrl, { withCredentials: true }),
-        axios.get<Subject>(papersUrl, { withCredentials: true }),
+        axios.get<SubjectToPapersMap>(papersUrl, { withCredentials: true }),
         axios.get<{ name: string }[]>(tutorsUrl, { withCredentials: true }),
       ]);
     },
@@ -309,7 +310,7 @@ const ReviewPage: React.FC = () => {
         {({ isSubmitting }) => (
           <Form className="mb-4">
             {questions.map((question: Question) => (
-              <FormField key={question.id} question={question} subjects={subjects} tutorOptions={tutorOptions} />
+              <FormField key={question.id} question={question} papersBySubject={subjects} tutorOptions={tutorOptions} />
             ))}
             <button
               type="submit"
