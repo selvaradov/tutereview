@@ -34,6 +34,10 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
     return <Navigate to="/" state={{ from: location }} replace />;
   }
 
+  if (!isProfileComplete && location.pathname !== '/profile') {
+    return <Navigate to="/" replace />;
+  }
+
   return <>{children}</>;
 };
 
