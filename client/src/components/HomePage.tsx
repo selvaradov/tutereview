@@ -8,7 +8,7 @@ import PageLayout from './PageLayout';
 import { useLoading } from '../context/LoadingContext';
 
 const HomePage: React.FC = () => {
-  const { isAuthenticated, isAuthInitialized, user, login } = useAuth();
+  const { isAuthenticated, isAuthInitialized, isProfileComplete, login } = useAuth();
   const { isLoading } = useLoading();
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const HomePage: React.FC = () => {
   return (
     <PageLayout title="Welcome to TuteReview">
       {isAuthenticated ? (
-        user?.isProfileComplete ? (
+        isProfileComplete ? (
           <div>
             <p>You're all set! You can now access:</p>
             <ul>

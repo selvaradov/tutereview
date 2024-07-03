@@ -69,7 +69,7 @@ const FormField: React.FC<FormFieldProps> = ({ fieldName, label, options }) => {
 const ProfileCompletion: React.FC = () => {
   const [options, setOptions] = useState<OptionsState>({ colleges: [], years: [], subjects: [] });
   const [initialValues, setInitialValues] = useState<FormValues>({ college: '', year: '', subject: '' });
-  const { checkAuthStatus, isProfileComplete } = useAuth();
+  const { user, isProfileComplete, setUser } = useAuth();
   const navigate = useNavigate();
   const { showNotification } = useNotification();
 
@@ -105,7 +105,9 @@ const ProfileCompletion: React.FC = () => {
     if (!isProfileComplete) {
       try {
         await axios.post(`${baseURL}/user/profile`, values, { withCredentials: true });
-        await checkAuthStatus();
+        if (user) {
+          setUser({ ...user, isProfileComplete: true });
+        }
         navigate('/');
         showNotification('Profile updated successfully!', 'success');
       } catch (error) {
