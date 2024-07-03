@@ -116,7 +116,7 @@ const ProfileCompletion: React.FC = () => {
       }
     }
   };
-  console.log("initial values:", initialValues)
+
   return (
     <Row className="justify-content-center">
       <Col md={8} lg={6}>
