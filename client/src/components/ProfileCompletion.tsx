@@ -34,9 +34,9 @@ interface FormFieldProps {
 const baseURL = process.env.REACT_APP_API_URL;
 
 const FormField: React.FC<FormFieldProps> = ({ fieldName, label, options }) => {
-  const { values, setFieldValue, errors, touched } = useFormikContext<FormValues>();
+  const { values, setFieldValue, errors } = useFormikContext<FormValues>();
   const { isProfileComplete } = useAuth();
-  const hasError = errors[fieldName] && touched[fieldName];
+  const hasError = errors[fieldName];
 
   return (
     <div className="mb-4">
@@ -60,7 +60,7 @@ const FormField: React.FC<FormFieldProps> = ({ fieldName, label, options }) => {
         isDisabled={isProfileComplete}
       />
       {hasError && (
-        <div className="invalid-feedback d-block">{errors[fieldName] as string}</div>
+        <div className="invalid-feedback d-block">{errors[fieldName]}</div>
       )}
     </div>
   );
