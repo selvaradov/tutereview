@@ -15,7 +15,7 @@ export const handleNavigation = (
 
   if (!isProfileComplete && to !== '/profile') {
     showNotification(
-      'To use this page, please complete your profile.',
+      'Please complete your profile to access this feature.',
       'error',
       [
         {
