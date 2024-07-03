@@ -75,7 +75,6 @@ const FormField: React.FC<FormFieldProps> = ({ question, papersBySubject, tutorO
   const handleCreate = (inputValue: string) => {
     setIsLoading(true);
     const newOption = createOption(inputValue); // This could be an async function later, hence the `isLoading` state
-    console.log(newOption)
     setIsLoading(false);
     setFieldValue(question.id, newOption.value);
   };

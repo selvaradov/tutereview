@@ -16,7 +16,6 @@ const HomePage: React.FC = () => {
   }, []);
 
   if (!isAuthInitialized || isLoading) {
-    console.log("loading so not redirecting")
     return null;
   }
 

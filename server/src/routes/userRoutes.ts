@@ -46,7 +46,6 @@ router.post('/profile', async (req, res) => {
   }
 
   const { college, year, subject } = req.body;
-  console.log(req.body);
 
   try {
     const user = await User.findByIdAndUpdate(
