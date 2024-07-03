@@ -8,7 +8,19 @@ const router = Router();
 // user options endpoint
 router.get('/options', async (req, res) => {
   try {
-    const userOptions = await readJsonFile('data/userOptions.json');
+    const collegesData = await readJsonFile('data/colleges.json');
+    const subjectsData = await readJsonFile('data/subjects.json');
+    const yearsData = await readJsonFile('data/years.json');
+
+    const userOptions = {
+      colleges: collegesData,
+      years: yearsData.map((year: string, index: number) => ({
+        value: (index + 1).toString(),
+        label: year
+      })),
+      subjects: subjectsData
+    };
+
     res.json(userOptions);
   } catch (error) {
     console.error('Error fetching user options:', error);
@@ -34,6 +46,7 @@ router.post('/profile', async (req, res) => {
   }
 
   const { college, year, subject } = req.body;
+  console.log(req.body);
 
   try {
     const user = await User.findByIdAndUpdate(
