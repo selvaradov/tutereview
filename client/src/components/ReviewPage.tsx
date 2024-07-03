@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Formik, Form, useFormikContext, FormikValues } from 'formik';
 import * as Yup from 'yup';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import { useNotification } from '../context/NotificationContext';
 import PageLayout from './PageLayout';
+import { useProtectedApi } from '../hooks/useProtectedApi';
 import './ReviewPage.css'
 
 const baseURL = process.env.REACT_APP_API_URL;
@@ -43,6 +44,12 @@ interface FormFieldProps {
   subjects: Subject;
   tutorOptions: TutorOption[];
 }
+
+type ApiResponse = [
+  AxiosResponse<Question[]>,
+  AxiosResponse<Subject>,
+  AxiosResponse<{ name: string }[]>
+];
 
 const createOption = (label: string) => ({
   label,
@@ -221,34 +228,34 @@ const ReviewPage: React.FC = () => {
     document.title = 'TuteReview - Submit a review';
   }, []);
 
+  const fetchData = useProtectedApi<ApiResponse>(
+    () => {
+      const questionsUrl = `${baseURL}/api/questions`;
+      const subjectsUrl = `${baseURL}/api/subjects`;
+      const tutorsUrl = `${baseURL}/api/tutors`;
+
+      return Promise.all([
+        axios.get<Question[]>(questionsUrl, { withCredentials: true }),
+        axios.get<Subject>(subjectsUrl, { withCredentials: true }),
+        axios.get<{ name: string }[]>(tutorsUrl, { withCredentials: true }),
+      ]);
+    },
+    'Failed to load form data. Please try again.'
+  );
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const questionsUrl = `${baseURL}/api/questions`;
-        const subjectsUrl = `${baseURL}/api/subjects`;
-        const tutorsUrl = `${baseURL}/api/tutors`;
-
-        const [questionsResponse, subjectsResponse, tutorsResponse] = await Promise.all([
-          axios.get<Question[]>(questionsUrl, { withCredentials: true }),
-          axios.get<Subject>(subjectsUrl, { withCredentials: true }),
-          axios.get<{ name: string }[]>(tutorsUrl, { withCredentials: true }),
-        ]);
-
+    const loadData = async () => {
+      const data = await fetchData();
+      if (data) {
+        const [questionsResponse, subjectsResponse, tutorsResponse] = data;
         setQuestions(questionsResponse.data);
         setSubjects(subjectsResponse.data);
-        // if tutors list becomes too long, we can make async calls as user types,
-        // instead of loading them all initially (see react-select/async-creatable)
-        setTutorOptions(tutorsResponse.data.map(tutor => createOption(tutor.name)));
-      } catch (error) {
-        console.error('Error fetching data:', error);
-        showNotification('Failed to load form data. Please try again.', 'error');
-      } finally {
-        setIsLoading(false);
+        setTutorOptions(tutorsResponse.data.map((tutor: { name: string }) => createOption(tutor.name)));
       }
+      setIsLoading(false);
     };
-
-    fetchData();
-  }, [showNotification]);
+    loadData();
+  }, [fetchData]);
 
   const initialValues = questions.reduce((acc, question) => {
     acc[question.id] = '';

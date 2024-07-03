@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { Form, Row, Col, Spinner, Card } from 'react-bootstrap';
 import Select, { ActionMeta, MultiValue } from 'react-select';
 import PageLayout from './PageLayout';
-import './SearchPage.css';
 import { useNotification } from '../context/NotificationContext';
+import { useProtectedApi } from '../hooks/useProtectedApi';
+import './SearchPage.css';
 
 interface Paper {
   code: number;
@@ -89,31 +90,27 @@ const SearchPage: React.FC = () => {
 
   const { showNotification } = useNotification();
 
-  const fetchSubjects = useCallback(async () => {
-    try {
-      const response = await axios.get<SubjectsData>(`${baseURL}/api/subjects`, { withCredentials: true });
-      setSubjects(response.data);
-    } catch (error) {
-      console.error('Error fetching subjects:', error);
-      showNotification('Failed to fetch subjects. Please try again.', 'error');
-    }
-  }, [showNotification]);
+  const fetchSubjects = useProtectedApi<AxiosResponse<SubjectsData>>(
+    () => axios.get<SubjectsData>(`${baseURL}/api/subjects`, { withCredentials: true }),
+    'Failed to fetch subjects. Please try again.'
+  );
 
-  const fetchColleges = useCallback(async () => {
-    try {
-      const response = await axios.get<SelectOption[]>(`${baseURL}/api/colleges`, { withCredentials: true });
-      setColleges(response.data);
-    } catch (error) {
-      console.error('Error fetching colleges:', error);
-      showNotification('Failed to fetch colleges. Please try again.', 'error');
-    }
-  }, [showNotification]);
+  const fetchColleges = useProtectedApi<AxiosResponse<SelectOption[]>>(
+    () => axios.get<SelectOption[]>(`${baseURL}/api/colleges`, { withCredentials: true }),
+    'Failed to fetch colleges. Please try again.'
+  );
 
   useEffect(() => {
     document.title = 'TuteReview - Search reviews';
-    fetchSubjects();
-    fetchColleges();
-  }, [fetchColleges, fetchSubjects]);
+    const loadData = async () => {
+      const subjectsResponse = await fetchSubjects();
+      if (subjectsResponse) setSubjects(subjectsResponse.data);
+
+      const collegesResponse = await fetchColleges();
+      if (collegesResponse) setColleges(collegesResponse.data);
+    };
+    loadData();
+  }, [fetchSubjects, fetchColleges]);
 
   // Hide scrollbar when loading
   useEffect(() => {
