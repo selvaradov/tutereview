@@ -1,13 +1,22 @@
 import React, { useEffect } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { useLoading } from '../context/LoadingContext';
 import { useNotification } from '../context/NotificationContext';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const { isAuthenticated, isLoading, isProfileComplete } = useAuth();
+  const { isAuthenticated, isProfileComplete, checkAuthStatus, isAuthInitialized } = useAuth();
+  const { isLoading, startLoading, stopLoading } = useLoading();
   const location = useLocation();
   const navigate = useNavigate();
   const { showNotification } = useNotification();
+
+  useEffect(() => {
+    if (!isAuthInitialized) {
+      startLoading();
+      checkAuthStatus().finally(() => stopLoading());
+    }
+  }, [checkAuthStatus, isAuthInitialized, startLoading, stopLoading]);
 
   useEffect(() => {
     if (isAuthenticated && !isProfileComplete && location.pathname !== '/profile') {
@@ -26,8 +35,8 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
     }
   }, [isAuthenticated, isProfileComplete, location.pathname, showNotification, navigate]);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
+  if (!isAuthInitialized || isLoading) {
+    return null; // or a loading spinner component
   }
 
   if (!isAuthenticated) {

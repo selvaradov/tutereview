@@ -5,18 +5,19 @@ import { useAuth } from '../context/AuthContext';
 import AboutSection from './AboutSection';
 import FAQSection from './FAQSection';
 import PageLayout from './PageLayout';
+import { useLoading } from '../context/LoadingContext';
 
 const HomePage: React.FC = () => {
-  const { isAuthenticated, isLoading, login, user } = useAuth();
+  const { isAuthenticated, isAuthInitialized, user, login } = useAuth();
+  const { isLoading } = useLoading();
 
   useEffect(() => {
-    document.title = 'TuteReview - Home'; // NOTE could be moved to a custom hook
-    // do a check for `window.matchMedia('(display-mode: standalone)').matches`
-    // if true, then running as installed PWA so set title to "Home" only
+    document.title = 'TuteReview - Home'; // NOTE could be done as a hook, and with PWA check
   }, []);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
+  if (!isAuthInitialized || isLoading) {
+    console.log("loading so not redirecting")
+    return null;
   }
 
   return (

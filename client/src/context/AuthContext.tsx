@@ -2,6 +2,7 @@ import React, { createContext, useState, useContext, useEffect, useCallback } fr
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useNotification } from './NotificationContext';
+import { useLoading } from './LoadingContext';
 
 interface User {
   id: string;
@@ -11,8 +12,8 @@ interface User {
 
 interface AuthContextType {
   isAuthenticated: boolean;
-  isLoading: boolean;
   isProfileComplete: boolean;
+  isAuthInitialized: boolean;
   user: User | null;
   login: () => void;
   logout: () => Promise<void>;
@@ -25,16 +26,18 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [user, setUser] = useState<User | null>(null);
+  const [isAuthInitialized, setIsAuthInitialized] = useState<boolean>(false);
   const navigate = useNavigate();
   const { showNotification } = useNotification();
+  const { startLoading, stopLoading } = useLoading();
 
   const login = () => {
     window.location.href = `${baseURL}/auth/login`;
   };
 
   const logout = useCallback(async () => {
+    startLoading();
     try {
       const response = await axios.get(`${baseURL}/auth/logout`, { withCredentials: true, });
       console.log(response.data.message);
@@ -50,11 +53,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } catch (error) {
       console.error('Error logging out:', error);
       showNotification('Failed to logout. Please try again.', 'error');
+    } finally {
+      stopLoading();
     }
-  }, [navigate, showNotification]);
+  }, [navigate, showNotification, startLoading, stopLoading]);
 
-  const checkAuthStatus = async () => { // NOTE suggested wrapping in useCallback for memoization
-    setIsLoading(true);
+  const checkAuthStatus = useCallback(async () => {
+    if (isAuthInitialized) return; // Prevent multiple calls if already initialized
+    startLoading();
     try {
       const response = await axios.get(`${baseURL}/auth/status`, { withCredentials: true });
       setIsAuthenticated(response.data.isAuthenticated);
@@ -64,13 +70,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setIsAuthenticated(false);
       setUser(null);
     } finally {
-      setIsLoading(false);
+      stopLoading();
+      setIsAuthInitialized(true);
     }
-  };
+  }, [startLoading, stopLoading, isAuthInitialized]);
 
   useEffect(() => {
     checkAuthStatus();
-  }, []);
+  }, [checkAuthStatus]);
 
   useEffect(() => {
     // Create a new BroadcastChannel with the same name used in the logout method.
@@ -96,8 +103,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   return (
     <AuthContext.Provider value={{
       isAuthenticated,
-      isLoading,
       isProfileComplete: user ? user.isProfileComplete : false,
+      isAuthInitialized,
       user,
       login,
       logout,
