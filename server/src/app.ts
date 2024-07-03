@@ -94,10 +94,13 @@ function ensureAuth(req: Request, res: Response, next: NextFunction) {
 }
 
 function ensureAuthAndComplete(req: Request, res: Response, next: NextFunction) {
-  if (req.isAuthenticated() && req.user.isProfileComplete) {
-    return next();
+  if (!req.isAuthenticated()) {
+    return res.status(401).json({ error: 'Unauthorized' });
   }
-  res.status(401).json({ error: 'Unauthorized' });
+  if (!req.user.isProfileComplete) {
+    return res.status(403).json({ error: 'Profile is incomplete' });
+  }
+  return next();
 }
 
 // Routes

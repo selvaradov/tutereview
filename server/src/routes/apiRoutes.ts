@@ -142,7 +142,7 @@ router.get('/tutors', async (req, res) => {
 // review endpoint
 router.post('/review', async (req, res) => {
   if (!req.user) {
-    console.error('Unauthorized request to submit review');
+    console.error('Unexpected unauthorized request to submit review');
     return res.status(401).json({ error: 'Unauthorized' });
   }
   const submitter = req.user.id;
