@@ -13,13 +13,13 @@ export const handleNavigation = (
     return;
   }
 
-  if (!isProfileComplete && to !== '/profile') {
+  if (!isProfileComplete && to !== '/profile' && to !== '/') {
     showNotification(
       'Please complete your profile to access this feature.',
       'error',
       [
         {
-          label: 'Complete Profile',
+          label: 'Complete profile',
           onClick: () => navigate('/profile'),
           variant: 'primary'
         }
