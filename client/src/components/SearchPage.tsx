@@ -90,21 +90,23 @@ const SearchPage: React.FC = () => {
 
   const { showNotification } = useNotification();
 
-  const fetchSubjects = useCallback(
-    useProtectedApi<AxiosResponse<SubjectsData>>(
-      () => axios.get<SubjectsData>(`${baseURL}/api/subjects`, { withCredentials: true }),
-      'Failed to fetch subjects. Please try again.'
-    ),
-    []
-  );
+  const fetchSubjectsRef = useRef(useProtectedApi<AxiosResponse<SubjectsData>>(
+    () => axios.get<SubjectsData>(`${baseURL}/api/subjects`, { withCredentials: true }),
+    'Failed to fetch subjects. Please try again.'
+  ));
 
-  const fetchColleges = useCallback(
-    useProtectedApi<AxiosResponse<SelectOption[]>>(
-      () => axios.get<SelectOption[]>(`${baseURL}/api/colleges`, { withCredentials: true }),
-      'Failed to fetch colleges. Please try again.'
-    ),
-    []
-  );
+  const fetchCollegesRef = useRef(useProtectedApi<AxiosResponse<SelectOption[]>>(
+    () => axios.get<SelectOption[]>(`${baseURL}/api/colleges`, { withCredentials: true }),
+    'Failed to fetch colleges. Please try again.'
+  ));
+
+  const fetchSubjects = useCallback(() => {
+    return fetchSubjectsRef.current();
+  }, []);
+
+  const fetchColleges = useCallback(() => {
+    return fetchCollegesRef.current();
+  }, []);
 
   useEffect(() => {
     document.title = 'TuteReview - Search reviews';

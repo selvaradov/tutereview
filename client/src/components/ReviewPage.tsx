@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import { Formik, Form, useFormikContext, FormikValues } from 'formik';
 import * as Yup from 'yup';
 import axios, { AxiosResponse } from 'axios';
@@ -228,23 +228,24 @@ const ReviewPage: React.FC = () => {
     document.title = 'TuteReview - Submit a review';
   }, []);
 
-  const fetchData = useCallback(
-    useProtectedApi<ApiResponse>(
-      () => {
-        const questionsUrl = `${baseURL}/api/questions`;
-        const subjectsUrl = `${baseURL}/api/subjects`;
-        const tutorsUrl = `${baseURL}/api/tutors`;
+  const fetchDataRef = useRef(useProtectedApi<ApiResponse>(
+    () => {
+      const questionsUrl = `${baseURL}/api/questions`;
+      const subjectsUrl = `${baseURL}/api/subjects`;
+      const tutorsUrl = `${baseURL}/api/tutors`;
 
-        return Promise.all([
-          axios.get<Question[]>(questionsUrl, { withCredentials: true }),
-          axios.get<Subject>(subjectsUrl, { withCredentials: true }),
-          axios.get<{ name: string }[]>(tutorsUrl, { withCredentials: true }),
-        ]);
-      },
-      'Failed to load form data. Please try again.'
-    ),
-    []
-  );
+      return Promise.all([
+        axios.get<Question[]>(questionsUrl, { withCredentials: true }),
+        axios.get<Subject>(subjectsUrl, { withCredentials: true }),
+        axios.get<{ name: string }[]>(tutorsUrl, { withCredentials: true }),
+      ]);
+    },
+    'Failed to load form data. Please try again.'
+  ));
+
+  const fetchData = useCallback(() => {
+    return fetchDataRef.current();
+  }, []);
 
   useEffect(() => {
     const loadData = async () => {
