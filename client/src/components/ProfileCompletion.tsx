@@ -35,7 +35,7 @@ const baseURL = process.env.REACT_APP_API_URL;
 
 const FormField: React.FC<FormFieldProps> = ({ fieldName, label, options }) => {
   const { values, setFieldValue, errors, touched } = useFormikContext<FormValues>();
-
+  const { isProfileComplete } = useAuth();
   const hasError = errors[fieldName] && touched[fieldName];
 
   return (
@@ -57,6 +57,7 @@ const FormField: React.FC<FormFieldProps> = ({ fieldName, label, options }) => {
         className={`react-select-container ${hasError ? 'is-invalid' : ''}`}
         classNamePrefix="react-select"
         isClearable
+        isDisabled={isProfileComplete}
       />
       {hasError && (
         <div className="invalid-feedback d-block">{errors[fieldName] as string}</div>
@@ -67,6 +68,7 @@ const FormField: React.FC<FormFieldProps> = ({ fieldName, label, options }) => {
 
 const ProfileCompletion: React.FC = () => {
   const [options, setOptions] = useState<OptionsState>({ colleges: [], years: [], subjects: [] });
+  const [initialValues, setInitialValues] = useState<FormValues>({ college: '', year: '', subject: '' });
   const { checkAuthStatus, isProfileComplete } = useAuth();
   const navigate = useNavigate();
   const { showNotification } = useNotification();
@@ -78,13 +80,20 @@ const ProfileCompletion: React.FC = () => {
         setOptions(response.data);
       } catch (error) {
         console.error('Failed to fetch user options:', error);
-        showNotification('Failed to fetch user options. Please try again.', 'error');
       }
     };
     fetchOptions();
-  }, [showNotification]);
 
-  const initialValues: FormValues = { college: '', year: '', subject: '' };
+    const fetchUserProfile = async () => {
+      try {
+        const response = await axios.get<FormValues>(`${baseURL}/user/profile`, { withCredentials: true });
+        setInitialValues(response.data);
+      } catch (error) {
+        console.error('Failed to fetch user profile:', error);
+      }
+    };
+    fetchUserProfile();
+  }, []);
 
   const validationSchema = Yup.object().shape({
     college: Yup.string().required('This question is required'),
@@ -107,7 +116,7 @@ const ProfileCompletion: React.FC = () => {
       }
     }
   };
-
+  console.log("initial values:", initialValues)
   return (
     <Row className="justify-content-center">
       <Col md={8} lg={6}>
@@ -118,6 +127,7 @@ const ProfileCompletion: React.FC = () => {
               initialValues={initialValues}
               validationSchema={validationSchema}
               onSubmit={handleSubmit}
+              enableReinitialize={true}
             >
               {({ isSubmitting }) => (
                 <Form noValidate>
