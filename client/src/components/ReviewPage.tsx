@@ -219,7 +219,7 @@ const FormField: React.FC<FormFieldProps> = ({ question, papersBySubject, tutorO
 
 const ReviewPage: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
-  const [subjects, setSubjects] = useState<SubjectToPapersMap>({});
+  const [papers, setPapers] = useState<SubjectToPapersMap>({});
   const [tutorOptions, setTutorOptions] = useState<TutorOption[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const { showNotification } = useNotification();
@@ -251,9 +251,9 @@ const ReviewPage: React.FC = () => {
     const loadData = async () => {
       const data = await fetchData();
       if (data) {
-        const [questionsResponse, subjectsResponse, tutorsResponse] = data;
+        const [questionsResponse, papersResponse, tutorsResponse] = data;
         setQuestions(questionsResponse.data);
-        setSubjects(subjectsResponse.data);
+        setPapers(papersResponse.data);
         setTutorOptions(tutorsResponse.data.map((tutor: { name: string }) => createOption(tutor.name)));
       }
       setIsLoading(false);
@@ -309,7 +309,7 @@ const ReviewPage: React.FC = () => {
         {({ isSubmitting }) => (
           <Form className="mb-4">
             {questions.map((question: Question) => (
-              <FormField key={question.id} question={question} papersBySubject={subjects} tutorOptions={tutorOptions} />
+              <FormField key={question.id} question={question} papersBySubject={papers} tutorOptions={tutorOptions} />
             ))}
             <button
               type="submit"
