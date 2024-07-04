@@ -20,12 +20,12 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
 
   useEffect(() => {
     if (isAuthenticated && !isProfileComplete && location.pathname !== '/profile') {
-      showNotification(
+      showNotification( // NOTE this is duplicated code from navigtionUtils.ts
         'Please complete your profile to access this feature.',
         'error',
         [
           {
-            label: 'Complete Profile',
+            label: 'Complete profile',
             onClick: () => navigate('/profile'),
             variant: 'primary'
           }
