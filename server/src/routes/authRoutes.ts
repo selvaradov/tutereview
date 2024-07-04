@@ -35,8 +35,8 @@ router.get('/logout', (req, res) => {
 
 router.get('/status', (req, res) => {
   if (req.isAuthenticated()) {
-    res.json({ 
-      isAuthenticated: true, 
+    res.json({
+      isAuthenticated: true,
       user: {
         isProfileComplete: req.user.isProfileComplete
       }
