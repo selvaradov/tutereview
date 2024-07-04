@@ -16,13 +16,13 @@ interface Option {
 interface OptionsState {
   colleges: Option[];
   years: Option[];
-  subjects: Option[];
+  courses: Option[];
 }
 
 interface FormValues {
   college: string;
   year: string;
-  subject: string;
+  course: string;
 }
 
 interface FormFieldProps {
@@ -67,8 +67,8 @@ const FormField: React.FC<FormFieldProps> = ({ fieldName, label, options }) => {
 };
 
 const ProfileCompletion: React.FC = () => {
-  const [options, setOptions] = useState<OptionsState>({ colleges: [], years: [], subjects: [] });
-  const [initialValues, setInitialValues] = useState<FormValues>({ college: '', year: '', subject: '' });
+  const [options, setOptions] = useState<OptionsState>({ colleges: [], years: [], courses: [] });
+  const [initialValues, setInitialValues] = useState<FormValues>({ college: '', year: '', course: '' });
   const { user, isProfileComplete, setUser } = useAuth();
   const navigate = useNavigate();
   const { showNotification } = useNotification();
@@ -98,7 +98,7 @@ const ProfileCompletion: React.FC = () => {
   const validationSchema = Yup.object().shape({
     college: Yup.string().required('This question is required'),
     year: Yup.string().required('This question is required'),
-    subject: Yup.string().required('This question is required'),
+    course: Yup.string().required('This question is required'),
   });
 
   const handleSubmit = async (values: FormValues, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
@@ -135,7 +135,7 @@ const ProfileCompletion: React.FC = () => {
                 <Form noValidate>
                   <FormField fieldName="college" label="College" options={options.colleges} />
                   <FormField fieldName="year" label="Year" options={options.years} />
-                  <FormField fieldName="subject" label="Subject" options={options.subjects} />
+                  <FormField fieldName="course" label="Course" options={options.courses} />
                   {!isProfileComplete && (
                     <div className="d-grid">
                       <button type="submit" className="btn btn-primary" disabled={isSubmitting}>

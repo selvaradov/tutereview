@@ -7,7 +7,7 @@ export interface IUser extends Document {
   id: string;
   college: string;
   year: string;
-  subject: string;
+  course: string;
   isProfileComplete: boolean;
 }
 
@@ -17,7 +17,7 @@ const userSchema = new Schema({
   email: { type: String, required: true, unique: true },
   college: { type: String, required: false },
   year: { type: String, required: false },
-  subject: { type: String, required: false },
+  course: { type: String, required: false },
   isProfileComplete: { type: Boolean, default: false },
 });
 

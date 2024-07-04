@@ -9,7 +9,7 @@ const router = Router();
 router.get('/options', async (req, res) => {
   try {
     const collegesData = await readJsonFile('data/colleges.json');
-    const subjectsData = await readJsonFile('data/subjects.json');
+    const coursesData = await readJsonFile('data/courses.json');
     const yearsData = await readJsonFile('data/years.json');
 
     const userOptions = {
@@ -18,7 +18,7 @@ router.get('/options', async (req, res) => {
         value: (index + 1).toString(),
         label: year
       })),
-      subjects: subjectsData
+      courses: coursesData
     };
 
     res.json(userOptions);
@@ -45,7 +45,7 @@ router.post('/profile', async (req, res) => {
     return res.status(403).json({ message: 'Profile is already complete and cannot be updated' });
   }
 
-  const { college, year, subject } = req.body;
+  const { college, year, course } = req.body;
 
   try {
     const user = await User.findByIdAndUpdate(
@@ -53,7 +53,7 @@ router.post('/profile', async (req, res) => {
       {
         college,
         year,
-        subject,
+        course: course,
         isProfileComplete: true,
       },
       { new: true }
@@ -83,7 +83,7 @@ router.get('/profile', async (req, res) => {
     res.json({
       college: user.college,
       year: user.year,
-      subject: user.subject,
+      course: user.course,
     });
   } catch (error) {
     console.error('Error fetching user profile:', error)
