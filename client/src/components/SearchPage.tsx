@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 import { Form, Row, Col, Spinner, Card } from 'react-bootstrap';
 import Select, { ActionMeta, MultiValue } from 'react-select';
 import PageLayout from './PageLayout';
 import { useNotification } from '../context/NotificationContext';
-import { useProtectedApi } from '../hooks/useProtectedApi';
 
 interface Paper {
   code: string;
@@ -89,35 +88,31 @@ const SearchPage: React.FC = () => {
 
   const { showNotification } = useNotification();
 
-  const fetchPapersRef = useRef(useProtectedApi<AxiosResponse<SubjectToPapersMap>>(
-    () => axios.get<SubjectToPapersMap>(`${baseURL}/api/papers`, { withCredentials: true }),
-    'Failed to fetch papers. Please try again.'
-  ));
+  const fetchPapers = useCallback(async () => {
+    try {
+      const response = await axios.get<SubjectToPapersMap>(`${baseURL}/api/papers`, { withCredentials: true });
+      setPapersBySubject(response.data);
+    } catch (error) {
+      console.error('Error fetching papers:', error);
+      showNotification('Failed to fetch papers. Please try again.', 'error');
+    }
+  }, [showNotification]);
 
-  const fetchCollegesRef = useRef(useProtectedApi<AxiosResponse<SelectOption[]>>(
-    () => axios.get<SelectOption[]>(`${baseURL}/api/colleges`, { withCredentials: true }),
-    'Failed to fetch colleges. Please try again.'
-  ));
-
-  const fetchPapers = useCallback(() => {
-    return fetchPapersRef.current();
-  }, []);
-
-  const fetchColleges = useCallback(() => {
-    return fetchCollegesRef.current();
-  }, []);
+  const fetchColleges = useCallback(async () => {
+    try {
+      const response = await axios.get<SelectOption[]>(`${baseURL}/api/colleges`, { withCredentials: true });
+      setColleges(response.data);
+    } catch (error) {
+      console.error('Error fetching colleges:', error);
+      showNotification('Failed to fetch colleges. Please try again.', 'error');
+    }
+  }, [showNotification]);
 
   useEffect(() => {
     document.title = 'TuteReview - Search reviews';
-    const loadData = async () => {
-      const papersResponse = await fetchPapers();
-      if (papersResponse) setPapersBySubject(papersResponse.data);
-
-      const collegesResponse = await fetchColleges();
-      if (collegesResponse) setColleges(collegesResponse.data);
-    };
-    loadData();
-  }, [fetchPapers, fetchColleges]);
+    fetchPapers();
+    fetchColleges();
+  }, [fetchColleges, fetchPapers]);
 
   // Hide scrollbar when loading
   useEffect(() => {
