@@ -31,6 +31,25 @@ export const LoadingProvider: React.FC<{ children: React.ReactNode }> = ({ child
     return () => clearTimeout(timer);
   }, [loadingCount]);
 
+    // Hide scrollbar when loading
+    useEffect(() => {
+      if (showLoader) {
+        const originalStyle = {
+          scrollbarGutter: document.documentElement.style.getPropertyValue('scrollbar-gutter'),
+          overflow: document.documentElement.style.getPropertyValue('overflow'),
+        };
+        document.documentElement.style.setProperty('scrollbar-gutter', 'unset');
+        document.documentElement.style.setProperty('overflow', 'hidden');
+        document.body.style.setProperty('padding-right', '0px');
+  
+        return () => {
+          document.documentElement.style.setProperty('scrollbar-gutter', originalStyle.scrollbarGutter);
+          document.documentElement.style.setProperty('overflow', originalStyle.overflow);
+          document.body.style.removeProperty('padding-right');
+        };
+      }
+    }, [showLoader]);
+
   return (
     <LoadingContext.Provider value={{ isLoading: loadingCount > 0, startLoading, stopLoading }}>
       {children}
