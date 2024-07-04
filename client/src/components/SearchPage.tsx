@@ -8,7 +8,7 @@ import { useProtectedApi } from '../hooks/useProtectedApi';
 import './SearchPage.css';
 
 interface Paper {
-  code: number;
+  code: string;
   name: string;
   level: string;
 }
@@ -65,7 +65,7 @@ const SearchPage: React.FC = () => {
   }));
 
   const paperOptions: SelectOption[] = selectedSubjectPapers.map(paper => ({
-    value: paper.code.toString(),
+    value: paper.code,
     label: `${paper.code} - ${paper.name}`
   }));
 
