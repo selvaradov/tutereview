@@ -35,7 +35,7 @@ export const LoadingProvider: React.FC<{ children: React.ReactNode }> = ({ child
     <LoadingContext.Provider value={{ isLoading: loadingCount > 0, startLoading, stopLoading }}>
       {children}
       {showLoader && (
-        <div className="loading-overlay" style={{ opacity: 0, animation: 'fadeIn 0.3s forwards' }}>
+        <div className="loading-overlay">
           <Spinner animation="border" role="status">
             <span className="visually-hidden">Loading...</span>
           </Spinner>

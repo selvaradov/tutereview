@@ -5,7 +5,6 @@ import Select, { ActionMeta, MultiValue } from 'react-select';
 import PageLayout from './PageLayout';
 import { useNotification } from '../context/NotificationContext';
 import { useProtectedApi } from '../hooks/useProtectedApi';
-import './SearchPage.css';
 
 interface Paper {
   code: string;
@@ -131,7 +130,7 @@ const SearchPage: React.FC = () => {
       // Apply new styles
       document.documentElement.style.setProperty('scrollbar-gutter', 'unset');
       document.documentElement.style.setProperty('overflow', 'hidden');
-      document.body.style.setProperty('padding-right', `0px`);
+      document.body.style.setProperty('padding-right', '0px');
       return () => {
         // Restore original styles when component unmounts or loading state changes
         document.documentElement.style.setProperty('scrollbar-gutter', originalStyle.scrollbarGutter);
