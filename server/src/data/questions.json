@@ -7,7 +7,7 @@
   },
   {
     "id": "paper",
-    "question": "What paper did you study?",
+    "question": "Which paper did you take?",
     "type": "dropdown",
     "required": true
   },
@@ -18,26 +18,97 @@
     "required": true
   },
   {
-    "id": "know",
-    "question": "How knowledgeable was the tutor?",
-    "type": "radio",
+    "id": "feedback_written",
+    "question": "Did your tutor provide written feedback on your work?",
+    "type": "select",
     "options": [
-      "Very knowledgeable",
-      "Somewhat knowledgeable",
-      "Not knowledgeable"
+      "💬 Yes - I got comments on specific sections",
+      "📝 Yes - I got an overall comment for the whole submission",
+      "🔢 Yes - I got a grade / numerical mark",
+      "❌ No"
     ],
     "required": true
   },
   {
-    "id": "explain",
-    "question": "How clear was the tutor's explanation?",
+    "id": "feedback_verbal",
+    "question": "Did your tutor provide verbal feedback on your work?",
     "type": "radio",
     "options": [
-      "Very clear",
-      "Somewhat clear",
-      "Not clear"
+      "🗣️ Yes",
+      "🤐 No"
     ],
     "required": true
+  },
+  {
+    "id": "pre_tutorial",
+    "question": "In general, had your tutor looked at your work before the tutorial?",
+    "type": "radio",
+    "options": [
+      "👀 Yes",
+      "😴 No"
+    ],
+    "required": true
+  },
+  {
+    "id": "rating_feedback",
+    "question": "Overall, how useful did you find the feedback you receieved?",
+    "type": "rating",
+    "required": true
+  },
+  {
+    "id": "tutorial_explanations",
+    "question": "If you asked your tutor a specific, subject-related question, how helpful would their answer usually be?",
+    "type": "radio",
+    "options": [
+      "😕 Not at all helpful",
+      "🤔 Slightly helpful",
+      "🧠 Fairly helpful",
+      "🤯 Very helpful"
+    ],
+    "required": true
+  },
+  {
+    "id": "rating_tutorial",
+    "question": "Overall, how useful did you find the tutorials?",
+    "type": "rating",
+    "required": true
+  },
+  {
+    "id": "rating_overall",
+    "question": "Overall, how was this tutor?",
+    "type": "rating",
+    "required": true
+  },
+  {
+    "id": "feedback_timely",
+    "question": "How quickly was your work returned to you?",
+    "type": "radio",
+    "options": [
+      "🏎️ Very fast",
+      "🚶 About average",
+      "🐢 Super slow"
+    ]
+  },
+  {
+    "id": "tutorial_length",
+    "question": "How long was a typical tutorial?",
+    "type": "radio",
+    "options": [
+      "⏰ Less than an hour",
+      "⏲️ 1h to 1h30m",
+      "🕰️ 1h31m to 2h",
+      "⏳ Longer than 2 hours"
+    ]
+  },
+  {
+    "id": "tutorial_structure",
+    "question": "Did you usually spend your tutorials discussing...",
+    "type": "radio",
+    "options": [
+      "✏️ your answers to the essay/problem sheet",
+      "📖 readings or other material",
+      "➿ a mix of both"
+    ]
   },
   {
     "id": "comments",
