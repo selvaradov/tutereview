@@ -5,27 +5,6 @@
   - Switch database to Google Cloud Firebase
 
 ## High priority
-- Change questions
-  <em>
-  - In general, did they provide written feedback on your work?
-  IF YES: 
-    - In general, did they provide inline feedback (e.g. comments on specific sentences or paragraphs), or summative feedback only (i.e. a single overall comment)?
-  - In general, did they provide verbal feedback on your work?
-  - Were all your pieces of work marked?
-  IF NO:
-    - What proportion of your work was not marked? (numerical option bins as %)
-  - In general, had they read your essay in advance of the tutorial?
-  - In general, did you spend your tutorial... (a) discussing your and your partners' essays (b) discussing the readings (c) a combination of the two (d) other - please specify
-  - If you were to ask a specific, technical question, rate out of five the usefulness of the answer. 
-    - Please elaborate (free response)
-  </em>
-  - Try using the conditional ones
-  ```
-    dependsOn: {
-      question: 'overallRating',
-      condition: (value) => parseInt(value) > 3
-    }
-    ```
 - Add other subjects' papers
 - Check that the current method of storing papers with codes will work even if codes are non-unique between subjects
 
@@ -92,6 +71,7 @@
 - Implement tests
   - For the frontend, possibly `react-testing-library`
   - On the backend, it might be good to ensure that the JSONs being served are in the format defined by frontend interfaces
+    - Could use [VSC schemas](https://code.visualstudio.com/docs/languages/json#_json-schemas-and-settings) for this?
 
 ### Authentication
 - Attempts to access a protected page if unauth sends you to `/auth/login` and then if 
