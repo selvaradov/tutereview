@@ -19,7 +19,7 @@ interface Question {
   id: string;
   question: string;
   required?: boolean;
-  type: 'dropdown' | 'text' | 'radio' | 'rating';
+  type: 'dropdown' | 'text' | 'radio' | 'rating' | 'select';
   options?: string[];
   dependsOn?: DependencyCondition;
 }
@@ -49,6 +49,12 @@ interface StarRatingProps {
   id: string;
   totalStars?: number;
 }
+
+interface CheckboxGroupProps {
+  id: string;
+  options: string[];
+}
+
 
 const createOption = (label: string) => ({
   label,
@@ -253,6 +259,37 @@ const StarRating: React.FC<StarRatingProps> = ({ id, totalStars = 5 }) => {
   );
 };
 
+const CheckboxGroup: React.FC<CheckboxGroupProps> = ({ id, options }) => {
+  const { values, setFieldValue } = useFormikContext<FormikValues>();
+
+  const handleChange = (option: string) => {
+    const currentValues = values[id] || [];
+    const newValues = currentValues.includes(option)
+      ? currentValues.filter((value: string) => value !== option)
+      : [...currentValues, option];
+    setFieldValue(id, newValues);
+  };
+
+  return (
+    <div className="checkbox-group" role="group" aria-labelledby={`${id}-label`}>
+      {options.map((option, index) => (
+        <label key={index} className="checkbox-label">
+          <input
+            type="checkbox"
+            name={id}
+            value={option}
+            checked={(values[id] || []).includes(option)}
+            onChange={() => handleChange(option)}
+          />
+          <span className="checkbox-button"></span>
+          {option}
+        </label>
+      ))}
+    </div>
+  );
+};
+
+
 const FormField: React.FC<FormFieldProps> = ({ question, papersBySubject, tutorOptions }) => {
   const { values, errors, touched, submitCount } = useFormikContext<FormikValues>();
 
@@ -285,6 +322,8 @@ const FormField: React.FC<FormFieldProps> = ({ question, papersBySubject, tutorO
         return <RadioField question={question} hasError={hasError} />;
       case 'rating':
         return <StarRating id={question.id} />;
+      case 'select':
+        return <CheckboxGroup id={question.id} options={question.options || []} />;
       default:
         return null;
     }
@@ -305,6 +344,8 @@ const FormField: React.FC<FormFieldProps> = ({ question, papersBySubject, tutorO
     </div>
   );
 };
+
+type FormValues = Record<string, string | string[]>;
 
 const ReviewPage: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -348,20 +389,33 @@ const ReviewPage: React.FC = () => {
   }, [showNotification]);
 
   const initialValues = questions.reduce((acc, question) => {
-    acc[question.id] = '';
+    if (question.type === 'select') {
+      acc[question.id] = []; 
+    } else {
+      acc[question.id] = ''; 
+    }
     return acc;
-  }, {} as Record<string, string>);
+  }, {} as Record<string, string | string[]>);
 
   const validationSchema = Yup.object().shape(
     questions.reduce((acc, question) => {
       if (question.required) {
-        acc[question.id] = Yup.string().required('This question is required');
+        if (question.type === 'select') {
+          // For multi-select fields
+          acc[question.id] = Yup.array()
+            .of(Yup.string())
+            .min(1, 'Please select at least one option')
+            .required('This question is required');
+        } else {
+          // For single-select fields and other types
+          acc[question.id] = Yup.string().required('This question is required');
+        }
       }
       return acc;
-    }, {} as Record<string, Yup.StringSchema>)
+    }, {} as Record<string, Yup.AnySchema>) // NOTE bad typing here
   );
 
-  const handleSubmit = async (values: Record<string, string>, { setSubmitting, resetForm }: { setSubmitting: (isSubmitting: boolean) => void; resetForm: () => void }) => {
+  const handleSubmit = async (values: FormValues, { setSubmitting, resetForm }: { setSubmitting: (isSubmitting: boolean) => void; resetForm: () => void }) => {
     try {
       await axios.post(`${baseURL}/api/review`, values, {
         headers: {
@@ -388,7 +442,7 @@ const ReviewPage: React.FC = () => {
   return (
     <PageLayout title="Submit a review">
       <Formik
-        initialValues={initialValues}
+        initialValues={initialValues as FormValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
