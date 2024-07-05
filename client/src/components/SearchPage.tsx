@@ -345,6 +345,13 @@ const SearchPage: React.FC = () => {
         <p>No results found.</p>
       ) : (
         <>
+        <p>
+          You can now see how other students found their tutorials, including how helpful the 
+          tutor's answers to their questions were  ("<em>Tutorial Explanations</em>")
+          whether the tutor had looked at their work
+          before the tutorial ("<em>Pre-Tutorial Work Review</em>"), how tutorials were structured,
+          and the type of feedback they received. 
+        </p>
           {Object.entries(groupReviewsByPaperAndTutor(results)).map(([key, groupedReviews]) => {
             const firstReview = groupedReviews[0];
             return (
