@@ -251,7 +251,7 @@ const SearchPage: React.FC = () => {
       </Form>
 
       <div id="results" className="mt-4">
-        {areSearchParamsEmpty(searchParams) ? (
+        {areSearchParamsEmpty(latestSearchParams.current) ? (
           <p>Please select some filters to search.</p>
         ) : results.length === 0 && !isLoading ? (
           <p>No results found.</p>
