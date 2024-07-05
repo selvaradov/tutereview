@@ -19,7 +19,7 @@ interface Question {
   id: string;
   question: string;
   required?: boolean;
-  type: string;
+  type: 'dropdown' | 'text' | 'radio' | 'rating';
   options?: string[];
   dependsOn?: DependencyCondition;
 }
@@ -43,6 +43,11 @@ interface FormFieldProps {
   question: Question;
   papersBySubject: SubjectToPapersMap;
   tutorOptions: TutorOption[];
+}
+
+interface StarRatingProps {
+  id: string;
+  totalStars?: number;
 }
 
 const createOption = (label: string) => ({
@@ -207,6 +212,47 @@ const RadioField: React.FC<{
   );
 };
 
+
+const StarRating: React.FC<StarRatingProps> = ({ id, totalStars = 5 }) => {
+  // https://dev.to/kartikbudhraja/creating-a-dynamic-star-rating-system-in-react-2c8
+  const { values, setFieldValue } = useFormikContext<FormikValues>();
+  const [hover, setHover] = useState<number | null>(null);
+
+  return (
+    <div style={{
+      marginTop: "-0.5em",
+      marginBottom: "-0.5em"
+    }}>
+      {[...Array(totalStars)].map((_, index) => {
+        const currentRating = index + 1;
+
+        return (
+          <label key={index}>
+            <input
+              type="radio"
+              name={id}
+              value={currentRating}
+              onChange={() => setFieldValue(id, currentRating)}
+              checked={values[id] === currentRating}
+              style={{ display: 'none' }}
+            />
+            <span
+              className="star"
+              style={{
+                color: currentRating <= (hover || values[id] || 0) ? "#ffc107" : "#e4e5e9"
+              }}
+              onMouseEnter={() => setHover(currentRating)}
+              onMouseLeave={() => setHover(null)}
+            >
+              &#9733;
+            </span>
+          </label>
+        );
+      })}
+    </div>
+  );
+};
+
 const FormField: React.FC<FormFieldProps> = ({ question, papersBySubject, tutorOptions }) => {
   const { values, errors, touched, submitCount } = useFormikContext<FormikValues>();
 
@@ -237,6 +283,8 @@ const FormField: React.FC<FormFieldProps> = ({ question, papersBySubject, tutorO
         return <TextField question={question} hasError={hasError} />;
       case 'radio':
         return <RadioField question={question} hasError={hasError} />;
+      case 'rating':
+        return <StarRating id={question.id} />;
       default:
         return null;
     }
@@ -248,7 +296,7 @@ const FormField: React.FC<FormFieldProps> = ({ question, papersBySubject, tutorO
         {question.question}
         {isRequired && <span className="text-danger ms-1" style={{ userSelect: 'none' }}>*</span>}
       </label>
-      <div className="mt-2">
+      <div className="mt-0">
         {renderField()}
       </div>
       {hasError && (
