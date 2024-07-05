@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import axios from 'axios';
-import { Form, Row, Col, Spinner, Card } from 'react-bootstrap';
+import { Form, Row, Col, Card } from 'react-bootstrap';
 import Select, { ActionMeta, MultiValue } from 'react-select';
 import PageLayout from './PageLayout';
 import { useNotification } from '../context/NotificationContext';
+import { useLoading } from '../context/LoadingContext';
 
 interface Paper {
   code: string;
@@ -53,9 +54,8 @@ const SearchPage: React.FC = () => {
     college: []
   });
   const [results, setResults] = useState<Review[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const { isLoading, startLoading, stopLoading } = useLoading();
   const latestSearchParams = useRef(searchParams);
-  const [isSearchPending, setIsSearchPending] = useState(false);
 
   const subjectOptions: SelectOption[] = Object.keys(papersBySubject).map(subjectName => ({
     value: subjectName,
@@ -88,61 +88,41 @@ const SearchPage: React.FC = () => {
 
   const { showNotification } = useNotification();
 
-  const fetchPapers = useCallback(async () => {
-    try {
-      const response = await axios.get<SubjectToPapersMap>(`${baseURL}/api/papers`, { withCredentials: true });
-      setPapersBySubject(response.data);
-    } catch (error) {
-      console.error('Error fetching papers:', error);
-      showNotification('Failed to fetch papers. Please try again.', 'error');
-    }
-  }, [showNotification]);
-
-  const fetchColleges = useCallback(async () => {
-    try {
-      const response = await axios.get<SelectOption[]>(`${baseURL}/api/colleges`, { withCredentials: true });
-      setColleges(response.data);
-    } catch (error) {
-      console.error('Error fetching colleges:', error);
-      showNotification('Failed to fetch colleges. Please try again.', 'error');
-    }
-  }, [showNotification]);
-
   useEffect(() => {
     document.title = 'TuteReview - Search reviews';
-    fetchPapers();
-    fetchColleges();
-  }, [fetchColleges, fetchPapers]);
+  }, []);
 
-  // Hide scrollbar when loading
   useEffect(() => {
-    if (isLoading || isSearchPending) {
-      // Save original styles
-      const originalStyle = {
-        scrollbarGutter: document.documentElement.style.getPropertyValue('scrollbar-gutter'),
-        overflow: document.documentElement.style.getPropertyValue('overflow'),
-      };
-      // Apply new styles
-      document.documentElement.style.setProperty('scrollbar-gutter', 'unset');
-      document.documentElement.style.setProperty('overflow', 'hidden');
-      document.body.style.setProperty('padding-right', '0px');
-      return () => {
-        // Restore original styles when component unmounts or loading state changes
-        document.documentElement.style.setProperty('scrollbar-gutter', originalStyle.scrollbarGutter);
-        document.documentElement.style.setProperty('overflow', originalStyle.overflow);
-        document.body.style.removeProperty('padding-right');
-      };
-    }
-  }, [isLoading, isSearchPending]);
+    const fetchData = async () => {
+      startLoading();
+      try {
+        const papersUrl = `${baseURL}/api/papers`;
+        const collegesUrl = `${baseURL}/api/colleges`;
 
-  const fetchResults = useCallback(async () => { // NOTE unecessarily fetches on initial load
+        const [papersResponse, collegesResponse] = await Promise.all([
+          axios.get<SubjectToPapersMap>(papersUrl, { withCredentials: true }),
+          axios.get<SelectOption[]>(collegesUrl, { withCredentials: true })
+        ]);
+
+        setPapersBySubject(papersResponse.data);
+        setColleges(collegesResponse.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        showNotification('Failed to load form data. Please try again.', 'error');
+      } finally {
+        stopLoading();
+      }
+    };
+
+    fetchData();
+  }, [showNotification, startLoading, stopLoading]);
+
+  const fetchResults = useCallback(async () => {
     if (areSearchParamsEmpty(latestSearchParams.current)) {
       setResults([]);
-      setIsLoading(false);
-      setIsSearchPending(false);
       return;
     }
-    setIsLoading(true);
+    startLoading();
     try {
       const response = await axios.get<Review[]>(`${baseURL}/api/search`, {
         params: latestSearchParams.current,
@@ -153,23 +133,13 @@ const SearchPage: React.FC = () => {
       console.error('Error fetching results:', error);
       showNotification('Failed to fetch results. Please try again.', 'error');
     } finally {
-      setIsLoading(false);
-      setIsSearchPending(false);
+      stopLoading();
     }
-  }, [showNotification]);
+  }, [showNotification, startLoading, stopLoading]);
 
   useEffect(() => {
     latestSearchParams.current = searchParams;
-    setIsSearchPending(true);
-
-    const debounceTimer = setTimeout(() => {
-      fetchResults();
-    }, 300);
-
-    return () => {
-      clearTimeout(debounceTimer);
-      setIsSearchPending(false);
-    };
+    fetchResults();
   }, [searchParams, fetchResults]);
 
   const handleSubjectChange = (selectedOption: SelectOption | null) => {
@@ -283,7 +253,7 @@ const SearchPage: React.FC = () => {
       <div id="results" className="mt-4">
         {areSearchParamsEmpty(searchParams) ? (
           <p>Please select some filters to search.</p>
-        ) : results.length === 0 && !isLoading && !isSearchPending ? (
+        ) : results.length === 0 && !isLoading ? (
           <p>No results found.</p>
         ) : (
           <>
@@ -319,13 +289,6 @@ const SearchPage: React.FC = () => {
                 </Card>
               );
             })}
-            {(isLoading || isSearchPending) && (
-              <div className="loading-overlay">
-                <Spinner animation="border" role="status">
-                  <span className="visually-hidden">Loading...</span>
-                </Spinner>
-              </div>
-            )}
           </>
         )}
       </div>
