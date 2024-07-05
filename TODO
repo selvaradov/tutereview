@@ -1,27 +1,102 @@
 # TODO
 
-## To deploy
-- firebase etc
+## Must do
+- Configure for deployment
+  - Switch database to Google Cloud Firebase
 
-## Review submission
-- support for special subjects, so need to allow manually specifying paper title if choosing special subject option (would be annoying to look them all up myself)
-- prettier forms
-  - conditional logic etc
-  - possibly using react?
-  - make it so you can type as well as dropdown items
+## High priority
+- Change questions
+  <em>
+  - In general, did they provide written feedback on your work?
+  IF YES: 
+    - In general, did they provide inline feedback (e.g. comments on specific sentences or paragraphs), or summative feedback only (i.e. a single overall comment)?
+  - In general, did they provide verbal feedback on your work?
+  - Were all your pieces of work marked?
+  IF NO:
+    - What proportion of your work was not marked? (numerical option bins as %)
+  - In general, had they read your essay in advance of the tutorial?
+  - In general, did you spend your tutorial... (a) discussing your and your partners' essays (b) discussing the readings (c) a combination of the two (d) other - please specify
+  - If you were to ask a specific, technical question, rate out of five the usefulness of the answer. 
+    - Please elaborate (free response)
+  </em>
+  - Try using the conditional ones
+  ```
+    dependsOn: {
+      question: 'overallRating',
+      condition: (value) => parseInt(value) > 3
+    }
+    ```
+- Add other subjects' papers
+- Check that the current method of storing papers with codes will work even if codes are non-unique between subjects
 
-## Backend
-- maybe do controllers
+## Medium priority
 
-## figure out questions
-- In general, did they provide written feedback on your work?
-IF YES: 
-	- In general, did they provide inline feedback (e.g. comments on specific sentences or paragraphs), or summative feedback only (i.e. a single overall comment)?
-- In general, did they provide verbal feedback on your work?
-- Were all your pieces of work marked?
-IF NO:
-	- What proportion of your work was not marked? (numerical option bins as %)
-- In general, had they read your essay in advance of the tutorial?
-- In general, did you spend your tutorial... (a) discussing your and your partners' essays (b) discussing the readings (c) a combination of the two (d) other - please specify
-- If you were to ask a specific, technical question, rate out of five the usefulness of the answer. 
-	- Please elaborate (free response)
+### Backend
+- Set up logging of API calls (`rotating-file-stream` or `winston` with `morgan`)
+- Improve consistency of handling paper names & codes & labels when using database, GET requests, and forms
+
+### Frontend
+- Check pages for accessibility issues
+  - Some form fields are missing labels on the `review` page
+
+### Features
+- Show summaries about each tutor-subject combination on the search page, then let people click through to details
+
+
+## Low priority
+
+### Features
+- Add a way to search for joint honours courses all together rather than separate subjects
+
+### Data
+- Add support for people to specify what special subject they did
+- Complete work on course -> subject -> paper structure
+  - When submitting a review, fetch the user's subjects as the options for them to choose from
+- Associate tutors with subjects and only suggest relevant ones when submitting a review
+
+### Validation
+- For the review submission endpoint, check on the server side that:
+  - keys in req.body are in the questions.json file
+  - values for each question are of the correct type (and perhaps also a permissible value, e.g. for paperCode)
+  - subject is one of the user's subjects 
+
+### Forms
+- Consider using `react-hook-form` rather than `formik`
+
+### UI
+- Integrate loading wrapper into `review`, `my-reviews`, and `profile` pages
+  - The `reinitialize` on the `profile` page form may be unnecessary
+- Horizontally centre the account dropdown menu on mobile devices
+  - Or just change how the navbar is laid out
+- Decide whether to horizontally centre the app or keep it on the left
+- Debouncing when typing tutor's name onto search page
+- Error messages for `subject` and `paper` are lagged to disappear on review page
+  - Also check implementation in profile completion page, seems quite messily-done
+- On the search page, if there's an error, the first time it loads the modal shadow 
+  doesn't cover the extreme margins (related to the scrollbar hiding).
+
+### Performance
+- Implement lazy loading
+- Serve images in next-gen formats with appropriate sizing
+- Making a GET to `/auth/status` every time the user changes page may be unnecessary
+  - The navbar and main content also separately do the call so it's duplicated already
+
+### Code tidiness
+- Investigate using React Suspense for loading indicators
+- Create a component to display a review card
+  - Currently there is duplication on the `search` and `my-reviews` pages
+- Consider whether repetition in notifications and error handling can be reduced
+- Make form components more consistent, e.g. the check of `isRequired` and subsequent red asterisk display
+- Work out whether a config file is useful for the frontend
+- Define common interfaces in a shared location (e.g. for the `search` and `review` page when dealing with server data)
+- Implement tests
+  - For the frontend, possibly `react-testing-library`
+  - On the backend, it might be good to ensure that the JSONs being served are in the format defined by frontend interfaces
+
+### Authentication
+- Attempts to access a protected page if unauth sends you to `/auth/login` and then if 
+  successful redirects back to where you were trying to go, not just homepage
+- Autodetect user college from email address rather than having user choose
+
+### Server
+- Configure controllers instead of plain routers
