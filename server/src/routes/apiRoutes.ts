@@ -101,7 +101,7 @@ router.get('/search', async (req, res) => {
       };
     }
 
-    const reviews = await Review.find(query, { _id: 0, submitter: 0, __v: 0 }); // Exclude sensitive fields
+    const reviews = await Review.find(query, {submitter: 0, __v: 0 }); // Exclude sensitive fields
     res.json(reviews);
   } catch (err) {
     console.error('Error searching reviews:', err);

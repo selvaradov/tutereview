@@ -17,6 +17,7 @@ interface SubjectToPapersMap {
 }
 
 interface Review {
+  _id: string;
   responses: {
     tutor: string;
     subject: string;
@@ -265,8 +266,8 @@ const SearchPage: React.FC = () => {
                     <h3>{`${firstReview.responses.paperName} - ${firstReview.responses.tutor}`}</h3>
                   </Card.Header>
                   <Card.Body>
-                    {groupedReviews.map((review, index) => (
-                      <Card key={index} className="mb-3">
+                    {groupedReviews.map((review) => (
+                      <Card key={review._id} className="mb-3">
                         <Card.Body>
                           {review.submittedAt && (
                             <p className="mb-0"><em>Submitted: {new Date(review.submittedAt).toLocaleDateString("en-GB", { year: 'numeric', month: 'long', day: 'numeric' })}</em></p>
