@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import axios from 'axios';
-import { Form, Row, Col, Card } from 'react-bootstrap';
+import { Form, Row, Col, Card, ListGroup, Table } from 'react-bootstrap';
 import Select, { ActionMeta, MultiValue } from 'react-select';
 import PageLayout from './PageLayout';
 import { useNotification } from '../context/NotificationContext';
@@ -40,6 +40,48 @@ interface SelectOption {
   value: string;
   label: string;
 }
+
+const questionTitles: { [key: string]: string } = {
+  pre_tutorial: "Pre-Tutorial Work Review",
+  feedback_timely: "Feedback Timeliness",
+  rating_feedback: "Feedback Rating",
+  tutorial_length: "Tutorial Length",
+  tutorial_structure: "Tutorial Structure",
+  tutorial_explanations: "Tutorial Explanations",
+  rating_tutorial: "Tutorial Rating",
+  rating_overall: "Overall Rating",
+  comments: "Additional Comments",
+  feedback_written: "Written Feedback",
+  feedback_verbal: "Verbal Feedback",
+};
+
+interface QuestionOptions {
+  [key: string]: {
+    [key: string]: string;
+  };
+}
+
+const questionOptions: QuestionOptions = {
+  feedback_written: {
+    "comments on specific sections": "💬 Yes - I got comments on specific sections",
+    "overall comment for the whole submission": "📝 Yes - I got an overall comment for the whole submission",
+    "grade / numerical mark": "🔢 Yes - I got a grade / numerical mark"
+  }
+};
+
+const displayOrder = [
+  "rating_overall",
+  "rating_tutorial",
+  "tutorial_explanations",
+  "pre_tutorial",
+  "tutorial_length",
+  "tutorial_structure",
+  "rating_feedback",
+  "feedback_written",
+  "feedback_verbal",
+  "feedback_timely",
+  "comments"
+];
 
 const baseURL = process.env.REACT_APP_API_URL;
 
@@ -191,6 +233,51 @@ const SearchPage: React.FC = () => {
     }, {} as Record<string, Review[]>);
   };
 
+  const StarRating = ({ rating }: { rating: number }) => {
+    return (
+      <span>
+        {[...Array(5)].map((_, i) => (
+          <span key={i} style={{color: i < rating ? "#ffc107" : "#e4e5e9"}}>★</span>
+        ))}
+      </span>
+    );
+  };
+
+  const renderValue = (key: string, value: string | number | Array<string>) => {
+    if (Array.isArray(value) && questionOptions[key]) {
+      return <ScoreCard options={questionOptions[key]} selectedOptions={value} />;
+    } else if (Array.isArray(value)) {
+      return (
+        <ListGroup>
+          {value.map((item, index) => (
+            <ListGroup.Item key={index}>{item}</ListGroup.Item>
+          ))}
+        </ListGroup>
+      );
+    } else if (typeof value === 'number' && ['rating_feedback', 'rating_tutorial', 'rating_overall'].includes(key)) {
+      return <StarRating rating={value} />;
+    } else {
+      return value;
+    }
+  };
+
+  const ScoreCard: React.FC<{ options: { [key: string]: string }, selectedOptions: string[] }> = ({ options, selectedOptions }) => {
+    return (
+      <Table striped bordered hover size="sm">
+        <tbody>
+          {Object.entries(options).map(([key, value]) => (
+            <tr key={key}>
+              <td>{key}</td>
+              <td className="text-center">
+                {selectedOptions.includes(value) ? "✅" : "❌"}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    );
+  };
+
   return (
     <PageLayout title="Search reviews">
       <Form>
@@ -252,47 +339,49 @@ const SearchPage: React.FC = () => {
       </Form>
 
       <div id="results" className="mt-4">
-        {areSearchParamsEmpty(latestSearchParams.current) ? (
-          <p>Please select some filters to search.</p>
-        ) : results.length === 0 && !isLoading ? (
-          <p>No results found.</p>
-        ) : (
-          <>
-            {Object.entries(groupReviewsByPaperAndTutor(results)).map(([key, groupedReviews]) => {
-              const firstReview = groupedReviews[0];
-              return (
-                <Card key={key} className="mb-4">
-                  <Card.Header>
-                    <h3>{`${firstReview.responses.paperName} - ${firstReview.responses.tutor}`}</h3>
-                  </Card.Header>
-                  <Card.Body>
-                    {groupedReviews.map((review) => (
-                      <Card key={review._id} className="mb-3">
-                        <Card.Body>
-                          {review.submittedAt && (
-                            <p className="mb-0"><em>Submitted: {new Date(review.submittedAt).toLocaleDateString("en-GB", { year: 'numeric', month: 'long', day: 'numeric' })}</em></p>
-                          )}
-                          <p><em>College: {collegeLookup.get(review.college) || review.college}</em></p>
-                          {Object.entries(review.responses).map(([key, value]) => {
-                            if (!['tutor', 'subject', 'paperCode', 'paper', 'paperName', 'submittedAt'].includes(key) && value.trim() !== "") {
-                              return (
-                                <p key={key} className="mb-2">
-                                  <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value}
-                                </p>
-                              );
-                            }
-                            return null;
-                          })}
-                        </Card.Body>
-                      </Card>
-                    ))}
-                  </Card.Body>
-                </Card>
-              );
-            })}
-          </>
-        )}
-      </div>
+      {areSearchParamsEmpty(latestSearchParams.current) ? (
+        <p>Please select some filters to search.</p>
+      ) : results.length === 0 && !isLoading ? (
+        <p>No results found.</p>
+      ) : (
+        <>
+          {Object.entries(groupReviewsByPaperAndTutor(results)).map(([key, groupedReviews]) => {
+            const firstReview = groupedReviews[0];
+            return (
+              <Card key={key} className="mb-4">
+                <Card.Header>
+                  <h3>{`${firstReview.responses.paperName} - ${firstReview.responses.tutor}`}</h3>
+                </Card.Header>
+                <Card.Body>
+                  {groupedReviews.map((review) => (
+                    <Card key={review._id} className="mb-3">
+                      <Card.Body>
+                        {review.submittedAt && (
+                          <p className="mb-0"><em>Submitted: {new Date(review.submittedAt).toLocaleDateString("en-GB", { year: 'numeric', month: 'long', day: 'numeric' })}</em></p>
+                        )}
+                        <p><em>College: {collegeLookup.get(review.college) || review.college}</em></p>
+                        {displayOrder.map((key) => {
+                          const value = review.responses[key];
+                          if (value !== undefined && value !== "") { 
+                            return (
+                              <div key={key} className="mb-2">
+                                <strong>{questionTitles[key] || key.charAt(0).toUpperCase() + key.slice(1)}: </strong>
+                                {renderValue(key, value)}
+                              </div>
+                            );
+                          }
+                          return null;
+                        })}
+                      </Card.Body>
+                    </Card>
+                  ))}
+                </Card.Body>
+              </Card>
+            );
+          })}
+        </>
+      )}
+    </div>
     </PageLayout>
   );
 };
