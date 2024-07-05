@@ -3,396 +3,474 @@
     {
       "code": "I",
       "name": "General Philosophy",
-      "level": "Prelims"
+      "level": "Prelims",
+      "id": "philosophy_prelims_i"
     },
     {
       "code": "II",
       "name": "Moral Philosophy",
-      "level": "Prelims"
+      "level": "Prelims",
+      "id": "philosophy_prelims_ii"
     },
     {
       "code": "III",
       "name": "Logic",
-      "level": "Prelims"
+      "level": "Prelims",
+      "id": "philosophy_prelims_iii"
     },
     {
       "code": "101",
       "name": "Early Modern Philosophy",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_101"
     },
     {
       "code": "102",
       "name": "Knowledge and Reality",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_102"
     },
     {
       "code": "103",
       "name": "Ethics",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_103"
     },
     {
       "code": "104",
       "name": "Philosophy of Mind",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_104"
     },
     {
       "code": "106",
       "name": "Philosophy of Science and Social Science",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_106"
     },
     {
       "code": "107",
       "name": "Philosophy of Religion",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_107"
     },
     {
       "code": "108",
       "name": "The Philosophy of Logic and Language",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_108"
     },
     {
       "code": "109",
       "name": "Aesthetics and the Philosophy of Criticism",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_109"
     },
     {
       "code": "110",
       "name": "Medieval Philosophy: Aquinas",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_110"
     },
     {
       "code": "111",
       "name": "Medieval Philosophy: Duns Scotus, Ockham",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_111"
     },
     {
       "code": "112",
       "name": "The Philosophy of Kant",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_112"
     },
     {
       "code": "113",
       "name": "Post-Kantian Philosophy",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_113"
     },
     {
       "code": "114",
       "name": "Theory of Politics",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_114"
     },
     {
       "code": "115",
       "name": "Plato Republic",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_115"
     },
     {
       "code": "116",
       "name": "Aristotle Nicomachean Ethics",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_116"
     },
     {
       "code": "120",
       "name": "Intermediate Philosophy of Physics",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_120"
     },
     {
       "code": "122",
       "name": "Philosophy of Mathematics",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_122"
     },
     {
       "code": "124",
       "name": "Philosophy of Science",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_124"
     },
     {
       "code": "125",
       "name": "Philosophy of Cognitive Science",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_125"
     },
     {
       "code": "127",
       "name": "Philosophical Logic",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_127"
     },
     {
       "code": "128",
       "name": "Practical Ethics",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_128"
     },
     {
       "code": "129",
       "name": "The Philosophy of Wittgenstein",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_129"
     },
     {
       "code": "137",
       "name": "Plato on Knowledge, Language, & Reality in the Theaetetus & Sophist",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_137"
     },
     {
       "code": "138",
       "name": "Aristotle on Nature, Life and Mind",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_138"
     },
     {
       "code": "139",
       "name": "Knowledge and Scepticism in Hellenistic Philosophy",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_139"
     },
     {
       "code": "150",
       "name": "Jurisprudence",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_150"
     },
     {
       "code": "151",
       "name": "Set Theory Logic",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_151"
     },
     {
       "code": "198",
       "name": "Special Subjects",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_198"
     },
     {
       "code": "199",
       "name": "Thesis",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "philosophy_finals_199"
     }
   ],
   "Politics": [
     {
       "code": "a",
       "name": "Theory of Politics",
-      "level": "Prelims"
+      "level": "Prelims",
+      "id": "politics_prelims_a"
     },
     {
       "code": "b",
       "name": "Practice of Politics",
-      "level": "Prelims"
+      "level": "Prelims",
+      "id": "politics_prelims_b"
     },
     {
       "code": "201",
       "name": "Comparative Government",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_201"
     },
     {
       "code": "202",
       "name": "British Politics and Government since 1900",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_202"
     },
     {
       "code": "203",
       "name": "Theory of Politics",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_203"
     },
     {
       "code": "204",
       "name": "Modern British Government and Politics",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_204"
     },
     {
       "code": "205",
       "name": "Government and Politics of the United States",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_205"
     },
     {
       "code": "206",
       "name": "Politics in Europe",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_206"
     },
     {
       "code": "207",
       "name": "Politics in Russia and the Former Soviet Union",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_207"
     },
     {
       "code": "208",
       "name": "Politics in Sub-Saharan Africa",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_208"
     },
     {
       "code": "209",
       "name": "Politics in Latin America",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_209"
     },
     {
       "code": "210",
       "name": "Politics in South Asia",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_210"
     },
     {
       "code": "211",
       "name": "Politics in the Middle East",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_211"
     },
     {
       "code": "212",
       "name": "International Relations in the Era of Two World Wars",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_212"
     },
     {
       "code": "213",
       "name": "International Relations in the Era of the Cold War",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_213"
     },
     {
       "code": "214",
       "name": "International Relations",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_214"
     },
     {
       "code": "215",
       "name": "Political Thought: Plato to Rousseau",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_215"
     },
     {
       "code": "216",
       "name": "Political Thought: Bentham to Weber",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_216"
     },
     {
       "code": "217",
       "name": "Marx and Marxism",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_217"
     },
     {
       "code": "218",
       "name": "Sociological Theory",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_218"
     },
     {
       "code": "220",
       "name": "Political Sociology",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_220"
     },
     {
       "code": "222",
       "name": "Labour Economics and Inequality",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_222"
     },
     {
       "code": "223",
       "name": "The Government and Politics of Japan",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_223"
     },
     {
       "code": "224",
       "name": "Social Policy",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_224"
     },
     {
       "code": "225",
       "name": "Comparative Demographic Systems",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_225"
     },
     {
       "code": "226",
       "name": "Quantitative Methods in Politics and Sociology",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_226"
     },
     {
       "code": "227",
       "name": "Politics in China",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_227"
     },
     {
       "code": "228",
       "name": "The Politics of the European Union",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_228"
     },
     {
       "code": "229",
       "name": "Advanced Paper in Theories of Justice",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_229"
     },
     {
       "code": "230",
       "name": "Comparative Political Economy",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_230"
     },
     {
       "code": "297",
       "name": "Special subject in Politics",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_297"
     },
     {
       "code": "298",
       "name": "Supervised dissertation",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_298"
     },
     {
       "code": "299",
       "name": "Thesis",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "politics_finals_299"
     }
   ],
   "Economics": [
     {
       "code": "1",
       "name": "Introduction to Microeconomics",
-      "level": "Prelims"
+      "level": "Prelims",
+      "id": "economics_prelims_1"
     },
     {
       "code": "2",
       "name": "Introduction to Macroeconomics",
-      "level": "Prelims"
+      "level": "Prelims",
+      "id": "economics_prelims_2"
     },
     {
       "code": "3",
       "name": "Introduction to Probability and Statistics",
-      "level": "Prelims"
-    },    
+      "level": "Prelims",
+      "id": "economics_prelims_3"
+    },
     {
       "code": "300",
       "name": "Quantitative Economics",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "economics_finals_300"
     },
     {
       "code": "301",
       "name": "Macroeconomics",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "economics_finals_301"
     },
     {
       "code": "302",
       "name": "Microeconomics",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "economics_finals_302"
     },
     {
       "code": "304",
       "name": "Money and Banking",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "economics_finals_304"
     },
     {
       "code": "310",
       "name": "Economics of Developing Countries",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "economics_finals_310"
     },
     {
       "code": "311",
       "name": "History of the World Economy",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "economics_finals_311"
     },
     {
       "code": "314",
       "name": "Econometrics",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "economics_finals_314"
     },
     {
       "code": "319",
       "name": "Game Theory",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "economics_finals_319"
     },
     {
       "code": "398",
       "name": "Special subjects in Economics",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "economics_finals_398"
     },
     {
       "code": "399",
       "name": "Thesis",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "economics_finals_399"
     }
   ]
 }
