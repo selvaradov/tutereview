@@ -34,9 +34,9 @@ interface FormFieldProps {
 const baseURL = process.env.REACT_APP_API_URL;
 
 const FormField: React.FC<FormFieldProps> = ({ fieldName, label, options }) => {
-  const { values, setFieldValue, errors } = useFormikContext<FormValues>();
+  const { values, setFieldValue, errors, touched, submitCount } = useFormikContext<FormValues>();
   const { isProfileComplete } = useAuth();
-  const hasError = errors[fieldName];
+  const hasError = errors[fieldName] && (touched[fieldName] || submitCount > 0);
 
   return (
     <div className="mb-4">

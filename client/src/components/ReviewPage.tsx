@@ -51,7 +51,7 @@ const createOption = (label: string) => ({
 });
 
 const FormField: React.FC<FormFieldProps> = ({ question, papersBySubject, tutorOptions }) => {
-  const { values, setFieldValue, errors } = useFormikContext<FormikValues>();
+  const { values, setFieldValue, errors, touched, submitCount } = useFormikContext<FormikValues>();
   const [isLoading, setIsLoading] = useState(false);
 
   const shouldRender = useMemo(() => {
@@ -63,7 +63,7 @@ const FormField: React.FC<FormFieldProps> = ({ question, papersBySubject, tutorO
   }
 
   const isRequired = question.required;
-  const hasError = errors[question.id];
+  const hasError = errors[question.id] && (touched[question.id] || submitCount > 0);
 
   const handleCreate = (inputValue: string) => {
     setIsLoading(true);
