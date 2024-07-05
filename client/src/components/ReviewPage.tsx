@@ -250,7 +250,7 @@ const StarRating: React.FC<StarRatingProps> = ({ id, totalStars = 5 }) => {
               onMouseEnter={() => setHover(currentRating)}
               onMouseLeave={() => setHover(null)}
             >
-              &#9733;
+              ★
             </span>
           </label>
         );
