@@ -50,9 +50,165 @@ const createOption = (label: string) => ({
   value: label,
 });
 
-const FormField: React.FC<FormFieldProps> = ({ question, papersBySubject, tutorOptions }) => {
-  const { values, setFieldValue, errors, touched, submitCount } = useFormikContext<FormikValues>();
+const SubjectDropdown: React.FC<{
+  question: Question;
+  papersBySubject: SubjectToPapersMap;
+  hasError: boolean;
+}> = ({ question, papersBySubject, hasError }) => {
+  const { values, setFieldValue } = useFormikContext<FormikValues>();
+
+  return (
+    <Select
+      inputId={question.id}
+      aria-labelledby={`${question.id}-label`}
+      options={Object.keys(papersBySubject).map(subject => ({ value: subject, label: subject }))}
+      onChange={(option: { value: string; label: string } | null) => {
+        if (option) {
+          setFieldValue(question.id, option.value);
+        } else {
+          setFieldValue(question.id, '');
+        }
+        setFieldValue('paper', '');
+        setFieldValue('paperCode', '');
+        setFieldValue('paperName', '');
+      }}
+      value={values.subject ? { value: values.subject, label: values.subject } : null}
+      className={`react-select-container ${hasError ? 'is-invalid' : ''}`}
+      classNamePrefix="react-select"
+      isClearable
+      placeholder="Select a subject"
+    />
+  );
+};
+
+const PaperDropdown: React.FC<{
+  question: Question;
+  papersBySubject: SubjectToPapersMap;
+  hasError: boolean;
+}> = ({ question, papersBySubject, hasError }) => {
+  const { values, setFieldValue } = useFormikContext<FormikValues>();
+  const selectedSubject = values.subject as string;
+
+  return (
+    <Select
+      inputId={question.id}
+      aria-labelledby={`${question.id}-label`}
+      options={papersBySubject[selectedSubject as keyof SubjectToPapersMap]?.map(paper => ({
+        value: paper.code,
+        label: `${paper.code} - ${paper.name} (${paper.level})`
+      }))}
+      onChange={(option: { value: string; label: string } | null) => {
+        if (option) {
+          const [code, name] = option.label.split(' - ', 2);
+          setFieldValue(question.id, option.value);
+          setFieldValue('paperCode', code || '');
+          setFieldValue('paperName', name || '');
+        } else {
+          setFieldValue(question.id, '');
+          setFieldValue('paperCode', '');
+          setFieldValue('paperName', '');
+        }
+      }}
+      value={values.paper ? { value: values.paper, label: `${values.paperCode} - ${values.paperName}` } : null}
+      isDisabled={!selectedSubject}
+      placeholder={selectedSubject ? "Select a paper" : "Choose subject first"}
+      className={`react-select-container ${hasError ? 'is-invalid' : ''}`}
+      classNamePrefix="react-select"
+      isClearable
+    />
+  );
+};
+
+const TutorField: React.FC<{
+  question: Question;
+  tutorOptions: TutorOption[];
+  hasError: boolean;
+}> = ({ question, tutorOptions, hasError }) => {
+  const { values, setFieldValue } = useFormikContext<FormikValues>();
   const [isLoading, setIsLoading] = useState(false);
+
+  const handleCreate = (inputValue: string) => {
+    setIsLoading(true);
+    const newOption = createOption(inputValue); // This function needs to be defined or imported
+    setIsLoading(false);
+    setFieldValue(question.id, newOption.value);
+  };
+
+  return (
+    <CreatableSelect
+      inputId={question.id}
+      aria-labelledby={`${question.id}-label`}
+      options={tutorOptions}
+      onChange={(newValue: TutorOption | null) => {
+        if (newValue) {
+          setFieldValue(question.id, newValue.value);
+        } else {
+          setFieldValue(question.id, '');
+        }
+      }}
+      onCreateOption={handleCreate}
+      value={values[question.id] ? { value: values[question.id], label: values[question.id] } : null}
+      className={`react-select-container ${hasError ? 'is-invalid' : ''}`}
+      classNamePrefix="react-select"
+      isClearable
+      isDisabled={isLoading}
+      isLoading={isLoading}
+      placeholder="Select or type a tutor name"
+    />
+  );
+};
+
+const TextField: React.FC<{
+  question: Question;
+  hasError: boolean;
+}> = ({ question, hasError }) => {
+  const { values, setFieldValue } = useFormikContext<FormikValues>();
+
+  return (
+    <input
+      type="text"
+      id={question.id}
+      name={question.id}
+      onChange={(e) => setFieldValue(question.id, e.target.value)}
+      className={`form-control ${hasError ? 'is-invalid' : ''}`}
+      value={values[question.id] || ''}
+      aria-labelledby={`${question.id}-label`}
+    />
+  );
+};
+
+const RadioField: React.FC<{
+  question: Question;
+  hasError: boolean;
+}> = ({ question, hasError }) => {
+  const { values, setFieldValue } = useFormikContext<FormikValues>();
+
+  return (
+    <div
+      className={`radio-group ${hasError ? 'is-invalid' : ''}`}
+      role="radiogroup"
+      aria-labelledby={`${question.id}-label`}
+    >
+      {question.options?.map((option, index) => (
+        <label key={option} className="radio-label">
+          <input
+            type="radio"
+            id={`${question.id}-${index}`}
+            name={question.id}
+            value={option}
+            onChange={(e) => setFieldValue(question.id, e.target.value)}
+            checked={values[question.id] === option}
+          />
+          <span className="radio-button"></span>
+          {option}
+        </label>
+      ))}
+    </div>
+  );
+};
+
+const FormField: React.FC<FormFieldProps> = ({ question, papersBySubject, tutorOptions }) => {
+  const { values, errors, touched, submitCount } = useFormikContext<FormikValues>();
 
   const shouldRender = useMemo(() => {
     return !question.dependsOn || question.dependsOn.condition(values[question.dependsOn.question]);
@@ -63,132 +219,24 @@ const FormField: React.FC<FormFieldProps> = ({ question, papersBySubject, tutorO
   }
 
   const isRequired = question.required;
-  const hasError = errors[question.id] && (touched[question.id] || submitCount > 0);
-
-  const handleCreate = (inputValue: string) => {
-    setIsLoading(true);
-    const newOption = createOption(inputValue); // This could be an async function later, hence the `isLoading` state
-    setIsLoading(false);
-    setFieldValue(question.id, newOption.value);
-  };
+  const hasError = !!(errors[question.id] && (touched[question.id] || submitCount > 0));
 
   const renderField = () => {
     switch (question.type) {
       case 'dropdown':
         if (question.id === 'subject') {
-          return (
-            <Select
-              inputId={question.id}
-              aria-labelledby={`${question.id}-label`}
-              options={Object.keys(papersBySubject).map(subject => ({ value: subject, label: subject }))}
-              onChange={(option: { value: string; label: string } | null) => {
-                if (option) {
-                  setFieldValue(question.id, option.value);
-                } else {
-                  setFieldValue(question.id, '');
-                }
-                setFieldValue('paper', '');
-                setFieldValue('paperCode', '');
-                setFieldValue('paperName', '');
-              }}
-              value={values.subject ? { value: values.subject, label: values.subject } : null}
-              className={`react-select-container ${hasError ? 'is-invalid' : ''}`}
-              classNamePrefix="react-select"
-              isClearable
-              placeholder="Select a subject"
-            />
-          );
+          return <SubjectDropdown question={question} papersBySubject={papersBySubject} hasError={hasError} />;
         } else if (question.id === 'paper') {
-          const selectedSubject = values.subject as string;
-          return (
-            <Select
-              inputId={question.id}
-              aria-labelledby={`${question.id}-label`}
-              options={papersBySubject[selectedSubject as keyof SubjectToPapersMap]?.map(paper => ({
-                value: paper.code,
-                label: `${paper.code} - ${paper.name} (${paper.level})`
-              }))}
-              onChange={(option: { value: string; label: string } | null) => {
-                if (option) {
-                  const [code, name] = option.label.split(' - ', 2);
-                  setFieldValue(question.id, option.value);
-                  setFieldValue('paperCode', code || '');
-                  setFieldValue('paperName', name || '');
-                } else {
-                  setFieldValue(question.id, '');
-                  setFieldValue('paperCode', '');
-                  setFieldValue('paperName', '');
-                }
-              }}
-              value={values.paper ? { value: values.paper, label: `${values.paperCode} - ${values.paperName}` } : null}
-              isDisabled={!selectedSubject}
-              placeholder={selectedSubject ? "Select a paper" : "Choose subject first"}
-              className={`react-select-container ${hasError ? 'is-invalid' : ''}`}
-              classNamePrefix="react-select"
-              isClearable
-            />
-          );
+          return <PaperDropdown question={question} papersBySubject={papersBySubject} hasError={hasError} />;
         }
         break;
       case 'text':
         if (question.id === 'tutor') {
-          return (
-            <CreatableSelect
-              inputId={question.id}
-              aria-labelledby={`${question.id}-label`}
-              options={tutorOptions}
-              onChange={(newValue: TutorOption | null) => {
-                if (newValue) {
-                  setFieldValue(question.id, newValue.value);
-                } else {
-                  setFieldValue(question.id, '');
-                }
-              }}
-              onCreateOption={handleCreate}
-              value={values[question.id] ? { value: values[question.id], label: values[question.id] } : null}
-              className={`react-select-container ${hasError ? 'is-invalid' : ''}`}
-              classNamePrefix="react-select"
-              isClearable
-              isDisabled={isLoading}
-              isLoading={isLoading}
-              placeholder="Select or type a tutor name"
-            />
-          );
+          return <TutorField question={question} tutorOptions={tutorOptions} hasError={hasError} />;
         }
-        return (
-          <input
-            type="text"
-            id={question.id}
-            name={question.id}
-            onChange={(e) => setFieldValue(question.id, e.target.value)}
-            className={`form-control ${hasError ? 'is-invalid' : ''}`}
-            value={values[question.id] || ''}
-            aria-labelledby={`${question.id}-label`}
-          />
-        );
+        return <TextField question={question} hasError={hasError} />;
       case 'radio':
-        return (
-          <div
-            className={`radio-group ${hasError ? 'is-invalid' : ''}`}
-            role="radiogroup"
-            aria-labelledby={`${question.id}-label`}
-          >
-            {question.options?.map((option, index) => (
-              <label key={option} className="radio-label">
-                <input
-                  type="radio"
-                  id={`${question.id}-${index}`}
-                  name={question.id}
-                  value={option}
-                  onChange={(e) => setFieldValue(question.id, e.target.value)}
-                  checked={values[question.id] === option}
-                />
-                <span className="radio-button"></span>
-                {option}
-              </label>
-            ))}
-          </div>
-        );
+        return <RadioField question={question} hasError={hasError} />;
       default:
         return null;
     }
