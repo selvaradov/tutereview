@@ -64,7 +64,7 @@ const SearchPage: React.FC = () => {
 
   const paperOptions: SelectOption[] = selectedSubjectPapers.map(paper => ({
     value: paper.code,
-    label: `${paper.code} - ${paper.name}`
+    label: `${paper.code} - ${paper.name} (${paper.level})`
   }));
 
   const memoizedCollegeOptions = useMemo(() =>
@@ -262,7 +262,7 @@ const SearchPage: React.FC = () => {
               return (
                 <Card key={key} className="mb-4">
                   <Card.Header>
-                    <h3>{`${firstReview.responses.paperName} (${firstReview.responses.paperCode}) - ${firstReview.responses.tutor}`}</h3>
+                    <h3>{`${firstReview.responses.paperName} - ${firstReview.responses.tutor}`}</h3>
                   </Card.Header>
                   <Card.Body>
                     {groupedReviews.map((review, index) => (

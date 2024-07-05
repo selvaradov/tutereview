@@ -104,9 +104,9 @@ const FormField: React.FC<FormFieldProps> = ({ question, papersBySubject, tutorO
             <Select
               inputId={question.id}
               aria-labelledby={`${question.id}-label`}
-              options={papersBySubject[selectedSubject as keyof SubjectToPapersMap]?.map(course => ({
-                value: course.code,
-                label: `${course.code} - ${course.name}`
+              options={papersBySubject[selectedSubject as keyof SubjectToPapersMap]?.map(paper => ({
+                value: paper.code,
+                label: `${paper.code} - ${paper.name} (${paper.level})`
               }))}
               onChange={(option: { value: string; label: string } | null) => {
                 if (option) {
