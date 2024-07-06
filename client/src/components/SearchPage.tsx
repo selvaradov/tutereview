@@ -47,7 +47,7 @@ const questionTitles: { [key: string]: string } = {
   feedback_timely: "Feedback Timeliness",
   rating_feedback: "Feedback Rating",
   tutorial_length: "Tutorial Length",
-  tutorial_structure: "Tutorial Structure",
+  tutorial_structure: "Tutorial Focus",
   tutorial_explanations: "Tutorial Explanations",
   rating_tutorial: "Tutorial Rating",
   rating_overall: "Overall Rating",
@@ -64,9 +64,9 @@ interface QuestionOptions {
 
 const questionOptions: QuestionOptions = {
   feedback_written: {
-    "comments on specific sections": "💬 Yes - I got comments on specific sections",
-    "overall comment for the whole submission": "📝 Yes - I got an overall comment for the whole submission",
-    "grade / numerical mark": "🔢 Yes - I got a grade / numerical mark"
+    "Comments on specific sections": "💬 Yes - I got comments on specific sections",
+    "Overall comment for the whole submission": "📝 Yes - I got an overall comment for the whole submission",
+    "Grade / numerical mark": "🔢 Yes - I got a grade / numerical mark"
   }
 };
 
