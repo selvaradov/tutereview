@@ -1,12 +1,12 @@
 // Import required modules
-import { loadEnvConfig } from './config/envConfig.js' // configure environment variables
+import { loadEnvConfig } from './config/env.js' // configure environment variables
 import express, { Application, Request, Response, NextFunction } from 'express';
 import session from 'express-session';
 import { FirestoreStore } from '@google-cloud/connect-firestore';
 import { Firestore } from '@google-cloud/firestore';
 import connectSQLite3 from 'connect-sqlite3';
 import passport from 'passport';
-import { configurePassport } from './config/passportConfig.js';
+import { configurePassport } from './config/passport.js';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import logger from 'morgan';

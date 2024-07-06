@@ -1,7 +1,7 @@
 // Import statements adjusted for ESM syntax
 import passport, { Profile } from 'passport';
 import { Strategy as MicrosoftStrategy } from 'passport-microsoft';
-import { getSecret } from './secretsManager.js';
+import { getSecret } from './secrets.js';
 import User from '../models/user.js'
 
 // see https://stackoverflow.com/questions/70632958/property-id-does-not-exist-on-type-user-with-passport-and-typescript 
