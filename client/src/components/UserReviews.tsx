@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Card, Spinner } from 'react-bootstrap';
+import { Spinner } from 'react-bootstrap';
 import PageLayout from './PageLayout';
 import { useNotification } from '../context/NotificationContext';
+import ReviewCard from './ReviewCard';
 
 interface Review {
   _id: string;
-  responses: { [key: string]: string };
+  responses: {
+    tutor: string;
+    subject: string;
+    paperCode: string;
+    paperName: string;
+    paperLevel: string;
+    [key: string]: string | number | string[];
+  };
   submittedAt: string;
-  college: string;
 }
 
 const baseURL = process.env.REACT_APP_API_URL;
@@ -59,24 +66,7 @@ const UserReviews: React.FC = () => {
     return (
       <>
         {reviews.map((review) => (
-          <Card key={review._id} className="mb-4">
-            <Card.Body>
-              <Card.Title>{`${review.responses.paperName} (${review.responses.paperCode}) - ${review.responses.tutor}`}</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                Submitted: {new Date(review.submittedAt).toLocaleDateString("en-GB", { year: 'numeric', month: 'long', day: 'numeric' })}
-              </Card.Subtitle>
-              {Object.entries(review.responses).map(([key, value]) => {
-                if (!['tutor', 'subject', 'paperCode', 'paper', 'paperName', 'submittedAt'].includes(key) && value.trim() !== "") {
-                  return (
-                    <Card.Text key={key}>
-                      <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value}
-                    </Card.Text>
-                  );
-                }
-                return null;
-              })}
-            </Card.Body>
-          </Card>
+          <ReviewCard key={review._id} review={review} />
         ))}
       </>
     );
