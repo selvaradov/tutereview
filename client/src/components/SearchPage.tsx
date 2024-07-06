@@ -6,6 +6,7 @@ import PageLayout from './PageLayout';
 import { useNotification } from '../context/NotificationContext';
 import { useLoading } from '../context/LoadingContext';
 import ReviewCard from './ReviewCard';
+import ReviewSummary from './ReviewSummary';
 
 interface Paper {
   code: string;
@@ -276,6 +277,7 @@ const SearchPage: React.FC = () => {
                   <h3>{`${firstReview.responses.paperName} - ${firstReview.responses.tutor}`}</h3>
                 </Card.Header>
                 <Card.Body>
+                <ReviewSummary reviews={groupedReviews} />
                   {groupedReviews.map((review) => (
                     <ReviewCard 
                     key={review._id} 
