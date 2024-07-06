@@ -12,6 +12,7 @@ interface Review {
     [key: string]: string | number | string[];
   };
   submittedAt: string;
+  college?: string;
 }
 
 interface ReviewCardProps {
@@ -102,16 +103,18 @@ const renderValue = (key: string, value: string | number | string[]) => {
 };
 
 const ReviewCard: React.FC<ReviewCardProps> = ({ review, showCollege = false, collegeLookup }) => {
+  console.log(review.responses);
+  console.log(collegeLookup)
   return (
     <Card className="mb-3">
       <Card.Body>
         <Card.Title>{`${review.responses.paperName} (${review.responses.paperLevel}) - ${review.responses.tutor}`}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
-          Submitted: {new Date(review.submittedAt).toLocaleDateString("en-GB", { year: 'numeric', month: 'long', day: 'numeric' })}
+          <div>Submitted: {new Date(review.submittedAt).toLocaleDateString("en-GB", { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+          <div>{showCollege && collegeLookup && `College: ${collegeLookup.get(review.college as string) || review.responses.college}`}</div>
+          
         </Card.Subtitle>
-        {showCollege && collegeLookup && (
-          <p><em>College: {collegeLookup.get(review.responses.college as string) || review.responses.college}</em></p>
-        )}
+        
         {displayOrder.map((key) => {
           const value = review.responses[key];
           if (value !== undefined && value !== "") { 
