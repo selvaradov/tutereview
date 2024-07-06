@@ -206,12 +206,13 @@ const SearchPage: React.FC = () => {
     }
   }, [results]);
 
-  const handleViewFullResults = (key: string) => {
+  const handleToggleFullResults = (key: string) => {
     setGroupedReviews(prev => ({
       ...prev,
-      [key]: { ...prev[key], showFullResults: true }
+      [key]: { ...prev[key], showFullResults: !prev[key].showFullResults }
     }));
   };
+
 
   return (
     <PageLayout title="Search reviews">
@@ -276,18 +277,16 @@ const SearchPage: React.FC = () => {
       <div id="results" className="mt-4">
       {areSearchParamsEmpty(latestSearchParams.current) ? (
         <p>Please select some filters to search.</p>
-      ) : results.length === 0 && !isLoading ? (
+      ) : Object.keys(groupedReviews).length === 0 && !isLoading ? (
         <p>No results found.</p>
       ) : (
         <>
         <p>
           You can now see how other students found their tutorials, including how helpful the 
-          tutor's answers to their questions were  ("<em>Tutorial Explanations</em>")
-          whether the tutor had looked at their work
-          before the tutorial ("<em>Pre-Tutorial Work Review</em>"), how tutorials were structured,
-          and the type of feedback they received. 
+          tutor's answers to their questions were, whether the tutor had looked at their work
+          before the tutorial, how tutorials were structured, and the type of feedback they received. 
         </p>
-        {Object.entries(groupedReviews).map(([key, { reviews, showFullResults }]) => {
+          {Object.entries(groupedReviews).map(([key, { reviews, showFullResults }]) => {
             const firstReview = reviews[0];
             return (
               <Card key={key} className="mb-4">
@@ -297,7 +296,8 @@ const SearchPage: React.FC = () => {
                 <Card.Body>
                   <ReviewSummary 
                     reviews={reviews} 
-                    onViewFullResults={() => handleViewFullResults(key)}
+                    onToggleFullResults={() => handleToggleFullResults(key)}
+                    showFullResults={showFullResults}
                   />
                   {showFullResults && reviews.map((review) => (
                     <ReviewCard 
@@ -313,7 +313,7 @@ const SearchPage: React.FC = () => {
           })}
         </>
       )}
-      </div>
+    </div>
     </PageLayout>
   );
 };

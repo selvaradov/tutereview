@@ -11,10 +11,11 @@ interface Review {
 
 interface ReviewSummaryProps {
   reviews: Review[];
-  onViewFullResults: () => void;
+  onToggleFullResults: () => void;
+  showFullResults: boolean;
 }
 
-const ReviewSummary: React.FC<ReviewSummaryProps> = ({ reviews, onViewFullResults }) => {
+const ReviewSummary: React.FC<ReviewSummaryProps> = ({ reviews, onToggleFullResults, showFullResults }) => {
   const calculateAverageRating = (key: string): number => {
     const ratings = reviews.map(review => Number(review.responses[key])).filter(rating => !isNaN(rating));
     return ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length;
@@ -114,7 +115,20 @@ const ReviewSummary: React.FC<ReviewSummaryProps> = ({ reviews, onViewFullResult
           </Col>
         </Row>
         <div className="text-center">
-          <button className="btn btn-primary" onClick={onViewFullResults}>View Full Results ({reviews.length} reviews)</button>
+          <button className="btn btn-primary" onClick={onToggleFullResults}>
+            {showFullResults ? (
+              <>
+                <ChevronUp size={18} className="me-2" />
+                Hide full results {" "}
+              </>
+            ) : (
+              <>
+                <ChevronDown size={18} className="me-2" />
+                View full results {" "}
+              </>
+            )}
+            ({reviews.length} reviews)
+          </button>
         </div>
       </Card.Body>
     </Card>
