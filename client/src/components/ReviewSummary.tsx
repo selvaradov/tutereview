@@ -1,5 +1,7 @@
 import React from 'react';
-import { Table } from 'react-bootstrap';
+import { Row, Col, Card, ProgressBar } from 'react-bootstrap';
+import { Star, Clock, User, BookOpen, MessageSquare, ChevronDown, ChevronUp } from 'lucide-react';
+
 
 interface Review {
   responses: {
@@ -9,21 +11,21 @@ interface Review {
 
 interface ReviewSummaryProps {
   reviews: Review[];
+  onViewFullResults: () => void;
 }
 
-const ReviewSummary: React.FC<ReviewSummaryProps> = ({ reviews }) => {
-  const calculateAverageRating = (key: string): string => {
+const ReviewSummary: React.FC<ReviewSummaryProps> = ({ reviews, onViewFullResults }) => {
+  const calculateAverageRating = (key: string): number => {
     const ratings = reviews.map(review => Number(review.responses[key])).filter(rating => !isNaN(rating));
-    const average = ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length;
-    return average.toFixed(1);
+    return ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length;
   };
 
-  const calculateProportion = (key: string, value: string): string => {
+  const calculateProportion = (key: string, value: string): number => {
     const count = reviews.filter(review => {
       const response = review.responses[key];
       return Array.isArray(response) ? response.includes(value) : response === value;
     }).length;
-    return ((count / reviews.length) * 100).toFixed(1) + '%';
+    return (count / reviews.length) * 100;
   };
 
   const getMostCommonValue = (key: string): string => {
@@ -35,62 +37,87 @@ const ReviewSummary: React.FC<ReviewSummaryProps> = ({ reviews }) => {
     return Object.entries(valueCounts).sort((a, b) => b[1] - a[1])[0][0];
   };
 
-  return (
-    <div className="mb-4">
-      <h4>Summary ({reviews.length} reviews)</h4>
-      <Table striped bordered hover>
-        <tbody>
-          <tr>
-            <th>Overall Rating</th>
-            <td>{calculateAverageRating('rating_overall')} / 5</td>
-          </tr>
-          <tr>
-            <th>Tutorial Rating</th>
-            <td>{calculateAverageRating('rating_tutorial')} / 5</td>
-          </tr>
-          <tr>
-            <th>Feedback Rating</th>
-            <td>{calculateAverageRating('rating_feedback')} / 5</td>
-          </tr>
-          <tr>
-            <th>Written Feedback - Comments on specific sections</th>
-            <td>{calculateProportion('feedback_written', '💬 Yes - I got comments on specific sections')}</td>
-          </tr>
-          <tr>
-            <th>Written Feedback - Overall comment</th>
-            <td>{calculateProportion('feedback_written', '📝 Yes - I got an overall comment for the whole submission')}</td>
-          </tr>
-          <tr>
-            <th>Written Feedback - Grade / numerical mark</th>
-            <td>{calculateProportion('feedback_written', '🔢 Yes - I got a grade / numerical mark')}</td>
-          </tr>
-          <tr>
-            <th>Verbal Feedback</th>
-            <td>{calculateProportion('feedback_verbal', '🗣️ Yes')}</td>
-          </tr>
-          <tr>
-            <th>Pre-Tutorial Work Review</th>
-            <td>{calculateProportion('pre_tutorial', '👀 Yes')}</td>
-          </tr>
-          <tr>
-            <th>Most Common Tutorial Length</th>
-            <td>{getMostCommonValue('tutorial_length')}</td>
-          </tr>
-          <tr>
-            <th>Most Common Tutorial Structure</th>
-            <td>{getMostCommonValue('tutorial_structure')}</td>
-          </tr>
-          <tr>
-            <th>Most Common Tutorial Explanations</th>
-            <td>{getMostCommonValue('tutorial_explanations')}</td>
-          </tr>
-          <tr>
-            <th>Most Common Feedback Timeliness</th>
-            <td>{getMostCommonValue('feedback_timely')}</td>
-          </tr>
-        </tbody>
-      </Table>
+  const StarRating: React.FC<{ rating: number }> = ({ rating }) => (
+    <div>
+      {[...Array(5)].map((_, i) => (
+        <Star key={i} fill={i < Math.round(rating) ? "#ffc107" : "none"} stroke={i < Math.round(rating) ? "#ffc107" : "#e4e5e9"} size={24} />
+      ))}
+      <span className="ms-2">{rating.toFixed(1)}</span>
     </div>
+  );
+
+  return (
+    <Card className="mb-4">
+      <Card.Body>
+        <Row>
+          <Col md={4} className="mb-3">
+            <h5>Overall Rating</h5>
+            <StarRating rating={calculateAverageRating('rating_overall')} />
+          </Col>
+          <Col md={4} className="mb-3">
+            <h5>Tutorial Rating</h5>
+            <StarRating rating={calculateAverageRating('rating_tutorial')} />
+          </Col>
+          <Col md={4} className="mb-3">
+            <h5>Feedback Rating</h5>
+            <StarRating rating={calculateAverageRating('rating_feedback')} />
+          </Col>
+        </Row>
+        <Row className="mb-3">
+          <Col md={6} className="mb-3">
+            <h5>Feedback</h5>
+            <div className="d-flex align-items-center mb-2">
+              <MessageSquare size={18} className="me-2" />
+              <div className="w-100">
+                <div className="d-flex justify-content-between">
+                  <span>Written - Specific</span>
+                  <span>{calculateProportion('feedback_written', '💬 Yes - I got comments on specific sections').toFixed(0)}%</span>
+                </div>
+                <ProgressBar now={calculateProportion('feedback_written', '💬 Yes - I got comments on specific sections')} />
+              </div>
+            </div>
+            <div className="d-flex align-items-center mb-2">
+              <MessageSquare size={18} className="me-2" />
+              <div className="w-100">
+                <div className="d-flex justify-content-between">
+                  <span>Written - Overall</span>
+                  <span>{calculateProportion('feedback_written', '📝 Yes - I got an overall comment for the whole submission').toFixed(0)}%</span>
+                </div>
+                <ProgressBar now={calculateProportion('feedback_written', '📝 Yes - I got an overall comment for the whole submission')} />
+              </div>
+            </div>
+            <div className="d-flex align-items-center">
+              <MessageSquare size={18} className="me-2" />
+              <div className="w-100">
+                <div className="d-flex justify-content-between">
+                  <span>Verbal</span>
+                  <span>{calculateProportion('feedback_verbal', '🗣️ Yes').toFixed(0)}%</span>
+                </div>
+                <ProgressBar now={calculateProportion('feedback_verbal', '🗣️ Yes')} />
+              </div>
+            </div>
+          </Col>
+          <Col md={6} className="mb-3">
+            <h5>Tutorial</h5>
+            <div className="d-flex align-items-center mb-2">
+              <Clock size={18} className="me-2" />
+              <span>Length: {getMostCommonValue('tutorial_length')}</span>
+            </div>
+            <div className="d-flex align-items-center mb-2">
+              <BookOpen size={18} className="me-2" />
+              <span>Structure: {getMostCommonValue('tutorial_structure')}</span>
+            </div>
+            <div className="d-flex align-items-center">
+              <User size={18} className="me-2" />
+              <span>Explanations: {getMostCommonValue('tutorial_explanations')}</span>
+            </div>
+          </Col>
+        </Row>
+        <div className="text-center">
+          <button className="btn btn-primary" onClick={onViewFullResults}>View Full Results ({reviews.length} reviews)</button>
+        </div>
+      </Card.Body>
+    </Card>
   );
 };
 

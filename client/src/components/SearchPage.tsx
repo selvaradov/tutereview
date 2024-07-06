@@ -45,6 +45,13 @@ interface SelectOption {
   label: string;
 }
 
+interface GroupedReviews {
+  [key: string]: {
+    reviews: Review[];
+    showFullResults: boolean;
+  };
+}
+
 const baseURL = process.env.REACT_APP_API_URL;
 
 const SearchPage: React.FC = () => {
@@ -61,6 +68,7 @@ const SearchPage: React.FC = () => {
   const [results, setResults] = useState<Review[]>([]);
   const { isLoading, startLoading, stopLoading } = useLoading();
   const latestSearchParams = useRef(searchParams);
+  const [groupedReviews, setGroupedReviews] = useState<GroupedReviews>({});
 
   const subjectOptions: SelectOption[] = Object.keys(papersBySubject).map(subjectName => ({
     value: subjectName,
@@ -184,15 +192,25 @@ const SearchPage: React.FC = () => {
     }));
   };
 
-  const groupReviewsByPaperAndTutor = (reviews: Review[]): Record<string, Review[]> => {
-    return reviews.reduce((acc, review) => {
-      const key = `${review.responses.paperCode}-${review.responses.tutor}`;
-      if (!acc[key]) {
-        acc[key] = [];
-      }
-      acc[key].push(review);
-      return acc;
-    }, {} as Record<string, Review[]>);
+  useEffect(() => {
+    if (results.length > 0) {
+      const grouped = results.reduce((acc, review) => {
+        const key = `${review.responses.paperCode}-${review.responses.tutor}`;
+        if (!acc[key]) {
+          acc[key] = { reviews: [], showFullResults: false };
+        }
+        acc[key].reviews.push(review);
+        return acc;
+      }, {} as GroupedReviews);
+      setGroupedReviews(grouped);
+    }
+  }, [results]);
+
+  const handleViewFullResults = (key: string) => {
+    setGroupedReviews(prev => ({
+      ...prev,
+      [key]: { ...prev[key], showFullResults: true }
+    }));
   };
 
   return (
@@ -269,22 +287,25 @@ const SearchPage: React.FC = () => {
           before the tutorial ("<em>Pre-Tutorial Work Review</em>"), how tutorials were structured,
           and the type of feedback they received. 
         </p>
-          {Object.entries(groupReviewsByPaperAndTutor(results)).map(([key, groupedReviews]) => {
-            const firstReview = groupedReviews[0];
+        {Object.entries(groupedReviews).map(([key, { reviews, showFullResults }]) => {
+            const firstReview = reviews[0];
             return (
               <Card key={key} className="mb-4">
                 <Card.Header>
                   <h3>{`${firstReview.responses.paperName} - ${firstReview.responses.tutor}`}</h3>
                 </Card.Header>
                 <Card.Body>
-                <ReviewSummary reviews={groupedReviews} />
-                  {groupedReviews.map((review) => (
-                    <ReviewCard 
-                    key={review._id} 
-                    review={review} 
-                    showCollege={true}
-                    collegeLookup={collegeLookup}
+                  <ReviewSummary 
+                    reviews={reviews} 
+                    onViewFullResults={() => handleViewFullResults(key)}
                   />
+                  {showFullResults && reviews.map((review) => (
+                    <ReviewCard 
+                      key={review._id} 
+                      review={review} 
+                      showCollege={true}
+                      collegeLookup={collegeLookup}
+                    />
                   ))}
                 </Card.Body>
               </Card>
@@ -292,7 +313,7 @@ const SearchPage: React.FC = () => {
           })}
         </>
       )}
-    </div>
+      </div>
     </PageLayout>
   );
 };
