@@ -1,4 +1,2970 @@
 {
+  "Ancient and Modern History": [
+    {
+      "code": "4c1",
+      "name": "Herodotus",
+      "level": "Prelims",
+      "id": "ancient and modern history_prelims_4c1"
+    },
+    {
+      "code": "4c2",
+      "name": "Sallust: Jugurtha",
+      "level": "Prelims",
+      "id": "ancient and modern history_prelims_4c2"
+    },
+    {
+      "code": "4d1",
+      "name": "Beginning Ancient Latin",
+      "level": "Prelims",
+      "id": "ancient and modern history_prelims_4d1"
+    },
+    {
+      "code": "4d1",
+      "name": "Beginning Ancient Latin",
+      "level": "Prelims",
+      "id": "ancient and modern history_prelims_4d1"
+    },
+    {
+      "code": "4d2",
+      "name": "Beginning Ancient Greek",
+      "level": "Prelims",
+      "id": "ancient and modern history_prelims_4d2"
+    },
+    {
+      "code": "4d3",
+      "name": "Intermediate Latin",
+      "level": "Prelims",
+      "id": "ancient and modern history_prelims_4d3"
+    },
+    {
+      "code": "4d4",
+      "name": "Intermediate Ancient Greek",
+      "level": "Prelims",
+      "id": "ancient and modern history_prelims_4d4"
+    },
+    {
+      "code": "4d5",
+      "name": "Advanced Latin",
+      "level": "Prelims",
+      "id": "ancient and modern history_prelims_4d5"
+    },
+    {
+      "code": "4d6",
+      "name": "Advanced Ancient Greek",
+      "level": "Prelims",
+      "id": "ancient and modern history_prelims_4d6"
+    }
+  ],
+  "Archaeology and Anthropology": [
+    {
+      "code": "1",
+      "name": "Introduction to world archaeology",
+      "level": "Mods",
+      "id": "archaeology and anthropology_mods_1"
+    },
+    {
+      "code": "2",
+      "name": "Introduction to anthropological theory",
+      "level": "Mods",
+      "id": "archaeology and anthropology_mods_2"
+    },
+    {
+      "code": "3",
+      "name": "Perspectives on human evolution",
+      "level": "Mods",
+      "id": "archaeology and anthropology_mods_3"
+    },
+    {
+      "code": "4",
+      "name": "The nature of archaeological and anthropological enquiry",
+      "level": "Mods",
+      "id": "archaeology and anthropology_mods_4"
+    },
+    {
+      "code": "1",
+      "name": "Social analysis and interpretation",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_1"
+    },
+    {
+      "code": "2",
+      "name": "Cultural representations, beliefs, and practices",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_2"
+    },
+    {
+      "code": "3",
+      "name": "Landscape and Ecology",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_3"
+    },
+    {
+      "code": "4",
+      "name": "Urbanism and Society",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_4"
+    },
+    {
+      "code": "5",
+      "name": "Fieldwork and Methods",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_5"
+    },
+    {
+      "code": "6",
+      "name": "Anglo-Saxon Society and Economy in the Early Christian Period",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_6"
+    },
+    {
+      "code": "7",
+      "name": "Anthropology of Buddhism",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_7"
+    },
+    {
+      "code": "8",
+      "name": "Archaeology of Minoan Crete 3200-1000BC",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_8"
+    },
+    {
+      "code": "9",
+      "name": "Archaeology of Modern Human Origins",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_9"
+    },
+    {
+      "code": "10",
+      "name": "Archaeology of Southern African Hunter-Gatherers",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_10"
+    },
+    {
+      "code": "11",
+      "name": "Art under the Roman Empire, AD 14-336",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_11"
+    },
+    {
+      "code": "12",
+      "name": "Byzantium: the transition from Antiquity to the Middle Ages, AD 500-1100",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_12"
+    },
+    {
+      "code": "13",
+      "name": "Chinese Archaeology",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_13"
+    },
+    {
+      "code": "14",
+      "name": "The emergence of Medieval Europe AD 400-900",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_14"
+    },
+    {
+      "code": "15",
+      "name": "Farming and early states in Sub-Saharan Africa",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_15"
+    },
+    {
+      "code": "16",
+      "name": "From hunting and gathering to states and empires in South-west Asia",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_16"
+    },
+    {
+      "code": "17",
+      "name": "Gender and Sexuality: cross-cultural perspectives",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_17"
+    },
+    {
+      "code": "18",
+      "name": "Greek archaeology and art c.500-323 BC",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_18"
+    },
+    {
+      "code": "19",
+      "name": "Greeks and the Mediterranean World c.950-500 BC",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_19"
+    },
+    {
+      "code": "20",
+      "name": "Hellenistic Archaeology, 330-30 BC",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_20"
+    },
+    {
+      "code": "21",
+      "name": "Japanese society",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_21"
+    },
+    {
+      "code": "22",
+      "name": "Language and Anthropology",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_22"
+    },
+    {
+      "code": "23",
+      "name": "The Late Bronze Age and Early Iron Age Aegean",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_23"
+    },
+    {
+      "code": "24",
+      "name": "The Later Prehistory of Europe",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_24"
+    },
+    {
+      "code": "25",
+      "name": "Lowland South",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_25"
+    },
+    {
+      "code": "26",
+      "name": "Medical Anthropology: Sensory Experience, the Sentient Body and Therapeutics",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_26"
+    },
+    {
+      "code": "27",
+      "name": "Mediterranean Maritime Archaeology",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_27"
+    },
+    {
+      "code": "28",
+      "name": "Mesopotamia and Egypt from the emergence of complex society to c.2000 BC",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_28"
+    },
+    {
+      "code": "29",
+      "name": "Objects in Motion",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_29"
+    },
+    {
+      "code": "30",
+      "name": "Physical Anthropology and Human Osteoarchaeology",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_30"
+    },
+    {
+      "code": "31",
+      "name": "Roman Archaeology: Cities and settlement under the Empire",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_31"
+    },
+    {
+      "code": "32",
+      "name": "Science-based methods in Archaeology",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_32"
+    },
+    {
+      "code": "33",
+      "name": "South Asia",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_33"
+    },
+    {
+      "code": "34",
+      "name": "Themes in African Anthropology",
+      "level": "Finals",
+      "id": "archaeology and anthropology_finals_34"
+    }
+  ],
+  "Biology": [
+    {
+      "code": "P1",
+      "name": "Building a Phenotype",
+      "level": "Prelims",
+      "id": "biology_prelims_p1"
+    },
+    {
+      "code": "P2",
+      "name": "Diversity of Life",
+      "level": "Prelims",
+      "id": "biology_prelims_p2"
+    },
+    {
+      "code": "P3",
+      "name": "Ecology and Evolution",
+      "level": "Prelims",
+      "id": "biology_prelims_p3"
+    },
+    {
+      "code": "A1",
+      "name": "Cell and Developmental Biology",
+      "level": "Finals",
+      "id": "biology_finals_a1"
+    },
+    {
+      "code": "A2",
+      "name": "Ecology and Evolution",
+      "level": "Finals",
+      "id": "biology_finals_a2"
+    },
+    {
+      "code": "A3",
+      "name": "Genomics and Host-microbe Interactions",
+      "level": "Finals",
+      "id": "biology_finals_a3"
+    },
+    {
+      "code": "A4",
+      "name": "Organisms \u2013 Behaviour and Physiology",
+      "level": "Finals",
+      "id": "biology_finals_a4"
+    },
+    {
+      "code": "B1",
+      "name": "Advanced Cell Biology",
+      "level": "Finals",
+      "id": "biology_finals_b1"
+    },
+    {
+      "code": "B2",
+      "name": "Advanced Ecology & Evolution",
+      "level": "Finals",
+      "id": "biology_finals_b2"
+    },
+    {
+      "code": "B3",
+      "name": "Animal Behaviour & Physiology",
+      "level": "Finals",
+      "id": "biology_finals_b3"
+    },
+    {
+      "code": "B4",
+      "name": "Biology of Infectious Disease",
+      "level": "Finals",
+      "id": "biology_finals_b4"
+    },
+    {
+      "code": "B5",
+      "name": "Ecosystems, Conservation & Sustainable Development",
+      "level": "Finals",
+      "id": "biology_finals_b5"
+    },
+    {
+      "code": "B6",
+      "name": "Evolution & Development",
+      "level": "Finals",
+      "id": "biology_finals_b6"
+    },
+    {
+      "code": "B7",
+      "name": "Genome Diversity & Evolution",
+      "level": "Finals",
+      "id": "biology_finals_b7"
+    },
+    {
+      "code": "B8",
+      "name": "Green Grand Challenges",
+      "level": "Finals",
+      "id": "biology_finals_b8"
+    }
+  ],
+  "Chemistry": [
+    {
+      "code": "1",
+      "name": "Inorganic Chemistry",
+      "level": "Prelims",
+      "id": "chemistry_prelims_1"
+    },
+    {
+      "code": "2",
+      "name": "Organic Chemistry",
+      "level": "Prelims",
+      "id": "chemistry_prelims_2"
+    },
+    {
+      "code": "3",
+      "name": "Physical Chemistry",
+      "level": "Prelims",
+      "id": "chemistry_prelims_3"
+    },
+    {
+      "code": "4",
+      "name": "Mathematics for Chemistry",
+      "level": "Prelims",
+      "id": "chemistry_prelims_4"
+    }
+  ],
+  "Classical Archaeology and Ancient History": [
+    {
+      "code": "1",
+      "name": "Aristocracy and democracy in the Greek world, 550-450 BC",
+      "level": "Prelims",
+      "id": "classical archaeology and ancient history_prelims_1"
+    },
+    {
+      "code": "2",
+      "name": "Republic to Empire: Rome, 50 BC to AD 50",
+      "level": "Prelims",
+      "id": "classical archaeology and ancient history_prelims_2"
+    },
+    {
+      "code": "3",
+      "name": "Homeric archaeology and early Greece, 1550-700 BC",
+      "level": "Prelims",
+      "id": "classical archaeology and ancient history_prelims_3"
+    },
+    {
+      "code": "4",
+      "name": "Greek vases",
+      "level": "Prelims",
+      "id": "classical archaeology and ancient history_prelims_4"
+    },
+    {
+      "code": "5",
+      "name": "Greek sculpture, c.600-300 BC",
+      "level": "Prelims",
+      "id": "classical archaeology and ancient history_prelims_5"
+    },
+    {
+      "code": "6",
+      "name": "Roman architecture",
+      "level": "Prelims",
+      "id": "classical archaeology and ancient history_prelims_6"
+    },
+    {
+      "code": "7",
+      "name": "Thucydides and the west",
+      "level": "Prelims",
+      "id": "classical archaeology and ancient history_prelims_7"
+    },
+    {
+      "code": "8",
+      "name": "Aristophanes' political comedy",
+      "level": "Prelims",
+      "id": "classical archaeology and ancient history_prelims_8"
+    },
+    {
+      "code": "9",
+      "name": "Cicero and Catiline",
+      "level": "Prelims",
+      "id": "classical archaeology and ancient history_prelims_9"
+    },
+    {
+      "code": "10",
+      "name": "Tacitus and Tiberius",
+      "level": "Prelims",
+      "id": "classical archaeology and ancient history_prelims_10"
+    },
+    {
+      "code": "11",
+      "name": "Beginning Ancient Greek",
+      "level": "Prelims",
+      "id": "classical archaeology and ancient history_prelims_11"
+    },
+    {
+      "code": "12",
+      "name": "Beginning Latin",
+      "level": "Prelims",
+      "id": "classical archaeology and ancient history_prelims_12"
+    },
+    {
+      "code": "13",
+      "name": "Intermediate Ancient Greek",
+      "level": "Prelims",
+      "id": "classical archaeology and ancient history_prelims_13"
+    },
+    {
+      "code": "14",
+      "name": "Intermediate Latin",
+      "level": "Prelims",
+      "id": "classical archaeology and ancient history_prelims_14"
+    },
+    {
+      "code": "15",
+      "name": "Advanced Ancient Greek",
+      "level": "Prelims",
+      "id": "classical archaeology and ancient history_prelims_15"
+    },
+    {
+      "code": "16",
+      "name": "Advanced Latin",
+      "level": "Prelims",
+      "id": "classical archaeology and ancient history_prelims_16"
+    }
+  ],
+  "Classics": [
+    {
+      "code": "I",
+      "name": "Homer, Iliad",
+      "level": "Mods",
+      "id": "classics_mods_i"
+    },
+    {
+      "code": "II",
+      "name": "Virgil, Aeneid",
+      "level": "Mods",
+      "id": "classics_mods_ii"
+    },
+    {
+      "code": "III",
+      "name": "Texts and Contexts",
+      "level": "Mods",
+      "id": "classics_mods_iii"
+    },
+    {
+      "code": "V",
+      "name": "Philosophy Special Subject",
+      "level": "Mods",
+      "id": "classics_mods_v"
+    },
+    {
+      "code": "VI",
+      "name": "Classical Special Subject",
+      "level": "Mods",
+      "id": "classics_mods_vi"
+    },
+    {
+      "code": "VII",
+      "name": "Unprepared Translation from Greek",
+      "level": "Mods",
+      "id": "classics_mods_vii"
+    },
+    {
+      "code": "VIII",
+      "name": "Unprepared Translation from Latin",
+      "level": "Mods",
+      "id": "classics_mods_viii"
+    },
+    {
+      "code": "IX",
+      "name": "Greek Language",
+      "level": "Mods",
+      "id": "classics_mods_ix"
+    },
+    {
+      "code": "X",
+      "name": "Latin Language",
+      "level": "Mods",
+      "id": "classics_mods_x"
+    },
+    {
+      "code": "A1",
+      "name": "Early Greek Philosophy",
+      "level": "Mods",
+      "id": "classics_mods_a1"
+    },
+    {
+      "code": "A2",
+      "name": "Plato, Euthyphro and Meno",
+      "level": "Mods",
+      "id": "classics_mods_a2"
+    },
+    {
+      "code": "A3",
+      "name": "Lucretius, De Rerum Natura IV",
+      "level": "Mods",
+      "id": "classics_mods_a3"
+    },
+    {
+      "code": "B1",
+      "name": "Introduction to Modern Philosophy",
+      "level": "Mods",
+      "id": "classics_mods_b1"
+    },
+    {
+      "code": "C1",
+      "name": "Thucydides and the West",
+      "level": "Mods",
+      "id": "classics_mods_c1"
+    },
+    {
+      "code": "C2",
+      "name": "Aristophanes' Political Comedy",
+      "level": "Mods",
+      "id": "classics_mods_c2"
+    },
+    {
+      "code": "D1",
+      "name": "Cicero and Catiline",
+      "level": "Mods",
+      "id": "classics_mods_d1"
+    },
+    {
+      "code": "D2",
+      "name": "Tacitus and Tiberius",
+      "level": "Mods",
+      "id": "classics_mods_d2"
+    },
+    {
+      "code": "E1",
+      "name": "Homeric Archaeology and Early Greece from 1550 BC to 700 BC",
+      "level": "Mods",
+      "id": "classics_mods_e1"
+    },
+    {
+      "code": "E2",
+      "name": "Greek Vases",
+      "level": "Mods",
+      "id": "classics_mods_e2"
+    },
+    {
+      "code": "E3",
+      "name": "Greek Sculpture, c. 600-300 BC",
+      "level": "Mods",
+      "id": "classics_mods_e3"
+    },
+    {
+      "code": "E4",
+      "name": "Roman Architecture",
+      "level": "Mods",
+      "id": "classics_mods_e4"
+    },
+    {
+      "code": "F1",
+      "name": "Historical Linguistics and Comparative Philology",
+      "level": "Mods",
+      "id": "classics_mods_f1"
+    },
+    {
+      "code": "401",
+      "name": "Archaic Greek History: c.750 to 479 bc",
+      "level": "Finals",
+      "id": "classics_finals_401"
+    },
+    {
+      "code": "402",
+      "name": "Thucydides and the Greek World: 479 to 403 bc",
+      "level": "Finals",
+      "id": "classics_finals_402"
+    },
+    {
+      "code": "403",
+      "name": "The End of the Peloponnesian War to the Death of Philip II of Macedon: 403 to 336 bc",
+      "level": "Finals",
+      "id": "classics_finals_403"
+    },
+    {
+      "code": "404",
+      "name": "Polybius, Rome and the Mediterranean: 241-146 bc",
+      "level": "Finals",
+      "id": "classics_finals_404"
+    },
+    {
+      "code": "405",
+      "name": "Republic in Crisis: 146-46 bc",
+      "level": "Finals",
+      "id": "classics_finals_405"
+    },
+    {
+      "code": "406",
+      "name": "Rome, Italy and Empire from Caesar to Claudius: 46 bc to ad 54",
+      "level": "Finals",
+      "id": "classics_finals_406"
+    },
+    {
+      "code": "407",
+      "name": "Athenian Democracy in the Classical Age",
+      "level": "Finals",
+      "id": "classics_finals_407"
+    },
+    {
+      "code": "408",
+      "name": "Alexander the Great and his Early Successors (336 BC-302 BC)",
+      "level": "Finals",
+      "id": "classics_finals_408"
+    },
+    {
+      "code": "409",
+      "name": "The Hellenistic World: Societies and Cultures (c.300-100 BC)",
+      "level": "Finals",
+      "id": "classics_finals_409"
+    },
+    {
+      "code": "410",
+      "name": "Cicero: Politics and Thought in the Late Republic",
+      "level": "Finals",
+      "id": "classics_finals_410"
+    },
+    {
+      "code": "411",
+      "name": "Politics, Society and Culture from Nero to Hadrian",
+      "level": "Finals",
+      "id": "classics_finals_411"
+    },
+    {
+      "code": "412",
+      "name": "Religions in the Greek and Roman World (c.31 BC-AD 312)",
+      "level": "Finals",
+      "id": "classics_finals_412"
+    },
+    {
+      "code": "413",
+      "name": "Sexuality and Gender in Greece and Rome",
+      "level": "Finals",
+      "id": "classics_finals_413"
+    },
+    {
+      "code": "414",
+      "name": "The Conversion of Augustine",
+      "level": "Finals",
+      "id": "classics_finals_414"
+    },
+    {
+      "code": "415",
+      "name": "The Achaemenid Empire, 550-330 BC",
+      "level": "Finals",
+      "id": "classics_finals_415"
+    },
+    {
+      "code": "499",
+      "name": "Thesis in Ancient History",
+      "level": "Finals",
+      "id": "classics_finals_499"
+    },
+    {
+      "code": "501",
+      "name": "Greek Core",
+      "level": "Finals",
+      "id": "classics_finals_501"
+    },
+    {
+      "code": "502",
+      "name": "Latin Core",
+      "level": "Finals",
+      "id": "classics_finals_502"
+    },
+    {
+      "code": "503",
+      "name": "Historiography",
+      "level": "Finals",
+      "id": "classics_finals_503"
+    },
+    {
+      "code": "504",
+      "name": "Lyric Poetry",
+      "level": "Finals",
+      "id": "classics_finals_504"
+    },
+    {
+      "code": "505",
+      "name": "Early Greek Hexameter Poetry",
+      "level": "Finals",
+      "id": "classics_finals_505"
+    },
+    {
+      "code": "506",
+      "name": "Greek Tragedy",
+      "level": "Finals",
+      "id": "classics_finals_506"
+    },
+    {
+      "code": "507",
+      "name": "Comedy",
+      "level": "Finals",
+      "id": "classics_finals_507"
+    },
+    {
+      "code": "508",
+      "name": "Hellenistic Poetry",
+      "level": "Finals",
+      "id": "classics_finals_508"
+    },
+    {
+      "code": "509",
+      "name": "Cicero the Orator",
+      "level": "Finals",
+      "id": "classics_finals_509"
+    },
+    {
+      "code": "510",
+      "name": "Ovid",
+      "level": "Finals",
+      "id": "classics_finals_510"
+    },
+    {
+      "code": "511",
+      "name": "Latin Didactic",
+      "level": "Finals",
+      "id": "classics_finals_511"
+    },
+    {
+      "code": "512",
+      "name": "Neronian Literature",
+      "level": "Finals",
+      "id": "classics_finals_512"
+    },
+    {
+      "code": "513",
+      "name": "Euripides, Orestes: papyri, manuscripts, text",
+      "level": "Finals",
+      "id": "classics_finals_513"
+    },
+    {
+      "code": "515",
+      "name": "Catullus: manuscripts, text, interpretation",
+      "level": "Finals",
+      "id": "classics_finals_515"
+    },
+    {
+      "code": "517",
+      "name": "Byzantine Literature",
+      "level": "Finals",
+      "id": "classics_finals_517"
+    },
+    {
+      "code": "518",
+      "name": "Modern Greek Poetry",
+      "level": "Finals",
+      "id": "classics_finals_518"
+    },
+    {
+      "code": "519",
+      "name": "The Reception of Classical Literature in Poetry in English since 1900",
+      "level": "Finals",
+      "id": "classics_finals_519"
+    },
+    {
+      "code": "521",
+      "name": "Greek Core",
+      "level": "Finals",
+      "id": "classics_finals_521"
+    },
+    {
+      "code": "522",
+      "name": "Latin Core",
+      "level": "Finals",
+      "id": "classics_finals_522"
+    },
+    {
+      "code": "524",
+      "name": "Seneca, Medea: manuscripts, text, interpretation",
+      "level": "Finals",
+      "id": "classics_finals_524"
+    },
+    {
+      "code": "525",
+      "name": "Latin Literature from Titus to Trajan",
+      "level": "Finals",
+      "id": "classics_finals_525"
+    },
+    {
+      "code": "599",
+      "name": "Thesis in Literature",
+      "level": "Finals",
+      "id": "classics_finals_599"
+    },
+    {
+      "code": "601",
+      "name": "The Greeks and the Mediterranean World c.950 bc -500 bc",
+      "level": "Finals",
+      "id": "classics_finals_601"
+    },
+    {
+      "code": "602",
+      "name": "Greek Art and Archaeology, c.500-300 bc",
+      "level": "Finals",
+      "id": "classics_finals_602"
+    },
+    {
+      "code": "603",
+      "name": "Hellenistic Art and Archaeology, 330 \u2013 30 BC",
+      "level": "Finals",
+      "id": "classics_finals_603"
+    },
+    {
+      "code": "604",
+      "name": "Art under the Roman Empire AD 14-337",
+      "level": "Finals",
+      "id": "classics_finals_604"
+    },
+    {
+      "code": "605",
+      "name": "Roman Archaeology: Cities and Settlement under the Empire",
+      "level": "Finals",
+      "id": "classics_finals_605"
+    },
+    {
+      "code": "699",
+      "name": "Thesis in Greek and Roman Archaeology",
+      "level": "Finals",
+      "id": "classics_finals_699"
+    },
+    {
+      "code": "551",
+      "name": "Greek Historical Linguistics",
+      "level": "Finals",
+      "id": "classics_finals_551"
+    },
+    {
+      "code": "552",
+      "name": "Latin Historical Linguistics",
+      "level": "Finals",
+      "id": "classics_finals_552"
+    },
+    {
+      "code": "553",
+      "name": "General Linguistics and Comparative Philology",
+      "level": "Finals",
+      "id": "classics_finals_553"
+    },
+    {
+      "code": "554",
+      "name": "Comparative Philology: Indo-European, Greek and Latin",
+      "level": "Finals",
+      "id": "classics_finals_554"
+    },
+    {
+      "code": "598",
+      "name": "Thesis in Philology and Linguistics",
+      "level": "Finals",
+      "id": "classics_finals_598"
+    },
+    {
+      "code": "566",
+      "name": "Greek Verse",
+      "level": "Finals",
+      "id": "classics_finals_566"
+    },
+    {
+      "code": "567",
+      "name": "Latin Verse",
+      "level": "Finals",
+      "id": "classics_finals_567"
+    },
+    {
+      "code": "568",
+      "name": "Greek Prose",
+      "level": "Finals",
+      "id": "classics_finals_568"
+    },
+    {
+      "code": "569",
+      "name": "Latin Prose",
+      "level": "Finals",
+      "id": "classics_finals_569"
+    }
+  ],
+  "Computer Science": [
+    {
+      "code": "CS1",
+      "name": "Functional Programming and Design and Analysis of Algorithms",
+      "level": "Prelims",
+      "id": "computer science_prelims_cs1"
+    },
+    {
+      "code": "CS2",
+      "name": "Imperative Programming and Introduction to Proof Systems",
+      "level": "Prelims",
+      "id": "computer science_prelims_cs2"
+    },
+    {
+      "code": "CS3",
+      "name": "Discrete Mathematics, Continuous Mathematics and Probability",
+      "level": "Prelims",
+      "id": "computer science_prelims_cs3"
+    },
+    {
+      "code": "CS4",
+      "name": "Digital Systems and Linear Algebra",
+      "level": "Prelims",
+      "id": "computer science_prelims_cs4"
+    },
+    {
+      "code": "A1",
+      "name": "Compilers",
+      "level": "Finals",
+      "id": "computer science_finals_a1"
+    },
+    {
+      "code": "A2",
+      "name": "Models of Computation",
+      "level": "Finals",
+      "id": "computer science_finals_a2"
+    },
+    {
+      "code": "A3",
+      "name": "Algorithms and Data Structures",
+      "level": "Finals",
+      "id": "computer science_finals_a3"
+    },
+    {
+      "code": "A4",
+      "name": "Concurrent Programming",
+      "level": "Finals",
+      "id": "computer science_finals_a4"
+    },
+    {
+      "code": "1",
+      "name": "Artificial Intelligence",
+      "level": "Finals",
+      "id": "computer science_finals_1"
+    },
+    {
+      "code": "2",
+      "name": "Combinatorial Optimisation",
+      "level": "Finals",
+      "id": "computer science_finals_2"
+    },
+    {
+      "code": "3",
+      "name": "Computer Security",
+      "level": "Finals",
+      "id": "computer science_finals_3"
+    },
+    {
+      "code": "4",
+      "name": "Computer-Aided Formal Verification",
+      "level": "Finals",
+      "id": "computer science_finals_4"
+    },
+    {
+      "code": "5",
+      "name": "Geometric Modelling",
+      "level": "Finals",
+      "id": "computer science_finals_5"
+    },
+    {
+      "code": "6",
+      "name": "Machine Learning",
+      "level": "Finals",
+      "id": "computer science_finals_6"
+    },
+    {
+      "code": "7",
+      "name": "Principles of Programming Languages",
+      "level": "Finals",
+      "id": "computer science_finals_7"
+    },
+    {
+      "code": "8",
+      "name": "Requirements",
+      "level": "Finals",
+      "id": "computer science_finals_8"
+    },
+    {
+      "code": "9",
+      "name": "Computational Complexity",
+      "level": "Finals",
+      "id": "computer science_finals_9"
+    },
+    {
+      "code": "10",
+      "name": "Computer Architecture",
+      "level": "Finals",
+      "id": "computer science_finals_10"
+    },
+    {
+      "code": "11",
+      "name": "Computer Graphics",
+      "level": "Finals",
+      "id": "computer science_finals_11"
+    },
+    {
+      "code": "12",
+      "name": "Data Visualisation",
+      "level": "Finals",
+      "id": "computer science_finals_12"
+    },
+    {
+      "code": "13",
+      "name": "Databases",
+      "level": "Finals",
+      "id": "computer science_finals_13"
+    },
+    {
+      "code": "14",
+      "name": "Deep Learning in Healthcare",
+      "level": "Finals",
+      "id": "computer science_finals_14"
+    },
+    {
+      "code": "15",
+      "name": "Lambda Calculus and Types",
+      "level": "Finals",
+      "id": "computer science_finals_15"
+    },
+    {
+      "code": "16",
+      "name": "Logic and Proof",
+      "level": "Finals",
+      "id": "computer science_finals_16"
+    },
+    {
+      "code": "17",
+      "name": "Quantum Information",
+      "level": "Finals",
+      "id": "computer science_finals_17"
+    },
+    {
+      "code": "1",
+      "name": "Computational Biology",
+      "level": "Masters",
+      "id": "computer science_masters_1"
+    },
+    {
+      "code": "2",
+      "name": "Computational Game Theory",
+      "level": "Masters",
+      "id": "computer science_masters_2"
+    },
+    {
+      "code": "3",
+      "name": "Computational Learning Theory",
+      "level": "Masters",
+      "id": "computer science_masters_3"
+    },
+    {
+      "code": "4",
+      "name": "Concurrent Algorithms and Data Structures",
+      "level": "Masters",
+      "id": "computer science_masters_4"
+    },
+    {
+      "code": "5",
+      "name": "Distributed Processes, Types and Programming",
+      "level": "Masters",
+      "id": "computer science_masters_5"
+    },
+    {
+      "code": "6",
+      "name": "Graph Representation Learning",
+      "level": "Masters",
+      "id": "computer science_masters_6"
+    },
+    {
+      "code": "7",
+      "name": "Law and Computer Science",
+      "level": "Masters",
+      "id": "computer science_masters_7"
+    },
+    {
+      "code": "8",
+      "name": "Probabilistic Model Checking",
+      "level": "Masters",
+      "id": "computer science_masters_8"
+    },
+    {
+      "code": "9",
+      "name": "Probability and Computing",
+      "level": "Masters",
+      "id": "computer science_masters_9"
+    },
+    {
+      "code": "10",
+      "name": "Quantum Processes and Computation",
+      "level": "Masters",
+      "id": "computer science_masters_10"
+    },
+    {
+      "code": "11",
+      "name": "Advanced Security",
+      "level": "Masters",
+      "id": "computer science_masters_11"
+    },
+    {
+      "code": "12",
+      "name": "Algorithmic Foundations of Collective Decision Making",
+      "level": "Masters",
+      "id": "computer science_masters_12"
+    },
+    {
+      "code": "13",
+      "name": "Categories, Proofs and Processes",
+      "level": "Masters",
+      "id": "computer science_masters_13"
+    },
+    {
+      "code": "14",
+      "name": "Computational Medicine",
+      "level": "Masters",
+      "id": "computer science_masters_14"
+    },
+    {
+      "code": "15",
+      "name": "Computer Vision",
+      "level": "Masters",
+      "id": "computer science_masters_15"
+    },
+    {
+      "code": "16",
+      "name": "Database Systems Implementation",
+      "level": "Masters",
+      "id": "computer science_masters_16"
+    },
+    {
+      "code": "17",
+      "name": "Foundations of Self-Programming Agents",
+      "level": "Masters",
+      "id": "computer science_masters_17"
+    },
+    {
+      "code": "18",
+      "name": "Geometric Deep Learning",
+      "level": "Masters",
+      "id": "computer science_masters_18"
+    },
+    {
+      "code": "19",
+      "name": "Knowledge Representation & Reasoning",
+      "level": "Masters",
+      "id": "computer science_masters_19"
+    },
+    {
+      "code": "20",
+      "name": "Quantum Software",
+      "level": "Masters",
+      "id": "computer science_masters_20"
+    },
+    {
+      "code": "21",
+      "name": "Uncertainty in Deep Learning",
+      "level": "Masters",
+      "id": "computer science_masters_21"
+    }
+  ],
+  "Economics": [
+    {
+      "code": "1",
+      "name": "Introduction to Microeconomics",
+      "level": "Prelims",
+      "id": "economics_prelims_1"
+    },
+    {
+      "code": "2",
+      "name": "Introduction to Macroeconomics",
+      "level": "Prelims",
+      "id": "economics_prelims_2"
+    },
+    {
+      "code": "3",
+      "name": "Introduction to Probability and Statistics",
+      "level": "Prelims",
+      "id": "economics_prelims_3"
+    },
+    {
+      "code": "300",
+      "name": "Quantitative Economics",
+      "level": "Finals",
+      "id": "economics_finals_300"
+    },
+    {
+      "code": "301",
+      "name": "Macroeconomics",
+      "level": "Finals",
+      "id": "economics_finals_301"
+    },
+    {
+      "code": "302",
+      "name": "Microeconomics",
+      "level": "Finals",
+      "id": "economics_finals_302"
+    },
+    {
+      "code": "304",
+      "name": "Money and Banking",
+      "level": "Finals",
+      "id": "economics_finals_304"
+    },
+    {
+      "code": "310",
+      "name": "Economics of Developing Countries",
+      "level": "Finals",
+      "id": "economics_finals_310"
+    },
+    {
+      "code": "311",
+      "name": "History of the World Economy",
+      "level": "Finals",
+      "id": "economics_finals_311"
+    },
+    {
+      "code": "314",
+      "name": "Econometrics",
+      "level": "Finals",
+      "id": "economics_finals_314"
+    },
+    {
+      "code": "319",
+      "name": "Game Theory",
+      "level": "Finals",
+      "id": "economics_finals_319"
+    },
+    {
+      "code": "398",
+      "name": "Special subjects in Economics",
+      "level": "Finals",
+      "id": "economics_finals_398"
+    },
+    {
+      "code": "399",
+      "name": "Thesis",
+      "level": "Finals",
+      "id": "economics_finals_399"
+    }
+  ],
+  "Engineering Science": [
+    {
+      "code": "P1",
+      "name": "Mathematics",
+      "level": "Prelims",
+      "id": "engineering science_prelims_p1"
+    },
+    {
+      "code": "P2",
+      "name": "Electronic and Information Engineering",
+      "level": "Prelims",
+      "id": "engineering science_prelims_p2"
+    },
+    {
+      "code": "P3",
+      "name": "Structures and Mechanics",
+      "level": "Prelims",
+      "id": "engineering science_prelims_p3"
+    },
+    {
+      "code": "P4",
+      "name": "Energy",
+      "level": "Prelims",
+      "id": "engineering science_prelims_p4"
+    },
+    {
+      "code": "A1",
+      "name": "Mathematics",
+      "level": "Finals",
+      "id": "engineering science_finals_a1"
+    },
+    {
+      "code": "A2",
+      "name": "Electronic and Information Engineering",
+      "level": "Finals",
+      "id": "engineering science_finals_a2"
+    },
+    {
+      "code": "A3",
+      "name": "Structures, Materials and Dynamics",
+      "level": "Finals",
+      "id": "engineering science_finals_a3"
+    },
+    {
+      "code": "A4",
+      "name": "Energy Systems",
+      "level": "Finals",
+      "id": "engineering science_finals_a4"
+    },
+    {
+      "code": "B1",
+      "name": "Engineering Computation",
+      "level": "Finals",
+      "id": "engineering science_finals_b1"
+    },
+    {
+      "code": "B2E1",
+      "name": "Engineering in Society: Ethics, Safety & Risk, Sustainability",
+      "level": "Finals",
+      "id": "engineering science_finals_b2e1"
+    },
+    {
+      "code": "B2E2",
+      "name": "Engineering Management and Strategy",
+      "level": "Finals",
+      "id": "engineering science_finals_b2e2"
+    },
+    {
+      "code": "B2",
+      "name": "Engineering in Society",
+      "level": "Finals",
+      "id": "engineering science_finals_b2"
+    },
+    {
+      "code": "B5",
+      "name": "Solid Mechanics",
+      "level": "Finals",
+      "id": "engineering science_finals_b5"
+    },
+    {
+      "code": "B6",
+      "name": "Equilibrium Thermodynamics",
+      "level": "Finals",
+      "id": "engineering science_finals_b6"
+    },
+    {
+      "code": "B7",
+      "name": "Fluid Flow, Heat and Mass Transfer",
+      "level": "Finals",
+      "id": "engineering science_finals_b7"
+    },
+    {
+      "code": "B8",
+      "name": "Materials",
+      "level": "Finals",
+      "id": "engineering science_finals_b8"
+    },
+    {
+      "code": "B9",
+      "name": "Structures and Hydraulics",
+      "level": "Finals",
+      "id": "engineering science_finals_b9"
+    },
+    {
+      "code": "B10",
+      "name": "Soil Mechanics",
+      "level": "Finals",
+      "id": "engineering science_finals_b10"
+    },
+    {
+      "code": "B11",
+      "name": "Chemical Processes",
+      "level": "Finals",
+      "id": "engineering science_finals_b11"
+    },
+    {
+      "code": "B13",
+      "name": "Circuits and Communications",
+      "level": "Finals",
+      "id": "engineering science_finals_b13"
+    },
+    {
+      "code": "B14",
+      "name": "Information Engineering Systems",
+      "level": "Finals",
+      "id": "engineering science_finals_b14"
+    },
+    {
+      "code": "B15",
+      "name": "Control Systems",
+      "level": "Finals",
+      "id": "engineering science_finals_b15"
+    },
+    {
+      "code": "B16",
+      "name": "Software Engineering",
+      "level": "Finals",
+      "id": "engineering science_finals_b16"
+    },
+    {
+      "code": "B17",
+      "name": "Biomechanics",
+      "level": "Finals",
+      "id": "engineering science_finals_b17"
+    },
+    {
+      "code": "B18",
+      "name": "Biomedical Modelling and Monitoring",
+      "level": "Finals",
+      "id": "engineering science_finals_b18"
+    },
+    {
+      "code": "B12",
+      "name": "Electronic Devices",
+      "level": "Finals",
+      "id": "engineering science_finals_b12"
+    },
+    {
+      "code": "B19",
+      "name": "Fluid Mechanics: Turbulence, Compressible Flow and Turbomachinery",
+      "level": "Finals",
+      "id": "engineering science_finals_b19"
+    },
+    {
+      "code": "C1",
+      "name": "Automotive Engineering",
+      "level": "Masters",
+      "id": "engineering science_masters_c1"
+    },
+    {
+      "code": "C2",
+      "name": "Aerothermal Engineering",
+      "level": "Masters",
+      "id": "engineering science_masters_c2"
+    },
+    {
+      "code": "C3",
+      "name": "Materials Failure",
+      "level": "Masters",
+      "id": "engineering science_masters_c3"
+    },
+    {
+      "code": "C4",
+      "name": "Materials Modelling",
+      "level": "Masters",
+      "id": "engineering science_masters_c4"
+    },
+    {
+      "code": "C5",
+      "name": "Advanced Structures",
+      "level": "Masters",
+      "id": "engineering science_masters_c5"
+    },
+    {
+      "code": "C6",
+      "name": "Geotechnics",
+      "level": "Masters",
+      "id": "engineering science_masters_c6"
+    },
+    {
+      "code": "C7",
+      "name": "Hydraulics",
+      "level": "Masters",
+      "id": "engineering science_masters_c7"
+    },
+    {
+      "code": "C8",
+      "name": "Sustainable Energy",
+      "level": "Masters",
+      "id": "engineering science_masters_c8"
+    },
+    {
+      "code": "C9",
+      "name": "Environmental Engineering",
+      "level": "Masters",
+      "id": "engineering science_masters_c9"
+    },
+    {
+      "code": "C10",
+      "name": "Bioprocess Engineering",
+      "level": "Masters",
+      "id": "engineering science_masters_c10"
+    },
+    {
+      "code": "C11",
+      "name": "Chemical Engineering I",
+      "level": "Masters",
+      "id": "engineering science_masters_c11"
+    },
+    {
+      "code": "C12",
+      "name": "Chemical Engineering II",
+      "level": "Masters",
+      "id": "engineering science_masters_c12"
+    },
+    {
+      "code": "C13",
+      "name": "Production Engineering",
+      "level": "Masters",
+      "id": "engineering science_masters_c13"
+    },
+    {
+      "code": "C14",
+      "name": "Optoelectronics",
+      "level": "Masters",
+      "id": "engineering science_masters_c14"
+    },
+    {
+      "code": "C15",
+      "name": "Microelectronics",
+      "level": "Masters",
+      "id": "engineering science_masters_c15"
+    },
+    {
+      "code": "C16",
+      "name": "Advanced Communications",
+      "level": "Masters",
+      "id": "engineering science_masters_c16"
+    },
+    {
+      "code": "C17",
+      "name": "Power Electronics",
+      "level": "Masters",
+      "id": "engineering science_masters_c17"
+    },
+    {
+      "code": "C18",
+      "name": "Machine Vision and Robotics",
+      "level": "Masters",
+      "id": "engineering science_masters_c18"
+    },
+    {
+      "code": "C19",
+      "name": "Machine Learning",
+      "level": "Masters",
+      "id": "engineering science_masters_c19"
+    },
+    {
+      "code": "C20",
+      "name": "Multivariable Control",
+      "level": "Masters",
+      "id": "engineering science_masters_c20"
+    },
+    {
+      "code": "C21",
+      "name": "Nonlinear and Predictive Control",
+      "level": "Masters",
+      "id": "engineering science_masters_c21"
+    },
+    {
+      "code": "C22",
+      "name": "Medical Imaging and Informatics",
+      "level": "Masters",
+      "id": "engineering science_masters_c22"
+    },
+    {
+      "code": "C23",
+      "name": "Cellular Engineering and Therapy",
+      "level": "Masters",
+      "id": "engineering science_masters_c23"
+    },
+    {
+      "code": "C24",
+      "name": "Probability, Systems and Perturbation Methods",
+      "level": "Masters",
+      "id": "engineering science_masters_c24"
+    },
+    {
+      "code": "C25",
+      "name": "Mathematical Techniques",
+      "level": "Masters",
+      "id": "engineering science_masters_c25"
+    },
+    {
+      "code": "C26",
+      "name": "Entrepreneurship and Innovation",
+      "level": "Masters",
+      "id": "engineering science_masters_c26"
+    },
+    {
+      "code": "C27",
+      "name": "Management Practice",
+      "level": "Masters",
+      "id": "engineering science_masters_c27"
+    },
+    {
+      "code": "C28",
+      "name": "Multiphysics of Biological Materials",
+      "level": "Masters",
+      "id": "engineering science_masters_c28"
+    },
+    {
+      "code": "C29",
+      "name": "Computing Technology",
+      "level": "Masters",
+      "id": "engineering science_masters_c29"
+    }
+  ],
+  "English": [
+    {
+      "code": "1",
+      "name": "Introduction to English Language and Literature",
+      "level": "Prelims",
+      "id": "english_prelims_1"
+    },
+    {
+      "code": "2",
+      "name": "Early Medieval Literature, c. 650 - 1350",
+      "level": "Prelims",
+      "id": "english_prelims_2"
+    },
+    {
+      "code": "3",
+      "name": "Literature in English 1830 - 1910",
+      "level": "Prelims",
+      "id": "english_prelims_3"
+    },
+    {
+      "code": "4",
+      "name": "Literature in English 1910 - present day",
+      "level": "Prelims",
+      "id": "english_prelims_4"
+    },
+    {
+      "code": "1",
+      "name": "Shakespeare",
+      "level": "Finals",
+      "id": "english_finals_1"
+    },
+    {
+      "code": "2A",
+      "name": "Literature in English 1350-1550",
+      "level": "Finals",
+      "id": "english_finals_2a"
+    },
+    {
+      "code": "2B",
+      "name": "Medieval English and related Literatures 1066-1550",
+      "level": "Finals",
+      "id": "english_finals_2b"
+    },
+    {
+      "code": "3A",
+      "name": "Literature in English 1550-1660",
+      "level": "Finals",
+      "id": "english_finals_3a"
+    },
+    {
+      "code": "3B",
+      "name": "Literature in English 1350-1550",
+      "level": "Finals",
+      "id": "english_finals_3b"
+    },
+    {
+      "code": "4A",
+      "name": "Literature in English 1660-1760",
+      "level": "Finals",
+      "id": "english_finals_4a"
+    },
+    {
+      "code": "4B",
+      "name": "History of the English Language to c. 1800",
+      "level": "Finals",
+      "id": "english_finals_4b"
+    },
+    {
+      "code": "5A",
+      "name": "Literature in English 1760-1830",
+      "level": "Finals",
+      "id": "english_finals_5a"
+    },
+    {
+      "code": "5B",
+      "name": "The Material Text",
+      "level": "Finals",
+      "id": "english_finals_5b"
+    },
+    {
+      "code": "6",
+      "name": "Special Options",
+      "level": "Finals",
+      "id": "english_finals_6"
+    },
+    {
+      "code": "7",
+      "name": "Dissertation",
+      "level": "Finals",
+      "id": "english_finals_7"
+    }
+  ],
+  "History": [
+    {
+      "code": "IVa1",
+      "name": "Approaches: Anthropology and History",
+      "level": "Prelims",
+      "id": "history_prelims_iva1"
+    },
+    {
+      "code": "IVa2",
+      "name": "Approaches: Archaeology and History",
+      "level": "Prelims",
+      "id": "history_prelims_iva2"
+    },
+    {
+      "code": "IVa3",
+      "name": "Approaches: Art and History",
+      "level": "Prelims",
+      "id": "history_prelims_iva3"
+    },
+    {
+      "code": "IVa4",
+      "name": "Approaches: Economics and History",
+      "level": "Prelims",
+      "id": "history_prelims_iva4"
+    },
+    {
+      "code": "IVa5",
+      "name": "Approaches: Gender and Women's History",
+      "level": "Prelims",
+      "id": "history_prelims_iva5"
+    },
+    {
+      "code": "IVa6",
+      "name": "Approaches: Sociology and History",
+      "level": "Prelims",
+      "id": "history_prelims_iva6"
+    },
+    {
+      "code": "IVa7",
+      "name": "Approaches: Histories of Race",
+      "level": "Prelims",
+      "id": "history_prelims_iva7"
+    },
+    {
+      "code": "IVb",
+      "name": "Historiography: Tacitus to Weber",
+      "level": "Prelims",
+      "id": "history_prelims_ivb"
+    },
+    {
+      "code": "IVc1",
+      "name": "Texts in a Foreign Language: Herodotus",
+      "level": "Prelims",
+      "id": "history_prelims_ivc1"
+    },
+    {
+      "code": "IVc2",
+      "name": "Texts in a Foreign Language: Einhard and Asser",
+      "level": "Prelims",
+      "id": "history_prelims_ivc2"
+    },
+    {
+      "code": "IVc3",
+      "name": "Texts in a Foreign Language: Tocqueville",
+      "level": "Prelims",
+      "id": "history_prelims_ivc3"
+    },
+    {
+      "code": "IVc4",
+      "name": "Texts in a Foreign Language: Meinecke and Kehr",
+      "level": "Prelims",
+      "id": "history_prelims_ivc4"
+    },
+    {
+      "code": "IVc5",
+      "name": "Texts in a Foreign Language: Machiavelli",
+      "level": "Prelims",
+      "id": "history_prelims_ivc5"
+    },
+    {
+      "code": "IVc6",
+      "name": "Texts in a Foreign Language: Vicens Vives",
+      "level": "Prelims",
+      "id": "history_prelims_ivc6"
+    },
+    {
+      "code": "IVc7",
+      "name": "Texts in a Foreign Language: Trotsky",
+      "level": "Prelims",
+      "id": "history_prelims_ivc7"
+    },
+    {
+      "code": "IVd",
+      "name": "Quantification in History",
+      "level": "Prelims",
+      "id": "history_prelims_ivd"
+    },
+    {
+      "code": "BIP1",
+      "name": "History of the British Isles 1, 300-1100",
+      "level": "Prelims",
+      "id": "history_prelims_bip1"
+    },
+    {
+      "code": "BIP2",
+      "name": "History of the British Isles 2, 1000-1330",
+      "level": "Prelims",
+      "id": "history_prelims_bip2"
+    },
+    {
+      "code": "BIP3",
+      "name": "History of the British Isles 3, 1330-1550",
+      "level": "Prelims",
+      "id": "history_prelims_bip3"
+    },
+    {
+      "code": "BIP4",
+      "name": "History of the British Isles 4, 1500-1700",
+      "level": "Prelims",
+      "id": "history_prelims_bip4"
+    },
+    {
+      "code": "BIP5",
+      "name": "History of the British Isles 5, 1688-1848",
+      "level": "Prelims",
+      "id": "history_prelims_bip5"
+    },
+    {
+      "code": "BIP6",
+      "name": "History of the British Isles 6, 1830-1951",
+      "level": "Prelims",
+      "id": "history_prelims_bip6"
+    },
+    {
+      "code": "EWP1",
+      "name": "Transformation of the Ancient World, 370-900",
+      "level": "Prelims",
+      "id": "history_prelims_ewp1"
+    },
+    {
+      "code": "EWP2",
+      "name": "Communities, Connections and Confrontations, 1000-1300",
+      "level": "Prelims",
+      "id": "history_prelims_ewp2"
+    },
+    {
+      "code": "EWP3",
+      "name": "Renaissance, Recovery & Reform, 1400-1650",
+      "level": "Prelims",
+      "id": "history_prelims_ewp3"
+    },
+    {
+      "code": "EWP4",
+      "name": "Society, Nation & Empire, 1815-1914",
+      "level": "Prelims",
+      "id": "history_prelims_ewp4"
+    },
+    {
+      "code": "O1",
+      "name": "Theories of State",
+      "level": "Prelims",
+      "id": "history_prelims_o1"
+    },
+    {
+      "code": "O2",
+      "name": "Alfred and the Vikings",
+      "level": "Prelims",
+      "id": "history_prelims_o2"
+    },
+    {
+      "code": "O3",
+      "name": "Early Gothic France",
+      "level": "Prelims",
+      "id": "history_prelims_o3"
+    },
+    {
+      "code": "O4",
+      "name": "The Mongols",
+      "level": "Prelims",
+      "id": "history_prelims_o4"
+    },
+    {
+      "code": "O5",
+      "name": "Edward II",
+      "level": "Prelims",
+      "id": "history_prelims_o5"
+    },
+    {
+      "code": "O6",
+      "name": "Crime and Punishment in England",
+      "level": "Prelims",
+      "id": "history_prelims_o6"
+    },
+    {
+      "code": "O7",
+      "name": "Nature and Art in the Renaissance",
+      "level": "Prelims",
+      "id": "history_prelims_o7"
+    },
+    {
+      "code": "O8",
+      "name": "Witch-craft and Witch-hunting",
+      "level": "Prelims",
+      "id": "history_prelims_o8"
+    },
+    {
+      "code": "O9",
+      "name": "Making England Protestant",
+      "level": "Prelims",
+      "id": "history_prelims_o9"
+    },
+    {
+      "code": "O10",
+      "name": "Conquest and Colonisation",
+      "level": "Prelims",
+      "id": "history_prelims_o10"
+    },
+    {
+      "code": "O11",
+      "name": "Brigands in a Landscape",
+      "level": "Prelims",
+      "id": "history_prelims_o11"
+    },
+    {
+      "code": "O12",
+      "name": "When Neighbours became Strangers",
+      "level": "Prelims",
+      "id": "history_prelims_o12"
+    },
+    {
+      "code": "O13",
+      "name": "Haiti and Louisiana",
+      "level": "Prelims",
+      "id": "history_prelims_o13"
+    },
+    {
+      "code": "O14",
+      "name": "Imperial Republic",
+      "level": "Prelims",
+      "id": "history_prelims_o14"
+    },
+    {
+      "code": "O15",
+      "name": "The New Women in Britain and Ireland",
+      "level": "Prelims",
+      "id": "history_prelims_o15"
+    },
+    {
+      "code": "O16",
+      "name": "The Rise and Crises of European Socialisms",
+      "level": "Prelims",
+      "id": "history_prelims_o16"
+    },
+    {
+      "code": "O17",
+      "name": "1919: Remaking the World",
+      "level": "Prelims",
+      "id": "history_prelims_o17"
+    },
+    {
+      "code": "O18",
+      "name": "Living With The Enemy",
+      "level": "Prelims",
+      "id": "history_prelims_o18"
+    },
+    {
+      "code": "O19",
+      "name": "Global USSR",
+      "level": "Prelims",
+      "id": "history_prelims_o19"
+    },
+    {
+      "code": "O20",
+      "name": "Viewing Communism",
+      "level": "Prelims",
+      "id": "history_prelims_o20"
+    },
+    {
+      "code": "O21",
+      "name": "The World of Homer and Hesiod",
+      "level": "Prelims",
+      "id": "history_prelims_o21"
+    },
+    {
+      "code": "O22",
+      "name": "Augustan Rome",
+      "level": "Prelims",
+      "id": "history_prelims_o22"
+    },
+    {
+      "code": "O23",
+      "name": "Industrialisation in Britain and France",
+      "level": "Prelims",
+      "id": "history_prelims_o23"
+    },
+    {
+      "code": "T",
+      "name": "Thesis",
+      "level": "Finals",
+      "id": "history_finals_t"
+    },
+    {
+      "code": "S1",
+      "name": "St Augustine and the Last Days of Rome, 370-430",
+      "level": "Finals",
+      "id": "history_finals_s1"
+    },
+    {
+      "code": "S2",
+      "name": "Francia in the Age of Clovis and Gregory of Tours",
+      "level": "Finals",
+      "id": "history_finals_s2"
+    },
+    {
+      "code": "S3",
+      "name": "On the Road to Baghdad (892-1055)",
+      "level": "Finals",
+      "id": "history_finals_s3"
+    },
+    {
+      "code": "S4",
+      "name": "Byzantium in the Age of Constantine Porphyrogenitus, 913-959",
+      "level": "Finals",
+      "id": "history_finals_s4"
+    },
+    {
+      "code": "S5",
+      "name": "The Norman Conquest of England",
+      "level": "Finals",
+      "id": "history_finals_s5"
+    },
+    {
+      "code": "S6",
+      "name": "Joan of Arc and her Age, 1419-35",
+      "level": "Finals",
+      "id": "history_finals_s6"
+    },
+    {
+      "code": "S7",
+      "name": "Politics, Art and Culture in the Italian Renaissance: Venice and Florence",
+      "level": "Finals",
+      "id": "history_finals_s7"
+    },
+    {
+      "code": "S8",
+      "name": "The Peasants' War of 1525",
+      "level": "Finals",
+      "id": "history_finals_s8"
+    },
+    {
+      "code": "S9",
+      "name": "The Trial of the Tudor State: Politics, Religion and Society, 1540-1560",
+      "level": "Finals",
+      "id": "history_finals_s9"
+    },
+    {
+      "code": "S10",
+      "name": "The Crisis of the Reformation: Political Thought and Religious Ideas 1560-1610",
+      "level": "Finals",
+      "id": "history_finals_s10"
+    },
+    {
+      "code": "S11",
+      "name": "The Thirty Years' War",
+      "level": "Finals",
+      "id": "history_finals_s11"
+    },
+    {
+      "code": "S12",
+      "name": "The Scientific Movement in the Seventeenth Century",
+      "level": "Finals",
+      "id": "history_finals_s12"
+    },
+    {
+      "code": "S13",
+      "name": "Revolution and Republic, 1647-58",
+      "level": "Finals",
+      "id": "history_finals_s13"
+    },
+    {
+      "code": "S14",
+      "name": "English Architecture, 1660-1720",
+      "level": "Finals",
+      "id": "history_finals_s14"
+    },
+    {
+      "code": "S15",
+      "name": "Imperial Crisis and Reform, 1774-84",
+      "level": "Finals",
+      "id": "history_finals_s15"
+    },
+    {
+      "code": "S16",
+      "name": "Becoming a Citizen, c.1860-1902",
+      "level": "Finals",
+      "id": "history_finals_s16"
+    },
+    {
+      "code": "S17",
+      "name": "Race, Sex and Medicine in the Early Atlantic World",
+      "level": "Finals",
+      "id": "history_finals_s17"
+    },
+    {
+      "code": "S18",
+      "name": "Art and its Public in France, 1815-67",
+      "level": "Finals",
+      "id": "history_finals_s18"
+    },
+    {
+      "code": "S19",
+      "name": "Slavery, Emancipation and the Crisis of the Union, 1848-1865",
+      "level": "Finals",
+      "id": "history_finals_s19"
+    },
+    {
+      "code": "S20",
+      "name": "Race, Religion and Resistance in the United States, from Jim Crowe to Civil Rights",
+      "level": "Finals",
+      "id": "history_finals_s20"
+    },
+    {
+      "code": "S21",
+      "name": "Empire and Nation in Russia and the USSR, ca. 1890-1924",
+      "level": "Finals",
+      "id": "history_finals_s21"
+    },
+    {
+      "code": "S22",
+      "name": "The End of Empire: The Collapse of Soviet Order in Eurasia",
+      "level": "Finals",
+      "id": "history_finals_s22"
+    },
+    {
+      "code": "S23",
+      "name": "From Gandhi to the Green Revolution: India, Independence and Modernity 1947-75",
+      "level": "Finals",
+      "id": "history_finals_s23"
+    },
+    {
+      "code": "S24",
+      "name": "The Spanish Civil War in Context",
+      "level": "Finals",
+      "id": "history_finals_s24"
+    },
+    {
+      "code": "S25",
+      "name": "Nazi Germany, a racial order, 1933-45",
+      "level": "Finals",
+      "id": "history_finals_s25"
+    },
+    {
+      "code": "S26",
+      "name": "France from the Popular Front to the Liberation, 1936-44",
+      "level": "Finals",
+      "id": "history_finals_s26"
+    },
+    {
+      "code": "S27",
+      "name": "War and Reconstruction: Ideas, Politics and Social Change, 1939-45",
+      "level": "Finals",
+      "id": "history_finals_s27"
+    },
+    {
+      "code": "S28",
+      "name": "Britain from the Bomb to the Beatles: Gender, Class, and Social Change, 1945-1967",
+      "level": "Finals",
+      "id": "history_finals_s28"
+    },
+    {
+      "code": "S29",
+      "name": "Society, Culture, and Politics in Socialist China",
+      "level": "Finals",
+      "id": "history_finals_s29"
+    },
+    {
+      "code": "S30",
+      "name": "Pop and the Art of the Sixties",
+      "level": "Finals",
+      "id": "history_finals_s30"
+    },
+    {
+      "code": "S31",
+      "name": "The Northern Ireland Troubles, 1965-85",
+      "level": "Finals",
+      "id": "history_finals_s31"
+    },
+    {
+      "code": "S32",
+      "name": "Britain in the Seventies",
+      "level": "Finals",
+      "id": "history_finals_s32"
+    },
+    {
+      "code": "S33",
+      "name": "Neoliberalism and Postmodernism: Ideas, Politics and Culture in Europe and North America, 1970-2000",
+      "level": "Finals",
+      "id": "history_finals_s33"
+    },
+    {
+      "code": "S34",
+      "name": "Revolutions of 1989",
+      "level": "Finals",
+      "id": "history_finals_s34"
+    },
+    {
+      "code": "S35",
+      "name": "Art and Politics: Class and Power in Chinese Art",
+      "level": "Finals",
+      "id": "history_finals_s35"
+    },
+    {
+      "code": "S36",
+      "name": "Art and the Invention of Race",
+      "level": "Finals",
+      "id": "history_finals_s36"
+    },
+    {
+      "code": "F1",
+      "name": "Anglo-Saxon Archaeology c.600-750: Society and Economy in the Early Christian period",
+      "level": "Finals",
+      "id": "history_finals_f1"
+    },
+    {
+      "code": "F2",
+      "name": "The Near East in the Age of Justinian and Muhammad, 527-c.700",
+      "level": "Finals",
+      "id": "history_finals_f2"
+    },
+    {
+      "code": "F3",
+      "name": "The Carolingian Renaissance",
+      "level": "Finals",
+      "id": "history_finals_f3"
+    },
+    {
+      "code": "F4",
+      "name": "The Crusades, c. 1095-1291",
+      "level": "Finals",
+      "id": "history_finals_f4"
+    },
+    {
+      "code": "F5",
+      "name": "Culture and Society in Early Renaissance Italy, 1290-1348",
+      "level": "Finals",
+      "id": "history_finals_f5"
+    },
+    {
+      "code": "F6",
+      "name": "Flanders and Italy in the Quattrocento, 1420-80",
+      "level": "Finals",
+      "id": "history_finals_f6"
+    },
+    {
+      "code": "F7",
+      "name": "The Wars of the Roses, c.1450-c.1500",
+      "level": "Finals",
+      "id": "history_finals_f7"
+    },
+    {
+      "code": "F8",
+      "name": "Literature and Politics in Early Modern England",
+      "level": "Finals",
+      "id": "history_finals_f8"
+    },
+    {
+      "code": "F9",
+      "name": "The Iberian Global Century, 1550-1650",
+      "level": "Finals",
+      "id": "history_finals_f9"
+    },
+    {
+      "code": "F10",
+      "name": "Gender and Protestant Cultures in England, 1558-1659",
+      "level": "Finals",
+      "id": "history_finals_f10"
+    },
+    {
+      "code": "F11",
+      "name": "Writing in the Early Modern Period, 1550-1750",
+      "level": "Finals",
+      "id": "history_finals_f11"
+    },
+    {
+      "code": "F12",
+      "name": "Court Culture and Art in Early Modern Europe 1580-1700",
+      "level": "Finals",
+      "id": "history_finals_f12"
+    },
+    {
+      "code": "F13",
+      "name": "War and Society in Britain and Europe, c.1650-1815",
+      "level": "Finals",
+      "id": "history_finals_f13"
+    },
+    {
+      "code": "F14",
+      "name": "The Metropolitan Crucible, London 1685-1815",
+      "level": "Finals",
+      "id": "history_finals_f14"
+    },
+    {
+      "code": "F15",
+      "name": "Imperial pathologies: race, medicine and identity in the British Empire c.1720-c.1850",
+      "level": "Finals",
+      "id": "history_finals_f15"
+    },
+    {
+      "code": "F16",
+      "name": "History of Madness and Mental Healing in a Global Context",
+      "level": "Finals",
+      "id": "history_finals_f16"
+    },
+    {
+      "code": "F17",
+      "name": "Constructing the First New Nation: A Political History of the United States, 1781-1803",
+      "level": "Finals",
+      "id": "history_finals_f17"
+    },
+    {
+      "code": "F18",
+      "name": "Black Women and British Society c. 1750-1865",
+      "level": "Finals",
+      "id": "history_finals_f18"
+    },
+    {
+      "code": "F19",
+      "name": "Nationalism in Western Europe, 1799-1890",
+      "level": "Finals",
+      "id": "history_finals_f19"
+    },
+    {
+      "code": "F20",
+      "name": "Intellect and Culture in Victorian Britain",
+      "level": "Finals",
+      "id": "history_finals_f20"
+    },
+    {
+      "code": "F21",
+      "name": "The Authority of Nature: Race, Heredity and Crime, 1800-1940",
+      "level": "Finals",
+      "id": "history_finals_f21"
+    },
+    {
+      "code": "F22",
+      "name": "The Middle East in the Age of Empire, 1830-1971",
+      "level": "Finals",
+      "id": "history_finals_f22"
+    },
+    {
+      "code": "F23",
+      "name": "L'Ann\u00e9e Terrible 1870-71: War, Revolutions and the Rise and Fall of Empires",
+      "level": "Finals",
+      "id": "history_finals_f23"
+    },
+    {
+      "code": "F24",
+      "name": "Transformations and Transitions in African History since c.1800",
+      "level": "Finals",
+      "id": "history_finals_f24"
+    },
+    {
+      "code": "F25",
+      "name": "Queer Britain, 1820-2000",
+      "level": "Finals",
+      "id": "history_finals_f25"
+    },
+    {
+      "code": "F26",
+      "name": "Modern Japan, 1868-1972",
+      "level": "Finals",
+      "id": "history_finals_f26"
+    },
+    {
+      "code": "F27",
+      "name": "The Development of the World Economy since 1800",
+      "level": "Finals",
+      "id": "history_finals_f27"
+    },
+    {
+      "code": "F28",
+      "name": "Nationalism, Politics and Culture in Ireland, c.1870-1921",
+      "level": "Finals",
+      "id": "history_finals_f28"
+    },
+    {
+      "code": "F29",
+      "name": "A Global War, 1914-20",
+      "level": "Finals",
+      "id": "history_finals_f29"
+    },
+    {
+      "code": "F30",
+      "name": "China since 1900",
+      "level": "Finals",
+      "id": "history_finals_f30"
+    },
+    {
+      "code": "F31",
+      "name": "The Soviet Union, 1924-41",
+      "level": "Finals",
+      "id": "history_finals_f31"
+    },
+    {
+      "code": "F32",
+      "name": "Culture, Politics and Identity in Cold War Europe, 1945-68",
+      "level": "Finals",
+      "id": "history_finals_f32"
+    },
+    {
+      "code": "F33",
+      "name": "America's Hidden Empire: Soft Power and US Influence during the Cold War",
+      "level": "Finals",
+      "id": "history_finals_f33"
+    },
+    {
+      "code": "F34",
+      "name": "The Jews in Twentieth-Century Poland: History and Memory",
+      "level": "Finals",
+      "id": "history_finals_f34"
+    },
+    {
+      "code": "F35",
+      "name": "Britain at the Movies: Film and National Identity since 1914",
+      "level": "Finals",
+      "id": "history_finals_f35"
+    },
+    {
+      "code": "F36",
+      "name": "Women's Liberation: Feminism in Britain, c. 1969-1990",
+      "level": "Finals",
+      "id": "history_finals_f36"
+    },
+    {
+      "code": "F37",
+      "name": "Scholastic and Humanist Political Thought",
+      "level": "Finals",
+      "id": "history_finals_f37"
+    },
+    {
+      "code": "F38",
+      "name": "Political and Social Thought in the Age of Enlightenment",
+      "level": "Finals",
+      "id": "history_finals_f38"
+    },
+    {
+      "code": "F39",
+      "name": "Political Theory and Social Science c.1780-1920",
+      "level": "Finals",
+      "id": "history_finals_f39"
+    },
+    {
+      "code": "F40",
+      "name": "Post-Colonial Historiography: Writing the Indian Nation",
+      "level": "Finals",
+      "id": "history_finals_f40"
+    },
+    {
+      "code": "BIF1",
+      "name": "The Early Medieval British Isles, 300-1100",
+      "level": "Finals",
+      "id": "history_finals_bif1"
+    },
+    {
+      "code": "BIF2",
+      "name": "The British Isles in the Central Middle Ages, 1000-1300",
+      "level": "Finals",
+      "id": "history_finals_bif2"
+    },
+    {
+      "code": "BIF3",
+      "name": "The Late Medieval British Isles, 1330-1550",
+      "level": "Finals",
+      "id": "history_finals_bif3"
+    },
+    {
+      "code": "BIF4",
+      "name": "Reformations and Revolutions, 1500-1700",
+      "level": "Finals",
+      "id": "history_finals_bif4"
+    },
+    {
+      "code": "BIF5",
+      "name": "Liberty, Commerce and Power, 1685-1830",
+      "level": "Finals",
+      "id": "history_finals_bif5"
+    },
+    {
+      "code": "BIF6",
+      "name": "Power, Politics and the People, 1815-1924",
+      "level": "Finals",
+      "id": "history_finals_bif6"
+    },
+    {
+      "code": "BIF7",
+      "name": "Changing identities, 1900-present",
+      "level": "Finals",
+      "id": "history_finals_bif7"
+    },
+    {
+      "code": "BIF8",
+      "name": "Theme a: Bodies of Feeling: Gender and Sexual Identity since c.1500",
+      "level": "Finals",
+      "id": "history_finals_bif8"
+    },
+    {
+      "code": "BIF9",
+      "name": "Theme b: The Making and Unmaking of the United Kingdom, 1603-present",
+      "level": "Finals",
+      "id": "history_finals_bif9"
+    },
+    {
+      "code": "EWF1",
+      "name": "The World of Late Antiquity, 250-650",
+      "level": "Finals",
+      "id": "history_finals_ewf1"
+    },
+    {
+      "code": "EWF2",
+      "name": "The Early Medieval World, 600-1000",
+      "level": "Finals",
+      "id": "history_finals_ewf2"
+    },
+    {
+      "code": "EWF3",
+      "name": "The Central Middle Ages, 900-1300",
+      "level": "Finals",
+      "id": "history_finals_ewf3"
+    },
+    {
+      "code": "EWF4",
+      "name": "The Global Middle Ages, 500-1500",
+      "level": "Finals",
+      "id": "history_finals_ewf4"
+    },
+    {
+      "code": "EWF5",
+      "name": "The Late Medieval World, 1300-1525",
+      "level": "Finals",
+      "id": "history_finals_ewf5"
+    },
+    {
+      "code": "EWF6",
+      "name": "Early Modern Europe, 1500-1700",
+      "level": "Finals",
+      "id": "history_finals_ewf6"
+    },
+    {
+      "code": "EWF7",
+      "name": "Eurasian Empires, 1450-1800",
+      "level": "Finals",
+      "id": "history_finals_ewf7"
+    },
+    {
+      "code": "EWF8",
+      "name": "Enlightenments and Revolutions: Europe 1680-1815",
+      "level": "Finals",
+      "id": "history_finals_ewf8"
+    },
+    {
+      "code": "EWF9",
+      "name": "From Independence to Empire: America 1763-1898",
+      "level": "Finals",
+      "id": "history_finals_ewf9"
+    },
+    {
+      "code": "EWF10",
+      "name": "The European Century, 1820-1925",
+      "level": "Finals",
+      "id": "history_finals_ewf10"
+    },
+    {
+      "code": "EWF11",
+      "name": "Imperial and Global History, 1750-1930",
+      "level": "Finals",
+      "id": "history_finals_ewf11"
+    },
+    {
+      "code": "EWF12",
+      "name": "The Making of Modern America since 1863",
+      "level": "Finals",
+      "id": "history_finals_ewf12"
+    },
+    {
+      "code": "EWF13",
+      "name": "Europe Divided, 1914-1989",
+      "level": "Finals",
+      "id": "history_finals_ewf13"
+    },
+    {
+      "code": "EWF14",
+      "name": "The Global Twentieth Century, 1930-2003",
+      "level": "Finals",
+      "id": "history_finals_ewf14"
+    },
+    {
+      "code": "EWF15",
+      "name": "Theme a: Masculinity and its Discontents, 200-2000",
+      "level": "Finals",
+      "id": "history_finals_ewf15"
+    },
+    {
+      "code": "EWF16",
+      "name": "Theme b: Global Networks of Innovation, 1000-1700: China, Islam and the Rise of the West",
+      "level": "Finals",
+      "id": "history_finals_ewf16"
+    },
+    {
+      "code": "EWF17",
+      "name": "Theme c: Waging War in Eurasia, 1200-1945",
+      "level": "Finals",
+      "id": "history_finals_ewf17"
+    }
+  ],
+  "Law (Jurisprudence)": [
+    {
+      "code": "1",
+      "name": "Criminal Law",
+      "level": "Mods",
+      "id": "law (jurisprudence)_mods_1"
+    },
+    {
+      "code": "2",
+      "name": "Constitutional Law",
+      "level": "Mods",
+      "id": "law (jurisprudence)_mods_2"
+    },
+    {
+      "code": "3",
+      "name": "A Roman Introduction to Private Law",
+      "level": "Mods",
+      "id": "law (jurisprudence)_mods_3"
+    },
+    {
+      "code": "i",
+      "name": "Jurisprudence",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_i"
+    },
+    {
+      "code": "ii",
+      "name": "Contract",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_ii"
+    },
+    {
+      "code": "iii",
+      "name": "Tort",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_iii"
+    },
+    {
+      "code": "iv",
+      "name": "Land",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_iv"
+    },
+    {
+      "code": "v",
+      "name": "European Union Law",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_v"
+    },
+    {
+      "code": "vi",
+      "name": "Trusts",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_vi"
+    },
+    {
+      "code": "vii",
+      "name": "Administrative Law",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_vii"
+    },
+    {
+      "code": "vii",
+      "name": "Administrative Law",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_vii"
+    },
+    {
+      "code": "viii",
+      "name": "Jessup Moot",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_viii"
+    },
+    {
+      "code": "ix",
+      "name": "Thesis",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_ix"
+    },
+    {
+      "code": "1",
+      "name": "Advanced Criminal Law",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_1"
+    },
+    {
+      "code": "2",
+      "name": "Civil Dispute Resolution",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_2"
+    },
+    {
+      "code": "3",
+      "name": "Commercial Law",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_3"
+    },
+    {
+      "code": "4",
+      "name": "Company Law",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_4"
+    },
+    {
+      "code": "5",
+      "name": "Comparative Law",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_5"
+    },
+    {
+      "code": "6",
+      "name": "Competition Law and Policy",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_6"
+    },
+    {
+      "code": "8",
+      "name": "Contract",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_8"
+    },
+    {
+      "code": "9",
+      "name": "Copyright, Trade Marks and Allied Rights",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_9"
+    },
+    {
+      "code": "11",
+      "name": "Criminology and Criminal Justice",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_11"
+    },
+    {
+      "code": "12",
+      "name": "Dissertation",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_12"
+    },
+    {
+      "code": "13",
+      "name": "Employment Law",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_13"
+    },
+    {
+      "code": "14",
+      "name": "Environmental Law",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_14"
+    },
+    {
+      "code": "15",
+      "name": "Family Law",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_15"
+    },
+    {
+      "code": "16",
+      "name": "Feminist Perspectives in Law",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_16"
+    },
+    {
+      "code": "17",
+      "name": "History of English Law",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_17"
+    },
+    {
+      "code": "18",
+      "name": "Human Rights Law",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_18"
+    },
+    {
+      "code": "19",
+      "name": "International Trade",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_19"
+    },
+    {
+      "code": "20",
+      "name": "Media Law",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_20"
+    },
+    {
+      "code": "21",
+      "name": "Medical Law and Ethics",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_21"
+    },
+    {
+      "code": "22",
+      "name": "Moral and Political Philosophy",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_22"
+    },
+    {
+      "code": "23",
+      "name": "Personal Property",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_23"
+    },
+    {
+      "code": "24",
+      "name": "Public International Law",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_24"
+    },
+    {
+      "code": "25",
+      "name": "Roman Law (Delict)",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_25"
+    },
+    {
+      "code": "26",
+      "name": "Succession Law",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_26"
+    },
+    {
+      "code": "27",
+      "name": "Taxation Law",
+      "level": "Finals",
+      "id": "law (jurisprudence)_finals_27"
+    }
+  ],
+  "Management": [
+    {
+      "code": "1",
+      "name": "Financial Management",
+      "level": "Prelims",
+      "id": "management_prelims_1"
+    },
+    {
+      "code": "2",
+      "name": "General Management",
+      "level": "Prelims",
+      "id": "management_prelims_2"
+    },
+    {
+      "code": "1",
+      "name": "Accounting",
+      "level": "Finals",
+      "id": "management_finals_1"
+    },
+    {
+      "code": "2",
+      "name": "Organisational Behaviour and Analysis",
+      "level": "Finals",
+      "id": "management_finals_2"
+    },
+    {
+      "code": "3",
+      "name": "Employment Relations",
+      "level": "Finals",
+      "id": "management_finals_3"
+    },
+    {
+      "code": "4",
+      "name": "Finance",
+      "level": "Finals",
+      "id": "management_finals_4"
+    },
+    {
+      "code": "5",
+      "name": "Strategic Management",
+      "level": "Finals",
+      "id": "management_finals_5"
+    },
+    {
+      "code": "6",
+      "name": "Marketing",
+      "level": "Finals",
+      "id": "management_finals_6"
+    },
+    {
+      "code": "7",
+      "name": "Technology and Operations Management",
+      "level": "Finals",
+      "id": "management_finals_7"
+    },
+    {
+      "code": "8",
+      "name": "International Business",
+      "level": "Finals",
+      "id": "management_finals_8"
+    },
+    {
+      "code": "9",
+      "name": "Entrepreneurship and Innovation",
+      "level": "Finals",
+      "id": "management_finals_9"
+    },
+    {
+      "code": "10",
+      "name": "Global Business History",
+      "level": "Finals",
+      "id": "management_finals_10"
+    },
+    {
+      "code": "11",
+      "name": "Thesis",
+      "level": "Finals",
+      "id": "management_finals_11"
+    }
+  ],
   "Philosophy": [
     {
       "code": "I",
@@ -17,6 +2983,30 @@
       "name": "Logic",
       "level": "Prelims",
       "id": "philosophy_prelims_iii"
+    },
+    {
+      "code": "P1B",
+      "name": "Turing: Computability and Intelligence",
+      "level": "Prelims",
+      "id": "philosophy_prelims_p1b"
+    },
+    {
+      "code": "P2",
+      "name": "Elements of Deductive Logic",
+      "level": "Prelims",
+      "id": "philosophy_prelims_p2"
+    },
+    {
+      "code": "2B",
+      "name": "The Leibniz-Clarke Correspondence",
+      "level": "Prelims",
+      "id": "philosophy_prelims_2b"
+    },
+    {
+      "code": "E2",
+      "name": "Frege Foundations of Arithmetic",
+      "level": "Prelims",
+      "id": "philosophy_prelims_e2"
     },
     {
       "code": "101",
@@ -151,6 +3141,48 @@
       "id": "philosophy_finals_129"
     },
     {
+      "code": "130",
+      "name": "Plato: Republic (in Greek)",
+      "level": "Finals",
+      "id": "philosophy_finals_130"
+    },
+    {
+      "code": "131",
+      "name": "Plato on Knowledge, Language, & Reality in the Theaetetus & Sophist (in Greek)",
+      "level": "Finals",
+      "id": "philosophy_finals_131"
+    },
+    {
+      "code": "132",
+      "name": "Aristotle: Nicomachean Ethics (in Greek)",
+      "level": "Finals",
+      "id": "philosophy_finals_132"
+    },
+    {
+      "code": "133",
+      "name": "Aristotle on Nature, Life and Mind (in Greek)",
+      "level": "Finals",
+      "id": "philosophy_finals_133"
+    },
+    {
+      "code": "134",
+      "name": "Knowledge and Scepticism in Hellenistic Philosophy (in Greek)",
+      "level": "Finals",
+      "id": "philosophy_finals_134"
+    },
+    {
+      "code": "135",
+      "name": "Latin Philosophy (in Latin)",
+      "level": "Finals",
+      "id": "philosophy_finals_135"
+    },
+    {
+      "code": "136",
+      "name": "Knowledge and Scepticism in Hellenistic Philosophy (in Latin)",
+      "level": "Finals",
+      "id": "philosophy_finals_136"
+    },
+    {
       "code": "137",
       "name": "Plato on Knowledge, Language, & Reality in the Theaetetus & Sophist",
       "level": "Finals",
@@ -191,6 +3223,236 @@
       "name": "Thesis",
       "level": "Finals",
       "id": "philosophy_finals_199"
+    }
+  ],
+  "Physics": [
+    {
+      "code": "CP1",
+      "name": "Physics 1",
+      "level": "Prelims",
+      "id": "physics_prelims_cp1"
+    },
+    {
+      "code": "CP2",
+      "name": "Physics 2",
+      "level": "Prelims",
+      "id": "physics_prelims_cp2"
+    },
+    {
+      "code": "CP3",
+      "name": "Mathematical Methods 1",
+      "level": "Prelims",
+      "id": "physics_prelims_cp3"
+    },
+    {
+      "code": "CP4",
+      "name": "Mathematical Methods 2",
+      "level": "Prelims",
+      "id": "physics_prelims_cp4"
+    },
+    {
+      "code": "S01",
+      "name": "Functions of a complex variable",
+      "level": "Prelims or Finals",
+      "id": "physics_prelims or finals_s01"
+    },
+    {
+      "code": "S02",
+      "name": "Astrophysics: from planets to the cosmos",
+      "level": "Prelims",
+      "id": "physics_prelims_s02"
+    },
+    {
+      "code": "S03",
+      "name": "Quantum Ideas",
+      "level": "Prelims",
+      "id": "physics_prelims_s03"
+    },
+    {
+      "code": "A1",
+      "name": "Thermal Physics",
+      "level": "Finals",
+      "id": "physics_finals_a1"
+    },
+    {
+      "code": "A2",
+      "name": "Electromagnetism and Optics",
+      "level": "Finals",
+      "id": "physics_finals_a2"
+    },
+    {
+      "code": "A3",
+      "name": "Quantum Physics",
+      "level": "Finals",
+      "id": "physics_finals_a3"
+    },
+    {
+      "code": "B1",
+      "name": "Fluids",
+      "level": "Finals",
+      "id": "physics_finals_b1"
+    },
+    {
+      "code": "B2",
+      "name": "Symmetry and Relativity",
+      "level": "Finals",
+      "id": "physics_finals_b2"
+    },
+    {
+      "code": "B3",
+      "name": "Atomic and Laser Physics",
+      "level": "Finals",
+      "id": "physics_finals_b3"
+    },
+    {
+      "code": "B4",
+      "name": "Nuclear and Particle Physics",
+      "level": "Finals",
+      "id": "physics_finals_b4"
+    },
+    {
+      "code": "B5",
+      "name": "General Relativity",
+      "level": "Finals",
+      "id": "physics_finals_b5"
+    },
+    {
+      "code": "B6",
+      "name": "Condensed Matter Physics",
+      "level": "Finals",
+      "id": "physics_finals_b6"
+    },
+    {
+      "code": "B8",
+      "name": "Computational Project",
+      "level": "Finals",
+      "id": "physics_finals_b8"
+    },
+    {
+      "code": "B9",
+      "name": "Experimental Project",
+      "level": "Finals",
+      "id": "physics_finals_b9"
+    },
+    {
+      "code": "S01",
+      "name": "Functions of a Complex Variable",
+      "level": "Finals",
+      "id": "physics_finals_s01"
+    },
+    {
+      "code": "S04",
+      "name": "Energy Studies",
+      "level": "Finals",
+      "id": "physics_finals_s04"
+    },
+    {
+      "code": "S07",
+      "name": "Classical Mechanics",
+      "level": "Finals",
+      "id": "physics_finals_s07"
+    },
+    {
+      "code": "S12",
+      "name": "Introduction to Biological Physics",
+      "level": "Finals",
+      "id": "physics_finals_s12"
+    },
+    {
+      "code": "S14",
+      "name": "History of Physics",
+      "level": "Finals",
+      "id": "physics_finals_s14"
+    },
+    {
+      "code": "S16",
+      "name": "Plasma Physics",
+      "level": "Finals",
+      "id": "physics_finals_s16"
+    },
+    {
+      "code": "S18",
+      "name": "Advanced Quantum Mechanics",
+      "level": "Finals",
+      "id": "physics_finals_s18"
+    },
+    {
+      "code": "S26",
+      "name": "Stars and Galaxies",
+      "level": "Finals",
+      "id": "physics_finals_s26"
+    },
+    {
+      "code": "S30",
+      "name": "Exoplanets",
+      "level": "Finals",
+      "id": "physics_finals_s30"
+    },
+    {
+      "code": "S31",
+      "name": "Numerical Methods",
+      "level": "Finals",
+      "id": "physics_finals_s31"
+    },
+    {
+      "code": "S32",
+      "name": "Chaos, Random Processes and Predictability",
+      "level": "Finals",
+      "id": "physics_finals_s32"
+    },
+    {
+      "code": "S33",
+      "name": "Entrepreneurship for Physicists",
+      "level": "Finals",
+      "id": "physics_finals_s33"
+    },
+    {
+      "code": "S34",
+      "name": "From Signals to Data",
+      "level": "Finals",
+      "id": "physics_finals_s34"
+    },
+    {
+      "code": "C1",
+      "name": "Astrophysics",
+      "level": "Masters",
+      "id": "physics_masters_c1"
+    },
+    {
+      "code": "C2",
+      "name": "Laser Science and Quantum Information Processing",
+      "level": "Masters",
+      "id": "physics_masters_c2"
+    },
+    {
+      "code": "C3",
+      "name": "Condensed Matter Physics",
+      "level": "Masters",
+      "id": "physics_masters_c3"
+    },
+    {
+      "code": "C4",
+      "name": "Particle Physics",
+      "level": "Masters",
+      "id": "physics_masters_c4"
+    },
+    {
+      "code": "C5",
+      "name": "Physics of Atmospheres and Oceans",
+      "level": "Masters",
+      "id": "physics_masters_c5"
+    },
+    {
+      "code": "C6",
+      "name": "Theoretical Physics",
+      "level": "Masters",
+      "id": "physics_masters_c6"
+    },
+    {
+      "code": "C7",
+      "name": "Biological Physics",
+      "level": "Masters",
+      "id": "physics_masters_c7"
     }
   ],
   "Politics": [
@@ -391,86 +3653,6 @@
       "name": "Thesis",
       "level": "Finals",
       "id": "politics_finals_299"
-    }
-  ],
-  "Economics": [
-    {
-      "code": "1",
-      "name": "Introduction to Microeconomics",
-      "level": "Prelims",
-      "id": "economics_prelims_1"
-    },
-    {
-      "code": "2",
-      "name": "Introduction to Macroeconomics",
-      "level": "Prelims",
-      "id": "economics_prelims_2"
-    },
-    {
-      "code": "3",
-      "name": "Introduction to Probability and Statistics",
-      "level": "Prelims",
-      "id": "economics_prelims_3"
-    },
-    {
-      "code": "300",
-      "name": "Quantitative Economics",
-      "level": "Finals",
-      "id": "economics_finals_300"
-    },
-    {
-      "code": "301",
-      "name": "Macroeconomics",
-      "level": "Finals",
-      "id": "economics_finals_301"
-    },
-    {
-      "code": "302",
-      "name": "Microeconomics",
-      "level": "Finals",
-      "id": "economics_finals_302"
-    },
-    {
-      "code": "304",
-      "name": "Money and Banking",
-      "level": "Finals",
-      "id": "economics_finals_304"
-    },
-    {
-      "code": "310",
-      "name": "Economics of Developing Countries",
-      "level": "Finals",
-      "id": "economics_finals_310"
-    },
-    {
-      "code": "311",
-      "name": "History of the World Economy",
-      "level": "Finals",
-      "id": "economics_finals_311"
-    },
-    {
-      "code": "314",
-      "name": "Econometrics",
-      "level": "Finals",
-      "id": "economics_finals_314"
-    },
-    {
-      "code": "319",
-      "name": "Game Theory",
-      "level": "Finals",
-      "id": "economics_finals_319"
-    },
-    {
-      "code": "398",
-      "name": "Special subjects in Economics",
-      "level": "Finals",
-      "id": "economics_finals_398"
-    },
-    {
-      "code": "399",
-      "name": "Thesis",
-      "level": "Finals",
-      "id": "economics_finals_399"
     }
   ]
 }
