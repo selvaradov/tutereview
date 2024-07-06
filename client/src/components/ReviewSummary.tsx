@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, Card, ProgressBar } from 'react-bootstrap';
-import { Star, Clock, User, BookOpen, MessageSquare, ChevronDown, ChevronUp } from 'lucide-react';
+import { Star, Clock, User, BookOpen, MessageSquare, ChevronDown, ChevronUp, ChevronLeft } from 'lucide-react';
 
 
 interface Review {
@@ -71,7 +71,7 @@ const ReviewSummary: React.FC<ReviewSummaryProps> = ({ reviews, onToggleFullResu
               <MessageSquare size={18} className="me-2" />
               <div className="w-100">
                 <div className="d-flex justify-content-between">
-                  <span>Written - Specific</span>
+                  <span>Specific Comments</span>
                   <span>{calculateProportion('feedback_written', '💬 Yes - I got comments on specific sections').toFixed(0)}%</span>
                 </div>
                 <ProgressBar now={calculateProportion('feedback_written', '💬 Yes - I got comments on specific sections')} />
@@ -81,7 +81,7 @@ const ReviewSummary: React.FC<ReviewSummaryProps> = ({ reviews, onToggleFullResu
               <MessageSquare size={18} className="me-2" />
               <div className="w-100">
                 <div className="d-flex justify-content-between">
-                  <span>Written - Overall</span>
+                  <span>Overall Comment</span>
                   <span>{calculateProportion('feedback_written', '📝 Yes - I got an overall comment for the whole submission').toFixed(0)}%</span>
                 </div>
                 <ProgressBar now={calculateProportion('feedback_written', '📝 Yes - I got an overall comment for the whole submission')} />
@@ -91,10 +91,10 @@ const ReviewSummary: React.FC<ReviewSummaryProps> = ({ reviews, onToggleFullResu
               <MessageSquare size={18} className="me-2" />
               <div className="w-100">
                 <div className="d-flex justify-content-between">
-                  <span>Verbal</span>
-                  <span>{calculateProportion('feedback_verbal', '🗣️ Yes').toFixed(0)}%</span>
+                  <span>Numerical mark or grade</span>
+                  <span>{calculateProportion('feedback_written', '🔢 Yes - I got a grade / numerical mark').toFixed(0)}%</span>
                 </div>
-                <ProgressBar now={calculateProportion('feedback_verbal', '🗣️ Yes')} />
+                <ProgressBar now={calculateProportion('feedback_written', '🔢 Yes - I got a grade / numerical mark')} />
               </div>
             </div>
           </Col>
@@ -102,15 +102,19 @@ const ReviewSummary: React.FC<ReviewSummaryProps> = ({ reviews, onToggleFullResu
             <h5>Tutorial</h5>
             <div className="d-flex align-items-center mb-2">
               <Clock size={18} className="me-2" />
-              <span>Length: {getMostCommonValue('tutorial_length')}</span>
+              <span><strong>Length:</strong> {getMostCommonValue('tutorial_length')}</span>
             </div>
             <div className="d-flex align-items-center mb-2">
               <BookOpen size={18} className="me-2" />
-              <span>Structure: {getMostCommonValue('tutorial_structure')}</span>
+              <span><strong>Structure:</strong> {getMostCommonValue('tutorial_structure')}</span>
+            </div>
+            <div className="d-flex align-items-center mb-2">
+              <User size={18} className="me-2" />
+              <span><strong>Explanations:</strong> {getMostCommonValue('tutorial_explanations')}</span>
             </div>
             <div className="d-flex align-items-center">
-              <User size={18} className="me-2" />
-              <span>Explanations: {getMostCommonValue('tutorial_explanations')}</span>
+              <ChevronLeft size={18} className="me-2" />
+              <span><strong>Pre-Tutorial:</strong> {getMostCommonValue('pre_tutorial')}</span>
             </div>
           </Col>
         </Row>
