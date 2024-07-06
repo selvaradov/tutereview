@@ -401,6 +401,131 @@
       "name": "Mathematics for Chemistry",
       "level": "Prelims",
       "id": "chemistry_prelims_4"
+    },
+    {
+      "code": "A1",
+      "name": "Inorganic Chemistry",
+      "level": "Finals"
+    },
+    {
+      "code": "A2",
+      "name": "Organic Chemistry",
+      "level": "Finals"
+    },
+    {
+      "code": "A3",
+      "name": "Physical Chemistry",
+      "level": "Finals"
+    },
+    {
+      "code": "O1",
+      "name": "Molecular Spectroscopy",
+      "level": "Finals"
+    },
+    {
+      "code": "O2",
+      "name": "Structural Methods",
+      "level": "Finals"
+    },
+    {
+      "code": "O3",
+      "name": "Organometallic Catalysts: From Fundamentals to Application",
+      "level": "Finals"
+    },
+    {
+      "code": "O4",
+      "name": "Solid State Compounds in Technology",
+      "level": "Finals"
+    },
+    {
+      "code": "O5",
+      "name": "Supramolecular, Nano and Medicinal inorganic Chemistry",
+      "level": "Finals"
+    },
+    {
+      "code": "O6",
+      "name": "Natural Product Chemistry",
+      "level": "Finals"
+    },
+    {
+      "code": "O7",
+      "name": "Advanced Synthesis and Total Synthesis",
+      "level": "Finals"
+    },
+    {
+      "code": "O8",
+      "name": "Contemporary Methods in Catalysis for Organic Synthesis",
+      "level": "Finals"
+    },
+    {
+      "code": "O9",
+      "name": "Advanced Chemical Biology",
+      "level": "Finals"
+    },
+    {
+      "code": "O10",
+      "name": "Functional Organic Polymers and Materials Chemistry",
+      "level": "Finals"
+    },
+    {
+      "code": "O11",
+      "name": "Molecular Reaction Dynamics",
+      "level": "Finals"
+    },
+    {
+      "code": "O12",
+      "name": "Theoretical Chemistry",
+      "level": "Finals"
+    },
+    {
+      "code": "O13",
+      "name": "An Introduction to the Liquid State",
+      "level": "Finals"
+    },
+    {
+      "code": "O14",
+      "name": "Magnetic Resonance",
+      "level": "Finals"
+    },
+    {
+      "code": "O15",
+      "name": "Fundamentals of Atmospheric and Astrochemistry",
+      "level": "Finals"
+    },
+    {
+      "code": "O16",
+      "name": "Molecular Surface Science",
+      "level": "Finals"
+    },
+    {
+      "code": "S1",
+      "name": "Aromatic and Heterocyclic Pharmaceutical Chemistry",
+      "level": "Finals"
+    },
+    {
+      "code": "S2",
+      "name": "Quantum Chemistry",
+      "level": "Finals"
+    },
+    {
+      "code": "S3",
+      "name": "Chemical Crystallography",
+      "level": "Finals"
+    },
+    {
+      "code": "B1",
+      "name": "Inorganic Chemistry",
+      "level": "Finals"
+    },
+    {
+      "code": "B2",
+      "name": "Organic Chemistry",
+      "level": "Finals"
+    },
+    {
+      "code": "B3",
+      "name": "Physical Chemistry",
+      "level": "Finals"
     }
   ],
   "Classical Archaeology and Ancient History": [
