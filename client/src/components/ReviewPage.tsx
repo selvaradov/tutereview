@@ -32,6 +32,7 @@ interface Paper {
   code: string;
   name: string;
   level: string;
+  id: string;
 }
 
 interface TutorOption {
@@ -82,6 +83,7 @@ const SubjectDropdown: React.FC<{
         setFieldValue('paper', '');
         setFieldValue('paperCode', '');
         setFieldValue('paperName', '');
+        setFieldValue('paperLevel', '');
       }}
       value={values.subject ? { value: values.subject, label: values.subject } : null}
       className={`react-select-container ${hasError ? 'is-invalid' : ''}`}
@@ -105,19 +107,22 @@ const PaperDropdown: React.FC<{
       inputId={question.id}
       aria-labelledby={`${question.id}-label`}
       options={papersBySubject[selectedSubject as keyof SubjectToPapersMap]?.map(paper => ({
-        value: paper.code,
+        value: paper.id,
         label: `${paper.code} - ${paper.name} (${paper.level})`
       }))}
       onChange={(option: { value: string; label: string } | null) => {
         if (option) {
-          const [code, name] = option.label.split(' - ', 2);
+          const [code, rest] = option.label.split(' - ', 2);
+          const [name, level] = rest.split(' (');
           setFieldValue(question.id, option.value);
           setFieldValue('paperCode', code || '');
           setFieldValue('paperName', name || '');
+          setFieldValue('paperLevel', level.slice(0, -1) || '');
         } else {
           setFieldValue(question.id, '');
           setFieldValue('paperCode', '');
           setFieldValue('paperName', '');
+          setFieldValue('paperLevel', '');
         }
       }}
       value={values.paper ? { value: values.paper, label: `${values.paperCode} - ${values.paperName}` } : null}
@@ -358,7 +363,7 @@ const ReviewPage: React.FC = () => {
     document.title = 'TuteReview - Submit a review';
   }, []);
 
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -390,12 +395,16 @@ const ReviewPage: React.FC = () => {
 
   const initialValues = questions.reduce((acc, question) => {
     if (question.type === 'select') {
-      acc[question.id] = []; 
+      acc[question.id] = [];
     } else {
-      acc[question.id] = ''; 
+      acc[question.id] = '';
     }
     return acc;
-  }, {} as Record<string, string | string[]>);
+  }, {
+    paperCode: '',
+    paperName: '',
+    paperLevel: '',
+  } as Record<string, string | string[]>);
 
   const validationSchema = Yup.object().shape(
     questions.reduce((acc, question) => {

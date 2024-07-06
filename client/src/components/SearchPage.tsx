@@ -10,6 +10,7 @@ interface Paper {
   code: string;
   name: string;
   level: string;
+  id: string;
 }
 
 interface SubjectToPapersMap {
