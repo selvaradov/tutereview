@@ -81,12 +81,12 @@
   },
   {
     "id": "feedback_timely",
-    "question": "How quickly was your work returned to you?",
+    "question": "How was your tutor at returning work to you?",
     "type": "radio",
     "options": [
-      "🏎️ Very fast",
-      "🚶 About average",
-      "🐢 Super slow"
+      "🏎️ Fast",
+      "🚶 Average",
+      "🐢 Slow"
     ]
   },
   {
