@@ -65,6 +65,25 @@ const ReviewSummary: React.FC<ReviewSummaryProps> = ({ reviews, onToggleFullResu
           </Col>
         </Row>
         <Row className="mb-3">
+        <Col md={6} className="mb-3">
+            <h5>Tutorial</h5>
+            <div className="d-flex align-items-center mb-2">
+              <Clock size={18} className="me-2" />
+              <span><strong>Length:</strong> {getMostCommonValue('tutorial_length')}</span>
+            </div>
+            <div className="d-flex align-items-center mb-2">
+              <BookOpen size={18} className="me-2" />
+              <span><strong>Structure:</strong> {getMostCommonValue('tutorial_structure')}</span>
+            </div>
+            <div className="d-flex align-items-center mb-2">
+              <User size={18} className="me-2" />
+              <span><strong>Explanations:</strong> {getMostCommonValue('tutorial_explanations')}</span>
+            </div>
+            <div className="d-flex align-items-center">
+              <ChevronLeft size={18} className="me-2" />
+              <span><strong>Pre-Tutorial:</strong> {getMostCommonValue('pre_tutorial')}</span>
+            </div>
+          </Col>
           <Col md={6} className="mb-3">
             <h5>Feedback</h5>
             <div className="d-flex align-items-center mb-2">
@@ -96,25 +115,6 @@ const ReviewSummary: React.FC<ReviewSummaryProps> = ({ reviews, onToggleFullResu
                 </div>
                 <ProgressBar now={calculateProportion('feedback_written', '🔢 Yes - I got a grade / numerical mark')} />
               </div>
-            </div>
-          </Col>
-          <Col md={6} className="mb-3">
-            <h5>Tutorial</h5>
-            <div className="d-flex align-items-center mb-2">
-              <Clock size={18} className="me-2" />
-              <span><strong>Length:</strong> {getMostCommonValue('tutorial_length')}</span>
-            </div>
-            <div className="d-flex align-items-center mb-2">
-              <BookOpen size={18} className="me-2" />
-              <span><strong>Structure:</strong> {getMostCommonValue('tutorial_structure')}</span>
-            </div>
-            <div className="d-flex align-items-center mb-2">
-              <User size={18} className="me-2" />
-              <span><strong>Explanations:</strong> {getMostCommonValue('tutorial_explanations')}</span>
-            </div>
-            <div className="d-flex align-items-center">
-              <ChevronLeft size={18} className="me-2" />
-              <span><strong>Pre-Tutorial:</strong> {getMostCommonValue('pre_tutorial')}</span>
             </div>
           </Col>
         </Row>
