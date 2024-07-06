@@ -150,7 +150,7 @@ const ProfileCompletion: React.FC = () => {
               <p className="text-center text-muted">
                 <small>
                   For security reasons, you can't update your profile information here. If these details change,
-                  email <a href="mailto:support@tutereview.org">support@tutereview.org</a> and we'll help you out.
+                  email <a href="mailto:tutereview+support@proton.me">tutereview+support@proton.me</a> and we'll help you out.
                 </small>
               </p>
             )}
