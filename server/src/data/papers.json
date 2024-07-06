@@ -4,55 +4,49 @@
       "code": "4c1",
       "name": "Herodotus",
       "level": "Prelims",
-      "id": "ancient and modern history_prelims_4c1"
+      "id": "ancient_and_modern_history_prelims_4c1"
     },
     {
       "code": "4c2",
       "name": "Sallust: Jugurtha",
       "level": "Prelims",
-      "id": "ancient and modern history_prelims_4c2"
+      "id": "ancient_and_modern_history_prelims_4c2"
     },
     {
       "code": "4d1",
       "name": "Beginning Ancient Latin",
       "level": "Prelims",
-      "id": "ancient and modern history_prelims_4d1"
-    },
-    {
-      "code": "4d1",
-      "name": "Beginning Ancient Latin",
-      "level": "Prelims",
-      "id": "ancient and modern history_prelims_4d1"
+      "id": "ancient_and_modern_history_prelims_4d1"
     },
     {
       "code": "4d2",
       "name": "Beginning Ancient Greek",
       "level": "Prelims",
-      "id": "ancient and modern history_prelims_4d2"
+      "id": "ancient_and_modern_history_prelims_4d2"
     },
     {
       "code": "4d3",
       "name": "Intermediate Latin",
       "level": "Prelims",
-      "id": "ancient and modern history_prelims_4d3"
+      "id": "ancient_and_modern_history_prelims_4d3"
     },
     {
       "code": "4d4",
       "name": "Intermediate Ancient Greek",
       "level": "Prelims",
-      "id": "ancient and modern history_prelims_4d4"
+      "id": "ancient_and_modern_history_prelims_4d4"
     },
     {
       "code": "4d5",
       "name": "Advanced Latin",
       "level": "Prelims",
-      "id": "ancient and modern history_prelims_4d5"
+      "id": "ancient_and_modern_history_prelims_4d5"
     },
     {
       "code": "4d6",
       "name": "Advanced Ancient Greek",
       "level": "Prelims",
-      "id": "ancient and modern history_prelims_4d6"
+      "id": "ancient_and_modern_history_prelims_4d6"
     }
   ],
   "Archaeology and Anthropology": [
@@ -60,229 +54,229 @@
       "code": "1",
       "name": "Introduction to world archaeology",
       "level": "Mods",
-      "id": "archaeology and anthropology_mods_1"
+      "id": "archaeology_and_anthropology_mods_1"
     },
     {
       "code": "2",
       "name": "Introduction to anthropological theory",
       "level": "Mods",
-      "id": "archaeology and anthropology_mods_2"
+      "id": "archaeology_and_anthropology_mods_2"
     },
     {
       "code": "3",
       "name": "Perspectives on human evolution",
       "level": "Mods",
-      "id": "archaeology and anthropology_mods_3"
+      "id": "archaeology_and_anthropology_mods_3"
     },
     {
       "code": "4",
       "name": "The nature of archaeological and anthropological enquiry",
       "level": "Mods",
-      "id": "archaeology and anthropology_mods_4"
+      "id": "archaeology_and_anthropology_mods_4"
     },
     {
       "code": "1",
       "name": "Social analysis and interpretation",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_1"
+      "id": "archaeology_and_anthropology_finals_1"
     },
     {
       "code": "2",
       "name": "Cultural representations, beliefs, and practices",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_2"
+      "id": "archaeology_and_anthropology_finals_2"
     },
     {
       "code": "3",
       "name": "Landscape and Ecology",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_3"
+      "id": "archaeology_and_anthropology_finals_3"
     },
     {
       "code": "4",
       "name": "Urbanism and Society",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_4"
+      "id": "archaeology_and_anthropology_finals_4"
     },
     {
       "code": "5",
       "name": "Fieldwork and Methods",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_5"
+      "id": "archaeology_and_anthropology_finals_5"
     },
     {
       "code": "6",
       "name": "Anglo-Saxon Society and Economy in the Early Christian Period",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_6"
+      "id": "archaeology_and_anthropology_finals_6"
     },
     {
       "code": "7",
       "name": "Anthropology of Buddhism",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_7"
+      "id": "archaeology_and_anthropology_finals_7"
     },
     {
       "code": "8",
       "name": "Archaeology of Minoan Crete 3200-1000BC",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_8"
+      "id": "archaeology_and_anthropology_finals_8"
     },
     {
       "code": "9",
       "name": "Archaeology of Modern Human Origins",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_9"
+      "id": "archaeology_and_anthropology_finals_9"
     },
     {
       "code": "10",
       "name": "Archaeology of Southern African Hunter-Gatherers",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_10"
+      "id": "archaeology_and_anthropology_finals_10"
     },
     {
       "code": "11",
       "name": "Art under the Roman Empire, AD 14-336",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_11"
+      "id": "archaeology_and_anthropology_finals_11"
     },
     {
       "code": "12",
       "name": "Byzantium: the transition from Antiquity to the Middle Ages, AD 500-1100",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_12"
+      "id": "archaeology_and_anthropology_finals_12"
     },
     {
       "code": "13",
       "name": "Chinese Archaeology",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_13"
+      "id": "archaeology_and_anthropology_finals_13"
     },
     {
       "code": "14",
       "name": "The emergence of Medieval Europe AD 400-900",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_14"
+      "id": "archaeology_and_anthropology_finals_14"
     },
     {
       "code": "15",
       "name": "Farming and early states in Sub-Saharan Africa",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_15"
+      "id": "archaeology_and_anthropology_finals_15"
     },
     {
       "code": "16",
       "name": "From hunting and gathering to states and empires in South-west Asia",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_16"
+      "id": "archaeology_and_anthropology_finals_16"
     },
     {
       "code": "17",
       "name": "Gender and Sexuality: cross-cultural perspectives",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_17"
+      "id": "archaeology_and_anthropology_finals_17"
     },
     {
       "code": "18",
       "name": "Greek archaeology and art c.500-323 BC",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_18"
+      "id": "archaeology_and_anthropology_finals_18"
     },
     {
       "code": "19",
       "name": "Greeks and the Mediterranean World c.950-500 BC",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_19"
+      "id": "archaeology_and_anthropology_finals_19"
     },
     {
       "code": "20",
       "name": "Hellenistic Archaeology, 330-30 BC",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_20"
+      "id": "archaeology_and_anthropology_finals_20"
     },
     {
       "code": "21",
       "name": "Japanese society",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_21"
+      "id": "archaeology_and_anthropology_finals_21"
     },
     {
       "code": "22",
       "name": "Language and Anthropology",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_22"
+      "id": "archaeology_and_anthropology_finals_22"
     },
     {
       "code": "23",
       "name": "The Late Bronze Age and Early Iron Age Aegean",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_23"
+      "id": "archaeology_and_anthropology_finals_23"
     },
     {
       "code": "24",
       "name": "The Later Prehistory of Europe",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_24"
+      "id": "archaeology_and_anthropology_finals_24"
     },
     {
       "code": "25",
       "name": "Lowland South",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_25"
+      "id": "archaeology_and_anthropology_finals_25"
     },
     {
       "code": "26",
       "name": "Medical Anthropology: Sensory Experience, the Sentient Body and Therapeutics",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_26"
+      "id": "archaeology_and_anthropology_finals_26"
     },
     {
       "code": "27",
       "name": "Mediterranean Maritime Archaeology",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_27"
+      "id": "archaeology_and_anthropology_finals_27"
     },
     {
       "code": "28",
       "name": "Mesopotamia and Egypt from the emergence of complex society to c.2000 BC",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_28"
+      "id": "archaeology_and_anthropology_finals_28"
     },
     {
       "code": "29",
       "name": "Objects in Motion",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_29"
+      "id": "archaeology_and_anthropology_finals_29"
     },
     {
       "code": "30",
       "name": "Physical Anthropology and Human Osteoarchaeology",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_30"
+      "id": "archaeology_and_anthropology_finals_30"
     },
     {
       "code": "31",
       "name": "Roman Archaeology: Cities and settlement under the Empire",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_31"
+      "id": "archaeology_and_anthropology_finals_31"
     },
     {
       "code": "32",
       "name": "Science-based methods in Archaeology",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_32"
+      "id": "archaeology_and_anthropology_finals_32"
     },
     {
       "code": "33",
       "name": "South Asia",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_33"
+      "id": "archaeology_and_anthropology_finals_33"
     },
     {
       "code": "34",
       "name": "Themes in African Anthropology",
       "level": "Finals",
-      "id": "archaeology and anthropology_finals_34"
+      "id": "archaeology_and_anthropology_finals_34"
     }
   ],
   "Biology": [
@@ -405,127 +399,152 @@
     {
       "code": "A1",
       "name": "Inorganic Chemistry",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "chemistry_finals_a1"
     },
     {
       "code": "A2",
       "name": "Organic Chemistry",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "chemistry_finals_a2"
     },
     {
       "code": "A3",
       "name": "Physical Chemistry",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "chemistry_finals_a3"
     },
     {
       "code": "O1",
       "name": "Molecular Spectroscopy",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "chemistry_finals_o1"
     },
     {
       "code": "O2",
       "name": "Structural Methods",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "chemistry_finals_o2"
     },
     {
       "code": "O3",
       "name": "Organometallic Catalysts: From Fundamentals to Application",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "chemistry_finals_o3"
     },
     {
       "code": "O4",
       "name": "Solid State Compounds in Technology",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "chemistry_finals_o4"
     },
     {
       "code": "O5",
       "name": "Supramolecular, Nano and Medicinal inorganic Chemistry",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "chemistry_finals_o5"
     },
     {
       "code": "O6",
       "name": "Natural Product Chemistry",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "chemistry_finals_o6"
     },
     {
       "code": "O7",
       "name": "Advanced Synthesis and Total Synthesis",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "chemistry_finals_o7"
     },
     {
       "code": "O8",
       "name": "Contemporary Methods in Catalysis for Organic Synthesis",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "chemistry_finals_o8"
     },
     {
       "code": "O9",
       "name": "Advanced Chemical Biology",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "chemistry_finals_o9"
     },
     {
       "code": "O10",
       "name": "Functional Organic Polymers and Materials Chemistry",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "chemistry_finals_o10"
     },
     {
       "code": "O11",
       "name": "Molecular Reaction Dynamics",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "chemistry_finals_o11"
     },
     {
       "code": "O12",
       "name": "Theoretical Chemistry",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "chemistry_finals_o12"
     },
     {
       "code": "O13",
       "name": "An Introduction to the Liquid State",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "chemistry_finals_o13"
     },
     {
       "code": "O14",
       "name": "Magnetic Resonance",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "chemistry_finals_o14"
     },
     {
       "code": "O15",
       "name": "Fundamentals of Atmospheric and Astrochemistry",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "chemistry_finals_o15"
     },
     {
       "code": "O16",
       "name": "Molecular Surface Science",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "chemistry_finals_o16"
     },
     {
       "code": "S1",
       "name": "Aromatic and Heterocyclic Pharmaceutical Chemistry",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "chemistry_finals_s1"
     },
     {
       "code": "S2",
       "name": "Quantum Chemistry",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "chemistry_finals_s2"
     },
     {
       "code": "S3",
       "name": "Chemical Crystallography",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "chemistry_finals_s3"
     },
     {
       "code": "B1",
       "name": "Inorganic Chemistry",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "chemistry_finals_b1"
     },
     {
       "code": "B2",
       "name": "Organic Chemistry",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "chemistry_finals_b2"
     },
     {
       "code": "B3",
       "name": "Physical Chemistry",
-      "level": "Finals"
+      "level": "Finals",
+      "id": "chemistry_finals_b3"
     }
   ],
   "Classical Archaeology and Ancient History": [
@@ -533,97 +552,97 @@
       "code": "1",
       "name": "Aristocracy and democracy in the Greek world, 550-450 BC",
       "level": "Prelims",
-      "id": "classical archaeology and ancient history_prelims_1"
+      "id": "classical_archaeology_and_ancient_history_prelims_1"
     },
     {
       "code": "2",
       "name": "Republic to Empire: Rome, 50 BC to AD 50",
       "level": "Prelims",
-      "id": "classical archaeology and ancient history_prelims_2"
+      "id": "classical_archaeology_and_ancient_history_prelims_2"
     },
     {
       "code": "3",
       "name": "Homeric archaeology and early Greece, 1550-700 BC",
       "level": "Prelims",
-      "id": "classical archaeology and ancient history_prelims_3"
+      "id": "classical_archaeology_and_ancient_history_prelims_3"
     },
     {
       "code": "4",
       "name": "Greek vases",
       "level": "Prelims",
-      "id": "classical archaeology and ancient history_prelims_4"
+      "id": "classical_archaeology_and_ancient_history_prelims_4"
     },
     {
       "code": "5",
       "name": "Greek sculpture, c.600-300 BC",
       "level": "Prelims",
-      "id": "classical archaeology and ancient history_prelims_5"
+      "id": "classical_archaeology_and_ancient_history_prelims_5"
     },
     {
       "code": "6",
       "name": "Roman architecture",
       "level": "Prelims",
-      "id": "classical archaeology and ancient history_prelims_6"
+      "id": "classical_archaeology_and_ancient_history_prelims_6"
     },
     {
       "code": "7",
       "name": "Thucydides and the west",
       "level": "Prelims",
-      "id": "classical archaeology and ancient history_prelims_7"
+      "id": "classical_archaeology_and_ancient_history_prelims_7"
     },
     {
       "code": "8",
       "name": "Aristophanes' political comedy",
       "level": "Prelims",
-      "id": "classical archaeology and ancient history_prelims_8"
+      "id": "classical_archaeology_and_ancient_history_prelims_8"
     },
     {
       "code": "9",
       "name": "Cicero and Catiline",
       "level": "Prelims",
-      "id": "classical archaeology and ancient history_prelims_9"
+      "id": "classical_archaeology_and_ancient_history_prelims_9"
     },
     {
       "code": "10",
       "name": "Tacitus and Tiberius",
       "level": "Prelims",
-      "id": "classical archaeology and ancient history_prelims_10"
+      "id": "classical_archaeology_and_ancient_history_prelims_10"
     },
     {
       "code": "11",
       "name": "Beginning Ancient Greek",
       "level": "Prelims",
-      "id": "classical archaeology and ancient history_prelims_11"
+      "id": "classical_archaeology_and_ancient_history_prelims_11"
     },
     {
       "code": "12",
       "name": "Beginning Latin",
       "level": "Prelims",
-      "id": "classical archaeology and ancient history_prelims_12"
+      "id": "classical_archaeology_and_ancient_history_prelims_12"
     },
     {
       "code": "13",
       "name": "Intermediate Ancient Greek",
       "level": "Prelims",
-      "id": "classical archaeology and ancient history_prelims_13"
+      "id": "classical_archaeology_and_ancient_history_prelims_13"
     },
     {
       "code": "14",
       "name": "Intermediate Latin",
       "level": "Prelims",
-      "id": "classical archaeology and ancient history_prelims_14"
+      "id": "classical_archaeology_and_ancient_history_prelims_14"
     },
     {
       "code": "15",
       "name": "Advanced Ancient Greek",
       "level": "Prelims",
-      "id": "classical archaeology and ancient history_prelims_15"
+      "id": "classical_archaeology_and_ancient_history_prelims_15"
     },
     {
       "code": "16",
       "name": "Advanced Latin",
       "level": "Prelims",
-      "id": "classical archaeology and ancient history_prelims_16"
+      "id": "classical_archaeology_and_ancient_history_prelims_16"
     }
   ],
   "Classics": [
@@ -1083,277 +1102,277 @@
       "code": "CS1",
       "name": "Functional Programming and Design and Analysis of Algorithms",
       "level": "Prelims",
-      "id": "computer science_prelims_cs1"
+      "id": "computer_science_prelims_cs1"
     },
     {
       "code": "CS2",
       "name": "Imperative Programming and Introduction to Proof Systems",
       "level": "Prelims",
-      "id": "computer science_prelims_cs2"
+      "id": "computer_science_prelims_cs2"
     },
     {
       "code": "CS3",
       "name": "Discrete Mathematics, Continuous Mathematics and Probability",
       "level": "Prelims",
-      "id": "computer science_prelims_cs3"
+      "id": "computer_science_prelims_cs3"
     },
     {
       "code": "CS4",
       "name": "Digital Systems and Linear Algebra",
       "level": "Prelims",
-      "id": "computer science_prelims_cs4"
+      "id": "computer_science_prelims_cs4"
     },
     {
       "code": "A1",
       "name": "Compilers",
       "level": "Finals",
-      "id": "computer science_finals_a1"
+      "id": "computer_science_finals_a1"
     },
     {
       "code": "A2",
       "name": "Models of Computation",
       "level": "Finals",
-      "id": "computer science_finals_a2"
+      "id": "computer_science_finals_a2"
     },
     {
       "code": "A3",
       "name": "Algorithms and Data Structures",
       "level": "Finals",
-      "id": "computer science_finals_a3"
+      "id": "computer_science_finals_a3"
     },
     {
       "code": "A4",
       "name": "Concurrent Programming",
       "level": "Finals",
-      "id": "computer science_finals_a4"
+      "id": "computer_science_finals_a4"
     },
     {
       "code": "1",
       "name": "Artificial Intelligence",
       "level": "Finals",
-      "id": "computer science_finals_1"
+      "id": "computer_science_finals_1"
     },
     {
       "code": "2",
       "name": "Combinatorial Optimisation",
       "level": "Finals",
-      "id": "computer science_finals_2"
+      "id": "computer_science_finals_2"
     },
     {
       "code": "3",
       "name": "Computer Security",
       "level": "Finals",
-      "id": "computer science_finals_3"
+      "id": "computer_science_finals_3"
     },
     {
       "code": "4",
       "name": "Computer-Aided Formal Verification",
       "level": "Finals",
-      "id": "computer science_finals_4"
+      "id": "computer_science_finals_4"
     },
     {
       "code": "5",
       "name": "Geometric Modelling",
       "level": "Finals",
-      "id": "computer science_finals_5"
+      "id": "computer_science_finals_5"
     },
     {
       "code": "6",
       "name": "Machine Learning",
       "level": "Finals",
-      "id": "computer science_finals_6"
+      "id": "computer_science_finals_6"
     },
     {
       "code": "7",
       "name": "Principles of Programming Languages",
       "level": "Finals",
-      "id": "computer science_finals_7"
+      "id": "computer_science_finals_7"
     },
     {
       "code": "8",
       "name": "Requirements",
       "level": "Finals",
-      "id": "computer science_finals_8"
+      "id": "computer_science_finals_8"
     },
     {
       "code": "9",
       "name": "Computational Complexity",
       "level": "Finals",
-      "id": "computer science_finals_9"
+      "id": "computer_science_finals_9"
     },
     {
       "code": "10",
       "name": "Computer Architecture",
       "level": "Finals",
-      "id": "computer science_finals_10"
+      "id": "computer_science_finals_10"
     },
     {
       "code": "11",
       "name": "Computer Graphics",
       "level": "Finals",
-      "id": "computer science_finals_11"
+      "id": "computer_science_finals_11"
     },
     {
       "code": "12",
       "name": "Data Visualisation",
       "level": "Finals",
-      "id": "computer science_finals_12"
+      "id": "computer_science_finals_12"
     },
     {
       "code": "13",
       "name": "Databases",
       "level": "Finals",
-      "id": "computer science_finals_13"
+      "id": "computer_science_finals_13"
     },
     {
       "code": "14",
       "name": "Deep Learning in Healthcare",
       "level": "Finals",
-      "id": "computer science_finals_14"
+      "id": "computer_science_finals_14"
     },
     {
       "code": "15",
       "name": "Lambda Calculus and Types",
       "level": "Finals",
-      "id": "computer science_finals_15"
+      "id": "computer_science_finals_15"
     },
     {
       "code": "16",
       "name": "Logic and Proof",
       "level": "Finals",
-      "id": "computer science_finals_16"
+      "id": "computer_science_finals_16"
     },
     {
       "code": "17",
       "name": "Quantum Information",
       "level": "Finals",
-      "id": "computer science_finals_17"
+      "id": "computer_science_finals_17"
     },
     {
       "code": "1",
       "name": "Computational Biology",
       "level": "Masters",
-      "id": "computer science_masters_1"
+      "id": "computer_science_masters_1"
     },
     {
       "code": "2",
       "name": "Computational Game Theory",
       "level": "Masters",
-      "id": "computer science_masters_2"
+      "id": "computer_science_masters_2"
     },
     {
       "code": "3",
       "name": "Computational Learning Theory",
       "level": "Masters",
-      "id": "computer science_masters_3"
+      "id": "computer_science_masters_3"
     },
     {
       "code": "4",
       "name": "Concurrent Algorithms and Data Structures",
       "level": "Masters",
-      "id": "computer science_masters_4"
+      "id": "computer_science_masters_4"
     },
     {
       "code": "5",
       "name": "Distributed Processes, Types and Programming",
       "level": "Masters",
-      "id": "computer science_masters_5"
+      "id": "computer_science_masters_5"
     },
     {
       "code": "6",
       "name": "Graph Representation Learning",
       "level": "Masters",
-      "id": "computer science_masters_6"
+      "id": "computer_science_masters_6"
     },
     {
       "code": "7",
       "name": "Law and Computer Science",
       "level": "Masters",
-      "id": "computer science_masters_7"
+      "id": "computer_science_masters_7"
     },
     {
       "code": "8",
       "name": "Probabilistic Model Checking",
       "level": "Masters",
-      "id": "computer science_masters_8"
+      "id": "computer_science_masters_8"
     },
     {
       "code": "9",
       "name": "Probability and Computing",
       "level": "Masters",
-      "id": "computer science_masters_9"
+      "id": "computer_science_masters_9"
     },
     {
       "code": "10",
       "name": "Quantum Processes and Computation",
       "level": "Masters",
-      "id": "computer science_masters_10"
+      "id": "computer_science_masters_10"
     },
     {
       "code": "11",
       "name": "Advanced Security",
       "level": "Masters",
-      "id": "computer science_masters_11"
+      "id": "computer_science_masters_11"
     },
     {
       "code": "12",
       "name": "Algorithmic Foundations of Collective Decision Making",
       "level": "Masters",
-      "id": "computer science_masters_12"
+      "id": "computer_science_masters_12"
     },
     {
       "code": "13",
       "name": "Categories, Proofs and Processes",
       "level": "Masters",
-      "id": "computer science_masters_13"
+      "id": "computer_science_masters_13"
     },
     {
       "code": "14",
       "name": "Computational Medicine",
       "level": "Masters",
-      "id": "computer science_masters_14"
+      "id": "computer_science_masters_14"
     },
     {
       "code": "15",
       "name": "Computer Vision",
       "level": "Masters",
-      "id": "computer science_masters_15"
+      "id": "computer_science_masters_15"
     },
     {
       "code": "16",
       "name": "Database Systems Implementation",
       "level": "Masters",
-      "id": "computer science_masters_16"
+      "id": "computer_science_masters_16"
     },
     {
       "code": "17",
       "name": "Foundations of Self-Programming Agents",
       "level": "Masters",
-      "id": "computer science_masters_17"
+      "id": "computer_science_masters_17"
     },
     {
       "code": "18",
       "name": "Geometric Deep Learning",
       "level": "Masters",
-      "id": "computer science_masters_18"
+      "id": "computer_science_masters_18"
     },
     {
       "code": "19",
       "name": "Knowledge Representation & Reasoning",
       "level": "Masters",
-      "id": "computer science_masters_19"
+      "id": "computer_science_masters_19"
     },
     {
       "code": "20",
       "name": "Quantum Software",
       "level": "Masters",
-      "id": "computer science_masters_20"
+      "id": "computer_science_masters_20"
     },
     {
       "code": "21",
       "name": "Uncertainty in Deep Learning",
       "level": "Masters",
-      "id": "computer science_masters_21"
+      "id": "computer_science_masters_21"
     }
   ],
   "Economics": [
@@ -1441,337 +1460,337 @@
       "code": "P1",
       "name": "Mathematics",
       "level": "Prelims",
-      "id": "engineering science_prelims_p1"
+      "id": "engineering_science_prelims_p1"
     },
     {
       "code": "P2",
       "name": "Electronic and Information Engineering",
       "level": "Prelims",
-      "id": "engineering science_prelims_p2"
+      "id": "engineering_science_prelims_p2"
     },
     {
       "code": "P3",
       "name": "Structures and Mechanics",
       "level": "Prelims",
-      "id": "engineering science_prelims_p3"
+      "id": "engineering_science_prelims_p3"
     },
     {
       "code": "P4",
       "name": "Energy",
       "level": "Prelims",
-      "id": "engineering science_prelims_p4"
+      "id": "engineering_science_prelims_p4"
     },
     {
       "code": "A1",
       "name": "Mathematics",
       "level": "Finals",
-      "id": "engineering science_finals_a1"
+      "id": "engineering_science_finals_a1"
     },
     {
       "code": "A2",
       "name": "Electronic and Information Engineering",
       "level": "Finals",
-      "id": "engineering science_finals_a2"
+      "id": "engineering_science_finals_a2"
     },
     {
       "code": "A3",
       "name": "Structures, Materials and Dynamics",
       "level": "Finals",
-      "id": "engineering science_finals_a3"
+      "id": "engineering_science_finals_a3"
     },
     {
       "code": "A4",
       "name": "Energy Systems",
       "level": "Finals",
-      "id": "engineering science_finals_a4"
+      "id": "engineering_science_finals_a4"
     },
     {
       "code": "B1",
       "name": "Engineering Computation",
       "level": "Finals",
-      "id": "engineering science_finals_b1"
+      "id": "engineering_science_finals_b1"
     },
     {
       "code": "B2E1",
       "name": "Engineering in Society: Ethics, Safety & Risk, Sustainability",
       "level": "Finals",
-      "id": "engineering science_finals_b2e1"
+      "id": "engineering_science_finals_b2e1"
     },
     {
       "code": "B2E2",
       "name": "Engineering Management and Strategy",
       "level": "Finals",
-      "id": "engineering science_finals_b2e2"
+      "id": "engineering_science_finals_b2e2"
     },
     {
       "code": "B2",
       "name": "Engineering in Society",
       "level": "Finals",
-      "id": "engineering science_finals_b2"
+      "id": "engineering_science_finals_b2"
     },
     {
       "code": "B5",
       "name": "Solid Mechanics",
       "level": "Finals",
-      "id": "engineering science_finals_b5"
+      "id": "engineering_science_finals_b5"
     },
     {
       "code": "B6",
       "name": "Equilibrium Thermodynamics",
       "level": "Finals",
-      "id": "engineering science_finals_b6"
+      "id": "engineering_science_finals_b6"
     },
     {
       "code": "B7",
       "name": "Fluid Flow, Heat and Mass Transfer",
       "level": "Finals",
-      "id": "engineering science_finals_b7"
+      "id": "engineering_science_finals_b7"
     },
     {
       "code": "B8",
       "name": "Materials",
       "level": "Finals",
-      "id": "engineering science_finals_b8"
+      "id": "engineering_science_finals_b8"
     },
     {
       "code": "B9",
       "name": "Structures and Hydraulics",
       "level": "Finals",
-      "id": "engineering science_finals_b9"
+      "id": "engineering_science_finals_b9"
     },
     {
       "code": "B10",
       "name": "Soil Mechanics",
       "level": "Finals",
-      "id": "engineering science_finals_b10"
+      "id": "engineering_science_finals_b10"
     },
     {
       "code": "B11",
       "name": "Chemical Processes",
       "level": "Finals",
-      "id": "engineering science_finals_b11"
+      "id": "engineering_science_finals_b11"
     },
     {
       "code": "B13",
       "name": "Circuits and Communications",
       "level": "Finals",
-      "id": "engineering science_finals_b13"
+      "id": "engineering_science_finals_b13"
     },
     {
       "code": "B14",
       "name": "Information Engineering Systems",
       "level": "Finals",
-      "id": "engineering science_finals_b14"
+      "id": "engineering_science_finals_b14"
     },
     {
       "code": "B15",
       "name": "Control Systems",
       "level": "Finals",
-      "id": "engineering science_finals_b15"
+      "id": "engineering_science_finals_b15"
     },
     {
       "code": "B16",
       "name": "Software Engineering",
       "level": "Finals",
-      "id": "engineering science_finals_b16"
+      "id": "engineering_science_finals_b16"
     },
     {
       "code": "B17",
       "name": "Biomechanics",
       "level": "Finals",
-      "id": "engineering science_finals_b17"
+      "id": "engineering_science_finals_b17"
     },
     {
       "code": "B18",
       "name": "Biomedical Modelling and Monitoring",
       "level": "Finals",
-      "id": "engineering science_finals_b18"
+      "id": "engineering_science_finals_b18"
     },
     {
       "code": "B12",
       "name": "Electronic Devices",
       "level": "Finals",
-      "id": "engineering science_finals_b12"
+      "id": "engineering_science_finals_b12"
     },
     {
       "code": "B19",
       "name": "Fluid Mechanics: Turbulence, Compressible Flow and Turbomachinery",
       "level": "Finals",
-      "id": "engineering science_finals_b19"
+      "id": "engineering_science_finals_b19"
     },
     {
       "code": "C1",
       "name": "Automotive Engineering",
       "level": "Masters",
-      "id": "engineering science_masters_c1"
+      "id": "engineering_science_masters_c1"
     },
     {
       "code": "C2",
       "name": "Aerothermal Engineering",
       "level": "Masters",
-      "id": "engineering science_masters_c2"
+      "id": "engineering_science_masters_c2"
     },
     {
       "code": "C3",
       "name": "Materials Failure",
       "level": "Masters",
-      "id": "engineering science_masters_c3"
+      "id": "engineering_science_masters_c3"
     },
     {
       "code": "C4",
       "name": "Materials Modelling",
       "level": "Masters",
-      "id": "engineering science_masters_c4"
+      "id": "engineering_science_masters_c4"
     },
     {
       "code": "C5",
       "name": "Advanced Structures",
       "level": "Masters",
-      "id": "engineering science_masters_c5"
+      "id": "engineering_science_masters_c5"
     },
     {
       "code": "C6",
       "name": "Geotechnics",
       "level": "Masters",
-      "id": "engineering science_masters_c6"
+      "id": "engineering_science_masters_c6"
     },
     {
       "code": "C7",
       "name": "Hydraulics",
       "level": "Masters",
-      "id": "engineering science_masters_c7"
+      "id": "engineering_science_masters_c7"
     },
     {
       "code": "C8",
       "name": "Sustainable Energy",
       "level": "Masters",
-      "id": "engineering science_masters_c8"
+      "id": "engineering_science_masters_c8"
     },
     {
       "code": "C9",
       "name": "Environmental Engineering",
       "level": "Masters",
-      "id": "engineering science_masters_c9"
+      "id": "engineering_science_masters_c9"
     },
     {
       "code": "C10",
       "name": "Bioprocess Engineering",
       "level": "Masters",
-      "id": "engineering science_masters_c10"
+      "id": "engineering_science_masters_c10"
     },
     {
       "code": "C11",
       "name": "Chemical Engineering I",
       "level": "Masters",
-      "id": "engineering science_masters_c11"
+      "id": "engineering_science_masters_c11"
     },
     {
       "code": "C12",
       "name": "Chemical Engineering II",
       "level": "Masters",
-      "id": "engineering science_masters_c12"
+      "id": "engineering_science_masters_c12"
     },
     {
       "code": "C13",
       "name": "Production Engineering",
       "level": "Masters",
-      "id": "engineering science_masters_c13"
+      "id": "engineering_science_masters_c13"
     },
     {
       "code": "C14",
       "name": "Optoelectronics",
       "level": "Masters",
-      "id": "engineering science_masters_c14"
+      "id": "engineering_science_masters_c14"
     },
     {
       "code": "C15",
       "name": "Microelectronics",
       "level": "Masters",
-      "id": "engineering science_masters_c15"
+      "id": "engineering_science_masters_c15"
     },
     {
       "code": "C16",
       "name": "Advanced Communications",
       "level": "Masters",
-      "id": "engineering science_masters_c16"
+      "id": "engineering_science_masters_c16"
     },
     {
       "code": "C17",
       "name": "Power Electronics",
       "level": "Masters",
-      "id": "engineering science_masters_c17"
+      "id": "engineering_science_masters_c17"
     },
     {
       "code": "C18",
       "name": "Machine Vision and Robotics",
       "level": "Masters",
-      "id": "engineering science_masters_c18"
+      "id": "engineering_science_masters_c18"
     },
     {
       "code": "C19",
       "name": "Machine Learning",
       "level": "Masters",
-      "id": "engineering science_masters_c19"
+      "id": "engineering_science_masters_c19"
     },
     {
       "code": "C20",
       "name": "Multivariable Control",
       "level": "Masters",
-      "id": "engineering science_masters_c20"
+      "id": "engineering_science_masters_c20"
     },
     {
       "code": "C21",
       "name": "Nonlinear and Predictive Control",
       "level": "Masters",
-      "id": "engineering science_masters_c21"
+      "id": "engineering_science_masters_c21"
     },
     {
       "code": "C22",
       "name": "Medical Imaging and Informatics",
       "level": "Masters",
-      "id": "engineering science_masters_c22"
+      "id": "engineering_science_masters_c22"
     },
     {
       "code": "C23",
       "name": "Cellular Engineering and Therapy",
       "level": "Masters",
-      "id": "engineering science_masters_c23"
+      "id": "engineering_science_masters_c23"
     },
     {
       "code": "C24",
       "name": "Probability, Systems and Perturbation Methods",
       "level": "Masters",
-      "id": "engineering science_masters_c24"
+      "id": "engineering_science_masters_c24"
     },
     {
       "code": "C25",
       "name": "Mathematical Techniques",
       "level": "Masters",
-      "id": "engineering science_masters_c25"
+      "id": "engineering_science_masters_c25"
     },
     {
       "code": "C26",
       "name": "Entrepreneurship and Innovation",
       "level": "Masters",
-      "id": "engineering science_masters_c26"
+      "id": "engineering_science_masters_c26"
     },
     {
       "code": "C27",
       "name": "Management Practice",
       "level": "Masters",
-      "id": "engineering science_masters_c27"
+      "id": "engineering_science_masters_c27"
     },
     {
       "code": "C28",
       "name": "Multiphysics of Biological Materials",
       "level": "Masters",
-      "id": "engineering science_masters_c28"
+      "id": "engineering_science_masters_c28"
     },
     {
       "code": "C29",
       "name": "Computing Technology",
       "level": "Masters",
-      "id": "engineering science_masters_c29"
+      "id": "engineering_science_masters_c29"
     }
   ],
   "English": [
@@ -2785,229 +2804,223 @@
       "code": "1",
       "name": "Criminal Law",
       "level": "Mods",
-      "id": "law (jurisprudence)_mods_1"
+      "id": "law_(jurisprudence)_mods_1"
     },
     {
       "code": "2",
       "name": "Constitutional Law",
       "level": "Mods",
-      "id": "law (jurisprudence)_mods_2"
+      "id": "law_(jurisprudence)_mods_2"
     },
     {
       "code": "3",
       "name": "A Roman Introduction to Private Law",
       "level": "Mods",
-      "id": "law (jurisprudence)_mods_3"
+      "id": "law_(jurisprudence)_mods_3"
     },
     {
       "code": "i",
       "name": "Jurisprudence",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_i"
+      "id": "law_(jurisprudence)_finals_i"
     },
     {
       "code": "ii",
       "name": "Contract",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_ii"
+      "id": "law_(jurisprudence)_finals_ii"
     },
     {
       "code": "iii",
       "name": "Tort",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_iii"
+      "id": "law_(jurisprudence)_finals_iii"
     },
     {
       "code": "iv",
       "name": "Land",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_iv"
+      "id": "law_(jurisprudence)_finals_iv"
     },
     {
       "code": "v",
       "name": "European Union Law",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_v"
+      "id": "law_(jurisprudence)_finals_v"
     },
     {
       "code": "vi",
       "name": "Trusts",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_vi"
+      "id": "law_(jurisprudence)_finals_vi"
     },
     {
       "code": "vii",
       "name": "Administrative Law",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_vii"
-    },
-    {
-      "code": "vii",
-      "name": "Administrative Law",
-      "level": "Finals",
-      "id": "law (jurisprudence)_finals_vii"
+      "id": "law_(jurisprudence)_finals_vii"
     },
     {
       "code": "viii",
       "name": "Jessup Moot",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_viii"
+      "id": "law_(jurisprudence)_finals_viii"
     },
     {
       "code": "ix",
       "name": "Thesis",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_ix"
+      "id": "law_(jurisprudence)_finals_ix"
     },
     {
       "code": "1",
       "name": "Advanced Criminal Law",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_1"
+      "id": "law_(jurisprudence)_finals_1"
     },
     {
       "code": "2",
       "name": "Civil Dispute Resolution",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_2"
+      "id": "law_(jurisprudence)_finals_2"
     },
     {
       "code": "3",
       "name": "Commercial Law",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_3"
+      "id": "law_(jurisprudence)_finals_3"
     },
     {
       "code": "4",
       "name": "Company Law",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_4"
+      "id": "law_(jurisprudence)_finals_4"
     },
     {
       "code": "5",
       "name": "Comparative Law",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_5"
+      "id": "law_(jurisprudence)_finals_5"
     },
     {
       "code": "6",
       "name": "Competition Law and Policy",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_6"
+      "id": "law_(jurisprudence)_finals_6"
     },
     {
       "code": "8",
       "name": "Contract",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_8"
+      "id": "law_(jurisprudence)_finals_8"
     },
     {
       "code": "9",
       "name": "Copyright, Trade Marks and Allied Rights",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_9"
+      "id": "law_(jurisprudence)_finals_9"
     },
     {
       "code": "11",
       "name": "Criminology and Criminal Justice",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_11"
+      "id": "law_(jurisprudence)_finals_11"
     },
     {
       "code": "12",
       "name": "Dissertation",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_12"
+      "id": "law_(jurisprudence)_finals_12"
     },
     {
       "code": "13",
       "name": "Employment Law",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_13"
+      "id": "law_(jurisprudence)_finals_13"
     },
     {
       "code": "14",
       "name": "Environmental Law",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_14"
+      "id": "law_(jurisprudence)_finals_14"
     },
     {
       "code": "15",
       "name": "Family Law",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_15"
+      "id": "law_(jurisprudence)_finals_15"
     },
     {
       "code": "16",
       "name": "Feminist Perspectives in Law",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_16"
+      "id": "law_(jurisprudence)_finals_16"
     },
     {
       "code": "17",
       "name": "History of English Law",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_17"
+      "id": "law_(jurisprudence)_finals_17"
     },
     {
       "code": "18",
       "name": "Human Rights Law",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_18"
+      "id": "law_(jurisprudence)_finals_18"
     },
     {
       "code": "19",
       "name": "International Trade",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_19"
+      "id": "law_(jurisprudence)_finals_19"
     },
     {
       "code": "20",
       "name": "Media Law",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_20"
+      "id": "law_(jurisprudence)_finals_20"
     },
     {
       "code": "21",
       "name": "Medical Law and Ethics",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_21"
+      "id": "law_(jurisprudence)_finals_21"
     },
     {
       "code": "22",
       "name": "Moral and Political Philosophy",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_22"
+      "id": "law_(jurisprudence)_finals_22"
     },
     {
       "code": "23",
       "name": "Personal Property",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_23"
+      "id": "law_(jurisprudence)_finals_23"
     },
     {
       "code": "24",
       "name": "Public International Law",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_24"
+      "id": "law_(jurisprudence)_finals_24"
     },
     {
       "code": "25",
       "name": "Roman Law (Delict)",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_25"
+      "id": "law_(jurisprudence)_finals_25"
     },
     {
       "code": "26",
       "name": "Succession Law",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_26"
+      "id": "law_(jurisprudence)_finals_26"
     },
     {
       "code": "27",
       "name": "Taxation Law",
       "level": "Finals",
-      "id": "law (jurisprudence)_finals_27"
+      "id": "law_(jurisprudence)_finals_27"
     }
   ],
   "Management": [
@@ -3379,7 +3392,7 @@
       "code": "S01",
       "name": "Functions of a complex variable",
       "level": "Prelims or Finals",
-      "id": "physics_prelims or finals_s01"
+      "id": "physics_prelims_or_finals_s01"
     },
     {
       "code": "S02",
