@@ -25,7 +25,8 @@ yarn-error.log*
 # Git files
 .git
 .gitignore
+#!include:.gitignore
 
-# Do not ignore build files
-# !client/build/
-# !server/dist/
+# Other files
+TODO
+README.md
