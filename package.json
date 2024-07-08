@@ -2,6 +2,10 @@
   "name": "tutereview",
   "version": "0.0.0",
   "main": "index.js",
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:server": "cd server && npm run dev",
@@ -11,7 +15,6 @@
     "build:server": "cd server && npm run build",
     "build": "npm run build:client && npm run build:server && rsync -av --delete client/build/ server/build/",
     "test-production": "npm run build && cd server && npm start",
-    "predeploy": "tsc && node scripts/mergeDependencies.js",
     "deploy": "npm run build && gcloud app deploy app.yaml",
     "start": "cd server && npm start"
   },
