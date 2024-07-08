@@ -9,9 +9,6 @@
   "exclude": [
     "node_modules"
   ],
-  "include": [
-    "mergeDependencies.ts"
-  ],
   "ts-node": {
     "esm": true,
   }
