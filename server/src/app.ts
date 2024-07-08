@@ -63,7 +63,7 @@ app.use(
     store: sessionStore,
     secret: sessionSecret,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
