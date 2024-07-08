@@ -2,6 +2,7 @@
 
 import json
 from collections import OrderedDict
+import re
 
 PAPERS_FILENAME = "papers.json"
 PAPERS_IDS_FILENAME = "papers_ids_sorted.json"
@@ -16,7 +17,8 @@ def generate_and_sort_identifiers(data):
     for subject, courses in data.items():
         for course in courses:
             try:
-                course_id = f"{subject}_{course['level']}_{course['code']}".lower().replace(" ", "_")
+                course_id = f"{subject}_{course['level']}_{course['code']}".lower()
+                course_id = re.sub(r'\W', '_', course_id)
                 course['id'] = course_id
             except KeyError:
                 print(f"Error: {course}, {subject}")
