@@ -38,3 +38,13 @@ page for that course / that college / that tutor (but it's not attributable to t
 
 ## prompts
 > say I have a node js typescript project with the following folders in my src directory: routes, services, controllers, models, config. if required, a utils folder can also be added.
+
+## datastore emulator
+- apparently have to run `gcloud auth application-default login` first
+- seems not to work if you specify the port?? so leave it blank, and then in the .env of server folder, put `http://localhost:PORT`
+- to reset, do `$ curl -X POST "http://localhost:PORT/reset"`
+  - https://cloud.google.com/datastore/docs/emulator#reset_emulator_data
+- for composite index issues, maybe use the legacy emulator? 
+  - https://cloud.google.com/datastore/docs/tools; https://cloud.google.com/datastore/docs/tools/datastore-emulator
+  - It has a flag for more compatibility with the other mode too
+- using the legacy emulator seems to work better
