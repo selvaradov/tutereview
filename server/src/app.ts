@@ -45,7 +45,10 @@ if (!mongoURI) {
 }
 mongoose.connect(mongoURI)
   .then(() => console.log('Connected to MongoDB...'))
-  .catch(err => console.error('Could not connect to MongoDB...', err));
+  .catch(err => {
+    console.error('Could not connect to MongoDB...', err)
+    process.exit(1);
+  });
 
 // Session store setup
 const sessionStore = MongoStore.create({
@@ -109,7 +112,9 @@ app.get('*', (req, res) => {
 // Error handling
 app.use((err: unknown, req: Request, res: Response, next: Function) => {
   console.error('An error occurred', err);
-  res.status(500).send('Something went wrong!');
+  if (!res.headersSent) { // avoid sending a response twice
+    res.status(500).send('Something went wrong!');
+  }
 });
 
 export default app;
