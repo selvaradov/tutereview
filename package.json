@@ -11,7 +11,8 @@
     "build:server": "cd server && npm run build",
     "build": "npm run build:client && npm run build:server && rsync -av --delete client/build/ server/build/",
     "test-production": "npm run build && cd server && npm start",
-    "deploy": "npm run build && gcloud app deploy server/app.yaml"
+    "deploy": "npm run build && gcloud app deploy server/app.yaml",
+    "start": "cd server && npm start"
   },
   "author": "Rohan Selva-Radov",
   "license": "ISC",
@@ -19,6 +20,8 @@
   "type": "module",
   "devDependencies": {
     "@tsconfig/node22": "^22.0.0",
-    "concurrently": "^8.2.2"
+    "@types/node": "^20.14.10",
+    "concurrently": "^8.2.2",
+    "typescript": "^5.5.3"
   }
 }
