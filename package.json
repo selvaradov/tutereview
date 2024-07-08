@@ -11,7 +11,7 @@
     "build:server": "cd server && npm run build",
     "build": "npm run build:client && npm run build:server && rsync -av --delete client/build/ server/build/",
     "test-production": "npm run build && cd server && npm start",
-    "predeploy": "tsc && node scripts/mergeDependencies.js", 
+    "predeploy": "tsc && node scripts/mergeDependencies.js",
     "deploy": "npm run build && gcloud app deploy server/app.yaml",
     "start": "cd server && npm start"
   },
