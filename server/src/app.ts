@@ -35,7 +35,31 @@ app.use(bodyParser.json());
 app.use(logger('dev'));
 app.use(cookieParser());
 
-app.use(helmet());
+// Security
+app.set('trust proxy', 1) // for Google App Engine
+
+app.use(helmet(
+  {
+    contentSecurityPolicy: {
+      directives: {
+        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+        "img-src": ["'self'", "blob:", "data:"],
+      },
+    },
+  }
+));
+
+// HTTPS only in production
+const enforceHttps = (req: Request, res: Response, next: NextFunction) => {
+  if (req.headers['x-forwarded-proto'] !== 'https') {
+    return res.redirect(301, `https://${req.hostname}${req.url}`);
+  }
+  return next();
+};
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(enforceHttps);
+}
 
 // database setup
 const mongoURI = await getMongoURI();
