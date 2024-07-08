@@ -2,11 +2,60 @@
 
 ## Must do
 - Configure for deployment
-  - Switch database to Google Cloud Firebase
 
 ## High priority
-- Add other subjects' papers
-- Check that the current method of storing papers with codes will work even if codes are non-unique between subjects
+- Add other subjects' papers (in order of numbers, see [here](https://www.ox.ac.uk/about/facts-and-figures/student-numbers))
+  - **Medicine** 
+  - **Chemistry**
+  - Law
+  - Philosophy, Politics and Economics (PPE)
+  - History
+  - **Engineering Science**
+  - *English Language and Literature*
+  - Physics
+  - **Modern Languages**
+  - Mathematics
+  - Biology
+  - Molecular and Cellular Biochemistry
+  - Literae Humaniores
+  - Materials Science
+  - Mathematics and Computer Science
+  - Computer Science
+  - Earth Sciences
+  - History and Politics
+  - Asian and Middle Eastern Studies
+  - English and Modern Languages
+  - Modern Languages and Linguistics
+  - Theology and Religion
+  - Psychology, Philosophy and Linguistics (PPL)
+  - Music
+  - Geography
+  - Economics and Management
+  - Neuroscience
+  - Biomedical Sciences
+  - Fine Art
+  - History and Modern Languages
+  - Philosophy and Theology
+  - Human Sciences
+  - Mathematics and Statistics
+  - Philosophy and Modern Languages
+  - Ancient and Modern History
+  - Mathematics and Philosophy
+  - Classics and English
+  - Computer Science and Philosophy
+  - European and Middle Eastern Languages
+  - Physics and Philosophy
+  - Archaeology and Anthropology
+  - Classical Archaeology and Ancient History
+  - History and Economics
+  - History of Art
+  - History and English
+  - Classics and Modern Languages
+  - Mathematical and Theoretical Physics
+  - Cell and Systems Biology
+  - Classics and Asian and Middle Eastern Studies
+  - Religion and Asian and Middle Eastern Studies
+  - Arabic
 
 ## Medium priority
 
@@ -20,7 +69,8 @@
 
 ### Features
 - Show summaries about each tutor-subject combination on the search page, then let people click through to details
-
+  - Include AI summaries
+- Ability to edit reviews
 
 ## Low priority
 
@@ -32,6 +82,15 @@
 - Complete work on course -> subject -> paper structure
   - When submitting a review, fetch the user's subjects as the options for them to choose from
 - Associate tutors with subjects and only suggest relevant ones when submitting a review
+- Complete subject data
+  - Biology masters
+  - Biomedical Sciences
+  - Classical Archaeology and Ancient History
+    - Should split up the arch and history components for prelims
+    - Do finals https://examregs.admin.ox.ac.uk/Regulation?code=hsocaandancihist
+  - Chemistry finals & masters
+  - Engineering science finals & masters 
+  - English - missing special options
 
 ### Validation
 - For the review submission endpoint, check on the server side that:
