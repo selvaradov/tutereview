@@ -3,13 +3,14 @@
   "extends": "@tsconfig/node22/tsconfig.json",
   "compilerOptions": {
     "resolveJsonModule": true,
+    "outDir": "./scripts",
+    "rootDir": "./",
   },
   "exclude": [
     "node_modules"
   ],
   "include": [
-    "server/src/**/*.ts",
-    "bin/*.ts"
+    "mergeDependencies.ts"
   ],
   "ts-node": {
     "esm": true,
