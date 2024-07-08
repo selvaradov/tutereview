@@ -2804,223 +2804,223 @@
       "code": "1",
       "name": "Criminal Law",
       "level": "Mods",
-      "id": "law_(jurisprudence)_mods_1"
+      "id": "law__jurisprudence__mods_1"
     },
     {
       "code": "2",
       "name": "Constitutional Law",
       "level": "Mods",
-      "id": "law_(jurisprudence)_mods_2"
+      "id": "law__jurisprudence__mods_2"
     },
     {
       "code": "3",
       "name": "A Roman Introduction to Private Law",
       "level": "Mods",
-      "id": "law_(jurisprudence)_mods_3"
+      "id": "law__jurisprudence__mods_3"
     },
     {
       "code": "i",
       "name": "Jurisprudence",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_i"
+      "id": "law__jurisprudence__finals_i"
     },
     {
       "code": "ii",
       "name": "Contract",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_ii"
+      "id": "law__jurisprudence__finals_ii"
     },
     {
       "code": "iii",
       "name": "Tort",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_iii"
+      "id": "law__jurisprudence__finals_iii"
     },
     {
       "code": "iv",
       "name": "Land",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_iv"
+      "id": "law__jurisprudence__finals_iv"
     },
     {
       "code": "v",
       "name": "European Union Law",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_v"
+      "id": "law__jurisprudence__finals_v"
     },
     {
       "code": "vi",
       "name": "Trusts",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_vi"
+      "id": "law__jurisprudence__finals_vi"
     },
     {
       "code": "vii",
       "name": "Administrative Law",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_vii"
+      "id": "law__jurisprudence__finals_vii"
     },
     {
       "code": "viii",
       "name": "Jessup Moot",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_viii"
+      "id": "law__jurisprudence__finals_viii"
     },
     {
       "code": "ix",
       "name": "Thesis",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_ix"
+      "id": "law__jurisprudence__finals_ix"
     },
     {
       "code": "1",
       "name": "Advanced Criminal Law",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_1"
+      "id": "law__jurisprudence__finals_1"
     },
     {
       "code": "2",
       "name": "Civil Dispute Resolution",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_2"
+      "id": "law__jurisprudence__finals_2"
     },
     {
       "code": "3",
       "name": "Commercial Law",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_3"
+      "id": "law__jurisprudence__finals_3"
     },
     {
       "code": "4",
       "name": "Company Law",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_4"
+      "id": "law__jurisprudence__finals_4"
     },
     {
       "code": "5",
       "name": "Comparative Law",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_5"
+      "id": "law__jurisprudence__finals_5"
     },
     {
       "code": "6",
       "name": "Competition Law and Policy",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_6"
+      "id": "law__jurisprudence__finals_6"
     },
     {
       "code": "8",
       "name": "Contract",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_8"
+      "id": "law__jurisprudence__finals_8"
     },
     {
       "code": "9",
       "name": "Copyright, Trade Marks and Allied Rights",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_9"
+      "id": "law__jurisprudence__finals_9"
     },
     {
       "code": "11",
       "name": "Criminology and Criminal Justice",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_11"
+      "id": "law__jurisprudence__finals_11"
     },
     {
       "code": "12",
       "name": "Dissertation",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_12"
+      "id": "law__jurisprudence__finals_12"
     },
     {
       "code": "13",
       "name": "Employment Law",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_13"
+      "id": "law__jurisprudence__finals_13"
     },
     {
       "code": "14",
       "name": "Environmental Law",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_14"
+      "id": "law__jurisprudence__finals_14"
     },
     {
       "code": "15",
       "name": "Family Law",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_15"
+      "id": "law__jurisprudence__finals_15"
     },
     {
       "code": "16",
       "name": "Feminist Perspectives in Law",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_16"
+      "id": "law__jurisprudence__finals_16"
     },
     {
       "code": "17",
       "name": "History of English Law",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_17"
+      "id": "law__jurisprudence__finals_17"
     },
     {
       "code": "18",
       "name": "Human Rights Law",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_18"
+      "id": "law__jurisprudence__finals_18"
     },
     {
       "code": "19",
       "name": "International Trade",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_19"
+      "id": "law__jurisprudence__finals_19"
     },
     {
       "code": "20",
       "name": "Media Law",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_20"
+      "id": "law__jurisprudence__finals_20"
     },
     {
       "code": "21",
       "name": "Medical Law and Ethics",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_21"
+      "id": "law__jurisprudence__finals_21"
     },
     {
       "code": "22",
       "name": "Moral and Political Philosophy",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_22"
+      "id": "law__jurisprudence__finals_22"
     },
     {
       "code": "23",
       "name": "Personal Property",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_23"
+      "id": "law__jurisprudence__finals_23"
     },
     {
       "code": "24",
       "name": "Public International Law",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_24"
+      "id": "law__jurisprudence__finals_24"
     },
     {
       "code": "25",
       "name": "Roman Law (Delict)",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_25"
+      "id": "law__jurisprudence__finals_25"
     },
     {
       "code": "26",
       "name": "Succession Law",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_26"
+      "id": "law__jurisprudence__finals_26"
     },
     {
       "code": "27",
       "name": "Taxation Law",
       "level": "Finals",
-      "id": "law_(jurisprudence)_finals_27"
+      "id": "law__jurisprudence__finals_27"
     }
   ],
   "Management": [
@@ -3101,6 +3101,668 @@
       "name": "Thesis",
       "level": "Finals",
       "id": "management_finals_11"
+    }
+  ],
+  "Mathematics": [
+    {
+      "code": "I",
+      "name": "Linear Algebra and Groups",
+      "level": "Prelims",
+      "id": "mathematics_prelims_i"
+    },
+    {
+      "code": "II",
+      "name": "Analysis",
+      "level": "Prelims",
+      "id": "mathematics_prelims_ii"
+    },
+    {
+      "code": "IIIa",
+      "name": "Introductory Calculus",
+      "level": "Prelims",
+      "id": "mathematics_prelims_iiia"
+    },
+    {
+      "code": "IIIb",
+      "name": "Probability, Statistics and Data Analysis",
+      "level": "Prelims",
+      "id": "mathematics_prelims_iiib"
+    },
+    {
+      "code": "IVa",
+      "name": "Geometry and Dynamics",
+      "level": "Prelims",
+      "id": "mathematics_prelims_iva"
+    },
+    {
+      "code": "IVb",
+      "name": "Constructive Mathematics",
+      "level": "Prelims",
+      "id": "mathematics_prelims_ivb"
+    },
+    {
+      "code": "8",
+      "name": "Fourier Series and PDEs; Multivariable Calculus",
+      "level": "Prelims",
+      "id": "mathematics_prelims_8"
+    },
+    {
+      "code": "A0",
+      "name": "Linear Algebra",
+      "level": "Finals",
+      "id": "mathematics_finals_a0"
+    },
+    {
+      "code": "A1 / A6",
+      "name": "Differential Equations",
+      "level": "Finals",
+      "id": "mathematics_finals_a1___a6"
+    },
+    {
+      "code": "A2",
+      "name": "Metric Spaces and Complex Analysis",
+      "level": "Finals",
+      "id": "mathematics_finals_a2"
+    },
+    {
+      "code": "A8",
+      "name": "Probability",
+      "level": "Finals",
+      "id": "mathematics_finals_a8"
+    },
+    {
+      "code": "A11",
+      "name": "Quantum Theory",
+      "level": "Finals",
+      "id": "mathematics_finals_a11"
+    },
+    {
+      "code": "A3",
+      "name": "Rings and Modules",
+      "level": "Finals",
+      "id": "mathematics_finals_a3"
+    },
+    {
+      "code": "A4",
+      "name": "Integration",
+      "level": "Finals",
+      "id": "mathematics_finals_a4"
+    },
+    {
+      "code": "A5",
+      "name": "Topology",
+      "level": "Finals",
+      "id": "mathematics_finals_a5"
+    },
+    {
+      "code": "A7",
+      "name": "Numerical Analysis",
+      "level": "Finals",
+      "id": "mathematics_finals_a7"
+    },
+    {
+      "code": "A9",
+      "name": "Statistics",
+      "level": "Finals",
+      "id": "mathematics_finals_a9"
+    },
+    {
+      "code": "A10",
+      "name": "Fluids and Waves",
+      "level": "Finals",
+      "id": "mathematics_finals_a10"
+    },
+    {
+      "code": "ASO1",
+      "name": "Integral Transforms",
+      "level": "Finals",
+      "id": "mathematics_finals_aso1"
+    },
+    {
+      "code": "ASO2",
+      "name": "Calculus of Variations",
+      "level": "Finals",
+      "id": "mathematics_finals_aso2"
+    },
+    {
+      "code": "ASO3",
+      "name": "Graph Theory",
+      "level": "Finals",
+      "id": "mathematics_finals_aso3"
+    },
+    {
+      "code": "ASO4",
+      "name": "Group Theory",
+      "level": "Finals",
+      "id": "mathematics_finals_aso4"
+    },
+    {
+      "code": "ASO5",
+      "name": "Mathematical Modelling in Biology",
+      "level": "Finals",
+      "id": "mathematics_finals_aso5"
+    },
+    {
+      "code": "ASO6",
+      "name": "Multidimensional Analysis and Geometry",
+      "level": "Finals",
+      "id": "mathematics_finals_aso6"
+    },
+    {
+      "code": "ASO7",
+      "name": "Number Theory",
+      "level": "Finals",
+      "id": "mathematics_finals_aso7"
+    },
+    {
+      "code": "ASO8",
+      "name": "Projective Geometry",
+      "level": "Finals",
+      "id": "mathematics_finals_aso8"
+    },
+    {
+      "code": "ASO9",
+      "name": "Special Relativity",
+      "level": "Finals",
+      "id": "mathematics_finals_aso9"
+    },
+    {
+      "code": "B1.1",
+      "name": "Logic",
+      "level": "Finals",
+      "id": "mathematics_finals_b1_1"
+    },
+    {
+      "code": "B1.2",
+      "name": "Set Theory",
+      "level": "Finals",
+      "id": "mathematics_finals_b1_2"
+    },
+    {
+      "code": "B2.1",
+      "name": "Introduction to Representation Theory",
+      "level": "Finals",
+      "id": "mathematics_finals_b2_1"
+    },
+    {
+      "code": "B2.2",
+      "name": "Commutative Algebra",
+      "level": "Finals",
+      "id": "mathematics_finals_b2_2"
+    },
+    {
+      "code": "B2.3",
+      "name": "Lie Algebras",
+      "level": "Finals",
+      "id": "mathematics_finals_b2_3"
+    },
+    {
+      "code": "B3.1",
+      "name": "Galois Theory",
+      "level": "Finals",
+      "id": "mathematics_finals_b3_1"
+    },
+    {
+      "code": "B3.2",
+      "name": "Geometry of Surfaces",
+      "level": "Finals",
+      "id": "mathematics_finals_b3_2"
+    },
+    {
+      "code": "B3.3",
+      "name": "Algebraic Curves",
+      "level": "Finals",
+      "id": "mathematics_finals_b3_3"
+    },
+    {
+      "code": "B3.4",
+      "name": "Algebraic Number Theory",
+      "level": "Finals",
+      "id": "mathematics_finals_b3_4"
+    },
+    {
+      "code": "B3.5",
+      "name": "Topology and Groups",
+      "level": "Finals",
+      "id": "mathematics_finals_b3_5"
+    },
+    {
+      "code": "B4.1",
+      "name": "Functional Analysis I",
+      "level": "Finals",
+      "id": "mathematics_finals_b4_1"
+    },
+    {
+      "code": "B4.2",
+      "name": "Functional Analysis II",
+      "level": "Finals",
+      "id": "mathematics_finals_b4_2"
+    },
+    {
+      "code": "B4.3",
+      "name": "Distribution Theory",
+      "level": "Finals",
+      "id": "mathematics_finals_b4_3"
+    },
+    {
+      "code": "B4.4",
+      "name": "Fourier Analysis",
+      "level": "Finals",
+      "id": "mathematics_finals_b4_4"
+    },
+    {
+      "code": "B5.1",
+      "name": "Stochastic Modelling of Biological Processes",
+      "level": "Finals",
+      "id": "mathematics_finals_b5_1"
+    },
+    {
+      "code": "B5.2",
+      "name": "Applied Partial Differential Equations",
+      "level": "Finals",
+      "id": "mathematics_finals_b5_2"
+    },
+    {
+      "code": "B5.3",
+      "name": "Viscous Flow",
+      "level": "Finals",
+      "id": "mathematics_finals_b5_3"
+    },
+    {
+      "code": "B5.4",
+      "name": "Waves and Compressible Flow",
+      "level": "Finals",
+      "id": "mathematics_finals_b5_4"
+    },
+    {
+      "code": "B5.5",
+      "name": "Further Mathematical Biology",
+      "level": "Finals",
+      "id": "mathematics_finals_b5_5"
+    },
+    {
+      "code": "B5.6",
+      "name": "Nonlinear Dynamics, Bifurcations and Chaos",
+      "level": "Finals",
+      "id": "mathematics_finals_b5_6"
+    },
+    {
+      "code": "B6.1",
+      "name": "Numerical Solution of Partial Differential Equations",
+      "level": "Finals",
+      "id": "mathematics_finals_b6_1"
+    },
+    {
+      "code": "B6.2",
+      "name": "Optimisation for Data Science",
+      "level": "Finals",
+      "id": "mathematics_finals_b6_2"
+    },
+    {
+      "code": "B6.3",
+      "name": "Integer Programming",
+      "level": "Finals",
+      "id": "mathematics_finals_b6_3"
+    },
+    {
+      "code": "B7.1",
+      "name": "Classical Mechanics",
+      "level": "Finals",
+      "id": "mathematics_finals_b7_1"
+    },
+    {
+      "code": "B7.2",
+      "name": "Electromagnetism",
+      "level": "Finals",
+      "id": "mathematics_finals_b7_2"
+    },
+    {
+      "code": "B7.3",
+      "name": "Further Quantum Theory",
+      "level": "Finals",
+      "id": "mathematics_finals_b7_3"
+    },
+    {
+      "code": "B8.1",
+      "name": "Probability, Measure and Martingales",
+      "level": "Finals",
+      "id": "mathematics_finals_b8_1"
+    },
+    {
+      "code": "B8.2",
+      "name": "Continuous Martingales and Stochastic Calculus",
+      "level": "Finals",
+      "id": "mathematics_finals_b8_2"
+    },
+    {
+      "code": "B8.3",
+      "name": "Mathematical Models of Financial Derivatives",
+      "level": "Finals",
+      "id": "mathematics_finals_b8_3"
+    },
+    {
+      "code": "B8.4",
+      "name": "Information Theory",
+      "level": "Finals",
+      "id": "mathematics_finals_b8_4"
+    },
+    {
+      "code": "B8.5",
+      "name": "Graph Theory",
+      "level": "Finals",
+      "id": "mathematics_finals_b8_5"
+    },
+    {
+      "code": "BEE",
+      "name": "Mathematical Extended Essay",
+      "level": "Finals",
+      "id": "mathematics_finals_bee"
+    },
+    {
+      "code": "BO1.1",
+      "name": "History of Mathematics",
+      "level": "Finals",
+      "id": "mathematics_finals_bo1_1"
+    },
+    {
+      "code": "BOE",
+      "name": "Other Mathematical Extended Essay",
+      "level": "Finals",
+      "id": "mathematics_finals_boe"
+    },
+    {
+      "code": "BSP",
+      "name": "Structured Projects",
+      "level": "Finals",
+      "id": "mathematics_finals_bsp"
+    },
+    {
+      "code": "C1.1",
+      "name": "Model Theory",
+      "level": "Masters",
+      "id": "mathematics_masters_c1_1"
+    },
+    {
+      "code": "C1.2",
+      "name": "G\u00f6del's Incompleteness Theorems",
+      "level": "Masters",
+      "id": "mathematics_masters_c1_2"
+    },
+    {
+      "code": "C1.3",
+      "name": "Analytic Topology",
+      "level": "Masters",
+      "id": "mathematics_masters_c1_3"
+    },
+    {
+      "code": "C1.4",
+      "name": "Axiomatic Set Theory",
+      "level": "Masters",
+      "id": "mathematics_masters_c1_4"
+    },
+    {
+      "code": "C2.2",
+      "name": "Homological Algebra",
+      "level": "Masters",
+      "id": "mathematics_masters_c2_2"
+    },
+    {
+      "code": "C2.3",
+      "name": "Representation Theory of Semisimple Lie Algebras",
+      "level": "Masters",
+      "id": "mathematics_masters_c2_3"
+    },
+    {
+      "code": "C2.4",
+      "name": "Infinite Groups",
+      "level": "Masters",
+      "id": "mathematics_masters_c2_4"
+    },
+    {
+      "code": "C2.5",
+      "name": "Non-Commutative Rings",
+      "level": "Masters",
+      "id": "mathematics_masters_c2_5"
+    },
+    {
+      "code": "C2.6",
+      "name": "Introduction to Schemes",
+      "level": "Masters",
+      "id": "mathematics_masters_c2_6"
+    },
+    {
+      "code": "C2.7",
+      "name": "Category Theory",
+      "level": "Masters",
+      "id": "mathematics_masters_c2_7"
+    },
+    {
+      "code": "C3.1",
+      "name": "Algebraic Topology",
+      "level": "Masters",
+      "id": "mathematics_masters_c3_1"
+    },
+    {
+      "code": "C3.2",
+      "name": "Geometric Group Theory",
+      "level": "Masters",
+      "id": "mathematics_masters_c3_2"
+    },
+    {
+      "code": "C3.3",
+      "name": "Differentiable Manifolds",
+      "level": "Masters",
+      "id": "mathematics_masters_c3_3"
+    },
+    {
+      "code": "C3.4",
+      "name": "Algebraic Geometry",
+      "level": "Masters",
+      "id": "mathematics_masters_c3_4"
+    },
+    {
+      "code": "C3.5",
+      "name": "Lie Groups",
+      "level": "Masters",
+      "id": "mathematics_masters_c3_5"
+    },
+    {
+      "code": "C3.6",
+      "name": "Modular Forms",
+      "level": "Masters",
+      "id": "mathematics_masters_c3_6"
+    },
+    {
+      "code": "C3.7",
+      "name": "Elliptic Curves",
+      "level": "Masters",
+      "id": "mathematics_masters_c3_7"
+    },
+    {
+      "code": "C3.8",
+      "name": "Analytic Number Theory",
+      "level": "Masters",
+      "id": "mathematics_masters_c3_8"
+    },
+    {
+      "code": "C3.9",
+      "name": "Computational Algebraic Topology",
+      "level": "Masters",
+      "id": "mathematics_masters_c3_9"
+    },
+    {
+      "code": "C3.10",
+      "name": "Additive Combinatorics",
+      "level": "Masters",
+      "id": "mathematics_masters_c3_10"
+    },
+    {
+      "code": "C3.11",
+      "name": "Riemannian Geometry",
+      "level": "Masters",
+      "id": "mathematics_masters_c3_11"
+    },
+    {
+      "code": "C3.12",
+      "name": "Low-Dimensional Topology and Knot Theory",
+      "level": "Masters",
+      "id": "mathematics_masters_c3_12"
+    },
+    {
+      "code": "C4.1",
+      "name": "Further Functional Analysis",
+      "level": "Masters",
+      "id": "mathematics_masters_c4_1"
+    },
+    {
+      "code": "C4.3",
+      "name": "Functional Analytic Methods for PDEs",
+      "level": "Masters",
+      "id": "mathematics_masters_c4_3"
+    },
+    {
+      "code": "C4.4",
+      "name": "Hyperbolic Equations",
+      "level": "Masters",
+      "id": "mathematics_masters_c4_4"
+    },
+    {
+      "code": "C4.6",
+      "name": "Fixed Point Methods for Nonlinear PDEs",
+      "level": "Masters",
+      "id": "mathematics_masters_c4_6"
+    },
+    {
+      "code": "C4.9",
+      "name": "Optimal Transport & Partial Differential Equations",
+      "level": "Masters",
+      "id": "mathematics_masters_c4_9"
+    },
+    {
+      "code": "C5.2",
+      "name": "Elasticity and Plasticity",
+      "level": "Masters",
+      "id": "mathematics_masters_c5_2"
+    },
+    {
+      "code": "C5.4",
+      "name": "Networks",
+      "level": "Masters",
+      "id": "mathematics_masters_c5_4"
+    },
+    {
+      "code": "C5.5",
+      "name": "Perturbation Methods",
+      "level": "Masters",
+      "id": "mathematics_masters_c5_5"
+    },
+    {
+      "code": "C5.6",
+      "name": "Applied Complex Variables",
+      "level": "Masters",
+      "id": "mathematics_masters_c5_6"
+    },
+    {
+      "code": "C5.7",
+      "name": "Topics in Fluid Mechanics",
+      "level": "Masters",
+      "id": "mathematics_masters_c5_7"
+    },
+    {
+      "code": "C5.9",
+      "name": "Mathematical Mechanical Biology",
+      "level": "Masters",
+      "id": "mathematics_masters_c5_9"
+    },
+    {
+      "code": "C5.11",
+      "name": "Mathematical Geoscience",
+      "level": "Masters",
+      "id": "mathematics_masters_c5_11"
+    },
+    {
+      "code": "C5.12",
+      "name": "Mathematical Physiology",
+      "level": "Masters",
+      "id": "mathematics_masters_c5_12"
+    },
+    {
+      "code": "C6.1",
+      "name": "Numerical Linear Algebra",
+      "level": "Masters",
+      "id": "mathematics_masters_c6_1"
+    },
+    {
+      "code": "C6.2",
+      "name": "Continuous Optimisation",
+      "level": "Masters",
+      "id": "mathematics_masters_c6_2"
+    },
+    {
+      "code": "C6.5",
+      "name": "Theories of Deep Learning",
+      "level": "Masters",
+      "id": "mathematics_masters_c6_5"
+    },
+    {
+      "code": "C7.1",
+      "name": "Theoretical Physics",
+      "level": "Masters",
+      "id": "mathematics_masters_c7_1"
+    },
+    {
+      "code": "C7.4",
+      "name": "Introduction to Quantum Information",
+      "level": "Masters",
+      "id": "mathematics_masters_c7_4"
+    },
+    {
+      "code": "C7.5",
+      "name": "General Relativity I",
+      "level": "Masters",
+      "id": "mathematics_masters_c7_5"
+    },
+    {
+      "code": "C7.6",
+      "name": "General Relativity II",
+      "level": "Masters",
+      "id": "mathematics_masters_c7_6"
+    },
+    {
+      "code": "C7.7",
+      "name": "Random Matrix Theory",
+      "level": "Masters",
+      "id": "mathematics_masters_c7_7"
+    },
+    {
+      "code": "C8.1",
+      "name": "Stochastic Differential Equations",
+      "level": "Masters",
+      "id": "mathematics_masters_c8_1"
+    },
+    {
+      "code": "C8.2",
+      "name": "Stochastic Analysis and PDEs",
+      "level": "Masters",
+      "id": "mathematics_masters_c8_2"
+    },
+    {
+      "code": "C8.3",
+      "name": "Combinatorics",
+      "level": "Masters",
+      "id": "mathematics_masters_c8_3"
+    },
+    {
+      "code": "C8.4",
+      "name": "Probabilistic Combinatorics",
+      "level": "Masters",
+      "id": "mathematics_masters_c8_4"
+    },
+    {
+      "code": "C8.6",
+      "name": "Limit Theorems and Large Deviations in Probability",
+      "level": "Masters",
+      "id": "mathematics_masters_c8_6"
     }
   ],
   "Philosophy": [
