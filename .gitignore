@@ -5,6 +5,7 @@ server/src/var/*
 /client/build/
 /server/build/
 /server/dist/
+/scripts
 
 # Scraped data
 /server/src/data/scraping/
