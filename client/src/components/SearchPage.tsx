@@ -291,7 +291,7 @@ const SearchPage: React.FC = () => {
             return (
               <Card key={key} className="mb-4">
                 <Card.Header>
-                  <h3>{`${firstReview.responses.paperName} - ${firstReview.responses.tutor}`}</h3>
+                  <h3>{`${firstReview.responses.paperName} (${firstReview.responses.paperLevel}) - ${firstReview.responses.tutor}`}</h3>
                 </Card.Header>
                 <Card.Body>
                   <ReviewSummary 
