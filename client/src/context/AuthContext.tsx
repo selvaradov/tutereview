@@ -21,7 +21,7 @@
     checkAuthStatus: () => Promise<void>;
   }
 
-  const baseURL = process.env.REACT_APP_API_URL;
+  const baseURL = process.env.NODE_ENV === 'production' ? '' : process.env.REACT_APP_API_URL;
 
   const AuthContext = createContext<AuthContextType | undefined>(undefined);
 

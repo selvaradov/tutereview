@@ -31,7 +31,7 @@ interface FormFieldProps {
   options: Option[];
 }
 
-const baseURL = process.env.REACT_APP_API_URL;
+const baseURL = process.env.NODE_ENV === 'production' ? '' : process.env.REACT_APP_API_URL;
 
 const FormField: React.FC<FormFieldProps> = ({ fieldName, label, options }) => {
   const { values, setFieldValue, errors, touched, submitCount } = useFormikContext<FormValues>();

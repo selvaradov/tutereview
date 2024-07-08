@@ -52,7 +52,7 @@ interface GroupedReviews {
   };
 }
 
-const baseURL = process.env.REACT_APP_API_URL;
+const baseURL = process.env.NODE_ENV === 'production' ? '' : process.env.REACT_APP_API_URL;
 
 const SearchPage: React.FC = () => {
   const [papersBySubject, setPapersBySubject] = useState<SubjectToPapersMap>({});

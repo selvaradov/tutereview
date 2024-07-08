@@ -8,7 +8,7 @@ import { useNotification } from '../context/NotificationContext';
 import PageLayout from './PageLayout';
 import './ReviewPage.css'
 
-const baseURL = process.env.REACT_APP_API_URL;
+const baseURL = process.env.NODE_ENV === 'production' ? '' : process.env.REACT_APP_API_URL;
 
 interface DependencyCondition {
   question: string;
