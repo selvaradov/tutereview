@@ -40,7 +40,7 @@
     const logout = useCallback(async () => {
       startLoading();
       try {
-        const response = await axios.get(`${baseURL}/auth/logout`, { withCredentials: true, });
+        const response = await axios.get('/auth/logout', { withCredentials: true, });
         console.log(response.data.message);
 
         // Notify other tabs that the user has logged out
@@ -63,7 +63,7 @@
       if (isAuthInitialized) return; // Prevent multiple calls if already initialized
       startLoading();
       try {
-        const response = await axios.get(`${baseURL}/auth/status`, { withCredentials: true });
+        const response = await axios.get('/auth/status', { withCredentials: true });
         setIsAuthenticated(response.data.isAuthenticated);
         setUser(response.data.user);
       } catch (error) {

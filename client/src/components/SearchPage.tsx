@@ -52,8 +52,6 @@ interface GroupedReviews {
   };
 }
 
-const baseURL = process.env.NODE_ENV === 'production' ? '' : process.env.REACT_APP_API_URL;
-
 const SearchPage: React.FC = () => {
   const [papersBySubject, setPapersBySubject] = useState<SubjectToPapersMap>({});
   const [selectedSubject, setSelectedSubject] = useState<SelectOption | null>(null);
@@ -109,12 +107,9 @@ const SearchPage: React.FC = () => {
     const fetchData = async () => {
       startLoading();
       try {
-        const papersUrl = `${baseURL}/api/papers`;
-        const collegesUrl = `${baseURL}/api/colleges`;
-
         const [papersResponse, collegesResponse] = await Promise.all([
-          axios.get<SubjectToPapersMap>(papersUrl, { withCredentials: true }),
-          axios.get<SelectOption[]>(collegesUrl, { withCredentials: true })
+          axios.get<SubjectToPapersMap>('/api/papers', { withCredentials: true }),
+          axios.get<SelectOption[]>('/api/colleges', { withCredentials: true })
         ]);
 
         setPapersBySubject(papersResponse.data);
@@ -137,7 +132,7 @@ const SearchPage: React.FC = () => {
     }
     startLoading();
     try {
-      const response = await axios.get<Review[]>(`${baseURL}/api/search`, {
+      const response = await axios.get<Review[]>('/api/search', {
         params: latestSearchParams.current,
         withCredentials: true,
       });

@@ -18,8 +18,6 @@ interface Review {
   submittedAt: string;
 }
 
-const baseURL = process.env.NODE_ENV === 'production' ? '' : process.env.REACT_APP_API_URL;
-
 const UserReviews: React.FC = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -29,7 +27,7 @@ const UserReviews: React.FC = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await axios.get<Review[]>(`${baseURL}/user/reviews`, { withCredentials: true });
+        const response = await axios.get<Review[]>('/user/reviews', { withCredentials: true });
         setReviews(response.data);
         setIsLoading(false);
         setError(false);

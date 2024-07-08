@@ -31,8 +31,6 @@ interface FormFieldProps {
   options: Option[];
 }
 
-const baseURL = process.env.NODE_ENV === 'production' ? '' : process.env.REACT_APP_API_URL;
-
 const FormField: React.FC<FormFieldProps> = ({ fieldName, label, options }) => {
   const { values, setFieldValue, errors, touched, submitCount } = useFormikContext<FormValues>();
   const { isProfileComplete } = useAuth();
@@ -76,7 +74,7 @@ const ProfileCompletion: React.FC = () => {
   useEffect(() => {
     const fetchOptions = async () => {
       try {
-        const response = await axios.get<OptionsState>(`${baseURL}/user/options`, { withCredentials: true });
+        const response = await axios.get<OptionsState>('/user/options', { withCredentials: true });
         setOptions(response.data);
       } catch (error) {
         console.error('Failed to fetch user options:', error);
@@ -86,7 +84,7 @@ const ProfileCompletion: React.FC = () => {
 
     const fetchUserProfile = async () => {
       try {
-        const response = await axios.get<FormValues>(`${baseURL}/user/profile`, { withCredentials: true });
+        const response = await axios.get<FormValues>('/user/profile', { withCredentials: true });
         setInitialValues(response.data);
       } catch (error) {
         console.error('Failed to fetch user profile:', error);
@@ -104,7 +102,7 @@ const ProfileCompletion: React.FC = () => {
   const handleSubmit = async (values: FormValues, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
     if (!isProfileComplete) {
       try {
-        await axios.post(`${baseURL}/user/profile`, values, { withCredentials: true });
+        await axios.post('/user/profile', values, { withCredentials: true });
         if (user) {
           setUser({ ...user, isProfileComplete: true });
         }

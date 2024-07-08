@@ -8,8 +8,6 @@ import { useNotification } from '../context/NotificationContext';
 import PageLayout from './PageLayout';
 import './ReviewPage.css'
 
-const baseURL = process.env.NODE_ENV === 'production' ? '' : process.env.REACT_APP_API_URL;
-
 interface DependencyCondition {
   question: string;
   condition: (value: any) => boolean;
@@ -367,14 +365,10 @@ const ReviewPage: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const questionsUrl = `${baseURL}/api/questions`;
-        const papersUrl = `${baseURL}/api/papers`;
-        const tutorsUrl = `${baseURL}/api/tutors`;
-
         const [questionsResponse, subjectsResponse, tutorsResponse] = await Promise.all([
-          axios.get<Question[]>(questionsUrl, { withCredentials: true }),
-          axios.get<SubjectToPapersMap>(papersUrl, { withCredentials: true }),
-          axios.get<{ name: string }[]>(tutorsUrl, { withCredentials: true }),
+          axios.get<Question[]>('/api/questions', { withCredentials: true }),
+          axios.get<SubjectToPapersMap>('/api/papers', { withCredentials: true }),
+          axios.get<{ name: string }[]>('/api/tutors', { withCredentials: true }),
         ]);
 
         setQuestions(questionsResponse.data);
@@ -426,7 +420,7 @@ const ReviewPage: React.FC = () => {
 
   const handleSubmit = async (values: FormValues, { setSubmitting, resetForm }: { setSubmitting: (isSubmitting: boolean) => void; resetForm: () => void }) => {
     try {
-      await axios.post(`${baseURL}/api/review`, values, {
+      await axios.post('/api/review', values, {
         headers: {
           'Content-Type': 'application/json',
         },
