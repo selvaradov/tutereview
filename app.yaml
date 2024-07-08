@@ -1,0 +1,15 @@
+runtime: nodejs22
+env: standard
+instance_class: F1
+env_variables:
+  NODE_ENV: "production"
+  MS_CLIENT_ID: "18d46a7a-7093-4eb3-b4de-4b0e0cf03845"
+  MS_REDIRECT_PATH: "/auth/login/callback"
+  MONGO_OPTIONS: "?retryWrites=true&w=majority&appName=tutereview"
+  MONGO_DB: "tutereview-v0"
+  MONGO_HOST: "tutereview.z3qs1sy.mongodb.net"
+  GCLOUD_PROJECT: "tutereview"
+  CLIENT_URL: "https://tutereview.nw.r.appspot.com"
+  BASE_URL: "https://tutereview.nw.r.appspot.com"
+automatic_scaling:
+  min_idle_instances: 1
