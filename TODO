@@ -131,6 +131,10 @@
   - For the frontend, possibly `react-testing-library`
   - On the backend, it might be good to ensure that the JSONs being served are in the format defined by frontend interfaces
     - Could use [VSC schemas](https://code.visualstudio.com/docs/languages/json#_json-schemas-and-settings) for this?
+- Better approach to `baseURL` in client-side login
+- Probably no need to separately specify BASE_URL and CLIENT_URL in app engine env variables, but code would need changing
+- Dependencies with the separate client / server folders: https://stackoverflow.com/questions/73522641/can-a-google-app-engine-nodejs-app-install-separate-node-modules-in-separate-dir
+- Centralised error handling e.g. if session secret not defined, don't want to keep database connection open
 
 ### Authentication
 - Attempts to access a protected page if unauth sends you to `/auth/login` and then if 
