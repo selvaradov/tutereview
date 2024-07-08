@@ -7,6 +7,8 @@ const AboutSection = () => {
         never looks at the clock and realises with 10 minutes to go that they've not started
         giving you feedback yet; the one who'd rather do anything than give a straight answer
         to the question you asked. We've all been there — but it doesn't have to be this way!
+        There are many fantastic tutors and fascinating papers out there, and it would be great
+        if more people could find them. 
       </p>
       <p>
         There's always going to be variation in teaching between colleges and courses: that's part
