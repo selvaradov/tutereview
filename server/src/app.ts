@@ -2,19 +2,17 @@
 import { loadEnvConfig } from './config/env.js' // configure environment variables
 import express, { Application, Request, Response, NextFunction } from 'express';
 import session from 'express-session';
-import { FirestoreStore } from '@google-cloud/connect-firestore';
-import { Firestore } from '@google-cloud/firestore';
 import connectSQLite3 from 'connect-sqlite3';
 import passport from 'passport';
 import { configurePassport } from './config/passport.js';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
+import MongoStore from 'connect-mongo';
 import logger from 'morgan';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-
 
 // Import routes
 import authRouter from './routes/authRoutes.js';
@@ -44,30 +42,19 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization']
 };
 app.use(cors(corsOptions));
-// enable pre-flight requests for all routes
-app.options('*', cors(corsOptions)); 
+app.options('*', cors(corsOptions)); // enable pre-flight requests for all routes
+
+// database setup
+const mongoURI = process.env.MONGO_URI || 'mongodb://localhost/reviewDB';
+mongoose.connect(mongoURI)
+  .then(() => console.log('Connected to MongoDB...'))
+  .catch(err => console.error('Could not connect to MongoDB...', err));
 
 // Session store setup
-let sessionStore: any;
-
-const dbPath = path.join(__dirname, 'var', 'db', 'sessions.db');
-
-const firestore = new Firestore({ // TODO should this be used further down?
-  projectId: process.env.GCP_PROJECT_ID,
-  keyFilename: process.env.GCP_KEY_FILE,
-});
-
-if (process.env.NODE_ENV === 'production') {
-  // use Firestore in production
-  sessionStore = new FirestoreStore({
-    dataset: new Firestore(),
-    kind: 'express-sessions',
-  })
-} else {
-  // use SQLite in development
-  const SQLiteStore = connectSQLite3(session);
-  sessionStore = new SQLiteStore({ db: 'sessions.db', dir: path.dirname(dbPath) });
-}
+const sessionStore = MongoStore.create({
+  mongoUrl: mongoURI,
+  ttl: 14 * 24 * 60 * 60, // 14 days
+})
 
 app.use(
   session({
@@ -76,11 +63,15 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-      secure: false,
+      secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
-    }, // TODO change for production
+      maxAge: 14 * 24 * 60 * 60 * 1000, // 14 days
+    },
   })
 );
+
+// Serve static files from the React build
+app.use(express.static(path.join(__dirname, '../build')));
 
 // Passport middleware
 app.use(passport.initialize());
@@ -108,11 +99,10 @@ app.use('/auth', authRouter);
 app.use('/api', ensureAuthAndComplete, apiRouter); // users can only search/submit reviews if profile is complete
 app.use('/user', ensureAuth, userRouter); // this is where users can complete their profile
 
-// database setup
-const mongoURI = 'mongodb://localhost/reviewDB';
-mongoose.connect(mongoURI)
-  .then(() => console.log('Connected to MongoDB...'))
-  .catch(err => console.error('Could not connect to MongoDB...', err));
+// Serve the React app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build', 'index.html'));
+});
 
 // Error handling
 app.use((err: unknown, req: Request, res: Response, next: Function) => {
