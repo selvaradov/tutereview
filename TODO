@@ -2,6 +2,7 @@
 
 ## Must do
 - Configure for deployment
+  - sort out typescript version conflict (https://github.com/facebook/create-react-app/issues/13080)
 
 ## High priority
 - Add other subjects' papers (in order of numbers, see [here](https://www.ox.ac.uk/about/facts-and-figures/student-numbers))
@@ -135,6 +136,7 @@
 - Probably no need to separately specify BASE_URL and CLIENT_URL in app engine env variables, but code would need changing
 - Dependencies with the separate client / server folders: https://stackoverflow.com/questions/73522641/can-a-google-app-engine-nodejs-app-install-separate-node-modules-in-separate-dir
 - Centralised error handling e.g. if session secret not defined, don't want to keep database connection open
+- Email addresses - store as a variable somewhere rather than rewriting if it changes
 
 ### Authentication
 - Attempts to access a protected page if unauth sends you to `/auth/login` and then if 

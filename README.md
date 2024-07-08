@@ -48,3 +48,8 @@ page for that course / that college / that tutor (but it's not attributable to t
   - https://cloud.google.com/datastore/docs/tools; https://cloud.google.com/datastore/docs/tools/datastore-emulator
   - It has a flag for more compatibility with the other mode too
 - using the legacy emulator seems to work better
+
+## production
+- to exclude gitignore from gcloud you need to do `#!include:.gitignore` in gcloudignore I think
+- watch out with cookies, `app.set('trust proxy', 1)`
+  - and also enforce HTTPS https://stackoverflow.com/questions/40459511/in-express-js-req-protocol-is-not-picking-up-https-for-my-secure-link-it-alwa 
