@@ -4,9 +4,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start-server": "cd server && npm start",
+    "start-server": "cd server && npm run dev",
     "start-client": "cd client && npm start",
-    "start": "concurrently \"npm run start-server\" \"npm run start-client\""
+    "start": "concurrently \"npm run start-server\" \"npm run start-client\"",
+    "build:client": "cd client && npm run build",
+    "build:server": "cd server && npm run build",
+    "build": "npm run build:client && npm run build:server && mv client/build server/",
+    "deploy": "npm run build && gcloud app deploy server/app.yaml"
   },
   "author": "Rohan Selva-Radov",
   "license": "ISC",

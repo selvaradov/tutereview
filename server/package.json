@@ -4,7 +4,10 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsx watch src/server.ts"
+    "start": "node dist/server.js",
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc && npm run copy-files",
+    "copy-files": "mkdir -p dist/data && cp src/data/*.json dist/data/"
   },
   "author": "Rohan Selva-Radov",
   "license": "ISC",
