@@ -10,7 +10,7 @@ env_variables:
   MONGO_HOST: "tutereview.z3qs1sy.mongodb.net"
   MONGO_USERNAME: "tutereview"
   GCLOUD_PROJECT: "tutereview"
-  CLIENT_URL: "https://tutereview.nw.r.appspot.com"
-  BASE_URL: "https://tutereview.nw.r.appspot.com"
+  CLIENT_URL: "https://tutereview.org"
+  BASE_URL: "https://tutereview.org"
 automatic_scaling:
   min_idle_instances: 1
