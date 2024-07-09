@@ -9,7 +9,7 @@ import { Row, Col, Card } from 'react-bootstrap';
 import * as Yup from 'yup';
 import { Option } from '../types';
 
-interface ProfileOptionsState {
+interface ProfileOptions {
   colleges: Option[];
   years: Option[];
   courses: Option[];
@@ -61,7 +61,7 @@ const FormField: React.FC<ProfileFormFieldProps> = ({ fieldName, label, options 
 };
 
 const ProfileCompletion: React.FC = () => {
-  const [options, setOptions] = useState<ProfileOptionsState>({ colleges: [], years: [], courses: [] });
+  const [options, setOptions] = useState<ProfileOptions>({ colleges: [], years: [], courses: [] });
   const [initialValues, setInitialValues] = useState<ProfileFormValues>({ college: '', year: '', course: '' });
   const { user, isProfileComplete, setUser } = useAuth();
   const navigate = useNavigate();
@@ -70,7 +70,7 @@ const ProfileCompletion: React.FC = () => {
   useEffect(() => {
     const fetchOptions = async () => {
       try {
-        const response = await axios.get<ProfileOptionsState>('/user/options', { withCredentials: true });
+        const response = await axios.get<ProfileOptions>('/user/options', { withCredentials: true });
         setOptions(response.data);
       } catch (error) {
         console.error('Failed to fetch user options:', error);
