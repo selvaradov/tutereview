@@ -1099,28 +1099,58 @@
   ],
   "Computer Science": [
     {
-      "code": "CS1",
-      "name": "Functional Programming and Design and Analysis of Algorithms",
+      "code": "CS1a",
+      "name": "Functional Programming ",
       "level": "Prelims",
-      "id": "computer_science_prelims_cs1"
+      "id": "computer_science_prelims_cs1a"
     },
     {
-      "code": "CS2",
-      "name": "Imperative Programming and Introduction to Proof Systems",
+      "code": "CS1b",
+      "name": "Design and Analysis of Algorithms",
       "level": "Prelims",
-      "id": "computer_science_prelims_cs2"
+      "id": "computer_science_prelims_cs1b"
     },
     {
-      "code": "CS3",
-      "name": "Discrete Mathematics, Continuous Mathematics and Probability",
+      "code": "CS2a",
+      "name": "Imperative Programming",
       "level": "Prelims",
-      "id": "computer_science_prelims_cs3"
+      "id": "computer_science_prelims_cs2a"
     },
     {
-      "code": "CS4",
+      "code": "CS2b",
+      "name": " Introduction to Proof Systems",
+      "level": "Prelims",
+      "id": "computer_science_prelims_cs2b"
+    },
+    {
+      "code": "CS3a",
+      "name": "Discrete Mathematics",
+      "level": "Prelims",
+      "id": "computer_science_prelims_cs3a"
+    },
+    {
+      "code": "CS3b",
+      "name": "Continuous Mathematics",
+      "level": "Prelims",
+      "id": "computer_science_prelims_cs3b"
+    },
+    {
+      "code": "CS3c",
+      "name": "Probability",
+      "level": "Prelims",
+      "id": "computer_science_prelims_cs3c"
+    },
+    {
+      "code": "CS4a",
       "name": "Digital Systems and Linear Algebra",
       "level": "Prelims",
-      "id": "computer_science_prelims_cs4"
+      "id": "computer_science_prelims_cs4a"
+    },
+    {
+      "code": "CS4b",
+      "name": "Linear Algebra",
+      "level": "Prelims",
+      "id": "computer_science_prelims_cs4b"
     },
     {
       "code": "A1",
@@ -3105,10 +3135,16 @@
   ],
   "Mathematics": [
     {
-      "code": "I",
-      "name": "Linear Algebra and Groups",
+      "code": "Ia",
+      "name": "Linear Algebra",
       "level": "Prelims",
-      "id": "mathematics_prelims_i"
+      "id": "mathematics_prelims_ia"
+    },
+    {
+      "code": "Ib",
+      "name": "Groups",
+      "level": "Prelims",
+      "id": "mathematics_prelims_ib"
     },
     {
       "code": "II",
@@ -3124,27 +3160,45 @@
     },
     {
       "code": "IIIb",
-      "name": "Probability, Statistics and Data Analysis",
+      "name": "Probability",
       "level": "Prelims",
       "id": "mathematics_prelims_iiib"
     },
     {
+      "code": "IIIc",
+      "name": "Statistics and Data Analysis",
+      "level": "Prelims",
+      "id": "mathematics_prelims_iiic"
+    },
+    {
       "code": "IVa",
-      "name": "Geometry and Dynamics",
+      "name": "Geometry",
       "level": "Prelims",
       "id": "mathematics_prelims_iva"
     },
     {
       "code": "IVb",
-      "name": "Constructive Mathematics",
+      "name": "Dynamics",
       "level": "Prelims",
       "id": "mathematics_prelims_ivb"
     },
     {
-      "code": "8",
-      "name": "Fourier Series and PDEs; Multivariable Calculus",
+      "code": "IVc",
+      "name": "Constructive Mathematics",
       "level": "Prelims",
-      "id": "mathematics_prelims_8"
+      "id": "mathematics_prelims_ivc"
+    },
+    {
+      "code": "Va",
+      "name": "Fourier Series and PDEs",
+      "level": "Prelims",
+      "id": "mathematics_prelims_va"
+    },
+    {
+      "code": "Vb",
+      "name": "Multivariable Calculus",
+      "level": "Prelims",
+      "id": "mathematics_prelims_vb"
     },
     {
       "code": "A0",
