@@ -1,19 +1,7 @@
 import React from 'react';
 import { Row, Col, Card, ProgressBar } from 'react-bootstrap';
 import { Star, Clock, User, BookOpen, MessageSquare, ChevronDown, ChevronUp, ChevronLeft } from 'lucide-react';
-
-
-interface Review {
-  responses: {
-    [key: string]: string | number | string[];
-  };
-}
-
-interface ReviewSummaryProps {
-  reviews: Review[];
-  onToggleFullResults: () => void;
-  showFullResults: boolean;
-}
+import { ReviewSummaryProps } from '../types';
 
 const ReviewSummary: React.FC<ReviewSummaryProps> = ({ reviews, onToggleFullResults, showFullResults }) => {
   const calculateAverageRating = (key: string): number => {

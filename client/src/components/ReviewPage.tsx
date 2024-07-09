@@ -7,53 +7,8 @@ import CreatableSelect from 'react-select/creatable';
 import { useNotification } from '../context/NotificationContext';
 import { MissingOptionsMessage } from './Messages';
 import PageLayout from './PageLayout';
+import { SubjectToPapersMap, Question, TutorOption, ReviewFormFieldProps, StarRatingProps, CheckboxGroupProps } from '../types';
 import './ReviewPage.css'
-
-interface DependencyCondition {
-  question: string;
-  condition: (value: any) => boolean;
-}
-
-interface Question {
-  id: string;
-  question: string;
-  required?: boolean;
-  type: 'dropdown' | 'text' | 'radio' | 'rating' | 'select';
-  options?: string[];
-  dependsOn?: DependencyCondition;
-}
-
-interface SubjectToPapersMap {
-  [key: string]: Paper[];
-}
-
-interface Paper {
-  code: string;
-  name: string;
-  level: string;
-  id: string;
-}
-
-interface TutorOption {
-  readonly label: string;
-  readonly value: string;
-}
-
-interface FormFieldProps {
-  question: Question;
-  papersBySubject: SubjectToPapersMap;
-  tutorOptions: TutorOption[];
-}
-
-interface StarRatingProps {
-  id: string;
-  totalStars?: number;
-}
-
-interface CheckboxGroupProps {
-  id: string;
-  options: string[];
-}
 
 
 const createOption = (label: string) => ({
@@ -294,7 +249,7 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({ id, options }) => {
 };
 
 
-const FormField: React.FC<FormFieldProps> = ({ question, papersBySubject, tutorOptions }) => {
+const FormField: React.FC<ReviewFormFieldProps> = ({ question, papersBySubject, tutorOptions }) => {
   const { values, errors, touched, submitCount } = useFormikContext<FormikValues>();
 
   const shouldRender = useMemo(() => {

@@ -7,32 +7,11 @@ import axios from 'axios';
 import Select from 'react-select';
 import { Row, Col, Card } from 'react-bootstrap';
 import * as Yup from 'yup';
+import { SelectOption, ProfileOptionsState, ProfileFormValues, ProfileFormFieldProps } from '../types';
 
-interface Option {
-  value: string;
-  label: string;
-}
 
-interface OptionsState {
-  colleges: Option[];
-  years: Option[];
-  courses: Option[];
-}
-
-interface FormValues {
-  college: string;
-  year: string;
-  course: string;
-}
-
-interface FormFieldProps {
-  fieldName: keyof FormValues;
-  label: string;
-  options: Option[];
-}
-
-const FormField: React.FC<FormFieldProps> = ({ fieldName, label, options }) => {
-  const { values, setFieldValue, errors, touched, submitCount } = useFormikContext<FormValues>();
+const FormField: React.FC<ProfileFormFieldProps> = ({ fieldName, label, options }) => {
+  const { values, setFieldValue, errors, touched, submitCount } = useFormikContext<ProfileFormValues>();
   const { isProfileComplete } = useAuth();
   const hasError = errors[fieldName] && (touched[fieldName] || submitCount > 0);
 
@@ -44,7 +23,7 @@ const FormField: React.FC<FormFieldProps> = ({ fieldName, label, options }) => {
       </label>
       <Select
         options={options}
-        onChange={(option: Option | null) => {
+        onChange={(option: SelectOption | null) => {
           if (option) {
             setFieldValue(fieldName, option.value);
           } else {
@@ -65,8 +44,8 @@ const FormField: React.FC<FormFieldProps> = ({ fieldName, label, options }) => {
 };
 
 const ProfileCompletion: React.FC = () => {
-  const [options, setOptions] = useState<OptionsState>({ colleges: [], years: [], courses: [] });
-  const [initialValues, setInitialValues] = useState<FormValues>({ college: '', year: '', course: '' });
+  const [options, setOptions] = useState<ProfileOptionsState>({ colleges: [], years: [], courses: [] });
+  const [initialValues, setInitialValues] = useState<ProfileFormValues>({ college: '', year: '', course: '' });
   const { user, isProfileComplete, setUser } = useAuth();
   const navigate = useNavigate();
   const { showNotification } = useNotification();
@@ -74,7 +53,7 @@ const ProfileCompletion: React.FC = () => {
   useEffect(() => {
     const fetchOptions = async () => {
       try {
-        const response = await axios.get<OptionsState>('/user/options', { withCredentials: true });
+        const response = await axios.get<ProfileOptionsState>('/user/options', { withCredentials: true });
         setOptions(response.data);
       } catch (error) {
         console.error('Failed to fetch user options:', error);
@@ -84,7 +63,7 @@ const ProfileCompletion: React.FC = () => {
 
     const fetchUserProfile = async () => {
       try {
-        const response = await axios.get<FormValues>('/user/profile', { withCredentials: true });
+        const response = await axios.get<ProfileFormValues>('/user/profile', { withCredentials: true });
         setInitialValues(response.data);
       } catch (error) {
         console.error('Failed to fetch user profile:', error);
@@ -99,7 +78,7 @@ const ProfileCompletion: React.FC = () => {
     course: Yup.string().required('This question is required'),
   });
 
-  const handleSubmit = async (values: FormValues, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
+  const handleSubmit = async (values: ProfileFormValues, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
     if (!isProfileComplete) {
       try {
         await axios.post('/user/profile', values, { withCredentials: true });

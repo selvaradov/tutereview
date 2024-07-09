@@ -8,50 +8,7 @@ import { useLoading } from '../context/LoadingContext';
 import ReviewCard from './ReviewCard';
 import ReviewSummary from './ReviewSummary';
 import { MissingOptionsMessage } from './Messages';
-
-interface Paper {
-  code: string;
-  name: string;
-  level: string;
-  id: string;
-}
-
-interface SubjectToPapersMap {
-  [key: string]: Paper[];
-}
-
-interface Review {
-  _id: string;
-  responses: {
-    tutor: string;
-    subject: string;
-    paperCode: string;
-    paperName: string;
-    paperLevel: string;
-    [key: string]: string;
-  };
-  submittedAt: string;
-  college: string;
-}
-
-interface SearchParams {
-  tutor: string;
-  subject: string;
-  paper: string[];
-  college: string[];
-}
-
-interface SelectOption {
-  value: string;
-  label: string;
-}
-
-interface GroupedReviews {
-  [key: string]: {
-    reviews: Review[];
-    showFullResults: boolean;
-  };
-}
+import { Paper, SubjectToPapersMap, Review, SearchParams, SelectOption, GroupedReviews } from '../types';
 
 const SearchPage: React.FC = () => {
   const [papersBySubject, setPapersBySubject] = useState<SubjectToPapersMap>({});

@@ -4,19 +4,7 @@ import { Spinner } from 'react-bootstrap';
 import PageLayout from './PageLayout';
 import { useNotification } from '../context/NotificationContext';
 import ReviewCard from './ReviewCard';
-
-interface Review {
-  _id: string;
-  responses: {
-    tutor: string;
-    subject: string;
-    paperCode: string;
-    paperName: string;
-    paperLevel: string;
-    [key: string]: string | number | string[];
-  };
-  submittedAt: string;
-}
+import { Review } from '../types';
 
 const UserReviews: React.FC = () => {
   const [reviews, setReviews] = useState<Review[]>([]);

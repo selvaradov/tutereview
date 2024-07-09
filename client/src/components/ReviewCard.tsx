@@ -1,25 +1,6 @@
 import React from 'react';
 import { Card, Table, ListGroup } from 'react-bootstrap';
-
-interface Review {
-  _id: string;
-  responses: {
-    tutor: string;
-    subject: string;
-    paperCode: string;
-    paperName: string;
-    paperLevel: string;
-    [key: string]: string | number | string[];
-  };
-  submittedAt: string;
-  college?: string;
-}
-
-interface ReviewCardProps {
-  review: Review;
-  showCollege?: boolean;
-  collegeLookup?: Map<string, string>;
-}
+import { ReviewCardProps } from '../types';
 
 const questionTitles: { [key: string]: string } = {
   pre_tutorial: "Pre-Tutorial Work Review",
