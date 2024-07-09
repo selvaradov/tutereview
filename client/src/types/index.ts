@@ -56,14 +56,3 @@ export interface Question {
   dependsOn?: DependencyCondition;
 }
 
-export interface ProfileOptionsState {
-  colleges: Option[];
-  years: Option[];
-  courses: Option[];
-}
-
-export interface ProfileFormValues {
-  college: string;
-  year: string;
-  course: string;
-}

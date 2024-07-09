@@ -7,7 +7,19 @@ import axios from 'axios';
 import Select from 'react-select';
 import { Row, Col, Card } from 'react-bootstrap';
 import * as Yup from 'yup';
-import { Option, ProfileOptionsState, ProfileFormValues } from '../types';
+import { Option } from '../types';
+
+interface ProfileOptionsState {
+  colleges: Option[];
+  years: Option[];
+  courses: Option[];
+}
+
+interface ProfileFormValues {
+  college: string;
+  year: string;
+  course: string;
+}
 
 interface ProfileFormFieldProps {
   fieldName: keyof ProfileFormValues;
