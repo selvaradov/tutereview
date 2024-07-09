@@ -74,7 +74,7 @@ const renderValue = (key: string, value: ResponseValue) => {
       </ListGroup>
     );
   } else if (typeof value === 'number' && ['rating_feedback', 'rating_tutorial', 'rating_overall'].includes(key)) {
-    return <StarRating rating={value} decimal={0}/>;
+    return <StarRating rating={value} decimal={0} />;
   } else {
     return value;
   }
@@ -88,14 +88,19 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review, showCollege = false, co
       <Card.Body>
         <Card.Title>{`${review.responses.paperName} (${review.responses.paperLevel}) - ${review.responses.tutor}`}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
-          <div>Submitted: {new Date(review.submittedAt).toLocaleDateString("en-GB", { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+          <div>
+            Submitted: {showCollege
+              ? new Date(review.submittedAt).toLocaleDateString("en-GB", { month: 'long', year: 'numeric' })
+              : new Date(review.submittedAt).toLocaleDateString("en-GB", { year: 'numeric', month: 'long', day: 'numeric' })
+            }
+          </div>
           <div>{showCollege && collegeLookup && `College: ${collegeLookup.get(review.college as string) || review.responses.college}`}</div>
-          
+
         </Card.Subtitle>
-        
+
         {displayOrder.map((key) => {
           const value = review.responses[key];
-          if (value !== undefined && value !== "") { 
+          if (value !== undefined && value !== "") {
             return (
               <div key={key} className="mb-2">
                 <strong>{questionTitles[key] || key.charAt(0).toUpperCase() + key.slice(1)}: </strong>
