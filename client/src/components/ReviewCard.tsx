@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Table, ListGroup } from 'react-bootstrap';
-import { Review } from '../types';
+import { Review, ResponseValue } from '../types';
 
 interface ReviewCardProps {
   review: Review;
@@ -71,7 +71,7 @@ const ScoreCard: React.FC<{ options: { [key: string]: string }, selectedOptions:
   );
 };
 
-const renderValue = (key: string, value: string | number | string[]) => {
+const renderValue = (key: string, value: ResponseValue) => {
   if (Array.isArray(value) && questionOptions[key]) {
     return <ScoreCard options={questionOptions[key]} selectedOptions={value} />;
   } else if (Array.isArray(value)) {

@@ -9,6 +9,8 @@ export interface SubjectToPapersMap {
   [key: string]: Paper[];
 }
 
+export type ResponseValue = string | number | string[];
+
 export interface Review {
   _id: string;
   responses: {
@@ -17,7 +19,7 @@ export interface Review {
     paperCode: string;
     paperName: string;
     paperLevel: string;
-    [key: string]: string | number | string[];
+    [key: string]: ResponseValue;
   };
   submittedAt: string;
   college?: string;
@@ -47,11 +49,13 @@ export interface DependencyCondition {
   condition: (value: any) => boolean;
 }
 
+export type QuestionType = 'dropdown' | 'text' | 'radio' | 'rating' | 'select';
+
 export interface Question {
   id: string;
   question: string;
   required?: boolean;
-  type: 'dropdown' | 'text' | 'radio' | 'rating' | 'select';
+  type: QuestionType;
   options?: string[];
   dependsOn?: DependencyCondition;
 }
