@@ -7,8 +7,13 @@ import axios from 'axios';
 import Select from 'react-select';
 import { Row, Col, Card } from 'react-bootstrap';
 import * as Yup from 'yup';
-import { SelectOption, ProfileOptionsState, ProfileFormValues, ProfileFormFieldProps } from '../types';
+import { SelectOption, ProfileOptionsState, ProfileFormValues } from '../types';
 
+interface ProfileFormFieldProps {
+  fieldName: keyof ProfileFormValues;
+  label: string;
+  options: SelectOption[];
+}
 
 const FormField: React.FC<ProfileFormFieldProps> = ({ fieldName, label, options }) => {
   const { values, setFieldValue, errors, touched, submitCount } = useFormikContext<ProfileFormValues>();

@@ -1,6 +1,12 @@
 import React from 'react';
 import { Card, Table, ListGroup } from 'react-bootstrap';
-import { ReviewCardProps } from '../types';
+import { Review } from '../types';
+
+interface ReviewCardProps {
+  review: Review;
+  showCollege?: boolean;
+  collegeLookup?: Map<string, string>;
+}
 
 const questionTitles: { [key: string]: string } = {
   pre_tutorial: "Pre-Tutorial Work Review",

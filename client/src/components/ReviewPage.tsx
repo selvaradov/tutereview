@@ -7,7 +7,7 @@ import CreatableSelect from 'react-select/creatable';
 import { useNotification } from '../context/NotificationContext';
 import { MissingOptionsMessage } from './Messages';
 import PageLayout from './PageLayout';
-import { SubjectToPapersMap, Question, TutorOption, ReviewFormFieldProps, StarRatingProps, CheckboxGroupProps } from '../types';
+import { SubjectToPapersMap, Question, TutorOption } from '../types';
 import './ReviewPage.css'
 
 
@@ -177,6 +177,10 @@ const RadioField: React.FC<{
   );
 };
 
+interface StarRatingProps {
+  id: string;
+  totalStars?: number;
+}
 
 const StarRating: React.FC<StarRatingProps> = ({ id, totalStars = 5 }) => {
   // https://dev.to/kartikbudhraja/creating-a-dynamic-star-rating-system-in-react-2c8
@@ -218,6 +222,11 @@ const StarRating: React.FC<StarRatingProps> = ({ id, totalStars = 5 }) => {
   );
 };
 
+interface CheckboxGroupProps {
+  id: string;
+  options: string[];
+}
+
 const CheckboxGroup: React.FC<CheckboxGroupProps> = ({ id, options }) => {
   const { values, setFieldValue } = useFormikContext<FormikValues>();
 
@@ -248,6 +257,11 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({ id, options }) => {
   );
 };
 
+interface ReviewFormFieldProps {
+  question: Question;
+  papersBySubject: SubjectToPapersMap;
+  tutorOptions: TutorOption[];
+}
 
 const FormField: React.FC<ReviewFormFieldProps> = ({ question, papersBySubject, tutorOptions }) => {
   const { values, errors, touched, submitCount } = useFormikContext<FormikValues>();
