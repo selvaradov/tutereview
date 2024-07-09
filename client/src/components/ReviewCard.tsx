@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, Table, ListGroup } from 'react-bootstrap';
 import { Review, ResponseValue } from '../types';
+import StarRating from './StarRating';
 
 interface ReviewCardProps {
   review: Review;
@@ -43,16 +44,6 @@ const displayOrder = [
   "feedback_timely",
   "comments"
 ];
-
-const StarRating: React.FC<{ rating: number }> = ({ rating }) => {
-  return (
-    <span>
-      {[...Array(5)].map((_, i) => (
-        <span key={i} style={{color: i < rating ? "#ffc107" : "#e4e5e9"}}>★</span>
-      ))}
-    </span>
-  );
-};
 
 const ScoreCard: React.FC<{ options: { [key: string]: string }, selectedOptions: string[] }> = ({ options, selectedOptions }) => {
   return (

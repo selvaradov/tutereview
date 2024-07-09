@@ -10,6 +10,7 @@ import PageLayout from './PageLayout';
 import { SubjectToPapersMap, Question, Option, QuestionType } from '../types';
 import CheckboxGroup from './CheckboxGroup';
 import RadioField from './RadioField';
+import StarRating from './StarRating';
 import './ReviewPage.css'
 
 
@@ -150,51 +151,6 @@ const TextField: React.FC<{
 };
 
 
-interface StarRatingProps {
-  id: string;
-  totalStars?: number;
-}
-
-const StarRating: React.FC<StarRatingProps> = ({ id, totalStars = 5 }) => {
-  // https://dev.to/kartikbudhraja/creating-a-dynamic-star-rating-system-in-react-2c8
-  const { values, setFieldValue } = useFormikContext<FormikValues>();
-  const [hover, setHover] = useState<number | null>(null);
-
-  return (
-    <div style={{
-      marginTop: "-0.5em",
-      marginBottom: "-0.5em"
-    }}>
-      {[...Array(totalStars)].map((_, index) => {
-        const currentRating = index + 1;
-
-        return (
-          <label key={index}>
-            <input
-              type="radio"
-              name={id}
-              value={currentRating}
-              onChange={() => setFieldValue(id, currentRating)}
-              checked={values[id] === currentRating}
-              style={{ display: 'none' }}
-            />
-            <span
-              className="star"
-              style={{
-                color: currentRating <= (hover || values[id] || 0) ? "#ffc107" : "#e4e5e9"
-              }}
-              onMouseEnter={() => setHover(currentRating)}
-              onMouseLeave={() => setHover(null)}
-            >
-              ★
-            </span>
-          </label>
-        );
-      })}
-    </div>
-  );
-};
-
 interface ReviewFormFieldProps {
   question: Question;
   papersBySubject: SubjectToPapersMap;
@@ -202,7 +158,7 @@ interface ReviewFormFieldProps {
 }
 
 const FormField: React.FC<ReviewFormFieldProps> = ({ question, papersBySubject, tutorOptions }) => {
-  const { values, errors, touched, submitCount } = useFormikContext<FormikValues>();
+  const { values, errors, touched, submitCount, setFieldValue } = useFormikContext<FormikValues>();
 
   const shouldRender = useMemo(() => {
     return !question.dependsOn || question.dependsOn.condition(values[question.dependsOn.question]);
@@ -232,7 +188,7 @@ const FormField: React.FC<ReviewFormFieldProps> = ({ question, papersBySubject, 
       case QuestionType.Radio:
         return <RadioField question={question} hasError={hasError} />;
       case QuestionType.Rating:
-        return <StarRating id={question.id} />;
+        return <StarRating rating={values[question.id]} totalStars={5} interactive onChange={(rating) => setFieldValue(question.id, rating)} />;
       case QuestionType.Select:
         return <CheckboxGroup id={question.id} options={question.options || []} />;
       default:

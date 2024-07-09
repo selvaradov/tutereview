@@ -1,7 +1,8 @@
 import React from 'react';
 import { Row, Col, Card, ProgressBar } from 'react-bootstrap';
-import { Star, Clock, User, BookOpen, MessageSquare, ChevronDown, ChevronUp, ChevronLeft } from 'lucide-react';
+import { Clock, User, BookOpen, MessageSquare, ChevronDown, ChevronUp, ChevronLeft } from 'lucide-react';
 import { Review } from '../types';
+import StarRating from './StarRating';
 
 interface ReviewSummaryProps {
   reviews: Review[];
@@ -31,15 +32,6 @@ const ReviewSummary: React.FC<ReviewSummaryProps> = ({ reviews, onToggleFullResu
     }, {} as Record<string, number>);
     return Object.entries(valueCounts).sort((a, b) => b[1] - a[1])[0][0];
   };
-
-  const StarRating: React.FC<{ rating: number }> = ({ rating }) => (
-    <div>
-      {[...Array(5)].map((_, i) => (
-        <Star key={i} fill={i < Math.round(rating) ? "#ffc107" : "none"} stroke={i < Math.round(rating) ? "#ffc107" : "#e4e5e9"} size={24} />
-      ))}
-      <span className="ms-2">{rating.toFixed(1)}</span>
-    </div>
-  );
 
   return (
     <Card className="mb-4">
