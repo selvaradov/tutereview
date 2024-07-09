@@ -7,7 +7,7 @@ import CreatableSelect from 'react-select/creatable';
 import { useNotification } from '../context/NotificationContext';
 import { MissingOptionsMessage } from './Messages';
 import PageLayout from './PageLayout';
-import { SubjectToPapersMap, Question, TutorOption } from '../types';
+import { SubjectToPapersMap, Question, Option } from '../types';
 import CheckboxGroup from './CheckboxGroup';
 import RadioField from './RadioField';
 import './ReviewPage.css'
@@ -93,7 +93,7 @@ const PaperDropdown: React.FC<{
 
 const TutorField: React.FC<{
   question: Question;
-  tutorOptions: TutorOption[];
+  tutorOptions: Option[];
   hasError: boolean;
 }> = ({ question, tutorOptions, hasError }) => {
   const { values, setFieldValue } = useFormikContext<FormikValues>();
@@ -111,7 +111,7 @@ const TutorField: React.FC<{
       inputId={question.id}
       aria-labelledby={`${question.id}-label`}
       options={tutorOptions}
-      onChange={(newValue: TutorOption | null) => {
+      onChange={(newValue: Option | null) => {
         if (newValue) {
           setFieldValue(question.id, newValue.value);
         } else {
@@ -198,7 +198,7 @@ const StarRating: React.FC<StarRatingProps> = ({ id, totalStars = 5 }) => {
 interface ReviewFormFieldProps {
   question: Question;
   papersBySubject: SubjectToPapersMap;
-  tutorOptions: TutorOption[];
+  tutorOptions: Option[];
 }
 
 const FormField: React.FC<ReviewFormFieldProps> = ({ question, papersBySubject, tutorOptions }) => {
@@ -261,7 +261,7 @@ type FormValues = Record<string, string | string[]>;
 const ReviewPage: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [papers, setPapers] = useState<SubjectToPapersMap>({});
-  const [tutorOptions, setTutorOptions] = useState<TutorOption[]>([]);
+  const [tutorOptions, setTutorOptions] = useState<Option[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const { showNotification } = useNotification();
 

@@ -7,12 +7,12 @@ import axios from 'axios';
 import Select from 'react-select';
 import { Row, Col, Card } from 'react-bootstrap';
 import * as Yup from 'yup';
-import { SelectOption, ProfileOptionsState, ProfileFormValues } from '../types';
+import { Option, ProfileOptionsState, ProfileFormValues } from '../types';
 
 interface ProfileFormFieldProps {
   fieldName: keyof ProfileFormValues;
   label: string;
-  options: SelectOption[];
+  options: Option[];
 }
 
 const FormField: React.FC<ProfileFormFieldProps> = ({ fieldName, label, options }) => {
@@ -28,7 +28,7 @@ const FormField: React.FC<ProfileFormFieldProps> = ({ fieldName, label, options 
       </label>
       <Select
         options={options}
-        onChange={(option: SelectOption | null) => {
+        onChange={(option: Option | null) => {
           if (option) {
             setFieldValue(fieldName, option.value);
           } else {

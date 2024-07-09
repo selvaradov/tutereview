@@ -8,13 +8,13 @@ import { useLoading } from '../context/LoadingContext';
 import ReviewCard from './ReviewCard';
 import ReviewSummary from './ReviewSummary';
 import { MissingOptionsMessage } from './Messages';
-import { Paper, SubjectToPapersMap, Review, SearchParams, SelectOption, GroupedReviews } from '../types';
+import { Paper, SubjectToPapersMap, Review, SearchParams, Option, GroupedReviews } from '../types';
 
 const SearchPage: React.FC = () => {
   const [papersBySubject, setPapersBySubject] = useState<SubjectToPapersMap>({});
-  const [selectedSubject, setSelectedSubject] = useState<SelectOption | null>(null);
+  const [selectedSubject, setSelectedSubject] = useState<Option | null>(null);
   const [selectedSubjectPapers, setSelectedSubjectPapers] = useState<Paper[]>([]);
-  const [colleges, setColleges] = useState<SelectOption[]>([]);
+  const [colleges, setColleges] = useState<Option[]>([]);
   const [searchParams, setSearchParams] = useState<SearchParams>({
     tutor: '',
     subject: '',
@@ -26,23 +26,23 @@ const SearchPage: React.FC = () => {
   const latestSearchParams = useRef(searchParams);
   const [groupedReviews, setGroupedReviews] = useState<GroupedReviews>({});
 
-  const subjectOptions: SelectOption[] = Object.keys(papersBySubject).map(subjectName => ({
+  const subjectOptions: Option[] = Object.keys(papersBySubject).map(subjectName => ({
     value: subjectName,
     label: subjectName
   }));
 
-  const paperOptions: SelectOption[] = selectedSubjectPapers.map(paper => ({
+  const paperOptions: Option[] = selectedSubjectPapers.map(paper => ({
     value: paper.code,
     label: `${paper.code} - ${paper.name} (${paper.level})`
   }));
 
   const memoizedCollegeOptions = useMemo(() =>
-    searchParams.college.map(value => colleges.find(c => c.value === value)).filter(Boolean) as SelectOption[],
+    searchParams.college.map(value => colleges.find(c => c.value === value)).filter(Boolean) as Option[],
     [searchParams.college, colleges]
   );
 
   const memoizedPaperOptions = useMemo(() =>
-    searchParams.paper.map(value => paperOptions.find(p => p.value === value)).filter(Boolean) as SelectOption[],
+    searchParams.paper.map(value => paperOptions.find(p => p.value === value)).filter(Boolean) as Option[],
     [searchParams.paper, paperOptions]
   );
 
@@ -67,7 +67,7 @@ const SearchPage: React.FC = () => {
       try {
         const [papersResponse, collegesResponse] = await Promise.all([
           axios.get<SubjectToPapersMap>('/api/papers', { withCredentials: true }),
-          axios.get<SelectOption[]>('/api/colleges', { withCredentials: true })
+          axios.get<Option[]>('/api/colleges', { withCredentials: true })
         ]);
 
         setPapersBySubject(papersResponse.data);
@@ -108,7 +108,7 @@ const SearchPage: React.FC = () => {
     fetchResults();
   }, [searchParams, fetchResults]);
 
-  const handleSubjectChange = (selectedOption: SelectOption | null) => {
+  const handleSubjectChange = (selectedOption: Option | null) => {
     setSelectedSubject(selectedOption);
     if (selectedOption) {
       setSelectedSubjectPapers(papersBySubject[selectedOption.value] || []);
@@ -125,8 +125,8 @@ const SearchPage: React.FC = () => {
   };
 
   const handlePaperChange = (
-    selectedOptions: MultiValue<SelectOption> | null,
-    actionMeta: ActionMeta<SelectOption>
+    selectedOptions: MultiValue<Option> | null,
+    actionMeta: ActionMeta<Option>
   ) => {
     setSearchParams(prev => ({
       ...prev,
@@ -136,8 +136,8 @@ const SearchPage: React.FC = () => {
   };
 
   const handleCollegeChange = (
-    selectedOptions: MultiValue<SelectOption> | null,
-    actionMeta: ActionMeta<SelectOption>
+    selectedOptions: MultiValue<Option> | null,
+    actionMeta: ActionMeta<Option>
   ) => {
     setSearchParams(prev => ({
       ...prev,
@@ -187,7 +187,7 @@ const SearchPage: React.FC = () => {
           <Col md={6}>
             <Form.Group controlId="college">
               <Form.Label className='fw-bold'>College:</Form.Label>
-              <Select<SelectOption, true>
+              <Select<Option, true>
                 value={memoizedCollegeOptions}
                 onChange={handleCollegeChange}
                 options={colleges}
@@ -202,7 +202,7 @@ const SearchPage: React.FC = () => {
           <Col md={6}>
             <Form.Group controlId="subject">
               <Form.Label className='fw-bold'>Subject:</Form.Label>
-              <Select<SelectOption>
+              <Select<Option>
                 value={selectedSubject}
                 onChange={handleSubjectChange}
                 options={subjectOptions}
@@ -214,7 +214,7 @@ const SearchPage: React.FC = () => {
           <Col md={6}>
             <Form.Group controlId="paper">
               <Form.Label className='fw-bold'>Paper:</Form.Label>
-              <Select<SelectOption, true>
+              <Select<Option, true>
                 value={memoizedPaperOptions}
                 onChange={handlePaperChange}
                 options={paperOptions}

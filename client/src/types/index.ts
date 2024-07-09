@@ -30,9 +30,9 @@ export interface SearchParams {
   college: string[];
 }
 
-export interface SelectOption {
-  value: string;
+export interface Option<T = string> {
   label: string;
+  value: T;
 }
 
 export interface GroupedReviews {
@@ -56,17 +56,10 @@ export interface Question {
   dependsOn?: DependencyCondition;
 }
 
-
-export interface TutorOption {
-  readonly label: string;
-  readonly value: string;
-}
-
-
 export interface ProfileOptionsState {
-  colleges: SelectOption[];
-  years: SelectOption[];
-  courses: SelectOption[];
+  colleges: Option[];
+  years: Option[];
+  courses: Option[];
 }
 
 export interface ProfileFormValues {
