@@ -2,8 +2,9 @@ import { Router } from 'express';
 import { ParsedQs } from 'qs';
 import { readJsonFile } from '../utils/fileOperations.js';
 import { escapeRegex } from '../utils/sanitise.js';
-import Review from '../models/review.js';
+import Review, { IProcessedReview } from '../models/review.js';
 import User from '../models/user.js';
+import * as crypto from 'crypto';
 
 const router = Router();
 
@@ -102,7 +103,22 @@ router.get('/search', async (req, res) => {
     }
 
     const reviews = await Review.find(query, {submitter: 0, __v: 0 }); // Exclude sensitive fields
-    res.json(reviews);
+
+    const processedReviews: IProcessedReview[] = reviews.map(review => {
+      const reviewObj = review.toObject();
+      
+      const processedReview: IProcessedReview = {
+        _id: crypto.createHash('sha256').update(reviewObj._id.toString()).digest('hex'),
+        responses: reviewObj.responses,
+        submittedAt: new Date(reviewObj.submittedAt.getFullYear(), reviewObj.submittedAt.getMonth(), 1).toISOString(),
+        college: reviewObj.college
+      };
+
+      return processedReview;
+    });
+
+
+    res.json(processedReviews);
   } catch (err) {
     console.error('Error searching reviews:', err);
     res.status(500).json({ error: 'Internal server error' });

@@ -2,9 +2,17 @@ import mongoose, { Schema, Document, ObjectId } from 'mongoose';
 import { IUser } from './user.js';
 
 export interface IReview extends Document {
+  _id: ObjectId;
   submitter: IUser['_id'];
   responses: { [key: string]: string };
   submittedAt: Date;
+  college: string;
+}
+
+export interface IProcessedReview {
+  _id: string;
+  responses: { [key: string]: string };
+  submittedAt: string;
   college: string;
 }
 
