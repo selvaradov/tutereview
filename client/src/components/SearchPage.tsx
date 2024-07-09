@@ -7,6 +7,7 @@ import { useNotification } from '../context/NotificationContext';
 import { useLoading } from '../context/LoadingContext';
 import ReviewCard from './ReviewCard';
 import ReviewSummary from './ReviewSummary';
+import { MissingOptionsMessage } from './Messages';
 
 interface Paper {
   code: string;
@@ -211,6 +212,7 @@ const SearchPage: React.FC = () => {
 
   return (
     <PageLayout title="Search reviews">
+      <MissingOptionsMessage />
       <Form>
         <Row className="mb-3">
           <Col md={6}>

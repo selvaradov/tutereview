@@ -5,6 +5,7 @@ import axios from 'axios';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import { useNotification } from '../context/NotificationContext';
+import { MissingOptionsMessage } from './Messages';
 import PageLayout from './PageLayout';
 import './ReviewPage.css'
 
@@ -444,6 +445,7 @@ const ReviewPage: React.FC = () => {
 
   return (
     <PageLayout title="Submit a review">
+      <MissingOptionsMessage />
       <Formik
         initialValues={initialValues as FormValues}
         validationSchema={validationSchema}
