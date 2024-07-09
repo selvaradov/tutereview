@@ -188,7 +188,7 @@ const FormField: React.FC<ReviewFormFieldProps> = ({ question, papersBySubject, 
       case QuestionType.Radio:
         return <RadioField question={question} hasError={hasError} />;
       case QuestionType.Rating:
-        return <StarRating rating={values[question.id]} totalStars={5} interactive onChange={(rating) => setFieldValue(question.id, rating)} />;
+        return <StarRating rating={values[question.id]} interactive onChange={(rating) => setFieldValue(question.id, rating)} />;
       case QuestionType.Select:
         return <CheckboxGroup id={question.id} options={question.options || []} />;
       default:

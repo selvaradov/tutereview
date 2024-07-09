@@ -74,7 +74,7 @@ const renderValue = (key: string, value: ResponseValue) => {
       </ListGroup>
     );
   } else if (typeof value === 'number' && ['rating_feedback', 'rating_tutorial', 'rating_overall'].includes(key)) {
-    return <StarRating rating={value} />;
+    return <StarRating rating={value} decimal={0}/>;
   } else {
     return value;
   }
