@@ -7,7 +7,7 @@ import CreatableSelect from 'react-select/creatable';
 import { useNotification } from '../context/NotificationContext';
 import { MissingOptionsMessage } from './Messages';
 import PageLayout from './PageLayout';
-import { SubjectToPapersMap, Question, Option } from '../types';
+import { SubjectToPapersMap, Question, Option, QuestionType } from '../types';
 import CheckboxGroup from './CheckboxGroup';
 import RadioField from './RadioField';
 import './ReviewPage.css'
@@ -217,23 +217,23 @@ const FormField: React.FC<ReviewFormFieldProps> = ({ question, papersBySubject, 
 
   const renderField = () => {
     switch (question.type) {
-      case 'dropdown':
+      case QuestionType.Dropdown:
         if (question.id === 'subject') {
           return <SubjectDropdown question={question} papersBySubject={papersBySubject} hasError={hasError} />;
         } else if (question.id === 'paper') {
           return <PaperDropdown question={question} papersBySubject={papersBySubject} hasError={hasError} />;
         }
         break;
-      case 'text':
+      case QuestionType.Text:
         if (question.id === 'tutor') {
           return <TutorField question={question} tutorOptions={tutorOptions} hasError={hasError} />;
         }
         return <TextField question={question} hasError={hasError} />;
-      case 'radio':
+      case QuestionType.Radio:
         return <RadioField question={question} hasError={hasError} />;
-      case 'rating':
+      case QuestionType.Rating:
         return <StarRating id={question.id} />;
-      case 'select':
+      case QuestionType.Select:
         return <CheckboxGroup id={question.id} options={question.options || []} />;
       default:
         return null;

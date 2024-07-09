@@ -49,7 +49,13 @@ export interface DependencyCondition {
   condition: (value: any) => boolean;
 }
 
-export type QuestionType = 'dropdown' | 'text' | 'radio' | 'rating' | 'select';
+export enum QuestionType {
+  Dropdown = 'dropdown',
+  Text = 'text',
+  Radio = 'radio',
+  Rating = 'rating',
+  Select = 'select'
+}
 
 export interface Question {
   id: string;
