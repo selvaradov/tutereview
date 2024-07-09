@@ -156,6 +156,8 @@ const SearchPage: React.FC = () => {
         return acc;
       }, {} as GroupedReviews);
       setGroupedReviews(grouped);
+    } else {
+      setGroupedReviews({});
     }
   }, [results]);
 
