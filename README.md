@@ -53,3 +53,4 @@ page for that course / that college / that tutor (but it's not attributable to t
 - to exclude gitignore from gcloud you need to do `#!include:.gitignore` in gcloudignore I think
 - watch out with cookies, `app.set('trust proxy', 1)`
   - and also enforce HTTPS https://stackoverflow.com/questions/40459511/in-express-js-req-protocol-is-not-picking-up-https-for-my-secure-link-it-alwa 
+- resolved version conflicts by using workspaces for `client` & `server`, then running `npm install` in the root directory

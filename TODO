@@ -1,9 +1,5 @@
 # TODO
 
-## Must do
-- Configure for deployment
-  - sort out typescript version conflict (https://github.com/facebook/create-react-app/issues/13080)
-
 ## High priority
 - Add other subjects' papers (in order of numbers, see [here](https://www.ox.ac.uk/about/facts-and-figures/student-numbers))
   - **Medicine** 
@@ -67,10 +63,9 @@
 ### Frontend
 - Check pages for accessibility issues
   - Some form fields are missing labels on the `review` page
+  - The star rating component can't be done with a keyboard
 
 ### Features
-- Show summaries about each tutor-subject combination on the search page, then let people click through to details
-  - Include AI summaries
 - Ability to edit reviews
 
 ## Low priority
@@ -122,19 +117,16 @@
 
 ### Code tidiness
 - Investigate using React Suspense for loading indicators
-- Create a component to display a review card
-  - Currently there is duplication on the `search` and `my-reviews` pages
 - Consider whether repetition in notifications and error handling can be reduced
+  - e.g. by using a hook for fetching data and passing it what to substitute in to error message
 - Make form components more consistent, e.g. the check of `isRequired` and subsequent red asterisk display
 - Work out whether a config file is useful for the frontend
-- Define common interfaces in a shared location (e.g. for the `search` and `review` page when dealing with server data)
 - Implement tests
   - For the frontend, possibly `react-testing-library`
   - On the backend, it might be good to ensure that the JSONs being served are in the format defined by frontend interfaces
     - Could use [VSC schemas](https://code.visualstudio.com/docs/languages/json#_json-schemas-and-settings) for this?
 - Better approach to `baseURL` in client-side login
 - Probably no need to separately specify BASE_URL and CLIENT_URL in app engine env variables, but code would need changing
-- Dependencies with the separate client / server folders: https://stackoverflow.com/questions/73522641/can-a-google-app-engine-nodejs-app-install-separate-node-modules-in-separate-dir
 - Centralised error handling e.g. if session secret not defined, don't want to keep database connection open
 - Email addresses - store as a variable somewhere rather than rewriting if it changes
 
