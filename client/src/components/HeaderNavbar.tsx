@@ -42,8 +42,8 @@ const HeaderNavbar: React.FC = () => {
           )}
         </Nav>
         {isAuthenticated && (
-          <Nav className="ms-auto">
-            <NavDropdown title="Account" id="basic-nav-dropdown">
+          <Nav className="ms-lg-auto">
+            <NavDropdown title="Account" id="basic-nav-dropdown" align={{ lg: 'end' }} style={{ textAlign: "center" }}>
               <NavDropdown.Item as="button" onClick={handleNavClick('/profile')}>Profile</NavDropdown.Item>
               <NavDropdown.Item as="button" onClick={handleNavClick('/my-reviews')}>My reviews</NavDropdown.Item>
               <NavDropdown.Divider />
