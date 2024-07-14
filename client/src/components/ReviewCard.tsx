@@ -81,8 +81,6 @@ const renderValue = (key: string, value: ResponseValue) => {
 };
 
 const ReviewCard: React.FC<ReviewCardProps> = ({ review, showCollege = false, collegeLookup }) => {
-  console.log(review.responses);
-  console.log(collegeLookup)
   return (
     <Card className="mb-3">
       <Card.Body>
