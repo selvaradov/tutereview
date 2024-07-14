@@ -106,19 +106,44 @@ router.get('/search', async (req, res) => {
 
     const processedReviews: IProcessedReview[] = reviews.map(review => {
       const reviewObj = review.toObject();
-      
-      const processedReview: IProcessedReview = {
+    
+      return {
+        ...reviewObj,
         _id: crypto.createHash('sha256').update(reviewObj._id.toString()).digest('hex'),
-        responses: reviewObj.responses,
-        submittedAt: new Date(reviewObj.submittedAt.getFullYear(), reviewObj.submittedAt.getMonth(), 1).toISOString(),
-        college: reviewObj.college
       };
-
-      return processedReview;
     });
 
+    // Group reviews by paper and tutor to determine which colleges to display
+    const groupedReviews = processedReviews.reduce((acc, review) => {
+      const key = `${review.responses.paper}-${review.responses.tutor}`;
+      if (!acc[key]) {
+        acc[key] = [];
+      }
+      acc[key].push(review);
+      return acc;
+    }, {} as Record<string, IProcessedReview[]>);
 
-    res.json(processedReviews);
+    // List only colleges that have 3 or more reviews for a given paper-tutor combination
+    // and provide an isOld flag for reviews older than 3 years
+    const finalReviews = Object.values(groupedReviews).flatMap(group => {
+      const collegeCount = group.reduce((acc, review) => {
+        acc[review.college] = (acc[review.college] || 0) + 1;
+        return acc;
+      }, {} as Record<string, number>);
+
+      const displayedColleges = Object.entries(collegeCount)
+        .filter(([_, count]) => count >= 3)
+        .map(([college]) => college);
+
+      return group.map(review => ({
+        ...review,
+        college: displayedColleges.length > 0 ? displayedColleges : undefined,
+        submittedAt: undefined,
+        isOld: new Date().getTime() - new Date(review.submittedAt).getTime() > 3 * 365 * 24 * 60 * 60 * 1000 // 3 years
+      }));
+    });
+
+    res.json(finalReviews);
   } catch (err) {
     console.error('Error searching reviews:', err);
     res.status(500).json({ error: 'Internal server error' });

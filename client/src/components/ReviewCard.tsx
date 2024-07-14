@@ -5,12 +5,10 @@ import StarRating from './StarRating';
 
 interface ReviewCardProps {
   review: Review;
-  showCollege?: boolean;
-  collegeLookup?: Map<string, string>;
 }
 
 const questionTitles: { [key: string]: string } = {
-  pre_tutorial: "Pre-Tutorial Work Review",
+  pre_tutorial: "Looked at Work Pre-Tutorial",
   feedback_timely: "Feedback Timeliness",
   rating_feedback: "Feedback Rating",
   tutorial_length: "Tutorial Length",
@@ -80,21 +78,16 @@ const renderValue = (key: string, value: ResponseValue) => {
   }
 };
 
-const ReviewCard: React.FC<ReviewCardProps> = ({ review, showCollege = false, collegeLookup }) => {
+const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
   return (
     <Card className="mb-3">
       <Card.Body>
         <Card.Title>{`${review.responses.paperName} (${review.responses.paperLevel}) - ${review.responses.tutor}`}</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">
-          <div>
-            Submitted: {showCollege
-              ? new Date(review.submittedAt).toLocaleDateString("en-GB", { month: 'long', year: 'numeric' })
-              : new Date(review.submittedAt).toLocaleDateString("en-GB", { year: 'numeric', month: 'long', day: 'numeric' })
-            }
-          </div>
-          <div>{showCollege && collegeLookup && `College: ${collegeLookup.get(review.college as string) || review.responses.college}`}</div>
-
-        </Card.Subtitle>
+        {review.isOld && (
+          <Card.Subtitle className="mb-2 text-muted">
+            This review is more than three years old.
+          </Card.Subtitle>
+        )}
 
         {displayOrder.map((key) => {
           const value = review.responses[key];

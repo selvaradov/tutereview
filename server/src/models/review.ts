@@ -12,7 +12,7 @@ export interface IReview extends Document {
 export interface IProcessedReview {
   _id: string;
   responses: { [key: string]: string };
-  submittedAt: string;
+  submittedAt: Date;
   college: string;
 }
 

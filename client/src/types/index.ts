@@ -21,8 +21,8 @@ export interface Review {
     paperLevel: string;
     [key: string]: ResponseValue;
   };
-  submittedAt: string;
-  college?: string;
+  isOld: boolean;
+  college?: string[];
 }
 
 export interface SearchParams {
@@ -41,6 +41,7 @@ export interface GroupedReviews {
   [key: string]: {
     reviews: Review[];
     showFullResults: boolean;
+    colleges?: string[];
   };
 }
 

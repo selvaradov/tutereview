@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Card, ProgressBar } from 'react-bootstrap';
+import { Row, Col, Card, ProgressBar, Badge } from 'react-bootstrap';
 import { Clock, User, BookOpen, MessageSquare, ChevronDown, ChevronUp, ChevronLeft } from 'lucide-react';
 import { Review } from '../types';
 import StarRating from './StarRating';
@@ -8,9 +8,11 @@ interface ReviewSummaryProps {
   reviews: Review[];
   onToggleFullResults: () => void;
   showFullResults: boolean;
+  colleges?: string[];
+  collegeLookup: Map<string, string>;
 }
 
-const ReviewSummary: React.FC<ReviewSummaryProps> = ({ reviews, onToggleFullResults, showFullResults }) => {
+const ReviewSummary: React.FC<ReviewSummaryProps> = ({ reviews, onToggleFullResults, showFullResults, colleges, collegeLookup }) => {
   const calculateAverageRating = (key: string): number => {
     const ratings = reviews.map(review => Number(review.responses[key])).filter(rating => !isNaN(rating));
     return ratings.reduce((sum, rating) => sum + rating, 0) / ratings.length;
@@ -36,6 +38,25 @@ const ReviewSummary: React.FC<ReviewSummaryProps> = ({ reviews, onToggleFullResu
   return (
     <Card className="mb-4">
       <Card.Body>
+      {colleges && colleges.length > 0 && (
+          <Row className="mb-3">
+            <Col>
+              <h5>Colleges with 3 or more reviews submitted</h5>
+              <div>
+                {colleges.map((college, index) => (
+                  <Badge 
+                    key={index} 
+                    bg="secondary" 
+                    className="me-2 mb-2"
+                    style={{ padding: '0.5em 0.7em' }}
+                  >
+                    {collegeLookup.get(college) || college}
+                  </Badge>
+                ))}
+              </div>
+            </Col>
+          </Row>
+        )}
         <Row>
           <Col md={4} className="mb-3">
             <h5>Overall Rating</h5>
@@ -67,7 +88,7 @@ const ReviewSummary: React.FC<ReviewSummaryProps> = ({ reviews, onToggleFullResu
             </div>
             <div className="d-flex align-items-center">
               <ChevronLeft size={18} className="me-2" />
-              <span><strong>Pre-Tutorial:</strong> {getMostCommonValue('pre_tutorial')}</span>
+              <span><strong>Looked at Work Pre-Tutorial:</strong> {getMostCommonValue('pre_tutorial')}</span>
             </div>
           </Col>
           <Col md={6} className="mb-3">

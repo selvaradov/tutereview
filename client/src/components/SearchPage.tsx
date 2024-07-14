@@ -150,7 +150,7 @@ const SearchPage: React.FC = () => {
       const grouped = results.reduce((acc, review) => {
         const key = `${review.responses.paperCode}-${review.responses.tutor}`;
         if (!acc[key]) {
-          acc[key] = { reviews: [], showFullResults: false };
+          acc[key] = { reviews: [], showFullResults: false, colleges: review.college };
         }
         acc[key].reviews.push(review);
         return acc;
@@ -160,6 +160,7 @@ const SearchPage: React.FC = () => {
       setGroupedReviews({});
     }
   }, [results]);
+  console.log("got groupedReviews: ", groupedReviews);
 
   const handleToggleFullResults = (key: string) => {
     setGroupedReviews(prev => ({
@@ -199,8 +200,8 @@ const SearchPage: React.FC = () => {
               />
             </Form.Group>
           </Col>
-          </Row>
-          <Row className="mb-3">
+        </Row>
+        <Row className="mb-3">
           <Col md={6}>
             <Form.Group controlId="subject">
               <Form.Label className='fw-bold'>Subject:</Form.Label>
@@ -231,45 +232,45 @@ const SearchPage: React.FC = () => {
       </Form>
 
       <div id="results" className="mt-4">
-      {areSearchParamsEmpty(latestSearchParams.current) ? (
-        <p>Please select some filters to search.</p>
-      ) : Object.keys(groupedReviews).length === 0 && !isLoading ? (
-        <p>No results found.</p>
-      ) : (
-        <>
-        <p>
-          You can now see how other students found their tutorials, including how helpful the 
-          tutor's answers to their questions were, whether the tutor had looked at their work
-          before the tutorial, how tutorials were structured, and the type of feedback they received. 
-        </p>
-          {Object.entries(groupedReviews).map(([key, { reviews, showFullResults }]) => {
-            const firstReview = reviews[0];
-            return (
-              <Card key={key} className="mb-4">
-                <Card.Header>
-                  <h3>{`${firstReview.responses.paperName} (${firstReview.responses.paperLevel}) - ${firstReview.responses.tutor}`}</h3>
-                </Card.Header>
-                <Card.Body>
-                  <ReviewSummary 
-                    reviews={reviews} 
-                    onToggleFullResults={() => handleToggleFullResults(key)}
-                    showFullResults={showFullResults}
-                  />
-                  {showFullResults && reviews.map((review) => (
-                    <ReviewCard 
-                      key={review._id} 
-                      review={review} 
-                      showCollege={true}
+        {areSearchParamsEmpty(latestSearchParams.current) ? (
+          <p>Please select some filters to search.</p>
+        ) : Object.keys(groupedReviews).length === 0 && !isLoading ? (
+          <p>No results found.</p>
+        ) : (
+          <>
+            <p>
+              You can now see how other students found their tutorials, including how helpful the
+              tutor's answers to their questions were, whether the tutor had looked at their work
+              before the tutorial, how tutorials were structured, and the type of feedback they received.
+            </p>
+            {Object.entries(groupedReviews).map(([key, { reviews, showFullResults, colleges }]) => {
+              const firstReview = reviews[0];
+              return (
+                <Card key={key} className="mb-4">
+                  <Card.Header>
+                    <h3>{`${firstReview.responses.paperName} (${firstReview.responses.paperLevel}) - ${firstReview.responses.tutor}`}</h3>
+                  </Card.Header>
+                  <Card.Body>
+                    <ReviewSummary
+                      reviews={reviews}
+                      onToggleFullResults={() => handleToggleFullResults(key)}
+                      showFullResults={showFullResults}
+                      colleges={colleges}
                       collegeLookup={collegeLookup}
                     />
-                  ))}
-                </Card.Body>
-              </Card>
-            );
-          })}
-        </>
-      )}
-    </div>
+                    {showFullResults && reviews.map((review) => (
+                      <ReviewCard
+                        key={review._id}
+                        review={review}
+                      />
+                    ))}
+                  </Card.Body>
+                </Card>
+              );
+            })}
+          </>
+        )}
+      </div>
     </PageLayout>
   );
 };
