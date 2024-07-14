@@ -94,14 +94,6 @@ router.get('/search', async (req, res) => {
       };
     }
 
-    if (req.query.college) {
-      const colleges = Array.isArray(req.query.college) ? req.query.college : [req.query.college];
-      query['college'] = {
-        $in: colleges.filter((c): c is string => typeof c === 'string')
-          .map(c => new RegExp(escapeRegex(c), 'i'))
-      };
-    }
-
     const reviews = await Review.find(query, {submitter: 0, __v: 0 }); // Exclude sensitive fields
 
     const processedReviews: IProcessedReview[] = reviews.map(review => {
@@ -123,27 +115,45 @@ router.get('/search', async (req, res) => {
       return acc;
     }, {} as Record<string, IProcessedReview[]>);
 
+    // Prepare college filter for final reviews
+    const requestedColleges = Array.isArray(req.query.college) 
+      ? req.query.college.filter((c): c is string => typeof c === 'string')
+      : typeof req.query.college === 'string' ? [req.query.college] : [];
+
     // List only colleges that have 3 or more reviews for a given paper-tutor combination
     // and provide an isOld flag for reviews older than 3 years
-    const finalReviews = Object.values(groupedReviews).flatMap(group => {
-      const collegeCount = group.reduce((acc, review) => {
-        acc[review.college] = (acc[review.college] || 0) + 1;
-        return acc;
-      }, {} as Record<string, number>);
+    
+    const finalReviews = Object.values(groupedReviews)
+      .filter(group => {
+        if (requestedColleges.length === 0) return true;
+        const collegeCount = group.reduce((acc, review) => {
+          acc[review.college] = (acc[review.college] || 0) + 1;
+          return acc;
+        }, {} as Record<string, number>);
+        return requestedColleges.some(college => (collegeCount[college] || 0) >= 3);
+      })
+      .flatMap(group => {
+        const collegeCount = group.reduce((acc, review) => {
+          acc[review.college] = (acc[review.college] || 0) + 1;
+          return acc;
+        }, {} as Record<string, number>);
 
-      const displayedColleges = Object.entries(collegeCount)
-        .filter(([_, count]) => count >= 3)
-        .map(([college]) => college);
+        const displayedColleges = Object.entries(collegeCount)
+          .filter(([_, count]) => count >= 3)
+          .map(([college]) => college);
 
-      return group.map(review => ({
-        ...review,
-        college: displayedColleges.length > 0 ? displayedColleges : undefined,
-        submittedAt: undefined,
-        isOld: new Date().getTime() - new Date(review.submittedAt).getTime() > 3 * 365 * 24 * 60 * 60 * 1000 // 3 years
-      }));
-    });
+        return group.map(review => ({
+          ...review,
+          college: displayedColleges.length > 0 ? displayedColleges : undefined,
+          submittedAt: undefined,
+          isOld: new Date().getTime() - new Date(review.submittedAt).getTime() > 3 * 365 * 24 * 60 * 60 * 1000
+        }));
+      });
 
-    res.json(finalReviews);
+      res.json({
+        reviews: finalReviews,
+        collegeFilterApplied: requestedColleges.length > 0
+      });
   } catch (err) {
     console.error('Error searching reviews:', err);
     res.status(500).json({ error: 'Internal server error' });

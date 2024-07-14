@@ -32,6 +32,11 @@ export interface SearchParams {
   college: string[];
 }
 
+export interface SearchResults {
+  reviews: Review[];
+  collegeFilterApplied: boolean;
+}
+
 export interface Option<T = string> {
   label: string;
   value: T;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import axios from 'axios';
-import { Form, Row, Col, Card } from 'react-bootstrap';
+import { Form, Row, Col, Card, Alert } from 'react-bootstrap';
 import Select, { ActionMeta, MultiValue } from 'react-select';
 import PageLayout from './PageLayout';
 import { useNotification } from '../context/NotificationContext';
@@ -8,13 +8,14 @@ import { useLoading } from '../context/LoadingContext';
 import ReviewCard from './ReviewCard';
 import ReviewSummary from './ReviewSummary';
 import { MissingOptionsMessage } from './Messages';
-import { Paper, SubjectToPapersMap, Review, SearchParams, Option, GroupedReviews } from '../types';
+import { Paper, SubjectToPapersMap, Review, SearchParams, SearchResults, Option, GroupedReviews } from '../types';
 
 const SearchPage: React.FC = () => {
   const [papersBySubject, setPapersBySubject] = useState<SubjectToPapersMap>({});
   const [selectedSubject, setSelectedSubject] = useState<Option | null>(null);
   const [selectedSubjectPapers, setSelectedSubjectPapers] = useState<Paper[]>([]);
   const [colleges, setColleges] = useState<Option[]>([]);
+  const [collegeFilterApplied, setCollegeFilterApplied] = useState(false);
   const [searchParams, setSearchParams] = useState<SearchParams>({
     tutor: '',
     subject: '',
@@ -86,15 +87,17 @@ const SearchPage: React.FC = () => {
   const fetchResults = useCallback(async () => {
     if (areSearchParamsEmpty(latestSearchParams.current)) {
       setResults([]);
+      setCollegeFilterApplied(false);
       return;
     }
     startLoading();
     try {
-      const response = await axios.get<Review[]>('/api/search', {
+      const response = await axios.get<SearchResults>('/api/search', {
         params: latestSearchParams.current,
         withCredentials: true,
       });
-      setResults(response.data);
+      setResults(response.data.reviews);
+      setCollegeFilterApplied(response.data.collegeFilterApplied);
     } catch (error) {
       console.error('Error fetching results:', error);
       showNotification('Failed to fetch results. Please try again.', 'error');
@@ -232,6 +235,11 @@ const SearchPage: React.FC = () => {
       </Form>
 
       <div id="results" className="mt-4">
+      {collegeFilterApplied && (
+          <Alert variant="info" className="mb-3">
+            Note: When filtering by college, only tutor-paper combinations with at least three submissions from the college(s) in question are shown.
+          </Alert>
+        )}
         {areSearchParamsEmpty(latestSearchParams.current) ? (
           <p>Please select some filters to search.</p>
         ) : Object.keys(groupedReviews).length === 0 && !isLoading ? (
