@@ -97,14 +97,18 @@
 ### Forms
 - Consider using `react-hook-form` rather than `formik`
 
+### Information
+- Explanations of each field in the ReviewSummary
+
 ### UI
 - Integrate loading wrapper into `review`, `my-reviews`, and `profile` pages
   - The `reinitialize` on the `profile` page form may be unnecessary
-- Horizontally centre the account dropdown menu on mobile devices
-  - Or just change how the navbar is laid out
-- Decide whether to horizontally centre the app or keep it on the left
+- Could change:
+  - how the navbar is laid out
+  - whether to horizontally centre the app or keep it on the left
 - Debouncing when typing tutor's name onto search page
 - Error messages for `subject` and `paper` are lagged to disappear on review page
+  - and some questions missing the exclamation mark icon
   - Also check implementation in profile completion page, seems quite messily-done
 - On the search page, if there's an error, the first time it loads the modal shadow 
   doesn't cover the extreme margins (related to the scrollbar hiding).
