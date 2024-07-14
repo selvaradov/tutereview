@@ -138,8 +138,7 @@ const TextField: React.FC<{
   const { values, setFieldValue } = useFormikContext<FormikValues>();
 
   return (
-    <input
-      type="text"
+    <textarea
       id={question.id}
       name={question.id}
       onChange={(e) => setFieldValue(question.id, e.target.value)}

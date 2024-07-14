@@ -112,7 +112,7 @@
   },
   {
     "id": "comments",
-    "question": "Any additional comments?",
+    "question": "Any additional comments? For example whether you had classes rather than tutorials, which essay topics the tutor set, details about any special subject.",
     "type": "text"
   }
 ]
