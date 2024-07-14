@@ -14,6 +14,7 @@ export interface IProcessedReview {
   responses: { [key: string]: string };
   submittedAt: Date;
   college: string;
+  isOld: boolean;
 }
 
 const reviewSchema = new Schema({

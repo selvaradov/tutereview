@@ -96,12 +96,14 @@ router.get('/search', async (req, res) => {
 
     const reviews = await Review.find(query, {submitter: 0, __v: 0 }); // Exclude sensitive fields
 
+    // Hash IDs to avoid leaking timestamps and create isOld flag
     const processedReviews: IProcessedReview[] = reviews.map(review => {
       const reviewObj = review.toObject();
-    
+      const isOld = new Date().getTime() - new Date(reviewObj.submittedAt).getTime() > 3 * 365 * 24 * 60 * 60 * 1000;
       return {
         ...reviewObj,
         _id: crypto.createHash('sha256').update(reviewObj._id.toString()).digest('hex'),
+        isOld,
       };
     });
 
@@ -120,35 +122,36 @@ router.get('/search', async (req, res) => {
       ? req.query.college.filter((c): c is string => typeof c === 'string')
       : typeof req.query.college === 'string' ? [req.query.college] : [];
 
-    // List only colleges that have 3 or more reviews for a given paper-tutor combination
-    // and provide an isOld flag for reviews older than 3 years
-    
+    // List only colleges that have 3 or more recent reviews for a given paper-tutor combination
     const finalReviews = Object.values(groupedReviews)
-      .filter(group => {
-        if (requestedColleges.length === 0) return true;
-        const collegeCount = group.reduce((acc, review) => {
+    .filter(group => {
+      if (requestedColleges.length === 0) return true;
+      const recentCollegeCount = group.reduce((acc, review) => {
+        if (!review.isOld) {
           acc[review.college] = (acc[review.college] || 0) + 1;
-          return acc;
-        }, {} as Record<string, number>);
-        return requestedColleges.some(college => (collegeCount[college] || 0) >= 3);
-      })
-      .flatMap(group => {
-        const collegeCount = group.reduce((acc, review) => {
+        }
+        return acc;
+      }, {} as Record<string, number>);
+      return requestedColleges.some(college => (recentCollegeCount[college] || 0) >= 3);
+    })
+    .flatMap(group => {
+      const recentCollegeCount = group.reduce((acc, review) => {
+        if (!review.isOld) {
           acc[review.college] = (acc[review.college] || 0) + 1;
-          return acc;
-        }, {} as Record<string, number>);
+        }
+        return acc;
+      }, {} as Record<string, number>);
 
-        const displayedColleges = Object.entries(collegeCount)
-          .filter(([_, count]) => count >= 3)
-          .map(([college]) => college);
+      const displayedColleges = Object.entries(recentCollegeCount)
+        .filter(([_, count]) => count >= 3)
+        .map(([college]) => college);
 
-        return group.map(review => ({
-          ...review,
-          college: displayedColleges.length > 0 ? displayedColleges : undefined,
-          submittedAt: undefined,
-          isOld: new Date().getTime() - new Date(review.submittedAt).getTime() > 3 * 365 * 24 * 60 * 60 * 1000
-        }));
-      });
+      return group.map(review => ({
+        ...review,
+        college: displayedColleges.length > 0 ? displayedColleges : undefined,
+        submittedAt: undefined,
+      }));
+    });
 
       res.json({
         reviews: finalReviews,
