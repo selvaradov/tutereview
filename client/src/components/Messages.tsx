@@ -18,7 +18,7 @@ Thanks!`);
     <Alert variant="secondary">
       If the subject or paper you're looking for is not listed,
       or the options are incorrect in some way, please contact us at {' '}
-      <a href={mailtoLink}>tutereview.org+support@gmail.com</a>
+      <a href={mailtoLink} className='alert-link'>tutereview.org+support@gmail.com</a>
       {' '} and we'll sort it as soon as we can.
     </Alert>
   );
