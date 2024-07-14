@@ -47,6 +47,8 @@ const StarRating: React.FC<StarRatingProps> = ({
     }
   };
 
+  const roundedRating = Math.round(rating);
+
   return (
     <div 
       style={{ display: 'inline-flex', alignItems: 'center' }}
@@ -58,8 +60,8 @@ const StarRating: React.FC<StarRatingProps> = ({
           <Star
             key={index}
             size={size}
-            fill={starValue <= (interactive ? (hover || internalRating) : rating) ? "#ffc107" : "none"}
-            stroke={starValue <= (interactive ? (hover || internalRating) : rating) ? "#ffc107" : "#e4e5e9"}
+            fill={starValue <= (interactive ? (hover || internalRating) : roundedRating) ? "#ffc107" : "none"}
+            stroke={starValue <= (interactive ? (hover || internalRating) : roundedRating) ? "#ffc107" : "#e4e5e9"}
             style={{ cursor: interactive ? 'pointer' : 'default' }}
             onClick={() => handleClick(starValue)}
             onMouseEnter={() => handleMouseEnter(starValue)}
