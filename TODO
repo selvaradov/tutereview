@@ -101,8 +101,6 @@
 - Explanations of each field in the ReviewSummary
 
 ### UI
-- Integrate loading wrapper into `review`, `my-reviews`, and `profile` pages
-  - The `reinitialize` on the `profile` page form may be unnecessary
 - Could change:
   - how the navbar is laid out
   - whether to horizontally centre the app or keep it on the left
@@ -123,6 +121,18 @@
 - Investigate using React Suspense for loading indicators
 - Consider whether repetition in notifications and error handling can be reduced
   - e.g. by using a hook for fetching data and passing it what to substitute in to error message
+  ```typescript
+    const handleError = useCallback((error: unknown) => {
+    console.error('Failed to fetch data:', error);
+    showNotification('Failed to load profile data. Please try again.', 'error', [
+      {
+        label: 'Retry',
+        onClick: fetchData,
+        variant: 'primary'
+      }
+    ]);
+  }, [showNotification]);
+  ```
 - Make form components more consistent, e.g. the check of `isRequired` and subsequent red asterisk display
 - Work out whether a config file is useful for the frontend
 - Implement tests
