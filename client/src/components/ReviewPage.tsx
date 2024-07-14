@@ -5,6 +5,7 @@ import axios from 'axios';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import { useNotification } from '../context/NotificationContext';
+import { useLoading } from '../context/LoadingContext';
 import { MissingOptionsMessage } from './Messages';
 import PageLayout from './PageLayout';
 import { SubjectToPapersMap, Question, Option, QuestionType } from '../types';
@@ -217,8 +218,8 @@ const ReviewPage: React.FC = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [papers, setPapers] = useState<SubjectToPapersMap>({});
   const [tutorOptions, setTutorOptions] = useState<Option[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
   const { showNotification } = useNotification();
+  const { startLoading, stopLoading } = useLoading();
 
   useEffect(() => {
     document.title = 'TuteReview - Submit a review';
@@ -227,6 +228,7 @@ const ReviewPage: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      startLoading();
       try {
         const [questionsResponse, subjectsResponse, tutorsResponse] = await Promise.all([
           axios.get<Question[]>('/api/questions', { withCredentials: true }),
@@ -243,12 +245,12 @@ const ReviewPage: React.FC = () => {
         console.error('Error fetching data:', error);
         showNotification('Failed to load form data. Please try again.', 'error');
       } finally {
-        setIsLoading(false);
+        stopLoading()
       }
     };
 
     fetchData();
-  }, [showNotification]);
+  }, [showNotification, startLoading, stopLoading]);
 
   const initialValues = questions.reduce((acc, question) => {
     if (question.type === 'select') {
@@ -282,6 +284,7 @@ const ReviewPage: React.FC = () => {
   );
 
   const handleSubmit = async (values: FormValues, { setSubmitting, resetForm }: { setSubmitting: (isSubmitting: boolean) => void; resetForm: () => void }) => {
+    startLoading();
     try {
       await axios.post('/api/review', values, {
         headers: {
@@ -298,12 +301,9 @@ const ReviewPage: React.FC = () => {
       showNotification('Failed to submit review. Please try again.', 'error');
     } finally {
       setSubmitting(false);
+      stopLoading();
     }
   };
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <PageLayout title="Submit a review">

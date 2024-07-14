@@ -3,6 +3,7 @@ import { Formik, Form, useFormikContext } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useNotification } from '../context/NotificationContext';
+import { useLoading } from '../context/LoadingContext';
 import axios from 'axios';
 import Select from 'react-select';
 import { Row, Col, Card } from 'react-bootstrap';
@@ -66,28 +67,27 @@ const ProfileCompletion: React.FC = () => {
   const { user, isProfileComplete, setUser } = useAuth();
   const navigate = useNavigate();
   const { showNotification } = useNotification();
+  const { startLoading, stopLoading } = useLoading();
 
   useEffect(() => {
-    const fetchOptions = async () => {
-      try {
-        const response = await axios.get<ProfileOptions>('/user/options', { withCredentials: true });
-        setOptions(response.data);
-      } catch (error) {
-        console.error('Failed to fetch user options:', error);
-      }
-    };
-    fetchOptions();
-
-    const fetchUserProfile = async () => {
-      try {
-        const response = await axios.get<ProfileFormValues>('/user/profile', { withCredentials: true });
-        setInitialValues(response.data);
-      } catch (error) {
-        console.error('Failed to fetch user profile:', error);
-      }
-    };
-    fetchUserProfile();
-  }, []);
+    const fetchData = async () => {
+    startLoading();
+    try {
+      const [optionsResponse, profileResponse] = await Promise.all([
+        axios.get<ProfileOptions>('/user/options', { withCredentials: true }),
+        axios.get<ProfileFormValues>('/user/profile', { withCredentials: true })
+      ]);
+      setOptions(optionsResponse.data);
+      setInitialValues(profileResponse.data);
+    } catch (error) {
+      console.error('Failed to fetch data:', error);
+      showNotification('Failed to load profile data. Please try again.', 'error');
+    } finally {
+      stopLoading();
+    }
+  };
+  fetchData();
+  }, [showNotification, startLoading, stopLoading]);
 
   const validationSchema = Yup.object().shape({
     college: Yup.string().required('This question is required'),
@@ -96,6 +96,7 @@ const ProfileCompletion: React.FC = () => {
   });
 
   const handleSubmit = async (values: ProfileFormValues, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
+    startLoading();
     if (!isProfileComplete) {
       try {
         await axios.post('/user/profile', values, { withCredentials: true });
@@ -109,6 +110,7 @@ const ProfileCompletion: React.FC = () => {
         showNotification('Failed to update profile. Please try again.', 'error');
       } finally {
         setSubmitting(false);
+        stopLoading();
       }
     }
   };
