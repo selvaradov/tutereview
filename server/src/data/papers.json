@@ -659,22 +659,16 @@
       "id": "classics_mods_ii"
     },
     {
-      "code": "III",
-      "name": "Texts and Contexts",
+      "code": "IIIa",
+      "name": "Texts and Contexts (Latin)",
       "level": "Mods",
-      "id": "classics_mods_iii"
+      "id": "classics_mods_iiia"
     },
     {
-      "code": "V",
-      "name": "Philosophy Special Subject",
+      "code": "IIIb",
+      "name": "Texts and Contexts (Greek)",
       "level": "Mods",
-      "id": "classics_mods_v"
-    },
-    {
-      "code": "VI",
-      "name": "Classical Special Subject",
-      "level": "Mods",
-      "id": "classics_mods_vi"
+      "id": "classics_mods_iiib"
     },
     {
       "code": "VII",
@@ -717,12 +711,6 @@
       "name": "Lucretius, De Rerum Natura IV",
       "level": "Mods",
       "id": "classics_mods_a3"
-    },
-    {
-      "code": "B1",
-      "name": "Introduction to Modern Philosophy",
-      "level": "Mods",
-      "id": "classics_mods_b1"
     },
     {
       "code": "C1",
