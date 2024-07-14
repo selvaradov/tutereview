@@ -163,7 +163,6 @@ const SearchPage: React.FC = () => {
       setGroupedReviews({});
     }
   }, [results]);
-  console.log("got groupedReviews: ", groupedReviews);
 
   const handleToggleFullResults = (key: string) => {
     setGroupedReviews(prev => ({
