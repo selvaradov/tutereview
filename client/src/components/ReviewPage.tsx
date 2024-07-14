@@ -102,7 +102,7 @@ const TutorField: React.FC<{
 
   const handleCreate = (inputValue: string) => {
     setIsLoading(true);
-    const newOption = createOption(inputValue); // This function needs to be defined or imported
+    const newOption = createOption(inputValue);
     setIsLoading(false);
     setFieldValue(question.id, newOption.value);
   };
