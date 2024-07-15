@@ -13,4 +13,6 @@ env_variables:
   CLIENT_URL: "https://tutereview.org"
   BASE_URL: "https://tutereview.org"
 automatic_scaling:
-  min_idle_instances: 1
+  min_instances: 1
+inbound_services:
+  - warmup

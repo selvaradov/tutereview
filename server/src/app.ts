@@ -128,6 +128,11 @@ app.use('/auth', authRouter);
 app.use('/api', ensureAuthAndComplete, apiRouter); // users can only search/submit reviews if profile is complete
 app.use('/user', ensureAuth, userRouter); // this is where users can complete their profile
 
+// Warmup endpoint for Google App Engine
+app.get('/_ah/warmup', async (req: Request, res: Response) => {
+  res.status(200).send('Warmed up');
+});
+
 // Serve the React app
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../build', 'index.html'));
