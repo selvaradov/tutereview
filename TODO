@@ -63,7 +63,6 @@
 ### Frontend
 - Check pages for accessibility issues
   - Some form fields are missing labels on the `review` page
-  - The star rating component can't be done with a keyboard
 
 ### Features
 - Ability to edit reviews

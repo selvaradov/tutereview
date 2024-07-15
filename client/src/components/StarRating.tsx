@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Star } from 'lucide-react';
 
 interface StarRatingProps {
-  rating: number;
+  rating?: number;
   totalStars?: number;
   size?: number;
   interactive?: boolean;
@@ -19,11 +19,11 @@ const StarRating: React.FC<StarRatingProps> = ({
   decimal = 1,
   onChange
 }) => {
-  const [internalRating, setInternalRating] = useState(rating);
+  const [internalRating, setInternalRating] = useState(rating ?? 0);
   const [hover, setHover] = useState(0);
 
   useEffect(() => {
-    setInternalRating(rating);
+    setInternalRating(rating ?? 0);
   }, [rating]);
 
   const handleClick = (value: number) => {
@@ -47,28 +47,69 @@ const StarRating: React.FC<StarRatingProps> = ({
     }
   };
 
-  const roundedRating = Math.round(rating);
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (!interactive) return;
+
+    switch (event.key) {
+      case 'ArrowLeft':
+      case 'ArrowDown':
+        event.preventDefault();
+        setInternalRating((prev) => Math.max(1, prev - 1));
+        break;
+      case 'ArrowRight':
+      case 'ArrowUp':
+        event.preventDefault();
+        setInternalRating((prev) => Math.min(totalStars, prev + 1));
+        break;
+      case ' ':
+      case 'Enter':
+        event.preventDefault();
+        if (onChange) {
+          onChange(internalRating);
+        }
+        break;
+    }
+  };
+
+  const roundedRating = Math.round(internalRating);
 
   return (
-    <div 
+    <div
       style={{ display: 'inline-flex', alignItems: 'center' }}
       onMouseLeave={handleMouseLeave}
+      role={interactive ? 'radiogroup' : 'img'}
+      aria-label={`${internalRating.toFixed(decimal)} out of ${totalStars} stars`}
+      tabIndex={interactive ? 0 : undefined}
+      onKeyDown={handleKeyDown}
     >
       {[...Array(totalStars)].map((_, index) => {
         const starValue = index + 1;
+        const isSelected = starValue <= (interactive ? (hover || internalRating) : roundedRating);
         return (
-          <Star
+          <span
             key={index}
-            size={size}
-            fill={starValue <= (interactive ? (hover || internalRating) : roundedRating) ? "#ffc107" : "none"}
-            stroke={starValue <= (interactive ? (hover || internalRating) : roundedRating) ? "#ffc107" : "#e4e5e9"}
-            style={{ cursor: interactive ? 'pointer' : 'default' }}
+            role={interactive ? 'radio' : undefined}
+            aria-checked={interactive ? starValue === roundedRating : undefined}
+            tabIndex={-1}
+            aria-label={interactive ? `${starValue} star${starValue !== 1 ? 's' : ''}` : undefined}
             onClick={() => handleClick(starValue)}
             onMouseEnter={() => handleMouseEnter(starValue)}
-          />
+            style={{ cursor: interactive ? 'pointer' : 'default' }}
+          >
+            <Star
+              size={size}
+              fill={isSelected ? "#ffc107" : "none"}
+              stroke={isSelected ? "#ffc107" : "#e4e5e9"}
+              aria-hidden="true"
+            />
+          </span>
         );
       })}
-      {!interactive && <span className="ms-2">{rating.toFixed(decimal)}</span>}
+      {!interactive && (
+        <span className="ms-2" aria-hidden="true">
+          {internalRating.toFixed(decimal)}
+        </span>
+      )}
     </div>
   );
 };
