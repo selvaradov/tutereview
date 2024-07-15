@@ -53,6 +53,7 @@ const FormField: React.FC<ProfileFormFieldProps> = ({ fieldName, label, options 
         classNamePrefix="react-select"
         isClearable
         isDisabled={isProfileComplete}
+        inputId={fieldName}
       />
       {hasError && (
         <div className="invalid-feedback d-block">{errors[fieldName]}</div>
