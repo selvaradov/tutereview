@@ -176,8 +176,8 @@ const SearchPage: React.FC = () => {
     <PageLayout title="Search reviews">
       <MissingOptionsMessage />
       <Form>
-        <Row className="mb-3">
-          <Col md={6}>
+        <Row>
+          <Col md={6} className="mb-3">
             <Form.Group controlId="tutor">
               <Form.Label className='fw-bold'>Tutor's name:</Form.Label>
               <Form.Control
@@ -189,7 +189,7 @@ const SearchPage: React.FC = () => {
               />
             </Form.Group>
           </Col>
-          <Col md={6}>
+          <Col md={6} className="mb-3">
             <Form.Group controlId="college">
               <Form.Label className='fw-bold'>College:</Form.Label>
               <Select<Option, true>
@@ -202,9 +202,7 @@ const SearchPage: React.FC = () => {
               />
             </Form.Group>
           </Col>
-        </Row>
-        <Row className="mb-3">
-          <Col md={6}>
+          <Col md={6} className="mb-3">
             <Form.Group controlId="subject">
               <Form.Label className='fw-bold'>Subject:</Form.Label>
               <Select<Option>
@@ -216,7 +214,7 @@ const SearchPage: React.FC = () => {
               />
             </Form.Group>
           </Col>
-          <Col md={6}>
+          <Col md={6} className="mb-3">
             <Form.Group controlId="paper">
               <Form.Label className='fw-bold'>Paper:</Form.Label>
               <Select<Option, true>
