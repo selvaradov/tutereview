@@ -198,13 +198,13 @@ const FormField: React.FC<ReviewFormFieldProps> = ({ question, papersBySubject, 
 
   return (
     <div className="mb-4">
-      <label id={`${question.id}-label`} className="form-label fw-bold">
+      <label id={`${question.id}-label`} style={{ display: "block" }} >
+        <div className="form-label fw-bold">
         {question.question}
         {isRequired && <span className="text-danger ms-1" style={{ userSelect: 'none' }}>*</span>}
-      </label>
-      <div className="mt-0">
+        </div>
         {renderField()}
-      </div>
+      </label>
       {hasError && (
         <div className="invalid-feedback d-block">{errors[question.id] as string}</div>
       )}
