@@ -40,10 +40,3 @@
 .is-invalid .invalid-feedback {
   display: block;
 }
-
-.star {
-  cursor: pointer;
-  font-size: 2rem;
-  margin: 2px;
-  transition: color 0.3s ease;
-}
