@@ -70,6 +70,9 @@
 ## Low priority
 
 ### Features
+- Automatically update people's current year annually
+- Ask people in their final year for another contact email
+  - Otherwise if complaints are made, won't be able to message them
 - Add a way to search for joint honours courses all together rather than separate subjects
 
 ### Data
