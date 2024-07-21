@@ -121,7 +121,16 @@ const ProfileCompletion: React.FC = () => {
       <Col md={8} lg={6}>
         <Card>
           <Card.Body>
-            <h2 className="text-center mb-4">{isProfileComplete ? 'Your profile' : 'Complete your profile'}</h2>
+            <h2 className="text-center">{isProfileComplete ? 'Your profile' : 'Complete your profile'}</h2>
+            {!isProfileComplete && (
+              <p className="text-center text-muted">
+                <small>
+                  If you are registering during the Long Vacation period before 1st October,
+                  <strong> please provide the year you've just finished</strong>, not the one you're
+                  going into.
+                </small>
+              </p>
+            )}
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
