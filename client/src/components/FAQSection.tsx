@@ -18,6 +18,13 @@ const FAQSection = () => {
         If you have any questions or concerns about this, or would like to suggest
         changes to our policy, please email <a href="mailto:tutereview.org+support@gmail.com">tutereview.org+support@gmail.com</a>.
       </p>
+      <h3>Could my tutor see the reviews?</h3>
+      <p>
+        Yes, the site is accessible to anybody with a university SSO, including tutors and 
+        other staff. We may in future open up access to the wider public so prospective
+        students are able to make decisions about colleges and courses. Please bear this
+        in mind when writing your reviews, and ensure they're both accurate and fair.
+      </p>
       <h3> Why do I need to log in?</h3>
       <p>
         We want to maintain a high-quality platform where the authenticity of feedback
