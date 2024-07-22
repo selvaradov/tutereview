@@ -1,6 +1,9 @@
 import { NavigateFunction } from 'react-router-dom';
 import { NotificationContextType } from '../context/NotificationContext';
 
+const authRequiredRoutes = ['/review', '/search', '/profile', '/my-reviews'];
+const profileRequiredRoutes = ['/review', '/search', '/my-reviews'];
+
 export const handleNavigation = (
   to: string,
   isAuthenticated: boolean,
@@ -8,12 +11,12 @@ export const handleNavigation = (
   navigate: NavigateFunction,
   showNotification: NotificationContextType['showNotification']
 ) => {
-  if (!isAuthenticated) {
+  if (!isAuthenticated && authRequiredRoutes.includes(to)) {
     navigate('/');
     return;
   }
 
-  if (!isProfileComplete && to !== '/profile' && to !== '/') {
+  if (!isProfileComplete && profileRequiredRoutes.includes(to)) {
     showNotification(
       'Please complete your profile to access this feature.',
       'error',
