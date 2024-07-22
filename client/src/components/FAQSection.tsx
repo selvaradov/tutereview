@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Accordion, Button, Row, Col } from 'react-bootstrap';
+import { Accordion, Button } from 'react-bootstrap';
+import PageLayout from './PageLayout';
 
 const faqData = [
   {
@@ -53,7 +54,7 @@ const FAQSection: React.FC = () => {
   const [activeKeys, setActiveKeys] = useState<string[]>([]);
 
   const toggleItem = (key: string) => {
-    setActiveKeys(prev => 
+    setActiveKeys(prev =>
       prev.includes(key) ? prev.filter(k => k !== key) : [...prev, key]
     );
   };
@@ -63,21 +64,14 @@ const FAQSection: React.FC = () => {
   };
 
   return (
-    <div id="faq" className="mb-4">
-      <Row className="align-items-center mb-3">
-        <Col>
-          <h2 className="mb-0">FAQ</h2>
-        </Col>
-        <Col xs="auto">
-        <Button 
-            variant="link" 
-            onClick={toggleAll} 
-            className="p-0"
-          >
-            {activeKeys.length === faqData.length ? 'Collapse all' : 'Expand all'}
-          </Button>
-        </Col>
-      </Row>
+    <PageLayout title="Frequently asked questions">
+      <Button
+        variant="link"
+        onClick={toggleAll}
+        className="p-0 mb-2"
+      >
+        {activeKeys.length === faqData.length ? 'Collapse all' : 'Expand all'}
+      </Button>
       <Accordion activeKey={activeKeys}>
         {faqData.map((item, index) => (
           <Accordion.Item eventKey={index.toString()} key={index}>
@@ -88,7 +82,7 @@ const FAQSection: React.FC = () => {
           </Accordion.Item>
         ))}
       </Accordion>
-    </div>
+    </PageLayout>
   );
 };
 

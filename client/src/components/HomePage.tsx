@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { useAuth } from '../context/AuthContext';
 import AboutSection from './AboutSection';
-import FAQSection from './FAQSection';
 import PageLayout from './PageLayout';
 import { useLoading } from '../context/LoadingContext';
 
@@ -50,7 +49,6 @@ const HomePage: React.FC = () => {
     <PageLayout title="Welcome to TuteReview">
       <WelcomeMessage />
       <AboutSection />
-      <FAQSection />
     </PageLayout>
   );
 };
