@@ -53,7 +53,7 @@
   },
   {
     "id": "rating_feedback",
-    "question": "Overall, how useful did you find the feedback you receieved?",
+    "question": "Overall, how useful did you find the feedback you received?",
     "type": "rating",
     "required": true
   },
