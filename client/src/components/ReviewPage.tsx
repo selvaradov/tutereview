@@ -1,16 +1,15 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Formik, Form, useFormikContext, FormikValues } from 'formik';
+import { Formik, Form as FormikForm, useFormikContext, FormikValues } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
+import { Form, Button } from 'react-bootstrap';
 import { useNotification } from '../context/NotificationContext';
 import { useLoading } from '../context/LoadingContext';
 import { MissingOptionsMessage } from './Messages';
 import PageLayout from './PageLayout';
 import { SubjectToPapersMap, Question, Option, QuestionType } from '../types';
-import CheckboxGroup from './CheckboxGroup';
-import RadioField from './RadioField';
 import StarRating from './StarRating';
 import './ReviewPage.css'
 
@@ -132,25 +131,6 @@ const TutorField: React.FC<{
   );
 };
 
-const TextField: React.FC<{
-  question: Question;
-  hasError: boolean;
-}> = ({ question, hasError }) => {
-  const { values, setFieldValue } = useFormikContext<FormikValues>();
-
-  return (
-    <textarea
-      id={question.id}
-      name={question.id}
-      onChange={(e) => setFieldValue(question.id, e.target.value)}
-      className={`form-control ${hasError ? 'is-invalid' : ''}`}
-      value={values[question.id] || ''}
-      aria-labelledby={`${question.id}-label`}
-    />
-  );
-};
-
-
 interface ReviewFormFieldProps {
   question: Question;
   papersBySubject: SubjectToPapersMap;
@@ -184,34 +164,81 @@ const FormField: React.FC<ReviewFormFieldProps> = ({ question, papersBySubject, 
         if (question.id === 'tutor') {
           return <TutorField question={question} tutorOptions={tutorOptions} hasError={hasError} />;
         }
-        return <TextField question={question} hasError={hasError} />;
+        return (
+          <Form.Control
+            type="text"
+            id={question.id}
+            name={question.id}
+            isInvalid={hasError}
+            onChange={(e) => setFieldValue(question.id, e.target.value)}
+            value={values[question.id] || ''}
+          />
+        );
       case QuestionType.Radio:
-        return <RadioField question={question} hasError={hasError} />;
+        return (
+          <div>
+            {question.options?.map((option, index) => (
+              <Form.Check
+                key={index}
+                type="radio"
+                id={`${question.id}-${index}`}
+                name={question.id}
+                label={option}
+                value={option}
+                checked={values[question.id] === option}
+                onChange={(e) => setFieldValue(question.id, e.target.value)}
+                isInvalid={hasError}
+              />
+            ))}
+          </div>
+        );
       case QuestionType.Rating:
-        return <StarRating rating={values[question.id]} interactive onChange={(rating) => setFieldValue(question.id, rating)} />;
+        return <div><StarRating rating={values[question.id]} interactive onChange={(rating) => setFieldValue(question.id, rating)} /></div>;
       case QuestionType.Select:
-        return <CheckboxGroup id={question.id} options={question.options || []} />;
+        return (
+          <div>
+            {question.options?.map((option, index) => (
+              <Form.Check
+                key={index}
+                type="checkbox"
+                id={`${question.id}-${index}`}
+                name={question.id}
+                label={option}
+                value={option}
+                checked={(values[question.id] || []).includes(option)}
+                onChange={(e) => {
+                  const currentValues = values[question.id] || [];
+                  const newValues = e.target.checked
+                    ? [...currentValues, option]
+                    : currentValues.filter((value: string) => value !== option);
+                  setFieldValue(question.id, newValues);
+                }}
+                isInvalid={hasError}
+              />
+            ))}
+          </div>
+        );
       default:
         return null;
     }
   };
 
   return (
-    <div className="mb-4">
-      <label id={`${question.id}-label`} style={{ display: "block" }} >
-        <div className="form-label fw-bold">
-          {question.question}
-          {isRequired && <span className="text-danger ms-1" style={{ userSelect: 'none' }}>*</span>}
-          {question.guidance && (
-            <div className="form-text mt-1">{question.guidance}</div>
-          )}
-        </div>
-        {renderField()}
-      </label>
-      {hasError && (
-        <div className="invalid-feedback d-block">{errors[question.id] as string}</div>
+    <Form.Group className="mb-4">
+      <Form.Label id={`${question.id}-label`} className="fw-bold">
+        {question.question}
+        {isRequired && <span className="text-danger ms-1" style={{ userSelect: 'none' }}>*</span>}
+        {question.guidance && (
+        <div><Form.Text>{question.guidance}</Form.Text></div>
       )}
-    </div>
+      </Form.Label>
+      {renderField()}
+      {hasError && (
+        <Form.Control.Feedback type="invalid" style={{ display: 'block' }}>
+          {errors[question.id] as string}
+        </Form.Control.Feedback>
+      )}
+    </Form.Group>
   );
 };
 
@@ -316,19 +343,15 @@ const ReviewPage: React.FC = () => {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ isSubmitting }) => (
-          <Form className="mb-4">
+        {({ isSubmitting, errors }) => (
+          <FormikForm className="mb-4">
             {questions.map((question: Question) => (
               <FormField key={question.id} question={question} papersBySubject={papers} tutorOptions={tutorOptions} />
             ))}
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="btn btn-primary"
-            >
+            <Button type="submit" disabled={isSubmitting}>
               {isSubmitting ? 'Submitting...' : 'Submit Review'}
-            </button>
-          </Form>
+            </Button>
+          </FormikForm>
         )}
       </Formik>
     </PageLayout>
