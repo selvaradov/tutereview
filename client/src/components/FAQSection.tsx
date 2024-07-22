@@ -71,7 +71,7 @@ const FAQSection = () => {
         If you have any questions or problems with the site functionality,
         or are interested in helping us grow,
         please reach out at <a href="mailto:tutereview.org+support@gmail.com">tutereview.org+support@gmail.com</a>.
-        For legal complaints, contact <a href="mailto:tutereview.org+legal@proton.me">tutereview.org+legal@gmail.com</a> and
+        For legal complaints, contact <a href="mailto:tutereview.org+legal@gmail.com">tutereview.org+legal@gmail.com</a> and
         we will respond in line with our statutory obligations.
       </p>
     </div>
