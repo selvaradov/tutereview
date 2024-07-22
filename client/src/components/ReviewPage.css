@@ -1,20 +1,3 @@
-.react-select__control {
-  border-color: #ced4da !important;
-}
-
-.react-select__control:hover {
-  border-color: #80bdff !important;
-}
-
-.react-select__control--is-focused {
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
-  border-color: #80bdff !important;
-}
-
 .react-select-container.is-invalid .react-select__control {
-  border-color: #dc3545 !important;
-}
-
-.react-select-container.is-invalid .react-select__control:hover {
   border-color: #dc3545 !important;
 }
