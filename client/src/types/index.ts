@@ -70,5 +70,6 @@ export interface Question {
   type: QuestionType;
   options?: string[];
   dependsOn?: DependencyCondition;
+  guidance?: string;
 }
 

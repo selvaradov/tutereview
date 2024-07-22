@@ -200,8 +200,11 @@ const FormField: React.FC<ReviewFormFieldProps> = ({ question, papersBySubject, 
     <div className="mb-4">
       <label id={`${question.id}-label`} style={{ display: "block" }} >
         <div className="form-label fw-bold">
-        {question.question}
-        {isRequired && <span className="text-danger ms-1" style={{ userSelect: 'none' }}>*</span>}
+          {question.question}
+          {isRequired && <span className="text-danger ms-1" style={{ userSelect: 'none' }}>*</span>}
+          {question.guidance && (
+            <div className="form-text mt-1">{question.guidance}</div>
+          )}
         </div>
         {renderField()}
       </label>

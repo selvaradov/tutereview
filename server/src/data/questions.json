@@ -15,7 +15,8 @@
     "id": "tutor",
     "question": "What was your tutor's name?",
     "type": "text",
-    "required": true
+    "required": true,
+    "guidance": "If your tutor isn't listed yet, just enter their full name and you'll be able to add them as an option."
   },
   {
     "id": "feedback_written",
@@ -27,7 +28,8 @@
       "🔢 Yes - I got a grade / numerical mark",
       "❌ No"
     ],
-    "required": true
+    "required": true,
+    "guidance": "If someone else marked your work, please select the option that best describes the feedback you received, and then note this in the comments section."
   },
   {
     "id": "feedback_verbal",
@@ -87,7 +89,8 @@
       "🏎️ Fast",
       "🚶 Average",
       "🐢 Slow"
-    ]
+    ],
+    "guidance": "Again, if someone else marked your work, please select the option that best describes the feedback you received, and then note this in the comments section."
   },
   {
     "id": "tutorial_length",
@@ -112,7 +115,8 @@
   },
   {
     "id": "comments",
-    "question": "Any additional comments? For example: whether you had classes rather than tutorials; which essay topics the tutor set; details about any special subject.",
-    "type": "text"
+    "question": "Any additional comments?",
+    "type": "text",
+    "guidance": "For example: whether you had classes rather than tutorials; which essay topics the tutor set; whether somebody other than your tutor marked your work; extra details if you were taking a special subject."
   }
 ]
