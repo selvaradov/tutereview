@@ -193,7 +193,14 @@ const FormField: React.FC<ReviewFormFieldProps> = ({ question, papersBySubject, 
           </div>
         );
       case QuestionType.Rating:
-        return <div><StarRating rating={values[question.id]} interactive onChange={(rating) => setFieldValue(question.id, rating)} /></div>;
+        return <div>
+          <StarRating
+            rating={values[question.id]}
+            interactive
+            onChange={(rating) => setFieldValue(question.id, rating)}
+            hasError={hasError}
+          />
+        </div>;
       case QuestionType.Select:
         return (
           <div>
@@ -229,8 +236,8 @@ const FormField: React.FC<ReviewFormFieldProps> = ({ question, papersBySubject, 
         {question.question}
         {isRequired && <span className="text-danger ms-1" style={{ userSelect: 'none' }}>*</span>}
         {question.guidance && (
-        <div><Form.Text>{question.guidance}</Form.Text></div>
-      )}
+          <div><Form.Text>{question.guidance}</Form.Text></div>
+        )}
       </Form.Label>
       {renderField()}
       {hasError && (

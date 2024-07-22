@@ -9,6 +9,7 @@ interface StarRatingProps {
   interactive?: boolean;
   decimal?: number;
   onChange?: (rating: number) => void;
+  hasError?: boolean;
 }
 
 const StarRating: React.FC<StarRatingProps> = ({
@@ -17,7 +18,8 @@ const StarRating: React.FC<StarRatingProps> = ({
   size = 24,
   interactive = false,
   decimal = 1,
-  onChange
+  onChange,
+  hasError = false,
 }) => {
   const [internalRating, setInternalRating] = useState(rating ?? 0);
   const [hover, setHover] = useState(0);
@@ -99,7 +101,7 @@ const StarRating: React.FC<StarRatingProps> = ({
             <Star
               size={size}
               fill={isSelected ? "#ffc107" : "none"}
-              stroke={isSelected ? "#ffc107" : "#e4e5e9"}
+              stroke={isSelected ? "#ffc107" : (hasError && interactive ? "#dc3545" : "#909090")}
               aria-hidden="true"
             />
           </span>
