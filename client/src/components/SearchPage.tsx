@@ -231,7 +231,7 @@ const SearchPage: React.FC = () => {
         </Row>
       </Form>
 
-      <div id="results" className="mt-4">
+      <div id="results">
       {collegeFilterApplied && (
           <Alert variant="info" className="mb-3">
             Note: When filtering by college, only tutor-paper combinations with at least three recent submissions from the college(s) in question are shown.
