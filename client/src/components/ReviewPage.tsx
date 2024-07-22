@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Alert } from 'react-bootstrap';
 import { useNotification } from '../context/NotificationContext';
 import { useLoading } from '../context/LoadingContext';
 import { MissingOptionsMessage } from './Messages';
@@ -249,6 +249,19 @@ const FormField: React.FC<ReviewFormFieldProps> = ({ question, papersBySubject, 
   );
 };
 
+const FormErrorMessage: React.FC = () => {
+  const { errors, submitCount } = useFormikContext();
+  const hasErrors = Object.keys(errors).length > 0 && submitCount > 0;
+
+  if (!hasErrors) return null;
+
+  return (
+    <Alert variant="danger" className="mt-3">
+      Please correct the errors in the form before submitting.
+    </Alert>
+  );
+};
+
 type FormValues = Record<string, string | string[]>;
 
 const ReviewPage: React.FC = () => {
@@ -355,8 +368,9 @@ const ReviewPage: React.FC = () => {
             {questions.map((question: Question) => (
               <FormField key={question.id} question={question} papersBySubject={papers} tutorOptions={tutorOptions} />
             ))}
+            <FormErrorMessage />
             <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? 'Submitting...' : 'Submit Review'}
+              {isSubmitting ? 'Submitting...' : 'Submit'}
             </Button>
           </FormikForm>
         )}
