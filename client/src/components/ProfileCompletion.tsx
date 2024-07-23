@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Formik, Form, useFormikContext } from 'formik';
+import { Formik, Form as FormikForm, useFormikContext } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useNotification } from '../context/NotificationContext';
 import { useLoading } from '../context/LoadingContext';
 import axios from 'axios';
 import Select from 'react-select';
-import { Row, Col, Card } from 'react-bootstrap';
+import { Row, Col, Card, Form } from 'react-bootstrap';
 import * as Yup from 'yup';
 import { Option } from '../types';
 
@@ -26,27 +26,27 @@ interface ProfileFormFieldProps {
   fieldName: keyof ProfileFormValues;
   label: string;
   options: Option[];
+  guidance?: string;
 }
 
-const FormField: React.FC<ProfileFormFieldProps> = ({ fieldName, label, options }) => {
+const FormField: React.FC<ProfileFormFieldProps> = ({ fieldName, label, options, guidance }) => {
   const { values, setFieldValue, errors, touched, submitCount } = useFormikContext<ProfileFormValues>();
   const { isProfileComplete } = useAuth();
   const hasError = errors[fieldName] && (touched[fieldName] || submitCount > 0);
 
   return (
-    <div className="mb-4">
-      <label htmlFor={fieldName} className="form-label fw-bold">
+    <Form.Group className="mb-4">
+      <Form.Label htmlFor={fieldName} className="fw-bold">
         {label}
         <span className="text-danger ms-1" style={{ userSelect: 'none' }}>*</span>
-      </label>
+        {guidance && (
+          <div><Form.Text>{guidance}</Form.Text></div>
+        )}
+      </Form.Label>
       <Select
         options={options}
         onChange={(option: Option | null) => {
-          if (option) {
-            setFieldValue(fieldName, option.value);
-          } else {
-            setFieldValue(fieldName, '');
-          }
+          setFieldValue(fieldName, option ? option.value : '');
         }}
         value={options.find(option => option.value === values[fieldName])}
         className={`react-select-container ${hasError ? 'is-invalid' : ''}`}
@@ -56,9 +56,11 @@ const FormField: React.FC<ProfileFormFieldProps> = ({ fieldName, label, options 
         inputId={fieldName}
       />
       {hasError && (
-        <div className="invalid-feedback d-block">{errors[fieldName]}</div>
+        <Form.Control.Feedback type="invalid" style={{ display: 'block' }}>
+          {errors[fieldName]}
+        </Form.Control.Feedback>
       )}
-    </div>
+    </Form.Group>
   );
 };
 
@@ -72,22 +74,22 @@ const ProfileCompletion: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-    startLoading();
-    try {
-      const [optionsResponse, profileResponse] = await Promise.all([
-        axios.get<ProfileOptions>('/user/options', { withCredentials: true }),
-        axios.get<ProfileFormValues>('/user/profile', { withCredentials: true })
-      ]);
-      setOptions(optionsResponse.data);
-      setInitialValues(profileResponse.data);
-    } catch (error) {
-      console.error('Failed to fetch data:', error);
-      showNotification('Failed to load profile data. Please try again.', 'error');
-    } finally {
-      stopLoading();
-    }
-  };
-  fetchData();
+      startLoading();
+      try {
+        const [optionsResponse, profileResponse] = await Promise.all([
+          axios.get<ProfileOptions>('/user/options', { withCredentials: true }),
+          axios.get<ProfileFormValues>('/user/profile', { withCredentials: true })
+        ]);
+        setOptions(optionsResponse.data);
+        setInitialValues(profileResponse.data);
+      } catch (error) {
+        console.error('Failed to fetch data:', error);
+        showNotification('Failed to load profile data. Please try again.', 'error');
+      } finally {
+        stopLoading();
+      }
+    };
+    fetchData();
   }, [showNotification, startLoading, stopLoading]);
 
   const validationSchema = Yup.object().shape({
@@ -121,16 +123,7 @@ const ProfileCompletion: React.FC = () => {
       <Col md={8} lg={6}>
         <Card>
           <Card.Body>
-            <h2 className="text-center">{isProfileComplete ? 'Your profile' : 'Complete your profile'}</h2>
-            {!isProfileComplete && (
-              <p className="text-center text-muted">
-                <small>
-                  If you are registering during the Long Vacation period before 1st October,
-                  <strong> please provide the year you've just finished</strong>, not the one you're
-                  going into.
-                </small>
-              </p>
-            )}
+            <h2 className="text-center mb-3">{isProfileComplete ? 'Your profile' : 'Complete your profile'}</h2>
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
@@ -138,9 +131,14 @@ const ProfileCompletion: React.FC = () => {
               enableReinitialize={true}
             >
               {({ isSubmitting }) => (
-                <Form noValidate>
+                <FormikForm noValidate>
                   <FormField fieldName="college" label="College" options={options.colleges} />
-                  <FormField fieldName="year" label="Year" options={options.years} />
+                  <FormField
+                    fieldName="year"
+                    label="Year"
+                    options={options.years}
+                    guidance="If you're registering during the Long Vacation before 1st October, tell us the year you've just finished, not the one you're going into."
+                  />
                   <FormField fieldName="course" label="Course" options={options.courses} />
                   {!isProfileComplete && (
                     <div className="d-grid">
@@ -149,7 +147,7 @@ const ProfileCompletion: React.FC = () => {
                       </button>
                     </div>
                   )}
-                </Form>
+                </FormikForm>
               )}
             </Formik>
             {isProfileComplete && (
