@@ -28,7 +28,7 @@ const AboutPage = () => {
         what to expect from selecting a particular module, and decide whether it's right for them.
         As students, we get a lot of choice in what papers to take, plus there's often much more
         flexibility around tutors/supervisors than you might imagine (for instance, see the first
-        full paragraph on <a href="https://www.ppe.ox.ac.uk/sitefiles/ppe-handbook-prelims-2023-24-final-1.0.pdf#page=11">
+        full paragraph on <a href="https://www.ppe.ox.ac.uk/sitefiles/ppe-handbook-prelims-2023-24-final-1.0.pdf#page=11" target="_blank" rel="noreferrer">
           page 11 of the PPE handbook</a>). Given the absence of information about what different
         papers and tutors/supervisors would be like, this choice is pretty meaningless, though.
         We think that can and should change, and we hope you join us on the mission.
