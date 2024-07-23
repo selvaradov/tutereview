@@ -24,7 +24,7 @@ const SubjectDropdown: React.FC<{
   papersBySubject: SubjectToPapersMap;
   hasError: boolean;
 }> = ({ question, papersBySubject, hasError }) => {
-  const { values, setFieldValue } = useFormikContext<FormikValues>();
+  const { values, setValues } = useFormikContext<FormikValues>();
 
   return (
     <Select
@@ -32,15 +32,18 @@ const SubjectDropdown: React.FC<{
       aria-labelledby={`${question.id}-label`}
       options={Object.keys(papersBySubject).map(subject => ({ value: subject, label: subject }))}
       onChange={(option: { value: string; label: string } | null) => {
-        if (option) {
-          setFieldValue(question.id, option.value);
-        } else {
-          setFieldValue(question.id, '');
-        }
-        setFieldValue('paper', '');
-        setFieldValue('paperCode', '');
-        setFieldValue('paperName', '');
-        setFieldValue('paperLevel', '');
+        const updates = {
+          [question.id]: option ? option.value : '',
+          paper: '',
+          paperCode: '',
+          paperName: '',
+          paperLevel: '',
+        };
+        
+        setValues(prevValues => ({
+          ...prevValues,
+          ...updates
+        }));
       }}
       value={values.subject ? { value: values.subject, label: values.subject } : null}
       className={`react-select-container ${hasError ? 'is-invalid' : ''}`}
@@ -56,7 +59,7 @@ const PaperDropdown: React.FC<{
   papersBySubject: SubjectToPapersMap;
   hasError: boolean;
 }> = ({ question, papersBySubject, hasError }) => {
-  const { values, setFieldValue } = useFormikContext<FormikValues>();
+  const { values, setValues } = useFormikContext<FormikValues>();
   const selectedSubject = values.subject as string;
 
   return (
@@ -68,19 +71,28 @@ const PaperDropdown: React.FC<{
         label: `${paper.code} - ${paper.name} (${paper.level})`
       }))}
       onChange={(option: { value: string; label: string } | null) => {
+        let updates: Partial<FormikValues> = {
+          [question.id]: '',
+          paperCode: '',
+          paperName: '',
+          paperLevel: '',
+        };
+
         if (option) {
           const [code, rest] = option.label.split(' - ', 2);
           const [name, level] = rest.split(' (');
-          setFieldValue(question.id, option.value);
-          setFieldValue('paperCode', code || '');
-          setFieldValue('paperName', name || '');
-          setFieldValue('paperLevel', level.slice(0, -1) || '');
-        } else {
-          setFieldValue(question.id, '');
-          setFieldValue('paperCode', '');
-          setFieldValue('paperName', '');
-          setFieldValue('paperLevel', '');
+          updates = {
+            [question.id]: option.value,
+            paperCode: code || '',
+            paperName: name || '',
+            paperLevel: level.slice(0, -1) || '',
+          };
         }
+        
+        setValues(prevValues => ({
+          ...prevValues,
+          ...updates
+        }));
       }}
       value={values.paper ? { value: values.paper, label: `${values.paperCode} - ${values.paperName}` } : null}
       isDisabled={!selectedSubject}
