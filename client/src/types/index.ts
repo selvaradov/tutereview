@@ -50,11 +50,6 @@ export interface GroupedReviews {
   };
 }
 
-export interface DependencyCondition {
-  question: string;
-  condition: (value: any) => boolean;
-}
-
 export enum QuestionType {
   Dropdown = 'dropdown',
   Text = 'text',
@@ -70,7 +65,6 @@ export interface Question {
   required?: boolean;
   type: QuestionType;
   options?: string[];
-  dependsOn?: DependencyCondition;
   guidance?: string;
 }
 

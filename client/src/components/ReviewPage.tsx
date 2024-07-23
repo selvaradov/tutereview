@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Formik, Form as FormikForm, useFormikContext, FormikValues } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
@@ -151,14 +151,6 @@ interface ReviewFormFieldProps {
 
 const FormField: React.FC<ReviewFormFieldProps> = ({ question, papersBySubject, tutorOptions }) => {
   const { values, errors, touched, submitCount, setFieldValue } = useFormikContext<FormikValues>();
-
-  const shouldRender = useMemo(() => {
-    return !question.dependsOn || question.dependsOn.condition(values[question.dependsOn.question]);
-  }, [question.dependsOn, values]);
-
-  if (!shouldRender) {
-    return null;
-  }
 
   const isRequired = question.required;
   const hasError = !!(errors[question.id] && (touched[question.id] || submitCount > 0));
