@@ -60,12 +60,6 @@
 - Set up logging of API calls (`rotating-file-stream` or `winston` with `morgan`)
 - Improve consistency of handling paper names & codes & labels when using database, GET requests, and forms
 
-### Frontend
-- Check pages for accessibility issues
-  - "No label associated with a form field" on `review` page
-    - Maybe something to do with using `controlId` for the `Form.Group`, or
-      just using the `label` in a semantically incorrect way?
-
 ### Features
 - Ability to edit reviews
 
@@ -134,7 +128,7 @@
     ]);
   }, [showNotification]);
   ```
-- Make form components more consistent, e.g. the check of `isRequired` and subsequent red asterisk display
+- Make form components more consistent
 - Work out whether a config file is useful for the frontend
 - Implement tests
   - For the frontend, possibly `react-testing-library`
