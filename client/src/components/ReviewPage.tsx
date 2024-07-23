@@ -243,7 +243,7 @@ const FormField: React.FC<ReviewFormFieldProps> = ({ question, papersBySubject, 
   };
 
   return (
-    <Form.Group className="mb-4">
+    <Form.Group className="mb-3">
       <Form.Label id={`${question.id}-label`} className="fw-bold">
         {question.question}
         {isRequired && <span className="text-danger ms-1" style={{ userSelect: 'none' }}>*</span>}
@@ -376,7 +376,7 @@ const ReviewPage: React.FC = () => {
         onSubmit={handleSubmit}
       >
         {({ isSubmitting, errors }) => (
-          <FormikForm className="mb-4">
+          <FormikForm>
             {questions.map((question: Question) => (
               <FormField key={question.id} question={question} papersBySubject={papers} tutorOptions={tutorOptions} />
             ))}
