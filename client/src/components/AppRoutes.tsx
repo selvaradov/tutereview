@@ -11,6 +11,7 @@ import NotFoundPage from './NotFoundPage';
 import ProfileCompletion from './ProfileCompletion';
 import UserReviews from './UserReviews';
 import AboutPage from './AboutPage';
+import ScrollToTop from './ScrollToTop';
 
 const protectedRoute = (Component: React.ComponentType) => (
   <ProtectedRoute>
@@ -22,16 +23,18 @@ const AppRoutes: React.FC = () => {
   return (
     <AppLayout>
       <Notification />
+      <ScrollToTop>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/faq" element={<FAQSection />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/review" element={protectedRoute(ReviewPage)} />
-        <Route path="/search" element={protectedRoute(SearchPage)} />
-        <Route path="/profile" element={protectedRoute(ProfileCompletion)} />
-        <Route path="/my-reviews" element={protectedRoute(UserReviews)} />
-        <Route path="*" element={<NotFoundPage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/faq" element={<FAQSection />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/review" element={protectedRoute(ReviewPage)} />
+          <Route path="/search" element={protectedRoute(SearchPage)} />
+          <Route path="/profile" element={protectedRoute(ProfileCompletion)} />
+          <Route path="/my-reviews" element={protectedRoute(UserReviews)} />
+          <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      </ScrollToTop>
     </AppLayout>
   );
 };
