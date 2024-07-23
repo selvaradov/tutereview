@@ -31,3 +31,9 @@
   z-index: 1000;
   animation: fadeIn 0.2s ease-in forwards;
 }
+
+/* Used for required fields on forms */
+.required-field::after {
+  content: '\00a0*';
+  color: #dc3545;
+}

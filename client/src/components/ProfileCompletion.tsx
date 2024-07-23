@@ -37,8 +37,7 @@ const FormField: React.FC<ProfileFormFieldProps> = ({ fieldName, label, options,
   return (
     <Form.Group className="mb-4">
       <Form.Label htmlFor={fieldName} className="fw-bold">
-        {label}
-        <span className="text-danger" style={{ userSelect: 'none' }}>&nbsp;*</span>
+      <div className={'question-title required-field'}>{label}</div>
         {guidance && (
           <div><Form.Text>{guidance}</Form.Text></div>
         )}
