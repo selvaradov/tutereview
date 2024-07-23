@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, Card, ProgressBar, Badge } from 'react-bootstrap';
-import { Clock, User, BookOpen, MessageSquare, ChevronDown, ChevronUp, ChevronLeft } from 'lucide-react';
+import { LuClock, LuUser, LuBookOpen, LuMessageSquare, LuChevronDown, LuChevronUp, LuChevronLeft } from 'react-icons/lu';
 import { Review } from '../types';
 import StarRating from './StarRating';
 
@@ -75,26 +75,26 @@ const ReviewSummary: React.FC<ReviewSummaryProps> = ({ reviews, onToggleFullResu
         <Col md={6} className="mb-3">
             <h5>Tutorial</h5>
             <div className="d-flex align-items-center mb-2">
-              <Clock size={18} className="me-2" />
+              <LuClock size={18} className="me-2" />
               <span><strong>Length:</strong> {getMostCommonValue('tutorial_length')}</span>
             </div>
             <div className="d-flex align-items-center mb-2">
-              <BookOpen size={18} className="me-2" />
+              <LuBookOpen size={18} className="me-2" />
               <span><strong>Structure:</strong> {getMostCommonValue('tutorial_structure')}</span>
             </div>
             <div className="d-flex align-items-center mb-2">
-              <User size={18} className="me-2" />
+              <LuUser size={18} className="me-2" />
               <span><strong>Explanations:</strong> {getMostCommonValue('tutorial_explanations')}</span>
             </div>
             <div className="d-flex align-items-center">
-              <ChevronLeft size={18} className="me-2" />
+              <LuChevronLeft size={18} className="me-2" />
               <span><strong>Looked at Work Pre-Tutorial:</strong> {getMostCommonValue('pre_tutorial')}</span>
             </div>
           </Col>
           <Col md={6} className="mb-3">
             <h5>Feedback</h5>
             <div className="d-flex align-items-center mb-2">
-              <MessageSquare size={18} className="me-2" />
+              <LuMessageSquare size={18} className="me-2" />
               <div className="w-100">
                 <div className="d-flex justify-content-between">
                   <span>Specific Comments</span>
@@ -104,7 +104,7 @@ const ReviewSummary: React.FC<ReviewSummaryProps> = ({ reviews, onToggleFullResu
               </div>
             </div>
             <div className="d-flex align-items-center mb-2">
-              <MessageSquare size={18} className="me-2" />
+              <LuMessageSquare size={18} className="me-2" />
               <div className="w-100">
                 <div className="d-flex justify-content-between">
                   <span>Overall Comment</span>
@@ -114,7 +114,7 @@ const ReviewSummary: React.FC<ReviewSummaryProps> = ({ reviews, onToggleFullResu
               </div>
             </div>
             <div className="d-flex align-items-center">
-              <MessageSquare size={18} className="me-2" />
+              <LuMessageSquare size={18} className="me-2" />
               <div className="w-100">
                 <div className="d-flex justify-content-between">
                   <span>Numerical mark or grade</span>
@@ -129,12 +129,12 @@ const ReviewSummary: React.FC<ReviewSummaryProps> = ({ reviews, onToggleFullResu
           <button className="btn btn-primary" onClick={onToggleFullResults}>
             {showFullResults ? (
               <>
-                <ChevronUp size={18} className="me-2" />
+                <LuChevronUp size={18} className="me-2" />
                 Hide full results {" "}
               </>
             ) : (
               <>
-                <ChevronDown size={18} className="me-2" />
+                <LuChevronDown size={18} className="me-2" />
                 View full results {" "}
               </>
             )}

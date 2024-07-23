@@ -1,6 +1,6 @@
 // https://dev.to/kartikbudhraja/creating-a-dynamic-star-rating-system-in-react-2c8
 import React, { useState, useEffect } from 'react';
-import { Star } from 'lucide-react';
+import { LuStar } from 'react-icons/lu';
 
 interface StarRatingProps {
   rating?: number;
@@ -98,7 +98,7 @@ const StarRating: React.FC<StarRatingProps> = ({
             onMouseEnter={() => handleMouseEnter(starValue)}
             style={{ cursor: interactive ? 'pointer' : 'default' }}
           >
-            <Star
+            <LuStar
               size={size}
               fill={isSelected ? "#ffc107" : "none"}
               stroke={isSelected ? "#ffc107" : (hasError && interactive ? "#dc3545" : "#909090")}
