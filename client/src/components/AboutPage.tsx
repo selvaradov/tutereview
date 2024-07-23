@@ -1,7 +1,8 @@
-const AboutSection = () => {
+import PageLayout from "./PageLayout";
+
+const AboutPage = () => {
   return (
-    <div id="about">
-      <h2>About</h2>
+    <PageLayout title="About">
       <p>
         The tutor who hasn't marked your work a month after it was submitted; the one who
         never looks at the clock and realises with 10 minutes to go that they've not started
@@ -38,8 +39,8 @@ const AboutSection = () => {
         make the reviews available to prospective students so that they can have a sense
         of what academic life in their chosen subject is really like at each college.
       </p>
-    </div>
+    </PageLayout>
   );
 };
 
-export default AboutSection;
+export default AboutPage;

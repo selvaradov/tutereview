@@ -34,13 +34,14 @@ const HeaderNavbar: React.FC = () => {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
           <Nav.Link as="button" onClick={handleNavClick('/')} active={location.pathname === '/'}>Home</Nav.Link>
+          <Nav.Link as="button" onClick={handleNavClick('/about')} active={location.pathname === '/about'}>About</Nav.Link>
           {isAuthenticated && (
             <>
               <Nav.Link as="button" onClick={handleNavClick('/review')} active={location.pathname === '/review'}>Submit a review</Nav.Link>
               <Nav.Link as="button" onClick={handleNavClick('/search')} active={location.pathname === '/search'}>Search</Nav.Link>
             </>
           )}
-          <Nav.Link as="button" onClick={handleNavClick('/faq')} active={location.pathname === '/faq'}>FAQ</Nav.Link>
+                    <Nav.Link as="button" onClick={handleNavClick('/faq')} active={location.pathname === '/faq'}>FAQ</Nav.Link>
         </Nav>
         {isAuthenticated && (
           <Nav className="ms-lg-auto">
