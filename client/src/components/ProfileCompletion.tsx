@@ -72,6 +72,10 @@ const ProfileCompletion: React.FC = () => {
   const { showNotification } = useNotification();
   const { startLoading, stopLoading } = useLoading();
 
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth() + 1; // getMonth() returns 0-11 for Jan-Dec
+  const isLongVacationPeriod = currentMonth >= 6 && currentMonth <= 9;
+
   useEffect(() => {
     const fetchData = async () => {
       startLoading();
@@ -137,7 +141,7 @@ const ProfileCompletion: React.FC = () => {
                     fieldName="year"
                     label="Year"
                     options={options.years}
-                    guidance="If you're registering during the Long Vacation before 1st October, tell us the year you've just finished, not the one you're going into."
+                    guidance={isLongVacationPeriod ? "Please tell us the year you've just finished, not the one you're going into." : undefined}
                   />
                   <FormField fieldName="course" label="Course" options={options.courses} />
                   {!isProfileComplete && (
