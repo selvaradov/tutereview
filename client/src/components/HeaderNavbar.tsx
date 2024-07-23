@@ -41,7 +41,7 @@ const HeaderNavbar: React.FC = () => {
               <Nav.Link as="button" onClick={handleNavClick('/search')} active={location.pathname === '/search'}>Search</Nav.Link>
             </>
           )}
-                    <Nav.Link as="button" onClick={handleNavClick('/faq')} active={location.pathname === '/faq'}>FAQ</Nav.Link>
+          <Nav.Link as="button" onClick={handleNavClick('/faq')} active={location.pathname === '/faq'}>FAQ</Nav.Link>
         </Nav>
         {isAuthenticated && (
           <Nav className="ms-lg-auto">
