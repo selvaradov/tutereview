@@ -1,19 +1,16 @@
-import { NavigateFunction } from 'react-router-dom';
 import { NotificationContextType } from '../context/NotificationContext';
 
 const authRequiredRoutes = ['/review', '/search', '/profile', '/my-reviews'];
 const profileRequiredRoutes = ['/review', '/search', '/my-reviews'];
 
-export const handleNavigation = (
+export const checkNavigation = (
   to: string,
   isAuthenticated: boolean,
   isProfileComplete: boolean,
-  navigate: NavigateFunction,
   showNotification: NotificationContextType['showNotification']
-) => {
+): boolean => {
   if (!isAuthenticated && authRequiredRoutes.includes(to)) {
-    navigate('/');
-    return;
+    return false;
   }
 
   if (!isProfileComplete && profileRequiredRoutes.includes(to)) {
@@ -23,13 +20,13 @@ export const handleNavigation = (
       [
         {
           label: 'Complete profile',
-          onClick: () => navigate('/profile'),
+          onClick: () => window.location.href = '/profile',
           variant: 'primary'
         }
       ]
     );
-    return;
+    return false;
   }
 
-  navigate(to);
+  return true;
 };
