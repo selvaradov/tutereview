@@ -62,7 +62,9 @@
 
 ### Frontend
 - Check pages for accessibility issues
-  - Some form fields are missing labels on the `review` page
+  - "No label associated with a form field" on `review` page
+    - Maybe something to do with using `controlId` for the `Form.Group`, or
+      just using the `label` in a semantically incorrect way?
 
 ### Features
 - Ability to edit reviews
@@ -107,9 +109,6 @@
   - how the navbar is laid out
   - whether to horizontally centre the app or keep it on the left
 - Debouncing when typing tutor's name onto search page
-- Error messages for `subject` and `paper` are lagged to disappear on review page
-  - and some questions missing the exclamation mark icon
-  - Also check implementation in profile completion page, seems quite messily-done
 - On the search page, if there's an error, the first time it loads the modal shadow 
   doesn't cover the extreme margins (related to the scrollbar hiding).
 
