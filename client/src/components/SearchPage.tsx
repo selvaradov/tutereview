@@ -199,6 +199,7 @@ const SearchPage: React.FC = () => {
                 isClearable
                 isMulti
                 placeholder="Select colleges"
+                inputId="college"
               />
             </Form.Group>
           </Col>
@@ -211,6 +212,7 @@ const SearchPage: React.FC = () => {
                 options={subjectOptions}
                 isClearable
                 placeholder="Select a subject"
+                inputId="subject"
               />
             </Form.Group>
           </Col>
@@ -225,6 +227,7 @@ const SearchPage: React.FC = () => {
                 isDisabled={!selectedSubject}
                 placeholder={selectedSubject ? "Select papers" : "Choose subject first"}
                 isMulti
+                inputId="paper"
               />
             </Form.Group>
           </Col>
