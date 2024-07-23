@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import AppLayout from './AppLayout';
 import Notification from './Notification';
 import HomePage from './HomePage';
-import FAQSection from './FAQSection';
+import FAQPage from './FAQPage';
 import ReviewPage from './ReviewPage';
 import SearchPage from './SearchPage';
 import ProtectedRoute from './ProtectedRoute';
@@ -26,7 +26,7 @@ const AppRoutes: React.FC = () => {
       <ScrollToTop>
       <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/faq" element={<FAQSection />} />
+          <Route path="/faq" element={<FAQPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/review" element={protectedRoute(ReviewPage)} />
           <Route path="/search" element={protectedRoute(SearchPage)} />

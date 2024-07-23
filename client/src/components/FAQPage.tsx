@@ -50,7 +50,7 @@ const replaceEmailPlaceholders = (text: string): string => {
   });
 };
 
-const FAQSection: React.FC = () => {
+const FAQPage: React.FC = () => {
   const [activeKeys, setActiveKeys] = useState<string[]>([]);
 
   const toggleItem = (key: string) => {
@@ -86,4 +86,4 @@ const FAQSection: React.FC = () => {
   );
 };
 
-export default FAQSection;
+export default FAQPage;
