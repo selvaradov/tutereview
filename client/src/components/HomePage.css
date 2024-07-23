@@ -1,0 +1,23 @@
+.hero-section {
+  padding: 4rem 0;
+}
+
+.hero-content {
+  margin-bottom: 3rem;
+}
+
+.chevron-container {
+  position: absolute;
+  bottom: 2rem;
+  left: 0;
+  right: 0;
+}
+
+.scroll-chevron {
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.scroll-chevron:hover {
+  transform: translateY(5px);
+}
