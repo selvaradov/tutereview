@@ -249,13 +249,13 @@ const FormField: React.FC<ReviewFormFieldProps> = ({ question, papersBySubject, 
 
   return (
     <Form.Group className="mb-3">
-      <Form.Label id={`${question.id}-label`} className="fw-bold">
+      <div id={`${question.id}-label`} className="fw-bold mb-2 question-label">
         {question.question}
         {isRequired && <span className="text-danger ms-1" style={{ userSelect: 'none' }}>*</span>}
         {question.guidance && (
-          <div><Form.Text>{question.guidance}</Form.Text></div>
+          <div className="small text-muted question-guidance">{question.guidance}</div>
         )}
-      </Form.Label>
+      </div>
       {renderField()}
       {hasError && (
         <Form.Control.Feedback type="invalid" style={{ display: 'block' }}>
