@@ -186,6 +186,19 @@ const FormField: React.FC<ReviewFormFieldProps> = ({ question, papersBySubject, 
             value={values[question.id] || ''}
           />
         );
+      case QuestionType.TextArea:
+        return (
+          <Form.Control
+            as="textarea"
+            rows={3}
+            id={question.id}
+            name={question.id}
+            isInvalid={hasError}
+            onChange={(e) => setFieldValue(question.id, e.target.value)}
+            value={values[question.id] || ''}
+            placeholder="Enter text here"
+          />
+        );
       case QuestionType.Radio:
         return (
           <div>

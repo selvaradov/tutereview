@@ -58,6 +58,7 @@ export interface DependencyCondition {
 export enum QuestionType {
   Dropdown = 'dropdown',
   Text = 'text',
+  TextArea = 'textarea',
   Radio = 'radio',
   Rating = 'rating',
   Select = 'select'

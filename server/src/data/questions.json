@@ -116,7 +116,7 @@
   {
     "id": "comments",
     "question": "Any additional comments?",
-    "type": "text",
+    "type": "textarea",
     "guidance": "For example: whether you had classes rather than tutorials; which essay topics the tutor set; whether somebody other than your tutor marked your work; extra details if you were taking a special subject."
   }
 ]
