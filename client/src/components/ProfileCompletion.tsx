@@ -38,7 +38,7 @@ const FormField: React.FC<ProfileFormFieldProps> = ({ fieldName, label, options,
     <Form.Group className="mb-4">
       <Form.Label htmlFor={fieldName} className="fw-bold">
         {label}
-        <span className="text-danger ms-1" style={{ userSelect: 'none' }}>*</span>
+        <span className="text-danger" style={{ userSelect: 'none' }}>&nbsp;*</span>
         {guidance && (
           <div><Form.Text>{guidance}</Form.Text></div>
         )}
