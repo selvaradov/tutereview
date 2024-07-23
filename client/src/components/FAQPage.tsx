@@ -59,19 +59,20 @@ const FAQPage: React.FC = () => {
     );
   };
 
-  const toggleAll = () => {
-    setActiveKeys(activeKeys.length === faqData.length ? [] : faqData.map((_, index) => index.toString()));
+  const expandAll = () => {
+    setActiveKeys(faqData.map((_, index) => index.toString()));
+  };
+
+  const collapseAll = () => {
+    setActiveKeys([]);
   };
 
   return (
     <PageLayout title="Frequently asked questions">
-      <Button
-        variant="link"
-        onClick={toggleAll}
-        className="p-0 mb-2"
-      >
-        {activeKeys.length === faqData.length ? 'Collapse all' : 'Expand all'}
-      </Button>
+      <div className="mb-1 d-flex justify-content-end">
+        <Button variant="link" onClick={expandAll} className="me-2">Expand all</Button>
+        <Button variant="link" onClick={collapseAll}>Collapse all</Button>
+      </div>
       <Accordion activeKey={activeKeys}>
         {faqData.map((item, index) => (
           <Accordion.Item eventKey={index.toString()} key={index}>
