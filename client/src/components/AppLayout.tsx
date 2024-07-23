@@ -12,7 +12,7 @@ const AppLayout: React.FC<LayoutProps> = ({ children }) => {
       <Row> {/* To centre content, add `className="justify-content-center align-items-center"` */}
         <Col xs={12} lg={10} xl={8}>
           <HeaderNavbar />
-          <div className="content-wrapper">
+          <div className="content-wrapper mb-4">
             {children}
           </div>
         </Col>
