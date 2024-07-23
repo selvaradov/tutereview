@@ -37,8 +37,8 @@ const HomePage = () => {
             </Row>
             {!isAuthenticated ? (
               <Row className="mt-4">
-                <Col xs={12} md={6}>
-                  <Button variant="warning" size="lg" onClick={login} className="d-inline-flex align-items-center">
+                <Col xs={12} md={6} className="mb-3">
+                  <Button variant="warning" size="lg" onClick={login} className="d-inline-flex align-items-center w-100">
                     <FaMicrosoft className="me-2" />
                     Continue with Microsoft
                   </Button>
@@ -65,11 +65,11 @@ const HomePage = () => {
               </Row>
             ) : (
               <Row className="mt-4">
-                <Col>
+                <Col xs={12} md={6} className="mb-3">
                   <Link to="/profile">
-                    <Button variant="warning" size="lg">
+                    <Button variant="warning" size="lg" className="d-inline-flex align-items-center w-100">
                       <FaUserCircle className="me-2" />
-                      Complete Your Profile
+                      Complete your profile
                     </Button>
                   </Link>
                 </Col>
