@@ -1,5 +1,5 @@
 // Import required modules
-import { loadEnvConfig } from './config/env.js' // configure environment variables
+import { loadEnvConfig } from './config/env.js'; // configure environment variables
 import express, { Application, Request, Response, NextFunction } from 'express';
 import session from 'express-session';
 import passport from 'passport';
@@ -36,18 +36,18 @@ app.use(logger('dev'));
 app.use(cookieParser());
 
 // Security
-app.set('trust proxy', 1) // for Google App Engine
+app.set('trust proxy', 1); // for Google App Engine
 
-app.use(helmet(
-  {
+app.use(
+  helmet({
     contentSecurityPolicy: {
       directives: {
         ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-        "img-src": ["'self'", "blob:", "data:"],
+        'img-src': ["'self'", 'blob:', 'data:'],
       },
     },
-  }
-));
+  }),
+);
 
 // HTTPS only in production
 const enforceHttps = (req: Request, res: Response, next: NextFunction) => {
@@ -67,10 +67,11 @@ if (!mongoURI) {
   console.error('MongoURI is not set');
   process.exit(1);
 }
-mongoose.connect(mongoURI)
+mongoose
+  .connect(mongoURI)
   .then(() => console.log('Connected to MongoDB...'))
-  .catch(err => {
-    console.error('Could not connect to MongoDB...', err)
+  .catch((err) => {
+    console.error('Could not connect to MongoDB...', err);
     process.exit(1);
   });
 
@@ -78,9 +79,9 @@ mongoose.connect(mongoURI)
 const sessionStore = MongoStore.create({
   mongoUrl: mongoURI,
   ttl: 14 * 24 * 60 * 60, // 14 days
-})
+});
 
-const sessionSecret = await getSecret('SESSION_SECRET')
+const sessionSecret = await getSecret('SESSION_SECRET');
 if (!sessionSecret) {
   console.error('SESSION_SECRET is not set');
   process.exit(1);
@@ -96,7 +97,7 @@ app.use(
       sameSite: 'lax',
       maxAge: 14 * 24 * 60 * 60 * 1000, // 14 days
     },
-  })
+  }),
 );
 
 // Serve static files from the React build
@@ -113,7 +114,11 @@ function ensureAuth(req: Request, res: Response, next: NextFunction) {
   res.status(401).json({ error: 'Unauthorized' });
 }
 
-function ensureAuthAndComplete(req: Request, res: Response, next: NextFunction) {
+function ensureAuthAndComplete(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
   if (!req.isAuthenticated()) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
@@ -141,7 +146,8 @@ app.get('*', (req, res) => {
 // Error handling
 app.use((err: unknown, req: Request, res: Response, next: Function) => {
   console.error('An error occurred', err);
-  if (!res.headersSent) { // avoid sending a response twice
+  if (!res.headersSent) {
+    // avoid sending a response twice
     res.status(500).send('Something went wrong!');
   }
 });

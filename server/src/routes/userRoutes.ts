@@ -16,9 +16,9 @@ router.get('/options', async (req, res) => {
       colleges: collegesData,
       years: yearsData.map((year: string, index: number) => ({
         value: (index + 1).toString(),
-        label: year
+        label: year,
       })),
-      courses: coursesData
+      courses: coursesData,
     };
 
     res.json(userOptions);
@@ -42,7 +42,9 @@ router.post('/profile', async (req, res) => {
   }
 
   if (user.isProfileComplete) {
-    return res.status(403).json({ message: 'Profile is already complete and cannot be updated' });
+    return res
+      .status(403)
+      .json({ message: 'Profile is already complete and cannot be updated' });
   }
 
   const { college, year, course } = req.body;
@@ -56,7 +58,7 @@ router.post('/profile', async (req, res) => {
         course: course,
         isProfileComplete: true,
       },
-      { new: true }
+      { new: true },
     );
 
     res.json({ message: 'Profile updated successfully', user });
@@ -86,7 +88,7 @@ router.get('/profile', async (req, res) => {
       course: user.course,
     });
   } catch (error) {
-    console.error('Error fetching user profile:', error)
+    console.error('Error fetching user profile:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -99,7 +101,10 @@ router.get('/reviews', async (req, res) => {
   }
 
   try {
-    const reviews = await Review.find({ submitter: req.user.id }, { responses: 1, submittedAt: 1 })
+    const reviews = await Review.find(
+      { submitter: req.user.id },
+      { responses: 1, submittedAt: 1 },
+    )
       .sort({ submittedAt: -1 })
       .lean();
 

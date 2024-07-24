@@ -10,11 +10,11 @@ const App: React.FC = () => {
   return (
     <Router>
       <LoadingProvider>
-      <NotificationProvider>
-        <AuthProvider>
-          <AppRoutes />
-        </AuthProvider>
-      </NotificationProvider>
+        <NotificationProvider>
+          <AuthProvider>
+            <AppRoutes />
+          </AuthProvider>
+        </NotificationProvider>
       </LoadingProvider>
     </Router>
   );

@@ -16,7 +16,9 @@ const UserReviews: React.FC = () => {
     const fetchReviews = async () => {
       startLoading();
       try {
-        const response = await axios.get<Review[]>('/user/reviews', { withCredentials: true });
+        const response = await axios.get<Review[]>('/user/reviews', {
+          withCredentials: true,
+        });
         setReviews(response.data);
         setHasFetched(true);
       } catch (error) {
@@ -34,7 +36,7 @@ const UserReviews: React.FC = () => {
     if (!hasFetched) {
       return null;
     }
-    
+
     if (reviews.length === 0) {
       return <p>You haven't submitted any reviews yet.</p>;
     }
@@ -48,11 +50,7 @@ const UserReviews: React.FC = () => {
     );
   };
 
-  return (
-    <PageLayout title="Your reviews">
-      {renderContent()}
-    </PageLayout>
-  );
+  return <PageLayout title="Your reviews">{renderContent()}</PageLayout>;
 };
 
 export default UserReviews;

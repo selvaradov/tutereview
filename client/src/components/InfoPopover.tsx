@@ -25,15 +25,15 @@ const InfoPopover: React.FC<InfoPopoverProps> = ({ content }) => {
       show={show}
       onToggle={(nextShow) => setShow(nextShow)}
     >
-      <span 
+      <span
         role="button"
         tabIndex={0}
         style={{ cursor: 'pointer' }}
         className="info-popover-trigger"
       >
         {' '}
-        <FaInfoCircle 
-          className={`text-primary transition-all duration-300 ${show ? 'text-blue-600 scale-110' : 'text-blue-500 scale-100'}`} 
+        <FaInfoCircle
+          className={`text-primary transition-all duration-300 ${show ? 'text-blue-600 scale-110' : 'text-blue-500 scale-100'}`}
           style={{ display: 'inline', verticalAlign: 'text-top' }}
         />
       </span>

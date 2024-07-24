@@ -24,7 +24,7 @@ const AppRoutes: React.FC = () => {
     <AppLayout>
       <Notification />
       <ScrollToTop>
-      <Routes>
+        <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/about" element={<AboutPage />} />
@@ -33,7 +33,7 @@ const AppRoutes: React.FC = () => {
           <Route path="/profile" element={protectedRoute(ProfileCompletion)} />
           <Route path="/my-reviews" element={protectedRoute(UserReviews)} />
           <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+        </Routes>
       </ScrollToTop>
     </AppLayout>
   );

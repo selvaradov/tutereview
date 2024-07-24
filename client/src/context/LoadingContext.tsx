@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useEffect,
+} from 'react';
 import { Spinner } from 'react-bootstrap';
 
 interface LoadingContextType {
@@ -9,7 +15,9 @@ interface LoadingContextType {
 
 const LoadingContext = createContext<LoadingContextType | undefined>(undefined);
 
-export const LoadingProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const LoadingProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [loadingCount, setLoadingCount] = useState(0);
   const [showLoader, setShowLoader] = useState(false);
 
@@ -31,27 +39,36 @@ export const LoadingProvider: React.FC<{ children: React.ReactNode }> = ({ child
     return () => clearTimeout(timer);
   }, [loadingCount]);
 
-    // Hide scrollbar when loading
-    useEffect(() => {
-      if (showLoader) {
-        const originalStyle = {
-          scrollbarGutter: document.documentElement.style.getPropertyValue('scrollbar-gutter'),
-          overflow: document.documentElement.style.getPropertyValue('overflow'),
-        };
-        document.documentElement.style.setProperty('scrollbar-gutter', 'unset');
-        document.documentElement.style.setProperty('overflow', 'hidden');
-        document.body.style.setProperty('padding-right', '0px');
-  
-        return () => {
-          document.documentElement.style.setProperty('scrollbar-gutter', originalStyle.scrollbarGutter);
-          document.documentElement.style.setProperty('overflow', originalStyle.overflow);
-          document.body.style.removeProperty('padding-right');
-        };
-      }
-    }, [showLoader]);
+  // Hide scrollbar when loading
+  useEffect(() => {
+    if (showLoader) {
+      const originalStyle = {
+        scrollbarGutter:
+          document.documentElement.style.getPropertyValue('scrollbar-gutter'),
+        overflow: document.documentElement.style.getPropertyValue('overflow'),
+      };
+      document.documentElement.style.setProperty('scrollbar-gutter', 'unset');
+      document.documentElement.style.setProperty('overflow', 'hidden');
+      document.body.style.setProperty('padding-right', '0px');
+
+      return () => {
+        document.documentElement.style.setProperty(
+          'scrollbar-gutter',
+          originalStyle.scrollbarGutter,
+        );
+        document.documentElement.style.setProperty(
+          'overflow',
+          originalStyle.overflow,
+        );
+        document.body.style.removeProperty('padding-right');
+      };
+    }
+  }, [showLoader]);
 
   return (
-    <LoadingContext.Provider value={{ isLoading: loadingCount > 0, startLoading, stopLoading }}>
+    <LoadingContext.Provider
+      value={{ isLoading: loadingCount > 0, startLoading, stopLoading }}
+    >
       {children}
       {showLoader && (
         <div className="loading-overlay">

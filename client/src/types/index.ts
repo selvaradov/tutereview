@@ -5,9 +5,7 @@ export interface Paper {
   id: string;
 }
 
-export interface SubjectToPapersMap {
-  [key: string]: Paper[];
-}
+export type SubjectToPapersMap = Record<string, Paper[]>;
 
 export type ResponseValue = string | number | string[];
 
@@ -42,13 +40,14 @@ export interface Option<T = string> {
   value: T;
 }
 
-export interface GroupedReviews {
-  [key: string]: {
+export type GroupedReviews = Record<
+  string,
+  {
     reviews: Review[];
     showFullResults: boolean;
     colleges?: string[];
-  };
-}
+  }
+>;
 
 export enum QuestionType {
   Dropdown = 'dropdown',
@@ -56,7 +55,7 @@ export enum QuestionType {
   TextArea = 'textarea',
   Radio = 'radio',
   Rating = 'rating',
-  Select = 'select'
+  Select = 'select',
 }
 
 export interface Question {
@@ -67,4 +66,3 @@ export interface Question {
   options?: string[];
   guidance?: string;
 }
-

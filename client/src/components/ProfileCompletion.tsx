@@ -29,17 +29,25 @@ interface ProfileFormFieldProps {
   guidance?: string;
 }
 
-const FormField: React.FC<ProfileFormFieldProps> = ({ fieldName, label, options, guidance }) => {
-  const { values, setFieldValue, errors, touched, submitCount } = useFormikContext<ProfileFormValues>();
+const FormField: React.FC<ProfileFormFieldProps> = ({
+  fieldName,
+  label,
+  options,
+  guidance,
+}) => {
+  const { values, setFieldValue, errors, touched, submitCount } =
+    useFormikContext<ProfileFormValues>();
   const { isProfileComplete } = useAuth();
   const hasError = errors[fieldName] && (touched[fieldName] || submitCount > 0);
 
   return (
     <Form.Group className="mb-4">
       <Form.Label htmlFor={fieldName} className="fw-bold">
-      <div className={'question-title required-field'}>{label}</div>
+        <div className={'question-title required-field'}>{label}</div>
         {guidance && (
-          <div><Form.Text>{guidance}</Form.Text></div>
+          <div>
+            <Form.Text>{guidance}</Form.Text>
+          </div>
         )}
       </Form.Label>
       <Select
@@ -47,7 +55,7 @@ const FormField: React.FC<ProfileFormFieldProps> = ({ fieldName, label, options,
         onChange={(option: Option | null) => {
           setFieldValue(fieldName, option ? option.value : '');
         }}
-        value={options.find(option => option.value === values[fieldName])}
+        value={options.find((option) => option.value === values[fieldName])}
         className={`react-select-container ${hasError ? 'is-invalid' : ''}`}
         classNamePrefix="react-select"
         isClearable
@@ -64,8 +72,16 @@ const FormField: React.FC<ProfileFormFieldProps> = ({ fieldName, label, options,
 };
 
 const ProfileCompletion: React.FC = () => {
-  const [options, setOptions] = useState<ProfileOptions>({ colleges: [], years: [], courses: [] });
-  const [initialValues, setInitialValues] = useState<ProfileFormValues>({ college: '', year: '', course: '' });
+  const [options, setOptions] = useState<ProfileOptions>({
+    colleges: [],
+    years: [],
+    courses: [],
+  });
+  const [initialValues, setInitialValues] = useState<ProfileFormValues>({
+    college: '',
+    year: '',
+    course: '',
+  });
   const { user, isProfileComplete, setUser } = useAuth();
   const navigate = useNavigate();
   const { showNotification } = useNotification();
@@ -81,13 +97,18 @@ const ProfileCompletion: React.FC = () => {
       try {
         const [optionsResponse, profileResponse] = await Promise.all([
           axios.get<ProfileOptions>('/user/options', { withCredentials: true }),
-          axios.get<ProfileFormValues>('/user/profile', { withCredentials: true })
+          axios.get<ProfileFormValues>('/user/profile', {
+            withCredentials: true,
+          }),
         ]);
         setOptions(optionsResponse.data);
         setInitialValues(profileResponse.data);
       } catch (error) {
         console.error('Failed to fetch data:', error);
-        showNotification('Failed to load profile data. Please try again.', 'error');
+        showNotification(
+          'Failed to load profile data. Please try again.',
+          'error',
+        );
       } finally {
         stopLoading();
       }
@@ -101,7 +122,10 @@ const ProfileCompletion: React.FC = () => {
     course: Yup.string().required('This question is required'),
   });
 
-  const handleSubmit = async (values: ProfileFormValues, { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }) => {
+  const handleSubmit = async (
+    values: ProfileFormValues,
+    { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void },
+  ) => {
     startLoading();
     if (!isProfileComplete) {
       try {
@@ -113,7 +137,10 @@ const ProfileCompletion: React.FC = () => {
         showNotification('Profile updated successfully!', 'success');
       } catch (error) {
         console.error('Error updating profile:', error);
-        showNotification('Failed to update profile. Please try again.', 'error');
+        showNotification(
+          'Failed to update profile. Please try again.',
+          'error',
+        );
       } finally {
         setSubmitting(false);
         stopLoading();
@@ -126,7 +153,9 @@ const ProfileCompletion: React.FC = () => {
       <Col md={8} lg={6}>
         <Card>
           <Card.Body>
-            <h2 className="text-center mb-3">{isProfileComplete ? 'Your profile' : 'Complete your profile'}</h2>
+            <h2 className="text-center mb-3">
+              {isProfileComplete ? 'Your profile' : 'Complete your profile'}
+            </h2>
             <Formik
               initialValues={initialValues}
               validationSchema={validationSchema}
@@ -135,17 +164,33 @@ const ProfileCompletion: React.FC = () => {
             >
               {({ isSubmitting }) => (
                 <FormikForm noValidate>
-                  <FormField fieldName="college" label="College" options={options.colleges} />
+                  <FormField
+                    fieldName="college"
+                    label="College"
+                    options={options.colleges}
+                  />
                   <FormField
                     fieldName="year"
                     label="Year"
                     options={options.years}
-                    guidance={(isLongVacationPeriod && !isProfileComplete) ? "Please tell us the year you've just finished, not the one you're going into." : undefined}
+                    guidance={
+                      isLongVacationPeriod && !isProfileComplete
+                        ? "Please tell us the year you've just finished, not the one you're going into."
+                        : undefined
+                    }
                   />
-                  <FormField fieldName="course" label="Course" options={options.courses} />
+                  <FormField
+                    fieldName="course"
+                    label="Course"
+                    options={options.courses}
+                  />
                   {!isProfileComplete && (
                     <div className="d-grid">
-                      <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+                      <button
+                        type="submit"
+                        className="btn btn-primary"
+                        disabled={isSubmitting}
+                      >
                         {isSubmitting ? 'Submitting...' : 'Submit'}
                       </button>
                     </div>
@@ -156,8 +201,12 @@ const ProfileCompletion: React.FC = () => {
             {isProfileComplete && (
               <p className="text-center text-muted">
                 <small>
-                  For security reasons, you can't update your profile information here. If these details change,
-                  email <a href="mailto:tutereview.org+support@gmail.com">tutereview.org+support@gmail.com</a> and we'll help you out.
+                  For security reasons, you can't update your profile
+                  information here. If these details change, email{' '}
+                  <a href="mailto:tutereview.org+support@gmail.com">
+                    tutereview.org+support@gmail.com
+                  </a>{' '}
+                  and we'll help you out.
                 </small>
               </p>
             )}

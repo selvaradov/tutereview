@@ -7,7 +7,7 @@ export const checkNavigation = (
   to: string,
   isAuthenticated: boolean,
   isProfileComplete: boolean,
-  showNotification: NotificationContextType['showNotification']
+  showNotification: NotificationContextType['showNotification'],
 ): boolean => {
   if (!isAuthenticated && authRequiredRoutes.includes(to)) {
     return false;
@@ -20,10 +20,10 @@ export const checkNavigation = (
       [
         {
           label: 'Complete profile',
-          onClick: () => window.location.href = '/profile',
-          variant: 'primary'
-        }
-      ]
+          onClick: () => (window.location.href = '/profile'),
+          variant: 'primary',
+        },
+      ],
     );
     return false;
   }

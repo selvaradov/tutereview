@@ -86,22 +86,33 @@ const StarRating: React.FC<StarRatingProps> = ({
     >
       {[...Array(totalStars)].map((_, index) => {
         const starValue = index + 1;
-        const isSelected = starValue <= (interactive ? (hover || internalRating) : roundedRating);
+        const isSelected =
+          starValue <= (interactive ? hover || internalRating : roundedRating);
         return (
           <span
             key={index}
             role={interactive ? 'radio' : undefined}
             aria-checked={interactive ? starValue === roundedRating : undefined}
             tabIndex={-1}
-            aria-label={interactive ? `${starValue} star${starValue !== 1 ? 's' : ''}` : undefined}
+            aria-label={
+              interactive
+                ? `${starValue} star${starValue !== 1 ? 's' : ''}`
+                : undefined
+            }
             onClick={() => handleClick(starValue)}
             onMouseEnter={() => handleMouseEnter(starValue)}
             style={{ cursor: interactive ? 'pointer' : 'default' }}
           >
             <LuStar
               size={size}
-              fill={isSelected ? "#ffc107" : "none"}
-              stroke={isSelected ? "#ffc107" : (hasError && interactive ? "#dc3545" : "#909090")}
+              fill={isSelected ? '#ffc107' : 'none'}
+              stroke={
+                isSelected
+                  ? '#ffc107'
+                  : hasError && interactive
+                    ? '#dc3545'
+                    : '#909090'
+              }
               aria-hidden="true"
             />
           </span>
