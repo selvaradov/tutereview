@@ -82,7 +82,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
   return (
     <Card className="mb-3">
       <Card.Body>
-        <Card.Title>{`${review.responses.paperName} (${review.responses.paperLevel}) - ${review.responses.tutor}`}</Card.Title>
+        <Card.Title as="h3" className="fs-4">{`${review.responses.paperName} (${review.responses.paperLevel}) - ${review.responses.tutor}`}</Card.Title>
         {review.isOld && (
           <Card.Subtitle className="mb-2 text-muted">
             This review is more than three years old.

@@ -41,7 +41,7 @@ const ReviewSummary: React.FC<ReviewSummaryProps> = ({ reviews, onToggleFullResu
       {colleges && colleges.length > 0 && (
           <Row className="mb-3">
             <Col>
-              <h5>Colleges with 3 or more reviews submitted</h5>
+              <h3 className="fs-5">Colleges with 3 or more reviews submitted</h3>
               <div>
                 {colleges.map((college, index) => (
                   <Badge 
@@ -59,21 +59,21 @@ const ReviewSummary: React.FC<ReviewSummaryProps> = ({ reviews, onToggleFullResu
         )}
         <Row>
           <Col md={4} className="mb-3">
-            <h5>Overall Rating</h5>
+            <h3 className="fs-5">Overall Rating</h3>
             <StarRating rating={calculateAverageRating('rating_overall')} />
           </Col>
           <Col md={4} className="mb-3">
-            <h5>Tutorial Rating</h5>
+            <h3 className="fs-5">Tutorial Rating</h3>
             <StarRating rating={calculateAverageRating('rating_tutorial')} />
           </Col>
           <Col md={4} className="mb-3">
-            <h5>Feedback Rating</h5>
+            <h3 className="fs-5">Feedback Rating</h3>
             <StarRating rating={calculateAverageRating('rating_feedback')} />
           </Col>
         </Row>
         <Row className="mb-3">
         <Col md={6} className="mb-3">
-            <h5>Tutorial</h5>
+            <h3 className="fs-5">Tutorial</h3>
             <div className="d-flex align-items-center mb-2">
               <LuClock size={18} className="me-2" />
               <span><strong>Length:</strong> {getMostCommonValue('tutorial_length')}</span>
@@ -92,7 +92,7 @@ const ReviewSummary: React.FC<ReviewSummaryProps> = ({ reviews, onToggleFullResu
             </div>
           </Col>
           <Col md={6} className="mb-3">
-            <h5>Feedback</h5>
+            <h3 className="fs-5">Feedback</h3>
             <div className="d-flex align-items-center mb-2">
               <LuMessageSquare size={18} className="me-2" />
               <div className="w-100">
