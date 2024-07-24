@@ -352,7 +352,7 @@ const ReviewPage: React.FC = () => {
   const handleSubmit = async (values: FormValues, { setSubmitting, resetForm }: { setSubmitting: (isSubmitting: boolean) => void; resetForm: () => void }) => {
     startLoading();
     try {
-      await axios.post('/api/review', values, {
+      await axios.post('/api/review', { responses: values }, {
         headers: {
           'Content-Type': 'application/json',
         },

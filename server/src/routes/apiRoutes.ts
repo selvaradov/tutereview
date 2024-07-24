@@ -1,10 +1,12 @@
-import { Router } from 'express';
+import { Router, Request, Response, NextFunction } from 'express';
 import { ParsedQs } from 'qs';
 import { readJsonFile } from '../utils/fileOperations.js';
 import { escapeRegex } from '../utils/sanitise.js';
 import Review, { IProcessedReview } from '../models/review.js';
 import User from '../models/user.js';
 import * as crypto from 'crypto';
+import { validateReview, sanitizeReview } from '../controllers/reviewController.js';
+import { validationResult } from 'express-validator';
 
 const router = Router();
 
@@ -194,10 +196,15 @@ router.get('/tutors', async (req, res) => {
 
 
 // review endpoint
-router.post('/review', async (req, res) => {
+router.post('/review', validateReview, sanitizeReview, async (req: Request, res: Response) => {
   if (!req.user) {
     console.error('Unexpected unauthorized request to submit review');
     return res.status(401).json({ error: 'Unauthorized' });
+  }
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
   }
   const submitter = req.user.id;
   try {
@@ -207,10 +214,17 @@ router.post('/review', async (req, res) => {
       return res.status(404).json({ error: 'User not found' });
     }
 
+    const existingReview = await Review.findOne({
+      submitter,
+      'responses.paper': req.body.responses.paper,
+    });
+    if (existingReview) {
+      return res.status(400).json({ error: 'Duplicate review: You have already submitted a review for this paper.' });
+    }
+
     const review = new Review({
       submitter,
-      responses: req.body, // TODO validate and sanitise (e.g. we're keeping in `paper` which duplicates `paperCode`)
-      // people could theoretically send an option that isn't supported by the frontend if they do so manually
+      responses: req.body.responses,
       college: user.college
     });
 
