@@ -19,7 +19,7 @@ const AboutPage = () => {
                   giving you feedback yet; the one who'd rather do anything than give a straight answer
                   to the question you asked.
                 </p>
-                <strong>We've all been there — but it doesn't have to be this way!</strong>
+                <strong>We've all been there — but it doesn't have to be this way.</strong>
               </blockquote>
             </Card.Body>
           </Card>
@@ -42,12 +42,11 @@ const AboutPage = () => {
         <Col lg={8} className="mx-auto">
           <h2 className="mb-4">Our mission</h2>
           <p className="lead">
-            There are many fantastic tutors and fascinating papers out there, and more people
-            should be able to find them.
+            There are many fantastic tutors and fascinating papers out there. We want more people
+            to know about them.
           </p>
           <p>
-            There's always going to be variation in teaching between colleges and courses: that's part
-            of what makes Oxford and Cambridge academically distinctive. What <em>isn't</em> inevitable
+            Part of what makes Oxford and Cambridge academically distinctive is the collegiate system, and there's always going to be variation in teaching between colleges and courses. What <em>isn't</em> inevitable
             is students having no idea about how their tutorials or supervisions will be until they've
             started and it's too late to change.
           </p>
@@ -60,9 +59,9 @@ const AboutPage = () => {
 
       <Row className="mb-5">
         <Col lg={8} className="mx-auto">
-          <h2 className="mb-4">How we're different</h2>
+          <h2 className="mb-4">How we work</h2>
           <p>
-            We're an anonymous platform for students to share feedback on their papers and tutors or supervisors,
+            We're a platform for students to anonymously share feedback on their papers and tutors or supervisors,
             helping others to make informed decisions. If you've seen American sites like RateMyProfessors before,
             where most reviews are students complaining that a class was graded too harshly or that they lost marks
             for handing in work late, you should know now that we're different by design.
