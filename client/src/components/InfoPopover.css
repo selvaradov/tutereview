@@ -1,0 +1,8 @@
+.info-popover-trigger {
+  display: inline-block;
+  transition: transform 0.1s ease-in-out;
+}
+
+.info-popover-trigger:hover {
+  transform: scale(1.2);
+}
