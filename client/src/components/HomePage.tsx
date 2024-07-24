@@ -1,12 +1,11 @@
 import { Container, Row, Col, Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { FaSearch, FaPencilAlt, FaUserCircle, FaLightbulb, FaComments, FaMicrosoft, FaChevronDown } from 'react-icons/fa';
+import { FaSearch, FaLightbulb, FaComments, FaChevronDown } from 'react-icons/fa';
 import { GiBookshelf } from "react-icons/gi";
-import { useAuth } from '../context/AuthContext';
+import CTAButtons from './CTAButtons';
 import './HomePage.css';
 
 const HomePage = () => {
-  const { isAuthenticated, isProfileComplete, login } = useAuth();
   const scrollToFeatures = () => {
     const featuresSection = document.getElementById('our-features');
     if (featuresSection) {
@@ -35,46 +34,7 @@ const HomePage = () => {
                 <GiBookshelf style={{ fontSize: '15rem', opacity: 0.8 }} />
               </Col>
             </Row>
-            {!isAuthenticated ? (
-              <Row className="mt-4">
-                <Col xs={12} md={6} className="mb-3">
-                  <Button variant="warning" size="lg" onClick={login} className="d-inline-flex align-items-center w-100">
-                    <FaMicrosoft className="me-2" />
-                    Continue with Microsoft
-                  </Button>
-                </Col>
-              </Row>
-            ) : isProfileComplete ? (
-              <Row className="mt-4">
-                <Col xs={12} md={6} className="mb-3">
-                  <Link to="/review">
-                    <Button variant="warning" size="lg" className="d-inline-flex align-items-center w-100">
-                      <FaPencilAlt className="me-2" />
-                      Write a review
-                    </Button>
-                  </Link>
-                </Col>
-                <Col xs={12} md={6}>
-                  <Link to="/search">
-                    <Button variant="outline-light" size="lg" className="d-inline-flex align-items-center w-100">
-                      <FaSearch className="me-2" />
-                      Search submissions
-                    </Button>
-                  </Link>
-                </Col>
-              </Row>
-            ) : (
-              <Row className="mt-4">
-                <Col xs={12} md={6} className="mb-3">
-                  <Link to="/profile">
-                    <Button variant="warning" size="lg" className="d-inline-flex align-items-center w-100">
-                      <FaUserCircle className="me-2" />
-                      Complete your profile
-                    </Button>
-                  </Link>
-                </Col>
-              </Row>
-            )}
+            <CTAButtons primaryVariant="warning" secondaryVariant="outline-light" />
           </div>
         </Container>
         <div className="text-center chevron-container">
