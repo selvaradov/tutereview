@@ -68,7 +68,7 @@ const PaperDropdown: React.FC<{
       aria-labelledby={`${question.id}-label`}
       options={papersBySubject[selectedSubject as keyof SubjectToPapersMap]?.map(paper => ({
         value: paper.id,
-        label: `${paper.code} - ${paper.name} (${paper.level})`
+        label: `${paper.code} - ${paper.name} [${paper.level}]`
       }))}
       onChange={(option: { value: string; label: string } | null) => {
         let updates: Partial<FormikValues> = {
@@ -80,7 +80,7 @@ const PaperDropdown: React.FC<{
 
         if (option) {
           const [code, rest] = option.label.split(' - ', 2);
-          const [name, level] = rest.split(' (');
+          const [name, level] = rest.split(' [');
           updates = {
             [question.id]: option.value,
             paperCode: code || '',
