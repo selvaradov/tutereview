@@ -140,7 +140,7 @@ const ProfileCompletion: React.FC = () => {
                     fieldName="year"
                     label="Year"
                     options={options.years}
-                    guidance={isLongVacationPeriod ? "Please tell us the year you've just finished, not the one you're going into." : undefined}
+                    guidance={(isLongVacationPeriod && !isProfileComplete) ? "Please tell us the year you've just finished, not the one you're going into." : undefined}
                   />
                   <FormField fieldName="course" label="Course" options={options.courses} />
                   {!isProfileComplete && (
