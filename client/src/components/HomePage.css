@@ -1,23 +1,43 @@
 .hero-section {
-  padding: 4rem 0;
+  min-height: calc(98vh - 102px); /* Adjust 56px if your navbar height is different */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 0;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+  position: relative;
 }
 
 .hero-content {
-  margin-bottom: 3rem;
+  margin-bottom: 4rem; /* Adds space between content and chevron */
 }
 
 .chevron-container {
   position: absolute;
-  bottom: 2rem;
+  bottom: 3rem;
   left: 0;
   right: 0;
+  text-align: center;
 }
 
 .scroll-chevron {
   color: white;
   transition: transform 0.3s ease;
+  font-size: 2rem;
+  cursor: pointer;
 }
 
 .scroll-chevron:hover {
   transform: translateY(5px);
+}
+
+@media (max-height: 600px) {
+  .hero-content {
+    margin-bottom: 2rem;
+  }
+
+  .chevron-container {
+    bottom: 1rem;
+  }
 }

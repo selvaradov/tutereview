@@ -1,4 +1,4 @@
-import { Container, Row, Col, Button, Card } from 'react-bootstrap';
+import { Row, Col, Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { FaSearch, FaLightbulb, FaComments, FaChevronDown } from 'react-icons/fa';
 import { GiBookshelf } from "react-icons/gi";
@@ -14,16 +14,8 @@ const HomePage = () => {
   };
   return (
     <>
-      <section
-        className="hero-section d-flex flex-column justify-content-center"
-        id="hero"
-        style={{
-          minHeight: `calc(100vh - 110px)`,
-          background: 'linear-gradient(135deg, #6a11cb 0%, #2575fc 100%)',
-          color: 'white',
-          position: 'relative'
-        }}>
-        <Container className="d-flex flex-column justify-content-center flex-grow-1">
+      <section className="hero-section" id="hero">
+        <div className="h-100 d-flex flex-column">
           <div className="hero-content mx-4">
             <Row className="align-items-center">
               <Col lg={6}>
@@ -36,28 +28,26 @@ const HomePage = () => {
             </Row>
             <CTAButtons primaryVariant="warning" secondaryVariant="outline-light" />
           </div>
-        </Container>
-        <div className="text-center chevron-container">
+        </div>
+        <div className="chevron-container">
           <FaChevronDown
             className="scroll-chevron"
             onClick={scrollToFeatures}
             aria-label="Scroll to Our Features"
-            style={{ fontSize: '2rem', cursor: 'pointer' }}
           />
         </div>
       </section>
 
-      <section className="py-5" id="our-features">
-        <Container>
-          <h2 className="text-center mb-5">Our features</h2>
+      <section className="py-3 my-3" id="our-features">
+          <h2 className="text-center">Our features</h2>
           <Row>
             <Col md={4} className="mb-4">
               <Card className="h-100 shadow-sm border-0">
                 <Card.Body className="text-center">
                   <FaComments className="fs-1 text-primary mb-3" />
-                  <Card.Title className="fs-4 lh-1 mb-3 px-2">Anonymous Feedback</Card.Title>
+                  <Card.Title className="fs-4 mb-3 px-3">Anonymous Feedback</Card.Title>
                   <Card.Text>
-                    Share your experiences and recognise your best tutors.
+                    Share your experiences with fellow students and recognise your best tutors.
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -66,7 +56,7 @@ const HomePage = () => {
               <Card className="h-100 shadow-sm border-0">
                 <Card.Body className="text-center">
                   <FaLightbulb className="fs-1 text-success mb-3" />
-                  <Card.Title className="fs-4 lh-1 mb-3 px-2">Informed Decisions</Card.Title>
+                  <Card.Title className="fs-4 mb-3 px-3">Informed Decisions</Card.Title>
                   <Card.Text>
                     Make better choices about your papers and tutors based on others' advice.
                   </Card.Text>
@@ -77,7 +67,7 @@ const HomePage = () => {
               <Card className="h-100 shadow-sm border-0">
                 <Card.Body className="text-center">
                   <FaSearch className="fs-1 text-warning mb-3" />
-                  <Card.Title className="fs-4 lh-1 mb-3 px-2">Easy Exploration</Card.Title>
+                  <Card.Title className="fs-4 mb-3 px-3">Easy Exploration</Card.Title>
                   <Card.Text>
                     Quickly find and compare reviews for specific papers, tutors, or colleges.
                   </Card.Text>
@@ -85,14 +75,12 @@ const HomePage = () => {
               </Card>
             </Col>
           </Row>
-        </Container>
       </section>
 
-      <section className="py-5" id="about-us">
-        <Container>
+      <section className="py-3 my-3" id="about-us">
           <Row>
             <Col lg={8} className="mx-auto">
-              <h2 className="text-center mb-4">About us</h2>
+              <h2 className="text-center">About us</h2>
               <p>
                 TuteReview is a platform for students to anonymously share feedback on their papers and tutors or supervisors, helping others to make informed decisions. We're different from other review sites by design, focusing on providing meaningful information to help students choose the right papers and understand what to expect.
               </p>
@@ -115,7 +103,6 @@ const HomePage = () => {
               </div>
             </Col>
           </Row>
-        </Container>
       </section>
     </>
   );
