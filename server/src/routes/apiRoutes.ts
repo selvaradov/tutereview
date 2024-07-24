@@ -1,4 +1,4 @@
-import { Router, Request, Response, NextFunction } from 'express';
+import { Router, Request, Response } from 'express';
 import { ParsedQs } from 'qs';
 import { readJsonFile } from '../utils/fileOperations.js';
 import { escapeRegex } from '../utils/sanitise.js';

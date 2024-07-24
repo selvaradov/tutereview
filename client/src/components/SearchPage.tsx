@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import axios from 'axios';
 import { Form, Row, Col, Card, Alert } from 'react-bootstrap';
-import Select, { ActionMeta, MultiValue } from 'react-select';
+import Select, { MultiValue } from 'react-select';
 import PageLayout from './PageLayout';
 import { useNotification } from '../context/NotificationContext';
 import { useLoading } from '../context/LoadingContext';
@@ -167,10 +167,7 @@ const SearchPage: React.FC = () => {
     setSearchParams((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handlePaperChange = (
-    selectedOptions: MultiValue<Option> | null,
-    actionMeta: ActionMeta<Option>,
-  ) => {
+  const handlePaperChange = (selectedOptions: MultiValue<Option> | null) => {
     setSearchParams((prev) => ({
       ...prev,
       // Map over selectedOptions only if it's not null, otherwise set to an empty array
@@ -180,10 +177,7 @@ const SearchPage: React.FC = () => {
     }));
   };
 
-  const handleCollegeChange = (
-    selectedOptions: MultiValue<Option> | null,
-    actionMeta: ActionMeta<Option>,
-  ) => {
+  const handleCollegeChange = (selectedOptions: MultiValue<Option> | null) => {
     setSearchParams((prev) => ({
       ...prev,
       college: selectedOptions

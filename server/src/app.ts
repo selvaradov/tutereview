@@ -1,6 +1,6 @@
 // Import required modules
 import { loadEnvConfig } from './config/env.js'; // configure environment variables
-import express, { Application, Request, Response, NextFunction } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import session from 'express-session';
 import passport from 'passport';
 import { configurePassport } from './config/passport.js';
@@ -144,7 +144,7 @@ app.get('*', (req, res) => {
 });
 
 // Error handling
-app.use((err: unknown, req: Request, res: Response, next: Function) => {
+app.use((err: unknown, req: Request, res: Response) => {
   console.error('An error occurred', err);
   if (!res.headersSent) {
     // avoid sending a response twice

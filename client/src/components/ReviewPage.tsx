@@ -463,7 +463,7 @@ const ReviewPage: React.FC = () => {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ isSubmitting, errors }) => (
+        {({ isSubmitting }) => (
           <FormikForm>
             {questions.map((question: Question) => (
               <FormField
