@@ -30,6 +30,7 @@ helping others to make informed decisions.
     - There was a problem about `tsbuildinfo` conflicting, see https://github.com/Microsoft/TypeScript/issues/30925 
       but basically had to explicitly set `tsBuildInfoFile` in config
   - also https://stackoverflow.com/questions/65045106/share-types-between-client-and-server
+  - and https://stackoverflow.com/questions/47729344/how-to-share-code-between-typescript-projects
   - To use that code in the client, requires some reconfiguration of webpack
     - https://www.youtube.com/watch?app=desktop&v=RZSJ0RhdqlU
     - (maybe) https://www.youtube.com/watch?app=desktop&v=2ljXcZrCLRk
