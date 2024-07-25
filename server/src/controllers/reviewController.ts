@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { body, ValidationChain } from 'express-validator';
 import sanitizeHtml from 'sanitize-html';
-import questions from '../data/questions.json';
-import papers from '../data/papers.json';
+import questions from '../data/questions.json' with { type: 'json' };
+import papers from '../data/papers.json' with { type: 'json' };
 
 // Type definitions
 interface Question {
