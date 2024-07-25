@@ -25,6 +25,15 @@ helping others to make informed decisions.
   - https://stackoverflow.com/questions/33535879/how-to-run-typescript-files-from-command-line
   - https://github.com/TypeStrong/ts-node/issues/935 
 - So just used [tsx](https://tsx.is/) instead for compiling in development, which has worked great
+- Want to have shared code between the client and server
+  - https://stackoverflow.com/questions/55753163/package-json-is-not-under-rootdir is what I used
+    - There was a problem about `tsbuildinfo` conflicting, see https://github.com/Microsoft/TypeScript/issues/30925 
+      but basically had to explicitly set `tsBuildInfoFile` in config
+  - also https://stackoverflow.com/questions/65045106/share-types-between-client-and-server
+  - To use that code in the client, requires some reconfiguration of webpack
+    - https://www.youtube.com/watch?app=desktop&v=RZSJ0RhdqlU
+    - (maybe) https://www.youtube.com/watch?app=desktop&v=2ljXcZrCLRk
+    - https://www.youtube.com/watch?app=desktop&v=zQUpNa1hZIA (looked quite good)
 
 ### Database
 - After restarting the system, need to run `sudo systemctl start mongod`

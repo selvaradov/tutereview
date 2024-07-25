@@ -56,6 +56,9 @@
 
 ## Medium priority
 
+## Build structure
+- Change handlers for GAE as in the [first answer here](https://claude.ai/chat/9b4059a1-b806-4158-a8fb-9b4cc5d62e93)
+
 ### Backend
 - Set up logging of API calls (`rotating-file-stream` or `winston` with `morgan`)
 - Improve consistency of handling paper names & codes & labels when using database, GET requests, and forms
