@@ -2,12 +2,6 @@
   "name": "@tutereview/common",
   "version": "1.0.0",
   "type": "module",
-  "main": "./src/index.js",
-  "types": "./src/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "../build/common/index.js",
-      "types": "../build/common/index.d.ts"
-    }
-  }
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts"
 }

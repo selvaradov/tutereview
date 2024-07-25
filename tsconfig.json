@@ -3,9 +3,10 @@
   "extends": "@tsconfig/node22/tsconfig.json",
   "compilerOptions": {
     "resolveJsonModule": true,
-    "outDir": "./build",
-    "tsBuildInfoFile": ".tsbuildinfo",
-    "composite": true
+    "composite": true,
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "node",
   },
   "exclude": [
     "node_modules"

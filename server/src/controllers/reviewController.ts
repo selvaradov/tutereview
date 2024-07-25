@@ -8,7 +8,7 @@ import {
   Paper,
   QuestionType,
   SubjectToPapersMap,
-} from '@tutereview/common';
+} from '@tutereview/common/interfaces';
 
 type PaperInfo = Record<string, Omit<Paper, 'id'> & { subject: string }>;
 
