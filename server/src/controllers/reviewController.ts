@@ -3,39 +3,18 @@ import { body, ValidationChain } from 'express-validator';
 import sanitizeHtml from 'sanitize-html';
 import questions from '../data/questions.json';
 import papers from '../data/papers.json';
+import {
+  Question,
+  Paper,
+  QuestionType,
+  SubjectToPapersMap,
+} from '@tutereview/common';
 
-// Type definitions
-interface Question {
-  id: string;
-  question: string;
-  type: string;
-  required: boolean;
-  options?: string[];
-  guidance?: string;
-}
-
-interface Paper {
-  id: string;
-  code: string;
-  name: string;
-  level: string;
-}
-
-type PaperInfo = Record<
-  string,
-  {
-    subject: string;
-    code: string;
-    name: string;
-    level: string;
-  }
->;
-
-type Papers = Record<string, Paper[]>;
+type PaperInfo = Record<string, Omit<Paper, 'id'> & { subject: string }>;
 
 // Asserting the type of imported JSON
 const typedQuestions = questions as Question[];
-const typedPapers = papers as Papers;
+const typedPapers = papers as SubjectToPapersMap;
 
 // Helper function to get valid paper information
 const getValidPaperInfo = (): PaperInfo => {
@@ -96,8 +75,8 @@ const validateReview: ValidationChain[] = [
         }
         // Check the value is of the correct type and format
         switch (question.type) {
-          case 'dropdown':
-          case 'radio':
+          case QuestionType.Dropdown:
+          case QuestionType.Radio:
             if (
               !ignoreOptions.includes(question.id) &&
               !question.options?.includes(value)
@@ -106,7 +85,7 @@ const validateReview: ValidationChain[] = [
               throw new Error(`Invalid value for ${question.id}`);
             }
             break;
-          case 'select':
+          case QuestionType.Select:
             if (
               !Array.isArray(value) ||
               !value.every((val) => question.options?.includes(val))
@@ -114,13 +93,13 @@ const validateReview: ValidationChain[] = [
               throw new Error(`Invalid value for ${question.id}`);
             }
             break;
-          case 'rating':
+          case QuestionType.Rating:
             if (!Number.isInteger(value) || value < 1 || value > 5) {
               throw new Error(`Invalid value for ${question.id}`);
             }
             break;
-          case 'text':
-          case 'textarea':
+          case QuestionType.Text:
+          case QuestionType.TextArea:
             if (typeof value !== 'string') {
               throw new Error(`Invalid value for ${question.id}`);
             }

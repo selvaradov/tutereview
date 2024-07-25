@@ -3,13 +3,19 @@
   "extends": "@tsconfig/node22/tsconfig.json",
   "compilerOptions": {
     "resolveJsonModule": true,
-    "outDir": "./scripts",
-    "rootDir": "./",
+    "outDir": "./build",
+    "tsBuildInfoFile": ".tsbuildinfo",
+    "composite": true
   },
   "exclude": [
     "node_modules"
   ],
   "ts-node": {
     "esm": true,
-  }
+  },
+  "references": [
+    { "path": "./server" },
+    // { "path": "./client" },
+    { "path": "./common" }
+  ]
 }

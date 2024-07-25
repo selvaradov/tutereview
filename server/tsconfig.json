@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "@tsconfig/node22/tsconfig.json",
   "compilerOptions": {
-    "outDir": "./dist",
+    "outDir": "../build/server",
     "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true,
@@ -12,8 +12,14 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "noEmit": false,
-    "sourceMap": true
+    "sourceMap": true,
+    "composite": true,
+    "baseUrl": ".",
+    "paths": {
+      "@tutereview/common": ["../common/src"]
+    }
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*.ts", "src/data/**/*.json"],
+  "exclude": ["node_modules"],
+  "references": [{ "path": "../common" }]
 }
