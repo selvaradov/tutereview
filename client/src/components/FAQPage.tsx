@@ -4,6 +4,11 @@ import PageLayout from './PageLayout';
 
 const faqData = [
   {
+    question: "What's the point of the website? Why should I leave a review?",
+    answer:
+      "We think information is a public good, and the more of it that students have access to the better. Leaving a review helps your fellow students to understand what different papers and tutors/supervisors are like, helping them to decide which to take. You might think that you have no choice around which tutors you get, but in our experience, asking goes a long way! Especially when a college is already aware that other students have had problems with a particular tutor, they're likely to help accommodate your request for someone else -- and as our site grows, it will become easier to use it to make the case for change. Equally, if you've had a great experience and share that, other students will be able to seek out that tutor! In the longer term, we hope to drive up standards across the university, with the public-facing nature of the site incentivising colleges to act on student feedback in a way they might not have based purely on internal surveys alone.",
+  },
+  {
     question: 'Are all my submissions anonymous?',
     answer:
       'Yes. We will never reveal your name, college or course alongside your review. However, in order to enable users to compare the offerings from different colleges for each subject, we will list with each tutor-paper combination the names of the colleges from which we have received three or more reviews. We believe this will still protect your anonymity, because (a) your college is not displayed directly with the review, and (b) the number of reviews required to display a college is high enough that it will not be possible to reliably associate a given review with any individual student. In addition, if a review was submitted more than three years ago, we will display a message to this effect beside it. If you have any questions or concerns about this, or would like to suggest changes to our policy, please email {{support}}.',
@@ -12,6 +17,11 @@ const faqData = [
     question: 'Could my tutor see the reviews?',
     answer:
       "Yes, the site is accessible to anybody with a university SSO, including tutors and other staff. We may in future open up access to the wider public so prospective students are able to make decisions about colleges and courses. Please bear this in mind when writing your reviews, and ensure they're both accurate and fair.",
+  },
+  {
+    question: 'How do you plan to share the reviews with prospective students?',
+    answer:
+      "We don't yet have firm plans around this, but we're keen to eventually open up access to the wider public to help applicants choose between colleges based on what each does best. At the moment, there's lots of information available around accommodation, catering, and even college wealth available -- but hardly any about the academic experience, which varies significantly. If you're not already connected to people studying the same course you're applying for, there's no way of working out which colleges are best, and that isn't fair. This sort of inside information can be super useful: imagine I'm a prospective Law student who's extremely interested in criminal law but not at all bothered about constitutional aspects. I might want to apply to a college where the first-year tutor for criminal law is especially good, but unless I know a lot of Oxford/Cambridge lawyers, I won't be able to do that. More generally, if there are two colleges that I've shortlisted and really like the look of I might decide between them based on how their students rate the teaching quality.",
   },
   {
     question: "What happens if I write something my tutor doesn't like?",
