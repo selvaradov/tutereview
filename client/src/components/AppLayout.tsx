@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import HeaderNavbar from './HeaderNavbar';
+import Footer from './Footer';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -15,6 +16,7 @@ const AppLayout: React.FC<LayoutProps> = ({ children }) => {
         <Col xs={12} lg={10} xl={8}>
           <HeaderNavbar />
           <div className="content-wrapper mb-4">{children}</div>
+          <Footer />
         </Col>
       </Row>
     </Container>
