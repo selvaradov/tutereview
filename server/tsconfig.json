@@ -4,16 +4,9 @@
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "./src",
-    "strict": true,
-    "esModuleInterop": true,
     "resolveJsonModule": true,
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "allowJs": true,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "noEmit": false,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "sourceMap": true
   },
   "include": ["src/**/*"],

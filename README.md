@@ -26,15 +26,17 @@ helping others to make informed decisions.
   - https://github.com/TypeStrong/ts-node/issues/935 
 - So just used [tsx](https://tsx.is/) instead for compiling in development, which has worked great
 - Want to have shared code between the client and server
-  - https://stackoverflow.com/questions/55753163/package-json-is-not-under-rootdir is what I used
-    - There was a problem about `tsbuildinfo` conflicting, see https://github.com/Microsoft/TypeScript/issues/30925 
-      but basically had to explicitly set `tsBuildInfoFile` in config
-  - also https://stackoverflow.com/questions/65045106/share-types-between-client-and-server
-  - and https://stackoverflow.com/questions/47729344/how-to-share-code-between-typescript-projects
+  - See [my example](https://github.com/selvaradov/shared-ts-code-example)
   - To use that code in the client, requires some reconfiguration of webpack
     - https://www.youtube.com/watch?app=desktop&v=RZSJ0RhdqlU
     - (maybe) https://www.youtube.com/watch?app=desktop&v=2ljXcZrCLRk
     - https://www.youtube.com/watch?app=desktop&v=zQUpNa1hZIA (looked quite good)
+
+- When running Node.js code, to import a JSON file as a module (rather than parsing it,
+  which you could just do instead),  you must specify
+  [import attributes](https://nodejs.org/api/esm.html#import-attributes)
+  - In order to do this, the `module` and `moduleResolution` need to be `NodeNext` under
+    `tsconfig.compilerOptions`
 
 ### Database
 - After restarting the system, need to run `sudo systemctl start mongod`
