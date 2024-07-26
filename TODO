@@ -65,6 +65,10 @@
 
 ### Features
 - Ability to edit reviews
+- Alternative login method
+  - Local or Google OAuth
+  - Either way then OTP with uni email
+- Warn users on attempt to submit duplicate review
 
 ## Low priority
 
