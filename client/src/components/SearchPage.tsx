@@ -14,6 +14,7 @@ import { useLoading } from '../context/LoadingContext';
 import ReviewCard from './ReviewCard';
 import ReviewSummary from './ReviewSummary';
 import { MissingOptionsMessage } from './Messages';
+import apiRequest from './apiRequest';
 import {
   Paper,
   SubjectToPapersMap,
@@ -98,14 +99,24 @@ const SearchPage: React.FC = () => {
       startLoading();
       try {
         const [papersResponse, collegesResponse] = await Promise.all([
-          axios.get<SubjectToPapersMap>('/api/papers', {
-            withCredentials: true,
+          // axios.get<SubjectToPapersMap>('/api/papers', {
+          //   withCredentials: true,
+          // }),
+          // axios.get<Option[]>('/api/colleges', { withCredentials: true }),
+          apiRequest<undefined, SubjectToPapersMap>({
+            url: '/api/papers',
+            method: 'GET',
+            scope: 'read:papers',
           }),
-          axios.get<Option[]>('/api/colleges', { withCredentials: true }),
+          apiRequest<undefined, Option[]>({
+            url: '/api/colleges',
+            method: 'GET',
+            scope: 'read:colleges',
+          }),
         ]);
 
-        setPapersBySubject(papersResponse.data);
-        setColleges(collegesResponse.data);
+        setPapersBySubject(papersResponse);
+        setColleges(collegesResponse);
       } catch (error) {
         console.error('Error fetching data:', error);
         showNotification(

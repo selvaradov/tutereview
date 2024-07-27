@@ -70,7 +70,15 @@
     - https://www.passportjs.org/packages/passport-google-oauth20/
     - https://claude.ai/chat/c2ea1e24-9951-4736-929f-a31ca842f4b4
   - Either way then OTP with uni email
+  - With auth0
+    - Use [forms](https://auth0.com/docs/customize/forms/configure-additional-signup-steps)
+      and maybe [actions](https://auth0.com/docs/customize/actions/use-cases)
+      to get profileCompletion info plus @ox.ac.uk email post sign-up
+    - [Verify email](https://auth0.com/docs/manage-users/user-accounts/verify-emails)
+    - 
+
 - Warn users on attempt to submit duplicate review
+  - And don't keep trying to load form data if it fails, etc
 
 ## Low priority
 

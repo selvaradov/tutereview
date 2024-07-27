@@ -4,6 +4,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import session from 'express-session';
 import passport from 'passport';
 import { configurePassport } from './config/passport.js';
+import { auth, requiredScopes } from 'express-oauth2-jwt-bearer';
 import { getMongoURI } from './config/db.js';
 import { getSecret } from './config/secrets.js';
 import bodyParser from 'body-parser';
@@ -46,6 +47,7 @@ app.use(
         'img-src': ["'self'", 'blob:', 'data:'],
       },
     },
+    crossOriginResourcePolicy: false,
   }),
 );
 
@@ -128,10 +130,18 @@ function ensureAuthAndComplete(
   return next();
 }
 
+const jwtCheck = auth({
+  audience: 'https://tutereview.org/api/',
+  issuerBaseURL: 'https://tutereview.uk.auth0.com/',
+  tokenSigningAlg: 'RS256',
+});
+
 // Routes
 app.use('/auth', authRouter);
-app.use('/api', ensureAuthAndComplete, apiRouter); // users can only search/submit reviews if profile is complete
-app.use('/user', ensureAuth, userRouter); // this is where users can complete their profile
+// app.use('/api', ensureAuthAndComplete, apiRouter); // users can only search/submit reviews if profile is complete
+// app.use('/user', ensureAuth, userRouter); // this is where users can complete their profile
+app.use('/api', jwtCheck, apiRouter); // can configure `requiredScopes('submit:reviews')` middleware too
+app.use('/user', jwtCheck, userRouter);
 
 // Warmup endpoint for Google App Engine
 app.get('/_ah/warmup', async (req: Request, res: Response) => {

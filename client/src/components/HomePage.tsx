@@ -8,6 +8,8 @@ import {
 } from 'react-icons/fa';
 import { GiBookshelf } from 'react-icons/gi';
 import CTAButtons from './CTAButtons';
+import LoginButton from './LoginButton';
+import LogoutButton from './LogoutButton';
 import './HomePage.css';
 
 const HomePage = () => {
@@ -39,6 +41,8 @@ const HomePage = () => {
               primaryVariant="warning"
               secondaryVariant="outline-light"
             />
+            <LoginButton />
+            <LogoutButton />
           </div>
         </div>
         <div className="chevron-container">
