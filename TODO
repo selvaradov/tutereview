@@ -67,6 +67,8 @@
 - Ability to edit reviews
 - Alternative login method
   - Local or Google OAuth
+    - https://www.passportjs.org/packages/passport-google-oauth20/
+    - https://claude.ai/chat/c2ea1e24-9951-4736-929f-a31ca842f4b4
   - Either way then OTP with uni email
 - Warn users on attempt to submit duplicate review
 
