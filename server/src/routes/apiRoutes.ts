@@ -263,12 +263,13 @@ router.post(
       const existingReview = await Review.findOne({
         submitter,
         'responses.paper': req.body.responses.paper,
+        'responses.tutor': req.body.responses.tutor,
       });
       if (existingReview) {
         console.log('Duplicate review:', existingReview);
         return res.status(400).json({
           error:
-            'Duplicate review: You have already submitted a review for this paper.',
+            'Duplicate review: You have already submitted a review for this tutor-paper combination.',
         });
       }
 
