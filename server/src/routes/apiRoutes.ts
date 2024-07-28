@@ -211,6 +211,7 @@ const allowedTutorParams: AllowedParamsSchema = {
 router.get('/tutors', async (req, res) => {
   try {
     if (hasInvalidParams(req.query, allowedTutorParams)) {
+      console.error('Invalid query parameters for tutors:', req.query);
       return res
         .status(400)
         .json({ error: 'Invalid query parameters or formats provided.' });
@@ -248,6 +249,7 @@ router.post(
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      console.error('Review failed validation', req.query, errors.array());
       return res.status(400).json({ errors: errors.array() });
     }
     const submitter = req.user.id;
@@ -263,6 +265,7 @@ router.post(
         'responses.paper': req.body.responses.paper,
       });
       if (existingReview) {
+        console.log('Duplicate review:', existingReview);
         return res.status(400).json({
           error:
             'Duplicate review: You have already submitted a review for this paper.',
