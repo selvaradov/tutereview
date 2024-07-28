@@ -448,7 +448,10 @@ const ReviewPage: React.FC = () => {
       window.scrollTo(0, 0);
     } catch (error) {
       console.error('Error submitting review:', error);
-      showNotification('Failed to submit review. Please try again.', 'error');
+      showNotification(
+        'Failed to submit review. Maybe you have already submitted a review for this tutor-paper combination? Otherwise, please try again.',
+        'error',
+      );
     } finally {
       setSubmitting(false);
       stopLoading();
