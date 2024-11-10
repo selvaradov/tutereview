@@ -3,6 +3,25 @@ This contains the source code for [TuteReview](https://tutereview.org), an
 anonymous platform for students to share feedback on their papers and tutors or supervisors,
 helping others to make informed decisions.
 
+## Functionality
+
+**Search by college, subject, paper and tutor**
+
+<img width="530" alt="Search function" src="https://github.com/user-attachments/assets/cbc036fa-6ab4-4eed-a580-9e6757c04e3c">
+
+**View a summary of reviews at a glance**
+
+<img width="530" alt="Adam Smith" src="https://github.com/user-attachments/assets/4afb22a7-768b-4cb9-a7c3-06fa0fdfe2dc">
+
+**Dig into details of each individual review**
+
+<img width="530" alt="Adam Smith detail" src="https://github.com/user-attachments/assets/e3412b1a-82b0-433f-ba9a-f1a4220bda51">
+
+**Easily submit your own reviews in a few clicks**
+
+<img width="530" alt="Review submission" src="https://github.com/user-attachments/assets/067bac0d-3737-491c-abcc-e94fa83abb0f">
+
+
 ## Things I did
 ### Node setup
 - `nvm install node` to update
